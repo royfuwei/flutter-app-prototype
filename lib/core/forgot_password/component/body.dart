@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:seeks_flutter/components/no_account_text.dart';
+import 'package:seeks_flutter/core/common/components/no_account_text.dart';
 import 'package:seeks_flutter/constants.dart';
-import 'package:seeks_flutter/screens/forgot_password/component/forgot_password_form.dart';
+import 'package:seeks_flutter/core/forgot_password/component/forgot_password_form.dart';
 import 'package:seeks_flutter/configs/size_config.dart';
 
 class Body extends StatelessWidget {

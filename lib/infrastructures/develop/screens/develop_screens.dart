@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:seeks_flutter/screens/login/login_screen.dart';
-import 'package:seeks_flutter/screens/splash/splash_screen.dart';
+import 'package:seeks_flutter/core/login/screens/login_screen.dart';
+import 'package:seeks_flutter/core/splash/screens/splash_screen.dart';
 import 'package:seeks_flutter/routes.dart';
 
 class DevEntryPage extends StatefulWidget {

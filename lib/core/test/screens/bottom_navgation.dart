@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:seeks_flutter/test/view/pages/default_page.dart';
+import 'package:seeks_flutter/core/test/screens/default_page.dart';
 import 'package:seeks_flutter/view/page/first_page.dart';
 
 import 'account_page.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:seeks_flutter/components/default_button.dart';
-import 'package:seeks_flutter/components/form_error.dart';
+import 'package:seeks_flutter/core/common/components/default_button.dart';
+import 'package:seeks_flutter/core/common/components/form_error.dart';
 import 'package:seeks_flutter/constants.dart';
 import 'package:seeks_flutter/configs/size_config.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:seeks_flutter/configs/size_config.dart';
-import 'package:seeks_flutter/screens/login/components/body.dart';
+import 'package:seeks_flutter/core/login/components/body.dart';
 
 class LoginScreen extends StatelessWidget {
   static String routeName = '/login';

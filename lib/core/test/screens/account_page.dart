@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:seeks_flutter/view/page/first_page.dart';
 
-import '../../../routes.dart';
+import '../../../../routes.dart';
 
 class AccountView extends StatelessWidget {
   final List<Tab> myTabs = <Tab>[

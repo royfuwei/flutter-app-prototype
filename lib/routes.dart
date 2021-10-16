@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:seeks_flutter/screens/forgot_password/forgot_password_screen.dart';
-import 'package:seeks_flutter/screens/login/login_screen.dart';
-import 'package:seeks_flutter/screens/splash/splash_screen.dart';
-import 'package:seeks_flutter/test/view/pages/bottom_navgation.dart';
-import 'package:seeks_flutter/test/view/pages/default_page.dart';
+import 'package:seeks_flutter/core/forgot_password/screens/forgot_password_screen.dart';
+import 'package:seeks_flutter/core/login/screens/login_screen.dart';
+import 'package:seeks_flutter/core/splash/screens/splash_screen.dart';
+import 'package:seeks_flutter/core/test/screens/bottom_navgation.dart';
+import 'package:seeks_flutter/core/test/screens/default_page.dart';
 import 'package:seeks_flutter/view/page/first_page.dart';
 
-import 'dev.dart';
+import 'infrastructures/develop/screens/develop_screens.dart';
 
 class DevRoutes {
   static final home = '/';
@@ -31,22 +31,6 @@ final Map<String, WidgetBuilder> routes = {
   LoginScreen.routeName: (context) => new LoginScreen(),
   ForgotPasswordScreen.routeName: (context) => new ForgotPasswordScreen(),
 };
-
-// For add free space vertically (間距)
-// class VerticalSpacing extends StatelessWidget {
-//   const VerticalSpacing({
-//     Key key,
-//     this.of = 25,
-//   }) : super(key: key);
-//   final double of;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return SizedBox(
-//       height: getProportionateScreenHeight(of),
-//     );
-//   }
-// }
 
 void routePushNamed(BuildContext context, String route, {Object arguments}) {
   Navigator.of(context).pushNamed(

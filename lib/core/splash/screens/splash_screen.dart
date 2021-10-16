@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:seeks_flutter/screens/splash/components/body.dart';
+import 'package:seeks_flutter/core/splash/components/body.dart';
 import 'package:seeks_flutter/configs/size_config.dart';
 
 class SplashScreen extends StatelessWidget {
