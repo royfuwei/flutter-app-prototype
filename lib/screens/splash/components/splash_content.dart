@@ -1,0 +1,53 @@
+import 'package:flutter/material.dart';
+import 'package:seeks_flutter/constants.dart';
+import 'package:seeks_flutter/configs/size_config.dart';
+
+class SplashContent extends StatelessWidget {
+  final String text, image;
+  const SplashContent({
+    Key key,
+    this.text,
+    this.image,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        VerticalSpacing(
+          of: 25,
+        ),
+        Text(
+          "Travel Note",
+          style: TextStyle(
+              fontSize: getProportionateScreenWidth(36),
+              color: kPrimaryColor,
+              fontWeight: FontWeight.bold),
+        ),
+        VerticalSpacing(
+          of: 16,
+        ),
+        Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: getProportionateScreenWidth(20),
+          ),
+          child: Text(
+            text,
+            textAlign: TextAlign.left,
+            style: TextStyle(
+              color: kTextColor,
+              height: 1.5,
+              fontSize: getProportionateScreenWidth(16),
+            ),
+          ),
+        ),
+        VerticalSpacing(of: 40),
+        Image.asset(
+          image,
+          height: getProportionateScreenHeight(400),
+          width: double.infinity,
+        ),
+      ],
+    );
+  }
+}
