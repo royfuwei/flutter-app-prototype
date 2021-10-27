@@ -4,20 +4,20 @@ import 'package:seeks_flutter/configs/size_config.dart';
 
 class DefaultButton extends StatelessWidget {
   final String text;
-  final Function press;
+  final void Function() press;
 
   const DefaultButton({
     // button onPressed 的方法透過建構傳入
-    Key key,
-    this.text,
-    this.press,
+    Key? key,
+    required this.text,
+    required this.press,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      height: getProportionateScreenHeight(56),
+      height: getProportionateScreenHeight(context, 56),
       child: TextButton(
         style: ButtonStyle(
           shape: MaterialStateProperty.all(RoundedRectangleBorder(
@@ -29,7 +29,7 @@ class DefaultButton extends StatelessWidget {
         child: Text(
           text,
           style: TextStyle(
-            fontSize: getProportionateScreenWidth(18),
+            fontSize: getProportionateScreenWidth(context, 18),
             color: Colors.white,
           ),
         ),

@@ -6,7 +6,7 @@ class LoginScreen extends StatelessWidget {
   static String routeName = '/login';
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
+    SizeConfig(context: context);
     return Scaffold(
       appBar: AppBar(
         title: Text('Login'),

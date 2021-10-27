@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class DefaultPage extends StatefulWidget {
-  DefaultPage({Key key, this.title}) : super(key: key);
+  DefaultPage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 

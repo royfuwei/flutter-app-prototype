@@ -16,11 +16,11 @@ class LoginForm extends StatefulWidget {
 
 class _LoginFromState extends State<LoginForm> {
   final _formKey = GlobalKey<FormState>();
-  String email, password;
+  late String email, password;
   bool remember = false;
   final List<String> errors = []; // 要傳給 FormError 的錯誤清單，來顯示錯誤訊息
 
-  void addError({String error}) {
+  void addError({required String error}) {
     if (!errors.contains(error)) {
       setState(() {
         errors.add(error);
@@ -28,7 +28,7 @@ class _LoginFromState extends State<LoginForm> {
     }
   }
 
-  void removeError({String error}) {
+  void removeError({required String error}) {
     if (errors.contains(error)) {
       setState(() {
         errors.remove(error);
@@ -53,7 +53,7 @@ class _LoginFromState extends State<LoginForm> {
                 activeColor: kPrimaryColor,
                 onChanged: (value) {
                   setState(() {
-                    remember = value;
+                    remember = value!;
                   });
                 },
               ),
@@ -72,13 +72,13 @@ class _LoginFromState extends State<LoginForm> {
           ),
           FormError(errors: errors),
           SizedBox(
-            height: getProportionateScreenHeight(20),
+            height: getProportionateScreenHeight(context, 20),
           ),
           DefaultButton(
             text: "Continue",
             press: () {
-              if (_formKey.currentState.validate()) {
-                _formKey.currentState.save();
+              if (_formKey.currentState!.validate()) {
+                _formKey.currentState!.save();
                 // if all are valid then go to success screen
                 // Navigator.pushNamed(context, LoginSuccessScreen.routeName);
               }
@@ -92,7 +92,7 @@ class _LoginFromState extends State<LoginForm> {
   TextFormField buildPasswordFormField() {
     return TextFormField(
       obscureText: true,
-      onSaved: (newValue) => password = newValue,
+      onSaved: (newValue) => password = newValue!,
       onChanged: (value) {
         //若更新後的密碼，已解決錯誤，即清掉該錯誤訊息，送出時還會檢查最後密碼是否符合我們的條件
         if (value.isNotEmpty) {
@@ -103,7 +103,7 @@ class _LoginFromState extends State<LoginForm> {
         }
       },
       validator: (value) {
-        if (value.isEmpty) {
+        if (value!.isEmpty) {
           addError(error: kPasswordNullError);
           return "";
         } else if (value.length < 8) {
@@ -126,7 +126,7 @@ class _LoginFromState extends State<LoginForm> {
   TextFormField buildEmailFormFiled() {
     return TextFormField(
       keyboardType: TextInputType.emailAddress,
-      onSaved: (newValue) => email = newValue,
+      onSaved: (newValue) => email = newValue!,
       onChanged: (value) {
         //若更新後的email，已解決錯誤，即清掉該錯誤訊息，送出時還會檢查最後email是否符合我們的條件
         if (value.isNotEmpty) {
@@ -137,7 +137,7 @@ class _LoginFromState extends State<LoginForm> {
         }
       },
       validator: (value) {
-        if (value.isEmpty) {
+        if (value!.isEmpty) {
           addError(error: kEmailNullError);
           removeError(error: kInvalidEmailError);
           return "";

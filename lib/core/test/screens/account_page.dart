@@ -9,19 +9,19 @@ class AccountView extends StatelessWidget {
     Tab(text: '開發頁面'),
     Tab(text: '測試頁面'),
   ];
-  List<Widget> myTestListView;
-  List<Widget> myDevListView;
+  late List<Widget> myTestListView;
+  late List<Widget> myDevListView;
 
   @override
   Widget build(BuildContext context) {
-    void _routePushNamed(String route, {Object arguments}) {
+    void _routePushNamed(String route, {Object? arguments}) {
       Navigator.of(context).pushNamed(
         route,
         arguments: arguments,
       );
     }
 
-    void _routePushNamedAndRemoveUntil(String route, {Object arguments}) {
+    void _routePushNamedAndRemoveUntil(String route, {Object? arguments}) {
       Navigator.of(context).pushNamedAndRemoveUntil(
         route,
         (route) => false,
@@ -75,6 +75,7 @@ class AccountView extends StatelessWidget {
             children: [
               UserAccountsDrawerHeader(
                 accountName: new Text("Account Drawer"),
+                accountEmail: null,
               ),
               ListBody(
                 children: [

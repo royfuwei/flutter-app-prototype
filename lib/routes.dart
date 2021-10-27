@@ -15,11 +15,11 @@ class DevRoutes {
   static final testBottomNav = '/test_bottom_nav';
 }
 
-String title;
+late String title;
 final Map<String, WidgetBuilder> routes = {
   SplashScreen.routeName: (context) => SplashScreen(),
   DevRoutes.defaultPage: (BuildContext context) {
-    dynamic obj = ModalRoute.of(context).settings.arguments;
+    dynamic obj = ModalRoute.of(context)!.settings.arguments;
     print('obj: $obj');
     print('value: $context');
     title = obj["title"]; // 把接收到的參數存到變數
@@ -32,7 +32,7 @@ final Map<String, WidgetBuilder> routes = {
   ForgotPasswordScreen.routeName: (context) => new ForgotPasswordScreen(),
 };
 
-void routePushNamed(BuildContext context, String route, {Object arguments}) {
+void routePushNamed(BuildContext context, String route, {Object? arguments}) {
   Navigator.of(context).pushNamed(
     route,
     arguments: arguments,
@@ -40,7 +40,7 @@ void routePushNamed(BuildContext context, String route, {Object arguments}) {
 }
 
 void routePushNamedAndRemoveUntil(BuildContext context, String route,
-    {Object arguments}) {
+    {Object? arguments}) {
   Navigator.of(context).pushNamedAndRemoveUntil(
     route,
     (route) => false,

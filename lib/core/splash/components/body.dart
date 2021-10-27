@@ -10,21 +10,19 @@ class Body extends StatefulWidget {
   _BodyState createState() => _BodyState();
 }
 
+class SplashData {
+  SplashData(this.text, this.image);
+  String text, image;
+}
+
 class _BodyState extends State<Body> {
   int currentPage = 0;
-  List<Map<String, String>> splashData = [
-    {
-      "text": "Welcome to Travel Note, Let’s plan a travel!",
-      "image": "assets/images/splash_1.jpg"
-    },
-    {
-      "text": "We show the easy way to plan travel.",
-      "image": "assets/images/splash_2.jpg"
-    },
-    {
-      "text": "Just start traveling with us!",
-      "image": "assets/images/splash_3.jpg"
-    },
+  List<SplashData> splashData = [
+    SplashData("Welcome to Travel Note, Let’s plan a travel!",
+        "assets/images/splash_1.jpg"),
+    SplashData(
+        "We show the easy way to plan travel.", "assets/images/splash_2.jpg"),
+    SplashData("Just start traveling with us!", "assets/images/splash_3.jpg"),
   ];
 
   @override
@@ -42,8 +40,8 @@ class _BodyState extends State<Body> {
               },
               itemCount: splashData.length,
               itemBuilder: (context, index) => SplashContent(
-                image: splashData[index]["image"],
-                text: splashData[index]["text"],
+                image: splashData[index].image,
+                text: splashData[index].text,
               ),
             ),
           ),
@@ -55,7 +53,7 @@ class _BodyState extends State<Body> {
             //   getProportionateScreenWidth(30),
             // ),
             padding: EdgeInsets.all(
-              getProportionateScreenWidth(25),
+              getProportionateScreenWidth(context, 25),
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -82,7 +80,7 @@ class _BodyState extends State<Body> {
     );
   }
 
-  AnimatedContainer buildDot({int index}) {
+  AnimatedContainer buildDot({required int index}) {
     return AnimatedContainer(
       duration: kAnimationDuration,
       margin: EdgeInsets.only(right: 5),

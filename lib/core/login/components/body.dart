@@ -12,7 +12,7 @@ class Body extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       padding: EdgeInsets.symmetric(
-        horizontal: getProportionateScreenWidth(25),
+        horizontal: getProportionateScreenWidth(context, 25),
       ),
       child: Column(
         children: [
@@ -23,7 +23,7 @@ class Body extends StatelessWidget {
             "Welcome to Travel Note",
             style: TextStyle(
               color: Colors.black,
-              fontSize: getProportionateScreenWidth(24),
+              fontSize: getProportionateScreenWidth(context, 24),
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -34,7 +34,7 @@ class Body extends StatelessWidget {
             style: TextStyle(
               color: kTextColor,
               height: 1.5,
-              fontSize: getProportionateScreenWidth(16),
+              fontSize: getProportionateScreenWidth(context, 16),
             ),
           ),
           VerticalSpacing(

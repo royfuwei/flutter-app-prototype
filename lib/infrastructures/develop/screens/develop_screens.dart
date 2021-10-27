@@ -4,7 +4,7 @@ import 'package:seeks_flutter/core/splash/screens/splash_screen.dart';
 import 'package:seeks_flutter/routes.dart';
 
 class DevEntryPage extends StatefulWidget {
-  DevEntryPage({Key key}) : super(key: key);
+  DevEntryPage({Key? key}) : super(key: key);
 
   _DevEntryState createState() => _DevEntryState();
 }
@@ -14,17 +14,17 @@ class _DevEntryState extends State {
     Tab(text: '開發頁面'),
     Tab(text: '測試頁面'),
   ];
-  List<Widget> myTestListView;
-  List<Widget> myDevListView;
+  late List<Widget> myTestListView;
+  late List<Widget> myDevListView;
 
-  void _routePushNamed(String route, {Object arguments}) {
+  void _routePushNamed(String route, {Object? arguments}) {
     Navigator.of(context).pushNamed(
       route,
       arguments: arguments,
     );
   }
 
-  void _routePushNamedAndRemoveUntil(String route, {Object arguments}) {
+  void _routePushNamedAndRemoveUntil(String route, {Object? arguments}) {
     Navigator.of(context).pushNamedAndRemoveUntil(
       route,
       (route) => false,

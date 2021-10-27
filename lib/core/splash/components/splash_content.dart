@@ -5,9 +5,9 @@ import 'package:seeks_flutter/configs/size_config.dart';
 class SplashContent extends StatelessWidget {
   final String text, image;
   const SplashContent({
-    Key key,
-    this.text,
-    this.image,
+    Key? key,
+    required this.text,
+    required this.image,
   }) : super(key: key);
 
   @override
@@ -20,7 +20,7 @@ class SplashContent extends StatelessWidget {
         Text(
           "Travel Note",
           style: TextStyle(
-              fontSize: getProportionateScreenWidth(36),
+              fontSize: getProportionateScreenWidth(context, 36),
               color: kPrimaryColor,
               fontWeight: FontWeight.bold),
         ),
@@ -29,7 +29,7 @@ class SplashContent extends StatelessWidget {
         ),
         Padding(
           padding: EdgeInsets.symmetric(
-            horizontal: getProportionateScreenWidth(20),
+            horizontal: getProportionateScreenWidth(context, 20),
           ),
           child: Text(
             text,
@@ -37,14 +37,14 @@ class SplashContent extends StatelessWidget {
             style: TextStyle(
               color: kTextColor,
               height: 1.5,
-              fontSize: getProportionateScreenWidth(16),
+              fontSize: getProportionateScreenWidth(context, 16),
             ),
           ),
         ),
         VerticalSpacing(of: 40),
         Image.asset(
           image,
-          height: getProportionateScreenHeight(400),
+          height: getProportionateScreenHeight(context, 400),
           width: double.infinity,
         ),
       ],

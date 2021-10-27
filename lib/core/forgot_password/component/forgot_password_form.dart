@@ -12,7 +12,7 @@ class ForgetPasswordForm extends StatefulWidget {
 
 class _ForgetPasswordFormState extends State<ForgetPasswordForm> {
   final _formKey = GlobalKey<FormState>();
-  String email;
+  late String email;
   List<String> errors = [];
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class _ForgetPasswordFormState extends State<ForgetPasswordForm> {
         children: [
           TextFormField(
             keyboardType: TextInputType.emailAddress,
-            onSaved: (newValue) => email = newValue,
+            onSaved: (newValue) => email = newValue!,
             onChanged: (value) {
               if (value.isNotEmpty && errors.contains(kEmailNullError)) {
                 setState(() {
@@ -37,7 +37,7 @@ class _ForgetPasswordFormState extends State<ForgetPasswordForm> {
               }
             },
             validator: (value) {
-              if (value.isEmpty && !errors.contains(kEmailNullError)) {
+              if (value!.isEmpty && !errors.contains(kEmailNullError)) {
                 setState(() {
                   errors.add(kEmailNullError);
                   if (errors.contains(kInvalidEmailError)) {
@@ -74,8 +74,8 @@ class _ForgetPasswordFormState extends State<ForgetPasswordForm> {
           DefaultButton(
             text: "Submit",
             press: () {
-              if (_formKey.currentState.validate()) {
-                _formKey.currentState.save();
+              if (_formKey.currentState!.validate()) {
+                _formKey.currentState!.save();
                 // 傳送密碼至mail 驗證等等
               }
             },

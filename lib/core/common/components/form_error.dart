@@ -5,8 +5,8 @@ import 'package:seeks_flutter/configs/size_config.dart';
 class FormError extends StatelessWidget {
   final List<String> errors;
   const FormError({
-    Key key,
-    @required this.errors,
+    Key? key,
+    required this.errors,
   }) : super(key: key);
 
   @override
@@ -15,15 +15,18 @@ class FormError extends StatelessWidget {
       children: List.generate(
         errors.length,
         (index) => formErrorText(
+          context: context,
           error: errors[index],
         ),
       ),
     );
   }
 
-  Padding formErrorText({String error}) {
+  Padding formErrorText(
+      {required BuildContext context, required String error}) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: getProportionateScreenWidth(5)),
+      padding: EdgeInsets.symmetric(
+          vertical: getProportionateScreenWidth(context, 5)),
       child: Row(
         children: [
           Icon(
@@ -32,7 +35,7 @@ class FormError extends StatelessWidget {
             color: Colors.red,
           ),
           SizedBox(
-            width: getProportionateScreenHeight(10),
+            width: getProportionateScreenHeight(context, 10),
           ),
           Text(error),
         ],

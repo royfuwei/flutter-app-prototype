@@ -10,7 +10,7 @@ class Body extends StatelessWidget {
     return SingleChildScrollView(
       child: Padding(
         padding: EdgeInsets.symmetric(
-          horizontal: getProportionateScreenWidth(25),
+          horizontal: getProportionateScreenWidth(context, 25),
         ),
         child: Column(
           children: [
@@ -20,7 +20,7 @@ class Body extends StatelessWidget {
             Text(
               "Fotgot Password",
               style: TextStyle(
-                fontSize: getProportionateScreenWidth(24),
+                fontSize: getProportionateScreenWidth(context, 24),
                 color: Colors.black,
                 fontWeight: FontWeight.bold,
               ),
@@ -34,7 +34,7 @@ class Body extends StatelessWidget {
               style: TextStyle(
                 color: kTextColor,
                 height: 1.5,
-                fontSize: getProportionateScreenWidth(16),
+                fontSize: getProportionateScreenWidth(context, 16),
               ),
             ),
             VerticalSpacing(

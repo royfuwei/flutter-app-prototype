@@ -18,7 +18,7 @@ class TestBottomNav extends StatelessWidget {
 }
 
 class TestBottomNavigationController extends StatefulWidget {
-  TestBottomNavigationController({Key key}) : super(key: key);
+  TestBottomNavigationController({Key? key}) : super(key: key);
 
   _TestBottomNavigationControllerState createState() =>
       _TestBottomNavigationControllerState();
@@ -87,7 +87,7 @@ class _TestBottomNavigationControllerState extends State
   void initState() {
     super.initState();
     //註冊監聽事件
-    WidgetsBinding.instance.addObserver(this);
+    WidgetsBinding.instance!.addObserver(this);
   }
 
   void navPop(int index) {
