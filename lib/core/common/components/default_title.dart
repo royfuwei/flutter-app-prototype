@@ -34,7 +34,8 @@ class DefaultTitle extends StatelessWidget {
             ),
             child: Text(
               subTitle,
-              style: loginTextStyle(),
+              // style: loginTextStyle(),
+              style: Theme.of(context).textTheme.bodyText1,
             ),
           ),
         ],

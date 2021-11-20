@@ -1,30 +1,32 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:seeks_flutter/configs/size_config.dart';
 import 'package:seeks_flutter/constants.dart';
-import 'package:seeks_flutter/core/common/components/default_button.dart';
 import 'package:seeks_flutter/core/common/components/default_flow_content.dart';
-import 'package:seeks_flutter/core/common/components/status_button.dart';
 import 'package:seeks_flutter/core/common/components/default_title.dart';
-import 'package:seeks_flutter/core/login/components/content_text.dart';
+import 'package:seeks_flutter/core/common/components/status_button.dart';
 
-class LoginSplashScreen extends StatefulWidget {
-  static String routeName = 'loginSplashScreen';
-  const LoginSplashScreen({Key? key}) : super(key: key);
+class CaptchaScreen extends StatefulWidget {
+  static String routeName = "captcha";
+  const CaptchaScreen({Key? key}) : super(key: key);
 
   @override
-  _LoginSplashScreenState createState() => _LoginSplashScreenState();
+  _CaptchaScreenState createState() => _CaptchaScreenState();
 }
 
-class _LoginSplashScreenState extends State<LoginSplashScreen> {
+class _CaptchaScreenState extends State<CaptchaScreen> {
   late FocusNode focusNode;
-  String telephone = '';
+  late Timer _timer;
+  String telephone = '0966000996';
+  String captcha = '';
+  int _counter = 60;
   bool goNext = false;
 
   @override
   void initState() {
     super.initState();
+    startTimer();
     focusNode = FocusNode();
   }
 
@@ -37,10 +39,7 @@ class _LoginSplashScreenState extends State<LoginSplashScreen> {
       },
       child: DefaultFlowPage(
         content: [
-          DefaultTitle(
-            title: "準備來個不一樣的約會嗎？",
-            subTitle: "請輸入手機號碼",
-          ),
+          DefaultTitle(title: "輸入驗證碼", subTitle: "驗證碼已發至$telephone"),
           Padding(
             padding: EdgeInsets.symmetric(
               vertical: getProportionateScreenHeight(context, 24),
@@ -48,12 +47,20 @@ class _LoginSplashScreenState extends State<LoginSplashScreen> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                areaCodeButtom(),
                 textFieldSide(),
               ],
             ),
           ),
-          Text('telepahone: $telephone'),
+          SizedBox(
+            width: double.infinity,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                captchaTitle(),
+                reCaptchaButtom(),
+              ],
+            ),
+          ),
         ],
         buttom: [
           Padding(
@@ -62,11 +69,73 @@ class _LoginSplashScreenState extends State<LoginSplashScreen> {
               // horizontal: getProportionateScreenWidth(context, 100),
             ),
             child: StatusButton(
-              text: "取得驗證碼",
+              text: "下一步",
               isDisabled: !goNext,
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
+  }
+
+  startTimer() {
+    const oneSec = const Duration(seconds: 1);
+    _timer = new Timer.periodic(oneSec, (timer) {
+      if (_counter == 0) {
+        setState(() {
+          _timer.cancel();
+        });
+      } else {
+        setState(() {
+          _counter--;
+        });
+      }
+    });
+  }
+
+  captchaTitle() {
+    return Text(
+      "${_counter}s 可重新傳送驗證碼",
+      style: TextStyle(
+        fontSize: getProportionateScreenWidth(context, 18),
+        color: goNext ? colorFont03 : colorFont02,
+      ),
+    );
+  }
+
+  reCaptchaButtom() {
+    return SizedBox(
+      height: getProportionateScreenHeight(context, 40),
+      child: TextButton(
+        onPressed: goNext || _counter > 0
+            ? null
+            : () {
+                setState(() {
+                  _counter = 60;
+                  startTimer();
+                });
+              },
+        style: ButtonStyle(
+          shape: MaterialStateProperty.all(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(5),
+            ),
+          ),
+        ),
+        child: Text(
+          "重新傳送",
+          style: TextStyle(
+            decoration: TextDecoration.underline,
+            fontSize: getProportionateScreenWidth(context, 18),
+            color: goNext || _counter > 0 ? colorFont03 : colorFont02,
+          ),
+        ),
       ),
     );
   }
@@ -85,16 +154,15 @@ class _LoginSplashScreenState extends State<LoginSplashScreen> {
             ),
           ), //设置圆角
           child: TextField(
-            keyboardType: TextInputType.phone,
+            keyboardType: TextInputType.number,
             focusNode: focusNode,
             textInputAction: TextInputAction.done,
+            textAlign: TextAlign.center,
             onChanged: (value) {
               if (value.isNotEmpty) {
                 setState(() {
-                  telephone = value;
-                  if (telephone[0] == '0' && telephone.length == 10) {
-                    goNext = true;
-                  } else if (telephone[0] != '0' && telephone.length == 9) {
+                  captcha = value;
+                  if (captcha.length == 6) {
                     goNext = true;
                   } else {
                     goNext = false;
@@ -102,13 +170,13 @@ class _LoginSplashScreenState extends State<LoginSplashScreen> {
                 });
               } else {
                 setState(() {
-                  telephone = '';
+                  captcha = '';
                 });
               }
             },
             decoration: InputDecoration(
               border: OutlineInputBorder(),
-              hintText: "填寫手機號碼",
+              hintText: "輸入驗證碼",
               hintStyle: TextStyle(
                 fontSize: getProportionateScreenWidth(
                   context,
@@ -128,30 +196,6 @@ class _LoginSplashScreenState extends State<LoginSplashScreen> {
               ),
               color: Colors.white,
             ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  areaCodeButtom() {
-    return SizedBox(
-      height: getProportionateScreenHeight(context, 40),
-      child: TextButton(
-        onPressed: () {},
-        style: ButtonStyle(
-          shape: MaterialStateProperty.all(
-            RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(5),
-            ),
-          ),
-          backgroundColor: MaterialStateProperty.all(kPrimaryColor),
-        ),
-        child: Text(
-          "+886",
-          style: TextStyle(
-            fontSize: getProportionateScreenWidth(context, 18),
-            color: Colors.white,
           ),
         ),
       ),

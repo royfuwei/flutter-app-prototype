@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:seeks_flutter/core/captcha/screens/captcha_screen.dart';
 import 'package:seeks_flutter/core/entry/screens/entry_screen.dart';
 import 'package:seeks_flutter/core/login/screens/login_screen.dart';
 import 'package:seeks_flutter/core/login/screens/login_splash_screen.dart';
@@ -52,6 +53,13 @@ List<Widget> getDevView(BuildContext context) {
       title: Text('login_splash_page'),
       onTap: () {
         routePushNamed(context, LoginSplashScreen.routeName);
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text('captcha_page'),
+      onTap: () {
+        routePushNamed(context, CaptchaScreen.routeName);
       },
     ),
   ];

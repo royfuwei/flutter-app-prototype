@@ -37,7 +37,6 @@ TextTheme textTheme() {
     headline5: TextStyle(
       color: seeksLoginColor01,
       fontFamily: 'Jaldi',
-      fontSize: 24,
       letterSpacing: -0.30000001192092896,
       fontWeight: FontWeight.bold,
       height: 1.5,

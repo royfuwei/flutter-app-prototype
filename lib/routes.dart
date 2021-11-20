@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:seeks_flutter/core/captcha/screens/captcha_screen.dart';
 import 'package:seeks_flutter/core/entry/screens/entry_screen.dart';
 import 'package:seeks_flutter/core/forgot_password/screens/forgot_password_screen.dart';
 import 'package:seeks_flutter/core/login/screens/login_screen.dart';
@@ -23,6 +24,7 @@ final Map<String, WidgetBuilder> routes = {
   EntryScreen.routeName: (context) => EntryScreen(),
   LoginScreen.routeName: (context) => LoginScreen(),
   LoginSplashScreen.routeName: (context) => LoginSplashScreen(),
+  CaptchaScreen.routeName: (context) => CaptchaScreen(),
   DevRoutes.defaultPage: (BuildContext context) {
     dynamic obj = ModalRoute.of(context)!.settings.arguments;
     print('obj: $obj');
