@@ -18,10 +18,13 @@ A new Flutter project.
   flutter pub get
   flutter pub run flutter_launcher_icons:main 
   ```
-
+- simulator keyboard not showing
+  - https://stackoverflow.com/questions/24420873/xcode-6-keyboard-does-not-show-up-in-simulator
+- 
 
 ## 隨便紀錄
 - [nicee](https://www.nicee.tw/)
+- 
 
 ## lib
 - flutter_launcher_icons: ^0.8.1

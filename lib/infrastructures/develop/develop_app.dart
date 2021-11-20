@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:seeks_flutter/configs/theme.dart';
 import 'package:seeks_flutter/routes.dart';
 
 class DevelopApp extends StatelessWidget {
@@ -11,13 +12,13 @@ class DevelopApp extends StatelessWidget {
       //拿掉畫面右上角的debug
       debugShowCheckedModeBanner: false,
       // dev themeData
-      theme: ThemeData(
-        primarySwatch: Colors.teal,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-        highlightColor: Color.fromRGBO(0, 0, 0, 0),
-        splashColor: Color.fromRGBO(0, 0, 0, 0),
-      ),
-      // theme: theme(),
+      // theme: ThemeData(
+      //   primarySwatch: Colors.teal,
+      //   visualDensity: VisualDensity.adaptivePlatformDensity,
+      //   highlightColor: Color.fromRGBO(0, 0, 0, 0),
+      //   splashColor: Color.fromRGBO(0, 0, 0, 0),
+      // ),
+      theme: theme(),
       // home: AppRoutesPage(),
       initialRoute: '/',
       routes: routes,

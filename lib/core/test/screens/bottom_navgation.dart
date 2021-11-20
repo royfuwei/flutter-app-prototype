@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:seeks_flutter/core/test/screens/default_page.dart';
-import 'package:seeks_flutter/view/page/first_page.dart';
+import 'package:seeks_flutter/core/test/screens/first_page.dart';
 
 import 'account_page.dart';
 
@@ -29,9 +28,7 @@ class _TestBottomNavigationControllerState extends State
   //目前選擇頁索引值
   int _currentIndex = 0; //預設值
   final pages = [
-    DefaultPage(
-      title: "bottom gen default1",
-    ),
+    FirstPageWidget(),
     FirstPageWidget(),
     FirstPageWidget(),
     FirstPageWidget(),

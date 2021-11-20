@@ -1,4 +1,16 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+
+const bgMainColor = Color.fromRGBO(180, 253, 155, 1);
+
+Image seeksLogo = Image.asset("assets/logo/seeks_logo.png");
+const Color seeksLoginColor01 = Color.fromRGBO(64, 64, 64, 1);
+const Color colorIconWhite = Color.fromRGBO(255, 255, 255, 1);
+const Color colorBarWhite = Color.fromRGBO(250, 248, 248, 1);
+const Color colorFont03 = Color.fromRGBO(139, 139, 139, 1);
+const Color colorFont02 = Color.fromRGBO(89, 89, 89, 1);
+const Color colorIconHidden = Color.fromRGBO(216, 213, 213, 1);
+const Color colorIconOn = Color.fromRGBO(180, 253, 155, 1);
 
 const kPrimaryColor = Color(0xFF3E4067);
 const kPrimaryLightColor = Color(0xFF3E5067);

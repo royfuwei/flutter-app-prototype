@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:seeks_flutter/view/page/first_page.dart';
+import 'package:seeks_flutter/core/test/screens/first_page.dart';
 
 import '../../../../routes.dart';
 
@@ -61,7 +61,7 @@ class AccountView extends StatelessWidget {
       child: Scaffold(
         appBar: PreferredSize(
           child: AppBar(
-            title: Text('account'),
+            title: Text('Develop'),
             bottom: TabBar(
               tabs: myTabs,
             ),
