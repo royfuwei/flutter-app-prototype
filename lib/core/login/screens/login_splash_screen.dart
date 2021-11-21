@@ -53,7 +53,7 @@ class _LoginSplashScreenState extends State<LoginSplashScreen> {
               ],
             ),
           ),
-          Text('telepahone: $telephone'),
+          // Text('telepahone: $telephone'),
         ],
         buttom: [
           Padding(
@@ -64,6 +64,7 @@ class _LoginSplashScreenState extends State<LoginSplashScreen> {
             child: StatusButton(
               text: "取得驗證碼",
               isDisabled: !goNext,
+              press: () {},
             ),
           ),
         ],
