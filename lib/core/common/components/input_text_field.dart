@@ -27,7 +27,7 @@ class InputTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(
-        vertical: getProportionateScreenHeight(context, 5),
+        vertical: getProportionateScreenHeight(context, 0),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -51,7 +51,7 @@ class InputTextField extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(
               horizontal: getProportionateScreenWidth(context, 8),
-              vertical: getProportionateScreenHeight(context, 2),
+              vertical: getProportionateScreenHeight(context, 0),
             ),
             child: Text(
               subTitle,
