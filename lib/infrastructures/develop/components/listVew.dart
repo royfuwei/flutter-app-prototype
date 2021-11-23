@@ -3,6 +3,7 @@ import 'package:seeks_flutter/core/captcha/screens/captcha_screen.dart';
 import 'package:seeks_flutter/core/entry/screens/entry_screen.dart';
 import 'package:seeks_flutter/core/login/screens/login_screen.dart';
 import 'package:seeks_flutter/core/login/screens/login_splash_screen.dart';
+import 'package:seeks_flutter/core/users/screens/user_create_screen.dart';
 import 'package:seeks_flutter/routes.dart';
 
 List<Widget> getTestView(BuildContext context) {
@@ -60,6 +61,13 @@ List<Widget> getDevView(BuildContext context) {
       title: Text('captcha_page'),
       onTap: () {
         routePushNamed(context, CaptchaScreen.routeName);
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text('user_create'),
+      onTap: () {
+        routePushNamed(context, UserCreateScreen.routeName);
       },
     ),
   ];

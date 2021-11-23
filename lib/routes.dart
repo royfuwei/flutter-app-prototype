@@ -7,6 +7,7 @@ import 'package:seeks_flutter/core/splash/screens/splash_screen.dart';
 import 'package:seeks_flutter/core/test/screens/bottom_navgation.dart';
 import 'package:seeks_flutter/core/test/screens/default_page.dart';
 import 'package:seeks_flutter/core/test/screens/first_page.dart';
+import 'package:seeks_flutter/core/users/screens/user_create_screen.dart';
 
 import 'core/login/screens/login_splash_screen.dart';
 import 'infrastructures/develop/screens/develop_screens.dart';
@@ -24,6 +25,7 @@ final Map<String, WidgetBuilder> routes = {
   EntryScreen.routeName: (context) => EntryScreen(),
   LoginScreen.routeName: (context) => LoginScreen(),
   LoginSplashScreen.routeName: (context) => LoginSplashScreen(),
+  UserCreateScreen.routeName: (context) => UserCreateScreen(),
   CaptchaScreen.routeName: (context) => CaptchaScreen(),
   DevRoutes.defaultPage: (BuildContext context) {
     dynamic obj = ModalRoute.of(context)!.settings.arguments;

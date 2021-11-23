@@ -71,6 +71,7 @@ class _CaptchaScreenState extends State<CaptchaScreen> {
             child: StatusButton(
               text: "下一步",
               isDisabled: !goNext,
+              press: () {},
             ),
           ),
         ],
@@ -113,7 +114,7 @@ class _CaptchaScreenState extends State<CaptchaScreen> {
     return SizedBox(
       height: getProportionateScreenHeight(context, 40),
       child: TextButton(
-        onPressed: goNext || _counter > 0
+        onPressed: _counter > 0
             ? null
             : () {
                 setState(() {
@@ -133,7 +134,7 @@ class _CaptchaScreenState extends State<CaptchaScreen> {
           style: TextStyle(
             decoration: TextDecoration.underline,
             fontSize: getProportionateScreenWidth(context, 18),
-            color: goNext || _counter > 0 ? colorFont03 : colorFont02,
+            color: _counter > 0 ? colorFont03 : colorFont02,
           ),
         ),
       ),
