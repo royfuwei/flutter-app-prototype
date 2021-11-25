@@ -34,13 +34,6 @@ List<Widget> getDevView(BuildContext context) {
   return <Widget>[
     ListTile(
       leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
-      title: Text('first_page'),
-      onTap: () {
-        routePushNamed(context, DevRoutes.firstPage);
-      },
-    ),
-    ListTile(
-      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
       title: Text('entry_page'),
       onTap: () {
         routePushNamed(context, EntryScreen.routeName);

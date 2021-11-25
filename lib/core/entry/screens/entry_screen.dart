@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:seeks_flutter/configs/size_config.dart';
 import 'package:seeks_flutter/constants.dart';
+import 'package:seeks_flutter/core/login/screens/login_screen.dart';
+import 'package:seeks_flutter/routes.dart';
 
 class EntryScreen extends StatefulWidget {
   static String routeName = 'entryScreen';
@@ -17,24 +20,45 @@ class _EntryScreenState extends State<EntryScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: bgMainColor,
-      body: Center(
+      body: SafeArea(
         child: GestureDetector(
           onTap: () {
             setState(() {
-              logoOpacity = 1.0;
+              logoOpacity = 0.0;
             });
           },
           child: AnimatedOpacity(
-            opacity: startAnimation ? 1.0 : 0.0,
-            duration: const Duration(
-              milliseconds: 1000,
-            ),
-            child: AnimatedContainer(
-              duration: const Duration(milliseconds: 2000),
-              width: startAnimation ? 350.0 : 250.0,
-              child: seeksLogo,
-            ),
-          ),
+              opacity: startAnimation ? 0.0 : 1.0,
+              duration: const Duration(
+                milliseconds: 1000,
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Center(
+                        child: AnimatedContainer(
+                          duration: const Duration(milliseconds: 1000),
+                          width: startAnimation
+                              ? 250.0
+                              : MediaQuery.of(context).size.width,
+                          child: seeksLogo,
+                          onEnd: () {
+                            routePushNamed(
+                              context,
+                              LoginScreen.routeName,
+                            );
+                          },
+                        ),
+                      ),
+                      VerticalSpacing(of: 200),
+                    ],
+                  )
+                ],
+              )),
         ),
       ),
     );
@@ -43,7 +67,7 @@ class _EntryScreenState extends State<EntryScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 2), () {
+    Future.delayed(Duration(seconds: 1), () {
       setState(() {
         startAnimation = true;
       });

@@ -1,3 +1,6 @@
+import 'dart:async';
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:seeks_flutter/configs/size_config.dart';
 import 'package:seeks_flutter/constants.dart';
@@ -13,21 +16,72 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  bool startAnimation = false;
+  bool startAnimationTitle = false;
+  int startAnimationTitleDurationMill = 5000;
+
+  @override
+  void initState() {
+    super.initState();
+
+    Future.delayed(Duration(milliseconds: 500), () {
+      setState(() {
+        startAnimation = true;
+      });
+      Timer.periodic(
+          Duration(
+            milliseconds: startAnimationTitleDurationMill,
+          ), (timer) {
+        setState(() {
+          startAnimationTitle = !startAnimationTitle;
+        });
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: bgMainColor,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            VerticalSpacing(of: 150),
-            titleContent(),
-            VerticalSpacing(of: 250),
-            loginRegistButton(),
-            buttomContent(),
-          ],
+      body: SafeArea(
+        child: GestureDetector(
+          child: AnimatedOpacity(
+            opacity: startAnimation ? 1.0 : 0.0,
+            duration: const Duration(
+              milliseconds: 3000,
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    VerticalSpacing(of: 140),
+                    SizedBox(
+                      height: getProportionateScreenHeight(context, 95),
+                      child: AnimatedContainer(
+                        duration: Duration(
+                          milliseconds: startAnimationTitleDurationMill,
+                        ),
+                        width: startAnimationTitle
+                            ? MediaQuery.of(context).size.width - 30
+                            : MediaQuery.of(context).size.width,
+                        child: seeksLogo,
+                      ),
+                    ),
+                    titleContent(),
+                  ],
+                ),
+                Column(
+                  children: [
+                    loginRegistButton(),
+                    buttomContent(),
+                  ],
+                )
+              ],
+            ),
+          ),
         ),
       ),
     );
@@ -35,8 +89,9 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Widget loginRegistButton() {
     return Padding(
-      padding: EdgeInsets.all(
-        getProportionateScreenWidth(context, 65),
+      padding: EdgeInsets.symmetric(
+        vertical: getProportionateScreenHeight(context, 40),
+        horizontal: getProportionateScreenWidth(context, 48),
       ),
       child: DefaultButton(
         text: "登入/註冊",
@@ -55,10 +110,6 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Text(
-            //   "登入即表明您同意我們的 使用條約 和 隱私政策",
-            //   style: loginTextStyle(fontSize: 12),
-            // ),
             Text(
               "登入即表明您同意我們的",
               style: loginTextStyle(fontSize: 12),
@@ -81,19 +132,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 style: linkTextStyle(fontSize: 13),
               ),
             ),
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.center,
-            //   children: [
-            //     TextButton(
-            //       onPressed: () {},
-            //       child: Text("使用條約"),
-            //     ),
-            //     TextButton(
-            //       onPressed: () {},
-            //       child: Text("隱私政策"),
-            //     ),
-            //   ],
-            // ),
           ],
         ));
   }
@@ -104,9 +142,6 @@ class _LoginScreenState extends State<LoginScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.max,
         children: [
-          Center(
-            child: seeksLogo,
-          ),
           Column(
             children: [
               Text(
