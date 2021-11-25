@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:seeks_flutter/core/captcha/screens/captcha_screen.dart';
 import 'package:seeks_flutter/core/entry/screens/entry_screen.dart';
 import 'package:seeks_flutter/core/forgot_password/screens/forgot_password_screen.dart';
+import 'package:seeks_flutter/core/image/screens/entry_image_push.dart';
+import 'package:seeks_flutter/core/location/screens/entry_location_open.dart';
 import 'package:seeks_flutter/core/login/screens/login_screen.dart';
+import 'package:seeks_flutter/core/notification/screens/entry_notification_open.dart';
 import 'package:seeks_flutter/core/splash/screens/splash_screen.dart';
 import 'package:seeks_flutter/core/test/screens/bottom_navgation.dart';
 import 'package:seeks_flutter/core/test/screens/default_page.dart';
@@ -27,6 +30,9 @@ final Map<String, WidgetBuilder> routes = {
   LoginScreen.routeName: (context) => LoginScreen(),
   LoginSplashScreen.routeName: (context) => LoginSplashScreen(),
   UserCreateScreen.routeName: (context) => UserCreateScreen(),
+  EntryLocationOpen.routeName: (context) => EntryLocationOpen(),
+  EntryNotificationOpen.routeName: (context) => EntryNotificationOpen(),
+  EntryImagePushScreen.routeName: (context) => EntryImagePushScreen(),
   UserCreateInfoScreen.routeName: (context) => UserCreateInfoScreen(),
   CaptchaScreen.routeName: (context) => CaptchaScreen(),
   DevRoutes.defaultPage: (BuildContext context) {

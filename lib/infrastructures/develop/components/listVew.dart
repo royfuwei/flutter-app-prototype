@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:seeks_flutter/core/captcha/screens/captcha_screen.dart';
 import 'package:seeks_flutter/core/entry/screens/entry_screen.dart';
+import 'package:seeks_flutter/core/image/screens/entry_image_push.dart';
+import 'package:seeks_flutter/core/location/screens/entry_location_open.dart';
 import 'package:seeks_flutter/core/login/screens/login_screen.dart';
 import 'package:seeks_flutter/core/login/screens/login_splash_screen.dart';
+import 'package:seeks_flutter/core/notification/screens/entry_notification_open.dart';
 import 'package:seeks_flutter/core/users/screens/user_create_info_screen.dart';
 import 'package:seeks_flutter/core/users/screens/user_create_screen.dart';
 import 'package:seeks_flutter/routes.dart';
@@ -69,6 +72,27 @@ List<Widget> getDevView(BuildContext context) {
       title: Text('user_create'),
       onTap: () {
         routePushNamed(context, UserCreateScreen.routeName);
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text('entry_location_open'),
+      onTap: () {
+        routePushNamed(context, EntryLocationOpen.routeName);
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text('entry_notification_open'),
+      onTap: () {
+        routePushNamed(context, EntryNotificationOpen.routeName);
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text('entry_image_push'),
+      onTap: () {
+        routePushNamed(context, EntryImagePushScreen.routeName);
       },
     ),
     ListTile(

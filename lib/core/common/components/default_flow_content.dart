@@ -22,6 +22,7 @@ class DefaultFlowPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // resizeToAvoidBottomInset: false,
       appBar: AppBar(
         iconTheme: IconThemeData(color: seeksLoginColor01),
         elevation: 0,
