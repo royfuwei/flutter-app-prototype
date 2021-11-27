@@ -5,7 +5,7 @@ import 'package:seeks_flutter/core/login/screens/login_screen.dart';
 import 'package:seeks_flutter/routes.dart';
 
 class EntryScreen extends StatefulWidget {
-  static String routeName = 'entryScreen';
+  static String routeName = 'entry';
   const EntryScreen({Key? key}) : super(key: key);
 
   @override

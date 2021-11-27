@@ -10,7 +10,7 @@ import 'package:seeks_flutter/core/common/components/default_title.dart';
 import 'package:seeks_flutter/core/login/components/content_text.dart';
 
 class LoginSplashScreen extends StatefulWidget {
-  static String routeName = 'loginSplashScreen';
+  static String routeName = 'login/splash';
   const LoginSplashScreen({Key? key}) : super(key: key);
 
   @override
@@ -30,45 +30,52 @@ class _LoginSplashScreenState extends State<LoginSplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      behavior: HitTestBehavior.translucent,
-      onTap: () {
-        focusNode.unfocus();
-      },
-      child: DefaultFlowPage(
-        content: [
-          DefaultTitle(
-            title: "準備來個不一樣的約會嗎？",
-            subTitle: "請輸入手機號碼",
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(
-              vertical: getProportionateScreenHeight(context, 24),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                areaCodeButtom(),
-                textFieldSide(),
+    return Navigator(
+      key: ValueKey("login/splash"),
+      pages: [
+        MaterialPage(
+          child: GestureDetector(
+            behavior: HitTestBehavior.translucent,
+            onTap: () {
+              focusNode.unfocus();
+            },
+            child: DefaultFlowPage(
+              content: [
+                DefaultTitle(
+                  title: "準備來個不一樣的約會嗎？",
+                  subTitle: "請輸入手機號碼",
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    vertical: getProportionateScreenHeight(context, 24),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      areaCodeButtom(),
+                      textFieldSide(),
+                    ],
+                  ),
+                ),
+                // Text('telepahone: $telephone'),
+              ],
+              buttom: [
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    vertical: getProportionateScreenHeight(context, 24),
+                    // horizontal: getProportionateScreenWidth(context, 100),
+                  ),
+                  child: StatusButton(
+                    text: "取得驗證碼",
+                    isDisabled: !goNext,
+                    press: () {},
+                  ),
+                ),
               ],
             ),
           ),
-          // Text('telepahone: $telephone'),
-        ],
-        buttom: [
-          Padding(
-            padding: EdgeInsets.symmetric(
-              vertical: getProportionateScreenHeight(context, 24),
-              // horizontal: getProportionateScreenWidth(context, 100),
-            ),
-            child: StatusButton(
-              text: "取得驗證碼",
-              isDisabled: !goNext,
-              press: () {},
-            ),
-          ),
-        ],
-      ),
+        )
+      ],
     );
   }
 

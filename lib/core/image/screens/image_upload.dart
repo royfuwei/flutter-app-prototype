@@ -4,15 +4,15 @@ import 'package:seeks_flutter/core/common/components/default_flow_content.dart';
 import 'package:seeks_flutter/core/common/components/default_title.dart';
 import 'package:seeks_flutter/core/common/components/status_button.dart';
 
-class EntryImagePushScreen extends StatefulWidget {
-  static String routeName = "entry/image_push";
-  const EntryImagePushScreen({Key? key}) : super(key: key);
+class ImageUploadScreen extends StatefulWidget {
+  static String routeName = "image/upload";
+  const ImageUploadScreen({Key? key}) : super(key: key);
 
   @override
-  _EntryImagePushScreenState createState() => _EntryImagePushScreenState();
+  _ImageUploadScreenState createState() => _ImageUploadScreenState();
 }
 
-class _EntryImagePushScreenState extends State<EntryImagePushScreen> {
+class _ImageUploadScreenState extends State<ImageUploadScreen> {
   bool goNext = false;
   @override
   Widget build(BuildContext context) {

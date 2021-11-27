@@ -8,7 +8,7 @@ import 'package:seeks_flutter/core/common/components/default_button.dart';
 import 'package:seeks_flutter/core/login/components/content_text.dart';
 
 class LoginScreen extends StatefulWidget {
-  static String routeName = 'loginScreen';
+  static String routeName = 'login';
   const LoginScreen({Key? key}) : super(key: key);
 
   @override

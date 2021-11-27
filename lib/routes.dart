@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:seeks_flutter/core/captcha/screens/captcha_screen.dart';
+import 'package:seeks_flutter/core/dating/screens/dating_add_screen.dart';
 import 'package:seeks_flutter/core/entry/screens/entry_screen.dart';
 import 'package:seeks_flutter/core/forgot_password/screens/forgot_password_screen.dart';
-import 'package:seeks_flutter/core/image/screens/entry_image_push.dart';
-import 'package:seeks_flutter/core/location/screens/entry_location_open.dart';
+import 'package:seeks_flutter/core/home/screens/home_screen.dart';
+import 'package:seeks_flutter/core/image/screens/image_upload.dart';
+import 'package:seeks_flutter/core/location/screens/location_open_screen.dart';
 import 'package:seeks_flutter/core/login/screens/login_screen.dart';
-import 'package:seeks_flutter/core/notification/screens/entry_notification_open.dart';
+import 'package:seeks_flutter/core/main/screens/main_screen.dart';
+import 'package:seeks_flutter/core/message/screens/message_screen.dart';
+import 'package:seeks_flutter/core/more/screens/more_screen.dart';
+import 'package:seeks_flutter/core/notification/screens/notfication_screen.dart';
+import 'package:seeks_flutter/core/notification/screens/notification_open_screen.dart';
 import 'package:seeks_flutter/core/splash/screens/splash_screen.dart';
 import 'package:seeks_flutter/core/test/screens/bottom_navgation.dart';
 import 'package:seeks_flutter/core/test/screens/default_page.dart';
@@ -30,11 +36,17 @@ final Map<String, WidgetBuilder> routes = {
   LoginScreen.routeName: (context) => LoginScreen(),
   LoginSplashScreen.routeName: (context) => LoginSplashScreen(),
   UserCreateScreen.routeName: (context) => UserCreateScreen(),
-  EntryLocationOpen.routeName: (context) => EntryLocationOpen(),
-  EntryNotificationOpen.routeName: (context) => EntryNotificationOpen(),
-  EntryImagePushScreen.routeName: (context) => EntryImagePushScreen(),
+  LocationOpenScreen.routeName: (context) => LocationOpenScreen(),
+  NotificationOpenScreen.routeName: (context) => NotificationOpenScreen(),
+  ImageUploadScreen.routeName: (context) => ImageUploadScreen(),
   UserCreateInfoScreen.routeName: (context) => UserCreateInfoScreen(),
   CaptchaScreen.routeName: (context) => CaptchaScreen(),
+  MainScreen.routeName: (context) => MainScreen(),
+  HomeScreen.routeName: (context) => HomeScreen(),
+  NotificationScreen.routeName: (context) => NotificationScreen(),
+  MessageScreen.routeName: (context) => MessageScreen(),
+  DatingAddScreen.routeName: (context) => DatingAddScreen(),
+  MoreScreen.routeName: (context) => MoreScreen(),
   DevRoutes.defaultPage: (BuildContext context) {
     dynamic obj = ModalRoute.of(context)!.settings.arguments;
     print('obj: $obj');

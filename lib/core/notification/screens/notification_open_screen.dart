@@ -4,15 +4,15 @@ import 'package:seeks_flutter/core/common/components/default_flow_content.dart';
 import 'package:seeks_flutter/core/common/components/default_title.dart';
 import 'package:seeks_flutter/core/common/components/status_button.dart';
 
-class EntryLocationOpen extends StatefulWidget {
-  static String routeName = "/entry/location/open";
-  const EntryLocationOpen({Key? key}) : super(key: key);
+class NotificationOpenScreen extends StatefulWidget {
+  static String routeName = "notification/open";
+  const NotificationOpenScreen({Key? key}) : super(key: key);
 
   @override
-  _EntryLocationOpenState createState() => _EntryLocationOpenState();
+  _NotificationOpenScreenState createState() => _NotificationOpenScreenState();
 }
 
-class _EntryLocationOpenState extends State<EntryLocationOpen> {
+class _NotificationOpenScreenState extends State<NotificationOpenScreen> {
   bool goNext = false;
   @override
   Widget build(BuildContext context) {
@@ -25,12 +25,12 @@ class _EntryLocationOpenState extends State<EntryLocationOpen> {
               top: getProportionateScreenHeight(context, 64),
             ),
             child: CircleAvatar(
-              child: Icon(Icons.location_on),
+              child: Icon(Icons.notifications),
             ),
           ),
           DefaultTitle(
-            title: "開啟定位服務",
-            subTitle: "我們使用定位找尋您附近的約會",
+            title: "開啟通知",
+            subTitle: "約會媒合成功通知與通知收到訊息",
           ),
         ],
         buttom: [
@@ -40,7 +40,7 @@ class _EntryLocationOpenState extends State<EntryLocationOpen> {
               // horizontal: getProportionateScreenWidth(context, 100),
             ),
             child: StatusButton(
-              text: "開啟定位",
+              text: "開啟通知",
               isDisabled: !goNext,
               press: () {},
             ),
