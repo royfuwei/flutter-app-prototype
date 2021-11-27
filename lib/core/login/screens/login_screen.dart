@@ -19,6 +19,7 @@ class _LoginScreenState extends State<LoginScreen> {
   bool startAnimation = false;
   bool startAnimationTitle = false;
   int startAnimationTitleDurationMill = 5000;
+  late Timer periodicTimer;
 
   @override
   void initState() {
@@ -28,7 +29,7 @@ class _LoginScreenState extends State<LoginScreen> {
       setState(() {
         startAnimation = true;
       });
-      Timer.periodic(
+      periodicTimer = Timer.periodic(
           Duration(
             milliseconds: startAnimationTitleDurationMill,
           ), (timer) {
@@ -37,6 +38,12 @@ class _LoginScreenState extends State<LoginScreen> {
         });
       });
     });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    periodicTimer.cancel();
   }
 
   @override

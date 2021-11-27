@@ -5,11 +5,29 @@ ThemeData theme() {
   return ThemeData(
     brightness: Brightness.light, //選擇亮度主題，有白色/黑色兩種可選
     scaffoldBackgroundColor: Colors.white,
+    // scaffoldBackgroundColor: bgMainColor,
     // appBarTheme: appBarTheme(),
     textTheme: textTheme(),
     inputDecorationTheme: inputDecorationTheme(),
     visualDensity: VisualDensity.adaptivePlatformDensity,
     // dev
+    backgroundColor: bgMainColor,
+    appBarTheme: AppBarTheme(
+      backgroundColor: bgMainColor,
+      titleTextStyle: TextStyle(
+        color: colorFont02,
+      ),
+      toolbarTextStyle: TextStyle(
+        color: colorFont02,
+      ),
+    ),
+    primaryTextTheme: TextTheme(
+      bodyText1: TextStyle(color: colorFont02),
+      bodyText2: TextStyle(color: colorFont02),
+      headline1: TextStyle(
+        color: colorFont02,
+      ),
+    ),
     primarySwatch: Colors.teal,
     highlightColor: Color.fromRGBO(0, 0, 0, 0),
     splashColor: Color.fromRGBO(0, 0, 0, 0),
