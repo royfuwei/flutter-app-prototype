@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:seeks_flutter/configs/size_config.dart';
 import 'package:seeks_flutter/constants.dart';
+import 'package:seeks_flutter/core/common/components/default_app_bar.dart';
+import 'package:seeks_flutter/core/login/screens/login_splash_screen.dart';
+import 'package:seeks_flutter/routes.dart';
 
 class HomeScreen extends StatefulWidget {
   static String routeName = "home";
@@ -17,20 +20,15 @@ class _HomeScreenState extends State<HomeScreen> {
       pages: [
         MaterialPage(
           child: Scaffold(
-            appBar: AppBar(
-              // elevation: 0.5,
-              elevation: 0,
-              backgroundColor: Colors.white,
-              // actions: [Text("hihi")],
-              title: appBarTitle(),
-            ),
+            appBar: appBar(),
             body: SafeArea(
               child: GestureDetector(
                 child: ListView(
                   children: [
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width,
+                    GestureDetector(
+                      onTap: () {},
                       child: Container(
+                        width: MediaQuery.of(context).size.width,
                         color: Colors.grey[50],
                         child: Padding(
                           padding: EdgeInsets.symmetric(
@@ -39,158 +37,20 @@ class _HomeScreenState extends State<HomeScreen> {
                                 getProportionateScreenWidth(context, 16),
                           ),
                           child: Container(
+                            // alignment: Alignment.center,
+                            // color: Colors.amber,
                             child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                datingImageItem(),
-                                Padding(
-                                  padding: EdgeInsets.all(10),
-                                  child: Container(
-                                    height: 100,
-                                    width:
-                                        MediaQuery.of(context).size.width * 0.6,
-                                    // child: Image.asset(
-                                    //   "assets/images/splash_1.jpg",
-                                    //   fit: BoxFit.cover,
-                                    // ),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text("一起讀書"),
-                                                Row(
-                                                  children: [
-                                                    Text("週四, 6月10日"),
-                                                    Text(" "),
-                                                    Text("12:00-14:00"),
-                                                  ],
-                                                ),
-                                              ],
-                                            ),
-                                            Icon(Icons.more_vert),
-                                          ],
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            VerticalSpacing(
-                                              of: 10,
-                                            ),
-                                            Padding(
-                                              padding:
-                                                  EdgeInsets.only(right: 10),
-                                              child: Row(
-                                                children: [
-                                                  Icon(
-                                                    Icons.update,
-                                                    size: 14,
-                                                  ),
-                                                  Text(
-                                                    "媒合中",
-                                                    style: TextStyle(
-                                                      fontSize: 12,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Padding(
-                                              padding:
-                                                  EdgeInsets.only(right: 10),
-                                              child: Row(
-                                                children: [
-                                                  Icon(
-                                                    Icons.access_time,
-                                                    size: 14,
-                                                  ),
-                                                  Text(
-                                                    "預計2hr",
-                                                    style: TextStyle(
-                                                      fontSize: 12,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding:
-                                                  EdgeInsets.only(right: 10),
-                                              child: Row(
-                                                children: [
-                                                  Icon(
-                                                    Icons.group_add,
-                                                    size: 14,
-                                                  ),
-                                                  Text(
-                                                    "100人報名",
-                                                    style: TextStyle(
-                                                      fontSize: 12,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding:
-                                                  EdgeInsets.only(right: 10),
-                                              child: Row(
-                                                children: [
-                                                  Icon(
-                                                    Icons.money_outlined,
-                                                    size: 14,
-                                                  ),
-                                                  Text(
-                                                    "-1000元",
-                                                    style: TextStyle(
-                                                      fontSize: 12,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                )
+                                datingItemImage(),
+                                datingItemInfo(),
                               ],
                             ),
                           ),
                         ),
                       ),
-                      // child:
                     ),
-                    /* Center(
-                      child: Container(
-                        width: getProportionateScreenWidth(context, 120),
-                        height: getProportionateScreenHeight(context, 110),
-                        // color: Colors.grey,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8.0),
-                          image: const DecorationImage(
-                            image: AssetImage("assets/images/splash_1.jpg"),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                    ), */
                   ],
                 ),
                 // child: SingleChildScrollView(),
@@ -202,10 +62,131 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  datingImageItem() {
+  datingItemInfo() {
+    return Expanded(
+      child: Padding(
+        padding: EdgeInsets.only(
+          left: 10,
+          right: 5,
+        ),
+        child: Container(
+          // alignment: Alignment.centerLeft,
+          height: getProportionateScreenHeight(context, 100),
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("一起讀書"),
+                      Row(
+                        children: [
+                          Text("週四, 6月10日"),
+                          Text(" "),
+                          Text("12:00-14:00"),
+                        ],
+                      ),
+                    ],
+                  ),
+                  Icon(Icons.more_vert),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  VerticalSpacing(
+                    of: 10,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(right: 10),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.update,
+                          size: 14,
+                        ),
+                        Text(
+                          "媒合中",
+                          style: TextStyle(
+                            fontSize: 12,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(right: 10),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.access_time,
+                          size: 14,
+                        ),
+                        Text(
+                          "預計2hr",
+                          style: TextStyle(
+                            fontSize: 12,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(right: 10),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.group_add,
+                          size: 14,
+                        ),
+                        Text(
+                          "100人報名",
+                          style: TextStyle(
+                            fontSize: 12,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(right: 10),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.money_outlined,
+                          size: 14,
+                        ),
+                        Text(
+                          "-1000元",
+                          style: TextStyle(
+                            fontSize: 12,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  datingItemImage() {
     return Container(
-      height: 100,
-      width: 100,
+      height: getProportionateScreenHeight(context, 100),
+      width: getProportionateScreenHeight(context, 100),
       decoration: BoxDecoration(
         // color: Colors.grey,
         borderRadius: BorderRadius.circular(10),
@@ -220,7 +201,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ClipRRect(
             borderRadius: BorderRadius.all(Radius.circular(10)),
             child: Container(
-              width: 100,
+              width: getProportionateScreenHeight(context, 100),
               height: 40,
               child: ShaderMask(
                 shaderCallback: (Rect bounds) {
@@ -300,71 +281,62 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  appBarTitle() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: <Widget>[
-        Row(
-          children: [
-            TextButton(
-              onPressed: () {},
-              style: ButtonStyle(),
-              child: Row(
-                children: [
-                  Text(
-                    "台灣",
-                    style: TextStyle(
-                      color: colorFont02,
-                      fontSize: getProportionateScreenWidth(context, 24),
-                    ),
-                  ),
-                  Icon(
-                    Icons.arrow_drop_down,
-                    color: colorFont02,
-                  )
-                ],
+  appBar() {
+    return AppBar(
+      // elevation: 0.5,
+      elevation: 0,
+      backgroundColor: Colors.white,
+      // actions: [Text("hihi")],
+      title: defaultAppBarTitle(startItems: [
+        TextButton(
+          onPressed: () {},
+          style: ButtonStyle(),
+          child: Row(
+            children: [
+              Text(
+                "台灣",
+                style: TextStyle(
+                  color: colorFont02,
+                  fontSize: getProportionateScreenWidth(context, 24),
+                ),
               ),
-            ),
-          ],
+              Icon(
+                Icons.arrow_drop_down,
+                color: colorFont02,
+              )
+            ],
+          ),
         ),
-        Row(
-          children: [],
+      ], endItems: [
+        IconButton(
+          iconSize: getProportionateScreenWidth(context, 32),
+          onPressed: () {},
+          padding: EdgeInsets.all(0),
+          icon: Icon(
+            Icons.location_on,
+            color: colorFont02,
+          ),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          // crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            IconButton(
-              iconSize: getProportionateScreenWidth(context, 32),
-              onPressed: () {},
-              padding: EdgeInsets.all(0),
-              icon: Icon(
-                Icons.location_on,
-                color: colorFont02,
-              ),
-            ),
-            IconButton(
-              iconSize: getProportionateScreenWidth(context, 32),
-              onPressed: () {},
-              padding: EdgeInsets.all(0),
-              icon: Icon(
-                Icons.search,
-                color: colorFont02,
-              ),
-            ),
-            IconButton(
-              iconSize: getProportionateScreenWidth(context, 32),
-              onPressed: () {},
-              padding: EdgeInsets.all(0),
-              icon: Icon(
-                Icons.filter_list,
-                color: colorFont02,
-                size: getProportionateScreenWidth(context, 32),
-              ),
-            ),
-          ],
-        )
-      ],
+        IconButton(
+          iconSize: getProportionateScreenWidth(context, 32),
+          onPressed: () {},
+          padding: EdgeInsets.all(0),
+          icon: Icon(
+            Icons.search,
+            color: colorFont02,
+          ),
+        ),
+        IconButton(
+          iconSize: getProportionateScreenWidth(context, 32),
+          onPressed: () {},
+          padding: EdgeInsets.all(0),
+          icon: Icon(
+            Icons.filter_list,
+            color: colorFont02,
+            size: getProportionateScreenWidth(context, 32),
+          ),
+        ),
+      ]),
     );
   }
 }

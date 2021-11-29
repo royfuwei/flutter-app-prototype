@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:seeks_flutter/configs/size_config.dart';
 import 'package:seeks_flutter/constants.dart';
-import 'package:seeks_flutter/core/common/components/default_button.dart';
+import 'package:seeks_flutter/core/captcha/screens/captcha_screen.dart';
 import 'package:seeks_flutter/core/common/components/default_flow_content.dart';
 import 'package:seeks_flutter/core/common/components/status_button.dart';
 import 'package:seeks_flutter/core/common/components/default_title.dart';
-import 'package:seeks_flutter/core/login/components/content_text.dart';
+import 'package:seeks_flutter/routes.dart';
 
 class LoginSplashScreen extends StatefulWidget {
   static String routeName = 'login/splash';
@@ -30,52 +29,52 @@ class _LoginSplashScreenState extends State<LoginSplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Navigator(
-      key: ValueKey("login/splash"),
-      pages: [
-        MaterialPage(
-          child: GestureDetector(
-            behavior: HitTestBehavior.translucent,
-            onTap: () {
-              focusNode.unfocus();
-            },
-            child: DefaultFlowPage(
-              content: [
-                DefaultTitle(
-                  title: "準備來個不一樣的約會嗎？",
-                  subTitle: "請輸入手機號碼",
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                    vertical: getProportionateScreenHeight(context, 24),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      areaCodeButtom(),
-                      textFieldSide(),
-                    ],
-                  ),
-                ),
-                // Text('telepahone: $telephone'),
-              ],
-              buttom: [
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                    vertical: getProportionateScreenHeight(context, 24),
-                    // horizontal: getProportionateScreenWidth(context, 100),
-                  ),
-                  child: StatusButton(
-                    text: "取得驗證碼",
-                    isDisabled: !goNext,
-                    press: () {},
-                  ),
-                ),
+    return GestureDetector(
+      behavior: HitTestBehavior.translucent,
+      onTap: () {
+        focusNode.unfocus();
+      },
+      child: DefaultFlowPage(
+        content: [
+          DefaultTitle(
+            title: "準備來個不一樣的約會嗎？",
+            subTitle: "請輸入手機號碼",
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: getProportionateScreenHeight(context, 24),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                areaCodeButtom(),
+                textFieldSide(),
               ],
             ),
           ),
-        )
-      ],
+          // Text('telepahone: $telephone'),
+        ],
+        buttom: [
+          Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: getProportionateScreenHeight(context, 24),
+              // horizontal: getProportionateScreenWidth(context, 100),
+            ),
+            child: StatusButton(
+              text: "取得驗證碼",
+              isDisabled: !goNext,
+              press: () {
+                routePushNamed(context, CaptchaScreen.routeName);
+                // Navigator.of(context)
+                //     .push(MaterialPageRoute(builder: (context) {
+                //   return HomeScreen();
+                // }));
+                // routePushNamed(context, HomeScreen.routeName);
+              },
+            ),
+          ),
+        ],
+      ),
     );
   }
 
