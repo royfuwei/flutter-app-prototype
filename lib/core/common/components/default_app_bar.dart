@@ -15,7 +15,7 @@ defaultAppBarTitle({
         children: titleItems,
       ),
       Row(
-        mainAxisAlignment: MainAxisAlignment.end,
+        // mainAxisAlignment: MainAxisAlignment.end,
         // crossAxisAlignment: CrossAxisAlignment.end,
         children: endItems,
       )
