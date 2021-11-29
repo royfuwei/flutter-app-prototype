@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 defaultAppBarTitle({
-  startItems = const <Widget>[],
-  titleItems = const <Widget>[],
-  endItems = const <Widget>[],
+  List<Widget> startItems = const <Widget>[],
+  List<Widget> titleItems = const <Widget>[],
+  List<Widget> endItems = const <Widget>[],
 }) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,

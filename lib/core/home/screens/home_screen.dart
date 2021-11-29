@@ -25,32 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: GestureDetector(
                 child: ListView(
                   children: [
-                    GestureDetector(
-                      onTap: () {},
-                      child: Container(
-                        width: MediaQuery.of(context).size.width,
-                        color: Colors.grey[50],
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(
-                            vertical: getProportionateScreenHeight(context, 8),
-                            horizontal:
-                                getProportionateScreenWidth(context, 16),
-                          ),
-                          child: Container(
-                            // alignment: Alignment.center,
-                            // color: Colors.amber,
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                datingItemImage(),
-                                datingItemInfo(),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
+                    datingItem(),
                   ],
                 ),
                 // child: SingleChildScrollView(),
@@ -62,7 +37,92 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  datingItemInfo() {
+  datingItem({
+    String username = "user1",
+    DecorationImage userDecorationImage = const DecorationImage(
+      image: AssetImage("assets/images/splash_2.jpg"),
+      fit: BoxFit.cover,
+    ),
+    DecorationImage decorationImage = const DecorationImage(
+      image: AssetImage("assets/images/splash_1.jpg"),
+      fit: BoxFit.cover,
+    ),
+    Widget? image,
+    String title = "一起讀書",
+    String datingDate = "週四, 6月10日",
+    String datingHour = "12:00-14:00",
+    String status = "媒合中",
+    String datingDuration = "預計2hr",
+    String signupCount = "100人報名",
+    String payment = "-1000元",
+  }) {
+    return GestureDetector(
+      onTap: () {},
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        color: Colors.grey[50],
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+            vertical: getProportionateScreenHeight(context, 8),
+            horizontal: getProportionateScreenWidth(context, 16),
+          ),
+          child: Container(
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                datingItemImage(
+                  username: username,
+                  userDecorationImage: userDecorationImage,
+                  decorationImage: decorationImage,
+                  image: Image.asset(
+                    "assets/images/splash_1.jpg",
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                datingItemInfo(
+                  title: title,
+                  datingDate: datingDate,
+                  datingHour: datingHour,
+                  status: status,
+                  datingDuration: datingDuration,
+                  signupCount: signupCount,
+                  payment: payment,
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  datingItemInfoIcon(IconData icon, String title) {
+    return Row(
+      children: [
+        Icon(
+          icon,
+          size: 14,
+        ),
+        Text(
+          title,
+          style: TextStyle(
+            fontSize: 12,
+          ),
+        ),
+      ],
+    );
+  }
+
+  datingItemInfo({
+    String title = "一起讀書",
+    String datingDate = "週四, 6月10日",
+    String datingHour = "12:00-14:00",
+    String status = "媒合中",
+    String datingDuration = "預計2hr",
+    String signupCount = "100人報名",
+    String payment = "-1000元",
+  }) {
     return Expanded(
       child: Padding(
         padding: EdgeInsets.only(
@@ -82,12 +142,35 @@ class _HomeScreenState extends State<HomeScreen> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("一起讀書"),
+                      Text(
+                        title,
+                        style: TextStyle(
+                          color: colorFont02,
+                          fontWeight: FontWeight.bold,
+                          fontSize: getProportionateScreenWidth(context, 18),
+                        ),
+                      ),
                       Row(
                         children: [
-                          Text("週四, 6月10日"),
+                          Text(
+                            datingDate,
+                            style: TextStyle(
+                              color: colorFont03,
+                              fontWeight: FontWeight.bold,
+                              fontSize:
+                                  getProportionateScreenWidth(context, 14),
+                            ),
+                          ),
                           Text(" "),
-                          Text("12:00-14:00"),
+                          Text(
+                            datingHour,
+                            style: TextStyle(
+                              color: colorFont03,
+                              fontWeight: FontWeight.bold,
+                              fontSize:
+                                  getProportionateScreenWidth(context, 13),
+                            ),
+                          ),
                         ],
                       ),
                     ],
@@ -103,19 +186,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   Padding(
                     padding: EdgeInsets.only(right: 10),
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.update,
-                          size: 14,
-                        ),
-                        Text(
-                          "媒合中",
-                          style: TextStyle(
-                            fontSize: 12,
-                          ),
-                        ),
-                      ],
+                    child: datingItemInfoIcon(
+                      Icons.update,
+                      status,
                     ),
                   ),
                 ],
@@ -125,53 +198,23 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   Padding(
                     padding: EdgeInsets.only(right: 10),
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.access_time,
-                          size: 14,
-                        ),
-                        Text(
-                          "預計2hr",
-                          style: TextStyle(
-                            fontSize: 12,
-                          ),
-                        ),
-                      ],
+                    child: datingItemInfoIcon(
+                      Icons.access_time,
+                      datingDuration,
                     ),
                   ),
                   Padding(
                     padding: EdgeInsets.only(right: 10),
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.group_add,
-                          size: 14,
-                        ),
-                        Text(
-                          "100人報名",
-                          style: TextStyle(
-                            fontSize: 12,
-                          ),
-                        ),
-                      ],
+                    child: datingItemInfoIcon(
+                      Icons.group_add,
+                      signupCount,
                     ),
                   ),
                   Padding(
                     padding: EdgeInsets.only(right: 10),
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.money_outlined,
-                          size: 14,
-                        ),
-                        Text(
-                          "-1000元",
-                          style: TextStyle(
-                            fontSize: 12,
-                          ),
-                        ),
-                      ],
+                    child: datingItemInfoIcon(
+                      Icons.money_outlined,
+                      payment,
                     ),
                   ),
                 ],
@@ -183,17 +226,25 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  datingItemImage() {
+  datingItemImage({
+    String username = "user1",
+    DecorationImage userDecorationImage = const DecorationImage(
+      image: AssetImage("assets/images/splash_2.jpg"),
+      fit: BoxFit.cover,
+    ),
+    DecorationImage decorationImage = const DecorationImage(
+      image: AssetImage("assets/images/splash_1.jpg"),
+      fit: BoxFit.cover,
+    ),
+    Widget? image,
+  }) {
     return Container(
       height: getProportionateScreenHeight(context, 100),
       width: getProportionateScreenHeight(context, 100),
       decoration: BoxDecoration(
         // color: Colors.grey,
         borderRadius: BorderRadius.circular(10),
-        image: const DecorationImage(
-          image: AssetImage("assets/images/splash_1.jpg"),
-          fit: BoxFit.cover,
-        ),
+        image: decorationImage,
       ),
       child: Stack(
         alignment: Alignment.bottomLeft,
@@ -220,10 +271,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     end: Alignment.bottomCenter,
                   ).createShader(bounds);
                 },
-                child: Image.asset(
-                  "assets/images/splash_1.jpg",
-                  fit: BoxFit.cover,
-                ),
+                child: image,
               ),
             ),
           ),
@@ -248,12 +296,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       border: Border.all(
                         color: Colors.white,
                       ),
-                      image: const DecorationImage(
-                        image: AssetImage(
-                          "assets/images/splash_2.jpg",
-                        ),
-                        fit: BoxFit.cover,
-                      ),
+                      image: userDecorationImage,
                     ),
                   ),
                   Padding(
@@ -262,7 +305,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       bottom: 5,
                     ),
                     child: Text(
-                      "user",
+                      username,
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: getProportionateScreenHeight(
@@ -283,7 +326,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   appBar() {
     return AppBar(
-      // elevation: 0.5,
       elevation: 0,
       backgroundColor: Colors.white,
       // actions: [Text("hihi")],
@@ -308,35 +350,26 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ], endItems: [
-        IconButton(
-          iconSize: getProportionateScreenWidth(context, 32),
-          onPressed: () {},
-          padding: EdgeInsets.all(0),
-          icon: Icon(
-            Icons.location_on,
-            color: colorFont02,
-          ),
-        ),
-        IconButton(
-          iconSize: getProportionateScreenWidth(context, 32),
-          onPressed: () {},
-          padding: EdgeInsets.all(0),
-          icon: Icon(
-            Icons.search,
-            color: colorFont02,
-          ),
-        ),
-        IconButton(
-          iconSize: getProportionateScreenWidth(context, 32),
-          onPressed: () {},
-          padding: EdgeInsets.all(0),
-          icon: Icon(
-            Icons.filter_list,
-            color: colorFont02,
-            size: getProportionateScreenWidth(context, 32),
-          ),
-        ),
+        appBarIconButton(Icons.location_on),
+        appBarIconButton(Icons.search),
+        appBarIconButton(Icons.filter_list),
       ]),
+    );
+  }
+
+  appBarIconButton(
+    IconData icon, {
+    Color color = colorFont02,
+  }) {
+    return IconButton(
+      iconSize: getProportionateScreenWidth(context, 32),
+      onPressed: () {},
+      padding: EdgeInsets.all(0),
+      icon: Icon(
+        icon,
+        color: color,
+        size: getProportionateScreenWidth(context, 32),
+      ),
     );
   }
 }
