@@ -182,8 +182,22 @@ class _NotificationScreenState extends State<NotificationScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("XXX 報名'一起讀書'的約會"),
-            Text("3分鐘前"),
+            Text(
+              "XXX 報名'一起讀書'的約會",
+              style: TextStyle(
+                color: colorFont03,
+                fontWeight: FontWeight.bold,
+                fontSize: getProportionateScreenWidth(context, 16),
+              ),
+            ),
+            Text(
+              "3分鐘前",
+              textAlign: TextAlign.end,
+              style: TextStyle(
+                color: colorFont03,
+                fontSize: getProportionateScreenWidth(context, 14),
+              ),
+            ),
           ],
         ),
       ),
@@ -198,7 +212,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
         "通知",
         style: TextStyle(
           color: colorFont02,
-          fontSize: getProportionateScreenWidth(context, 24),
+          fontSize: getProportionateScreenWidth(context, 20),
         ),
       ),
       actions: [
@@ -238,7 +252,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
             "已讀",
             style: TextStyle(
               color: isRead ? Colors.green : colorFont03,
-              fontSize: getProportionateScreenWidth(context, 18),
+              fontSize: getProportionateScreenWidth(context, 16),
             ),
           ),
         ],

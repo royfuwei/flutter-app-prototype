@@ -8,6 +8,7 @@ import 'package:seeks_flutter/core/location/screens/location_open_screen.dart';
 import 'package:seeks_flutter/core/login/screens/login_screen.dart';
 import 'package:seeks_flutter/core/login/screens/login_splash_screen.dart';
 import 'package:seeks_flutter/core/main/screens/main_screen.dart';
+import 'package:seeks_flutter/core/message/screens/message_screen.dart';
 import 'package:seeks_flutter/core/more/screens/more_screen.dart';
 import 'package:seeks_flutter/core/notification/screens/notfication_screen.dart';
 import 'package:seeks_flutter/core/notification/screens/notification_open_screen.dart';
@@ -126,6 +127,13 @@ List<Widget> getDevView(BuildContext context) {
       title: Text(DatingAddScreen.routeName),
       onTap: () {
         routePushNamed(context, DatingAddScreen.routeName);
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(MessageScreen.routeName),
+      onTap: () {
+        routePushNamed(context, MessageScreen.routeName);
       },
     ),
     ListTile(
