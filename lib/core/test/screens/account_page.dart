@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:seeks_flutter/core/test/screens/first_page.dart';
 
 import '../../../../routes.dart';
 
@@ -96,7 +95,6 @@ class AccountView extends StatelessWidget {
         ),
         body: TabBarView(
           children: [
-            FirstPageWidget(),
             Center(
               child: ListView(
                 children: myTestListView,

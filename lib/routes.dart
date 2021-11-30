@@ -15,7 +15,6 @@ import 'package:seeks_flutter/core/notification/screens/notification_open_screen
 import 'package:seeks_flutter/core/splash/screens/splash_screen.dart';
 import 'package:seeks_flutter/core/test/screens/bottom_navgation.dart';
 import 'package:seeks_flutter/core/test/screens/default_page.dart';
-import 'package:seeks_flutter/core/test/screens/first_page.dart';
 import 'package:seeks_flutter/core/users/screens/user_create_info_screen.dart';
 import 'package:seeks_flutter/core/users/screens/user_create_screen.dart';
 
@@ -54,7 +53,6 @@ final Map<String, WidgetBuilder> routes = {
     title = obj["title"]; // 把接收到的參數存到變數
     return new DefaultPage(title: title);
   },
-  DevRoutes.firstPage: (_) => new FirstPageWidget(),
   DevRoutes.testBottomNav: (_) => new TestBottomNavigationController(),
   DevRoutes.home: (_) => new DevEntryPage(), //route 為onBoarding，就開啟onBoarding 頁
   LoginScreen.routeName: (context) => new LoginScreen(),
