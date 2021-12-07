@@ -17,6 +17,8 @@ class DevImageCropper extends StatefulWidget {
 class _DevImageCropperState extends State<DevImageCropper> {
   @override
   File? imageFile;
+  List<File> imageFiles = [];
+  int currentPage = 0;
 
   Future pickImagesFrom(ImageSource source) async {
     if (source == ImageSource.camera) {
@@ -28,12 +30,15 @@ class _DevImageCropperState extends State<DevImageCropper> {
       }
     }
     if (source == ImageSource.gallery) {
-      // final List<XFile>? images = await ImagePicker().pickMultiImage();
-      XFile? image = await ImagePicker().pickImage(source: source);
-      if (image != null) {
-        String croppedFilePath = await croppedImage(image.path);
+      final List<XFile>? images = await ImagePicker().pickMultiImage();
+      List<File> croppedImagesFile = [];
+      if (images != null) {
+        for (var item in images) {
+          String croppedFilePath = await croppedImage(item.path);
+          croppedImagesFile.add(File(croppedFilePath));
+        }
         setState(() {
-          imageFile = File(image.path);
+          imageFiles.addAll(croppedImagesFile);
         });
       }
     }
@@ -106,6 +111,50 @@ class _DevImageCropperState extends State<DevImageCropper> {
     );
   }
 
+  AnimatedContainer buildDot({int? index}) {
+    return AnimatedContainer(
+      duration: kAnimationDuration,
+      margin: EdgeInsets.only(right: 5),
+      height: 6,
+      width: currentPage == index ? 20 : 6,
+      decoration: BoxDecoration(
+        color: Color(0xFFD8D8D8),
+        borderRadius: BorderRadius.circular(3),
+      ),
+    );
+  }
+
+  imageFileSplash() {
+    return Expanded(
+        child: Container(
+      child: Stack(
+        alignment: Alignment.bottomCenter,
+        children: [
+          Expanded(
+              child: PageView.builder(
+            onPageChanged: (value) {
+              setState(() {
+                currentPage = value;
+              });
+            },
+            itemCount: imageFiles.length,
+            itemBuilder: (context, index) => splashContent(imageFiles[index]),
+          )),
+          Padding(
+            padding: EdgeInsets.all(10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: List.generate(
+                imageFiles.length,
+                (index) => buildDot(index: index),
+              ),
+            ),
+          )
+        ],
+      ),
+    ));
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
@@ -116,14 +165,14 @@ class _DevImageCropperState extends State<DevImageCropper> {
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.width,
               color: colorIconHidden,
-              child: imageFile == null
+              child: imageFiles.length == 0
                   ? Center(
                       child: Icon(
                         Icons.camera_alt_outlined,
                         size: 40,
                       ),
                     )
-                  : splashContent(imageFile!),
+                  : imageFileSplash(),
             ),
             Divider(),
             SizedBox(
