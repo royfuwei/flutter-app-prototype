@@ -4,6 +4,7 @@ import 'package:seeks_flutter/core/dating/screens/dating_add_screen.dart';
 import 'package:seeks_flutter/core/entry/screens/entry_screen.dart';
 import 'package:seeks_flutter/core/forgot_password/screens/forgot_password_screen.dart';
 import 'package:seeks_flutter/core/home/screens/home_screen.dart';
+import 'package:seeks_flutter/core/image/screens/image_picker.dart';
 import 'package:seeks_flutter/core/image/screens/image_upload.dart';
 import 'package:seeks_flutter/core/location/screens/location_open_screen.dart';
 import 'package:seeks_flutter/core/login/screens/login_screen.dart';
@@ -15,6 +16,10 @@ import 'package:seeks_flutter/core/notification/screens/notification_open_screen
 import 'package:seeks_flutter/core/splash/screens/splash_screen.dart';
 import 'package:seeks_flutter/core/test/screens/bottom_navgation.dart';
 import 'package:seeks_flutter/core/test/screens/default_page.dart';
+import 'package:seeks_flutter/core/test/screens/dev_image_cropper.dart';
+import 'package:seeks_flutter/core/test/screens/dev_image_picker.dart';
+import 'package:seeks_flutter/core/test/screens/dev_image_ig_picker.dart';
+import 'package:seeks_flutter/core/test/screens/dev_image_pickers.dart';
 import 'package:seeks_flutter/core/users/screens/user_create_info_screen.dart';
 import 'package:seeks_flutter/core/users/screens/user_create_screen.dart';
 
@@ -38,6 +43,7 @@ final Map<String, WidgetBuilder> routes = {
   LocationOpenScreen.routeName: (context) => LocationOpenScreen(),
   NotificationOpenScreen.routeName: (context) => NotificationOpenScreen(),
   ImageUploadScreen.routeName: (context) => ImageUploadScreen(),
+  ImagePickerScreen.routeName: (context) => ImagePickerScreen(),
   UserCreateInfoScreen.routeName: (context) => UserCreateInfoScreen(),
   CaptchaScreen.routeName: (context) => CaptchaScreen(),
   MainScreen.routeName: (context) => MainScreen(),
@@ -46,6 +52,10 @@ final Map<String, WidgetBuilder> routes = {
   MessageScreen.routeName: (context) => MessageScreen(),
   DatingAddScreen.routeName: (context) => DatingAddScreen(),
   MoreScreen.routeName: (context) => MoreScreen(),
+  DevImagePicker.routeName: (context) => DevImagePicker(),
+  DevImagePickers.routeName: (context) => DevImagePickers(),
+  DevImageIGPicker.routeName: (context) => DevImageIGPicker(),
+  DevImageCropper.routeName: (context) => DevImageCropper(),
   DevRoutes.defaultPage: (BuildContext context) {
     dynamic obj = ModalRoute.of(context)!.settings.arguments;
     print('obj: $obj');

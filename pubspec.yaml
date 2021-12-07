@@ -31,6 +31,14 @@ dependencies:
   flutter_svg: ^0.23.0+1
   material_design_icons_flutter: ^5.0.6295
   flutter_linkify: ^5.0.2
+  image_picker: ^0.8.4+4
+  icofont_flutter: ^1.4.0
+  image_pickers: ^2.0.0+2
+  path_provider: ^2.0.7
+  photo_gallery: ^1.1.1
+  image_cropper: ^1.4.1
+  provider: ^6.0.1
+  shared_preferences: ^2.0.9
 
 dev_dependencies:
   flutter_test:

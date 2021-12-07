@@ -3,6 +3,7 @@ import 'package:seeks_flutter/core/captcha/screens/captcha_screen.dart';
 import 'package:seeks_flutter/core/dating/screens/dating_add_screen.dart';
 import 'package:seeks_flutter/core/entry/screens/entry_screen.dart';
 import 'package:seeks_flutter/core/home/screens/home_screen.dart';
+import 'package:seeks_flutter/core/image/screens/image_picker.dart';
 import 'package:seeks_flutter/core/image/screens/image_upload.dart';
 import 'package:seeks_flutter/core/location/screens/location_open_screen.dart';
 import 'package:seeks_flutter/core/login/screens/login_screen.dart';
@@ -12,6 +13,10 @@ import 'package:seeks_flutter/core/message/screens/message_screen.dart';
 import 'package:seeks_flutter/core/more/screens/more_screen.dart';
 import 'package:seeks_flutter/core/notification/screens/notfication_screen.dart';
 import 'package:seeks_flutter/core/notification/screens/notification_open_screen.dart';
+import 'package:seeks_flutter/core/test/screens/dev_image_cropper.dart';
+import 'package:seeks_flutter/core/test/screens/dev_image_picker.dart';
+import 'package:seeks_flutter/core/test/screens/dev_image_ig_picker.dart';
+import 'package:seeks_flutter/core/test/screens/dev_image_pickers.dart';
 import 'package:seeks_flutter/core/users/screens/user_create_info_screen.dart';
 import 'package:seeks_flutter/core/users/screens/user_create_screen.dart';
 import 'package:seeks_flutter/routes.dart';
@@ -31,6 +36,34 @@ List<Widget> getTestView(BuildContext context) {
       title: Text('test_bottom_nav'),
       onTap: () {
         routePushNamedAndRemoveUntil(context, DevRoutes.testBottomNav);
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(DevImagePicker.routeName),
+      onTap: () {
+        routePushNamed(context, DevImagePicker.routeName);
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(DevImagePickers.routeName),
+      onTap: () {
+        routePushNamed(context, DevImagePickers.routeName);
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(DevImageIGPicker.routeName),
+      onTap: () {
+        routePushNamed(context, DevImageIGPicker.routeName);
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(DevImageCropper.routeName),
+      onTap: () {
+        routePushNamed(context, DevImageCropper.routeName);
       },
     ),
   ];
@@ -92,6 +125,13 @@ List<Widget> getDevView(BuildContext context) {
       title: Text(ImageUploadScreen.routeName),
       onTap: () {
         routePushNamed(context, ImageUploadScreen.routeName);
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(ImagePickerScreen.routeName),
+      onTap: () {
+        routePushNamed(context, ImagePickerScreen.routeName);
       },
     ),
     ListTile(

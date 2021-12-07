@@ -76,46 +76,44 @@ class _NotificationScreenState extends State<NotificationScreen> {
     return GestureDetector(
       onTap: () {},
       child: Expanded(
-        child: Padding(
+        child: Container(
           padding: EdgeInsets.symmetric(
             vertical: getProportionateScreenHeight(context, 8),
             horizontal: getProportionateScreenWidth(context, 16),
           ),
-          child: Container(
-            child: Column(
-              children: [
-                Expanded(
-                  child: Container(
-                    child: Stack(
-                      alignment: Alignment.bottomCenter,
-                      children: [
-                        Expanded(
-                            child: PageView.builder(
-                          onPageChanged: (value) {
-                            setState(() {
-                              currentPage = value;
-                            });
-                          },
-                          itemCount: splashData.length,
-                          itemBuilder: (context, index) =>
-                              splashContent("${splashData[index]["image"]}"),
-                        )),
-                        Padding(
-                          padding: EdgeInsets.all(10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: List.generate(
-                              splashData.length,
-                              (index) => buildDot(index: index),
-                            ),
+          child: Column(
+            children: [
+              Expanded(
+                child: Container(
+                  child: Stack(
+                    alignment: Alignment.bottomCenter,
+                    children: [
+                      Expanded(
+                          child: PageView.builder(
+                        onPageChanged: (value) {
+                          setState(() {
+                            currentPage = value;
+                          });
+                        },
+                        itemCount: splashData.length,
+                        itemBuilder: (context, index) =>
+                            splashContent("${splashData[index]["image"]}"),
+                      )),
+                      Padding(
+                        padding: EdgeInsets.all(10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: List.generate(
+                            splashData.length,
+                            (index) => buildDot(index: index),
                           ),
-                        )
-                      ],
-                    ),
+                        ),
+                      )
+                    ],
                   ),
-                )
-              ],
-            ),
+                ),
+              )
+            ],
           ),
         ),
       ),
@@ -143,18 +141,16 @@ class _NotificationScreenState extends State<NotificationScreen> {
         width: MediaQuery.of(context).size.width,
         height: getProportionateScreenWidth(context, 100),
         color: colorBarWhite,
-        child: Padding(
-          padding: EdgeInsets.symmetric(
-            vertical: getProportionateScreenHeight(context, 8),
-            horizontal: getProportionateScreenWidth(context, 16),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              notificationItemImage(),
-              notificationItemInfo(),
-            ],
-          ),
+        padding: EdgeInsets.symmetric(
+          vertical: getProportionateScreenHeight(context, 8),
+          horizontal: getProportionateScreenWidth(context, 16),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            notificationItemImage(),
+            notificationItemInfo(),
+          ],
         ),
       ),
     );
