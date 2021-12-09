@@ -4,6 +4,7 @@ import 'package:seeks_flutter/configs/size_config.dart';
 import 'package:seeks_flutter/constants.dart';
 import 'package:seeks_flutter/core/captcha/screens/captcha_screen.dart';
 import 'package:seeks_flutter/core/common/components/default_flow_content.dart';
+import 'package:seeks_flutter/core/common/components/default_page_route.dart';
 import 'package:seeks_flutter/core/common/components/status_button.dart';
 import 'package:seeks_flutter/core/common/components/default_title.dart';
 import 'package:seeks_flutter/routes.dart';
@@ -64,7 +65,8 @@ class _LoginSplashScreenState extends State<LoginSplashScreen> {
               text: "取得驗證碼",
               isDisabled: !goNext,
               press: () {
-                routePushNamed(context, CaptchaScreen.routeName);
+                Navigator.of(context).push(DefaultPageRoute(CaptchaScreen()));
+                // routePushNamed(context, CaptchaScreen.routeName);
                 // Navigator.of(context)
                 //     .push(MaterialPageRoute(builder: (context) {
                 //   return HomeScreen();

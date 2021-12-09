@@ -16,6 +16,7 @@ import 'package:seeks_flutter/core/notification/screens/notification_open_screen
 import 'package:seeks_flutter/core/splash/screens/splash_screen.dart';
 import 'package:seeks_flutter/core/test/screens/bottom_navgation.dart';
 import 'package:seeks_flutter/core/test/screens/default_page.dart';
+import 'package:seeks_flutter/core/test/screens/dev_carousel_silder.dart';
 import 'package:seeks_flutter/core/test/screens/dev_image_cropper.dart';
 import 'package:seeks_flutter/core/test/screens/dev_image_picker.dart';
 import 'package:seeks_flutter/core/test/screens/dev_image_ig_picker.dart';
@@ -56,6 +57,7 @@ final Map<String, WidgetBuilder> routes = {
   DevImagePickers.routeName: (context) => DevImagePickers(),
   DevImageIGPicker.routeName: (context) => DevImageIGPicker(),
   DevImageCropper.routeName: (context) => DevImageCropper(),
+  DevCarouselSlider.routeName: (context) => DevCarouselSlider(),
   DevRoutes.defaultPage: (BuildContext context) {
     dynamic obj = ModalRoute.of(context)!.settings.arguments;
     print('obj: $obj');

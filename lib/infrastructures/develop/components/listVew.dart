@@ -13,6 +13,7 @@ import 'package:seeks_flutter/core/message/screens/message_screen.dart';
 import 'package:seeks_flutter/core/more/screens/more_screen.dart';
 import 'package:seeks_flutter/core/notification/screens/notfication_screen.dart';
 import 'package:seeks_flutter/core/notification/screens/notification_open_screen.dart';
+import 'package:seeks_flutter/core/test/screens/dev_carousel_silder.dart';
 import 'package:seeks_flutter/core/test/screens/dev_image_cropper.dart';
 import 'package:seeks_flutter/core/test/screens/dev_image_picker.dart';
 import 'package:seeks_flutter/core/test/screens/dev_image_ig_picker.dart';
@@ -64,6 +65,13 @@ List<Widget> getTestView(BuildContext context) {
       title: Text(DevImageCropper.routeName),
       onTap: () {
         routePushNamed(context, DevImageCropper.routeName);
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(DevCarouselSlider.routeName),
+      onTap: () {
+        routePushNamed(context, DevCarouselSlider.routeName);
       },
     ),
   ];
