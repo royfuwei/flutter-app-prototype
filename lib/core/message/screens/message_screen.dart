@@ -127,14 +127,22 @@ class _MessageScreenState extends State<MessageScreen> {
                       fontSize: getProportionateScreenWidth(context, 14),
                     ),
                   ),
-                  CircleAvatar(
+                  Container(
+                    padding: EdgeInsets.symmetric(
+                      vertical: 5,
+                      horizontal: 10,
+                    ),
+                    // color: bgMainColor,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: bgMainColor,
+                    ),
                     child: Text(
-                      "12",
+                      "2",
                       style: TextStyle(
                         fontSize: 12,
                       ),
                     ),
-                    maxRadius: getProportionateScreenWidth(context, 16),
                   ),
                 ],
               ),

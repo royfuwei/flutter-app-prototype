@@ -13,11 +13,30 @@ import 'package:seeks_flutter/core/message/screens/message_screen.dart';
 import 'package:seeks_flutter/core/more/screens/more_screen.dart';
 import 'package:seeks_flutter/core/notification/screens/notfication_screen.dart';
 import 'package:seeks_flutter/core/notification/screens/notification_open_screen.dart';
+import 'package:seeks_flutter/core/test/screens/dev_alert.dart';
+import 'package:seeks_flutter/core/test/screens/dev_api_get.dart';
+import 'package:seeks_flutter/core/test/screens/dev_api_post.dart';
+import 'package:seeks_flutter/core/test/screens/dev_buttom_navigation_tarbar.dart';
+import 'package:seeks_flutter/core/test/screens/dev_custom_scroll_view.dart';
+import 'package:seeks_flutter/core/test/screens/dev_getx.dart';
+import 'package:seeks_flutter/core/test/screens/dev_inherited_widget.dart';
+import 'package:seeks_flutter/core/test/screens/dev_life_cycle.dart';
+import 'package:seeks_flutter/core/test/screens/dev_listview_checkbox.dart';
+import 'package:seeks_flutter/core/test/screens/dev_listview_msg.dart';
+import 'package:seeks_flutter/core/test/screens/dev_listview_refresh.dart';
+import 'package:seeks_flutter/core/test/screens/dev_listview_slidable.dart';
+import 'package:seeks_flutter/core/test/screens/dev_listview_stickyHeader.dart';
+import 'package:seeks_flutter/core/test/screens/dev_local_storage.dart';
+import 'package:seeks_flutter/core/test/screens/dev_notification.dart';
+import 'package:seeks_flutter/core/test/screens/dev_path_provider.dart';
+import 'package:seeks_flutter/core/test/screens/dev_picker.dart';
 import 'package:seeks_flutter/core/test/screens/dev_carousel_silder.dart';
 import 'package:seeks_flutter/core/test/screens/dev_image_cropper.dart';
 import 'package:seeks_flutter/core/test/screens/dev_image_picker.dart';
 import 'package:seeks_flutter/core/test/screens/dev_image_ig_picker.dart';
 import 'package:seeks_flutter/core/test/screens/dev_image_pickers.dart';
+import 'package:seeks_flutter/core/test/screens/dev_provider.dart';
+import 'package:seeks_flutter/core/test/screens/dev_shared_preference.dart';
 import 'package:seeks_flutter/core/users/screens/user_create_info_screen.dart';
 import 'package:seeks_flutter/core/users/screens/user_create_screen.dart';
 import 'package:seeks_flutter/routes.dart';
@@ -30,13 +49,6 @@ List<Widget> getTestView(BuildContext context) {
       onTap: () {
         routePushNamed(context, DevRoutes.defaultPage,
             arguments: {'title': 'Flutter Default Page'});
-      },
-    ),
-    ListTile(
-      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
-      title: Text('test_bottom_nav'),
-      onTap: () {
-        routePushNamedAndRemoveUntil(context, DevRoutes.testBottomNav);
       },
     ),
     ListTile(
@@ -72,6 +84,146 @@ List<Widget> getTestView(BuildContext context) {
       title: Text(DevCarouselSlider.routeName),
       onTap: () {
         routePushNamed(context, DevCarouselSlider.routeName);
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(DevPicker.routeName),
+      onTap: () {
+        routePushNamed(context, DevPicker.routeName);
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(DevAlert.routeName),
+      onTap: () {
+        routePushNamed(context, DevAlert.routeName);
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(DevListViewMsg.routeName),
+      onTap: () {
+        routePushNamed(context, DevListViewMsg.routeName);
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(DevListViewRefresh.routeName),
+      onTap: () {
+        routePushNamed(context, DevListViewRefresh.routeName);
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(DevListViewStickyHeader.routeName),
+      onTap: () {
+        routePushNamed(context, DevListViewStickyHeader.routeName);
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(DevListViewSlidable.routeName),
+      onTap: () {
+        routePushNamed(context, DevListViewSlidable.routeName);
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(DevListViewCheckbox.routeName),
+      onTap: () {
+        routePushNamed(context, DevListViewCheckbox.routeName);
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(DevSharedPreference.routeName),
+      onTap: () {
+        routePushNamed(context, DevSharedPreference.routeName);
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(DevCustomScrollView.routeName),
+      onTap: () {
+        routePushNamed(context, DevCustomScrollView.routeName);
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(DevBottomNavigationTabBar.routeName),
+      onTap: () {
+        routePushNamed(context, DevBottomNavigationTabBar.routeName);
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(DevProvider.routeName),
+      onTap: () {
+        routePushNamed(context, DevProvider.routeName);
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(DevApiGet.routeName),
+      onTap: () {
+        routePushNamed(context, DevApiGet.routeName);
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(DevApiPost.routeName),
+      onTap: () {
+        routePushNamed(context, DevApiPost.routeName);
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(DevPathProvider.routeName),
+      onTap: () {
+        routePushNamed(context, DevPathProvider.routeName);
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(DevLifeCycle.routeName),
+      onTap: () {
+        routePushNamed(context, DevLifeCycle.routeName);
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(DevInheritedWidget.routeName),
+      onTap: () {
+        routePushNamed(context, DevInheritedWidget.routeName);
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(DevInheritedWidget.routeName),
+      onTap: () {
+        routePushNamed(context, DevInheritedWidget.routeName);
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(DevNotification.routeName),
+      onTap: () {
+        routePushNamed(context, DevNotification.routeName);
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(DevLocalStorage.routeName),
+      onTap: () {
+        routePushNamed(context, DevLocalStorage.routeName);
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(DevGetX.routeName),
+      onTap: () {
+        routePushNamed(context, DevGetX.routeName);
       },
     ),
   ];

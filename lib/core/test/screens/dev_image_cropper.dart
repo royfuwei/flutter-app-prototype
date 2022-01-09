@@ -24,8 +24,10 @@ class _DevImageCropperState extends State<DevImageCropper> {
     if (source == ImageSource.camera) {
       final imagePicker = await ImagePicker().pickImage(source: source);
       if (imagePicker != null) {
+        String croppedFilePath = await croppedImage(imagePicker.path);
         setState(() {
-          imageFile = File(imagePicker.path);
+          File imageFile = File(croppedFilePath);
+          imageFiles.add(imageFile);
         });
       }
     }
@@ -47,25 +49,33 @@ class _DevImageCropperState extends State<DevImageCropper> {
   Future<String> croppedImage(String pickerFilePath) async {
     File? croppedFile = await ImageCropper.cropImage(
       sourcePath: pickerFilePath,
+      // aspectRatio: CropAspectRatio(ratioX: 4, ratioY: 4),
+      cropStyle: CropStyle.circle,
       aspectRatioPresets: Platform.isAndroid
           ? [
-              CropAspectRatioPreset.square,
               CropAspectRatioPreset.original,
+              // CropAspectRatioPreset.square,
               //CropAspectRatioPreset.ratio16x9
             ]
           : [
               CropAspectRatioPreset.original,
-              CropAspectRatioPreset.square,
+              // CropAspectRatioPreset.square,
               //CropAspectRatioPreset.ratio16x9
             ],
       androidUiSettings: AndroidUiSettings(
-          toolbarTitle: 'Cropper',
-          toolbarColor: Colors.blueAccent,
-          toolbarWidgetColor: Colors.white,
-          initAspectRatio: CropAspectRatioPreset.square,
-          lockAspectRatio: false),
-      iosUiSettings: IOSUiSettings(title: 'Cropper'),
+        toolbarTitle: '照片裁切',
+        toolbarColor: Colors.blueAccent,
+        toolbarWidgetColor: Colors.white,
+        initAspectRatio: CropAspectRatioPreset.square,
+        lockAspectRatio: false,
+      ),
+      iosUiSettings: IOSUiSettings(
+        title: '照片裁切',
+        doneButtonTitle: "完成",
+        cancelButtonTitle: "取消",
+      ),
     );
+    print('croppedFile!.stat(): ${croppedFile!.stat()}');
     if (croppedFile != null) {
       return croppedFile.path;
     }

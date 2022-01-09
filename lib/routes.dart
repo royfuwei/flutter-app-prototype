@@ -14,13 +14,31 @@ import 'package:seeks_flutter/core/more/screens/more_screen.dart';
 import 'package:seeks_flutter/core/notification/screens/notfication_screen.dart';
 import 'package:seeks_flutter/core/notification/screens/notification_open_screen.dart';
 import 'package:seeks_flutter/core/splash/screens/splash_screen.dart';
-import 'package:seeks_flutter/core/test/screens/bottom_navgation.dart';
 import 'package:seeks_flutter/core/test/screens/default_page.dart';
+import 'package:seeks_flutter/core/test/screens/dev_alert.dart';
+import 'package:seeks_flutter/core/test/screens/dev_api_get.dart';
+import 'package:seeks_flutter/core/test/screens/dev_api_post.dart';
+import 'package:seeks_flutter/core/test/screens/dev_buttom_navigation_tarbar.dart';
+import 'package:seeks_flutter/core/test/screens/dev_custom_scroll_view.dart';
+import 'package:seeks_flutter/core/test/screens/dev_getx.dart';
+import 'package:seeks_flutter/core/test/screens/dev_inherited_widget.dart';
+import 'package:seeks_flutter/core/test/screens/dev_life_cycle.dart';
+import 'package:seeks_flutter/core/test/screens/dev_listview_checkbox.dart';
+import 'package:seeks_flutter/core/test/screens/dev_listview_msg.dart';
+import 'package:seeks_flutter/core/test/screens/dev_listview_refresh.dart';
+import 'package:seeks_flutter/core/test/screens/dev_listview_slidable.dart';
+import 'package:seeks_flutter/core/test/screens/dev_listview_stickyHeader.dart';
+import 'package:seeks_flutter/core/test/screens/dev_local_storage.dart';
+import 'package:seeks_flutter/core/test/screens/dev_notification.dart';
+import 'package:seeks_flutter/core/test/screens/dev_path_provider.dart';
+import 'package:seeks_flutter/core/test/screens/dev_picker.dart';
 import 'package:seeks_flutter/core/test/screens/dev_carousel_silder.dart';
 import 'package:seeks_flutter/core/test/screens/dev_image_cropper.dart';
 import 'package:seeks_flutter/core/test/screens/dev_image_picker.dart';
 import 'package:seeks_flutter/core/test/screens/dev_image_ig_picker.dart';
 import 'package:seeks_flutter/core/test/screens/dev_image_pickers.dart';
+import 'package:seeks_flutter/core/test/screens/dev_provider.dart';
+import 'package:seeks_flutter/core/test/screens/dev_shared_preference.dart';
 import 'package:seeks_flutter/core/users/screens/user_create_info_screen.dart';
 import 'package:seeks_flutter/core/users/screens/user_create_screen.dart';
 
@@ -58,6 +76,25 @@ final Map<String, WidgetBuilder> routes = {
   DevImageIGPicker.routeName: (context) => DevImageIGPicker(),
   DevImageCropper.routeName: (context) => DevImageCropper(),
   DevCarouselSlider.routeName: (context) => DevCarouselSlider(),
+  DevPicker.routeName: (context) => DevPicker(),
+  DevAlert.routeName: (context) => DevAlert(),
+  DevListViewMsg.routeName: (context) => DevListViewMsg(),
+  DevListViewRefresh.routeName: (context) => DevListViewRefresh(),
+  DevListViewStickyHeader.routeName: (context) => DevListViewStickyHeader(),
+  DevListViewSlidable.routeName: (context) => DevListViewSlidable(),
+  DevListViewCheckbox.routeName: (context) => DevListViewCheckbox(),
+  DevSharedPreference.routeName: (context) => DevSharedPreference(),
+  DevCustomScrollView.routeName: (context) => DevCustomScrollView(),
+  DevBottomNavigationTabBar.routeName: (context) => DevBottomNavigationTabBar(),
+  DevProvider.routeName: (context) => DevProvider(),
+  DevApiGet.routeName: (context) => DevApiGet(),
+  DevApiPost.routeName: (context) => DevApiPost(),
+  DevPathProvider.routeName: (context) => DevPathProvider(),
+  DevLifeCycle.routeName: (context) => DevLifeCycle(),
+  DevInheritedWidget.routeName: (context) => DevInheritedWidget(),
+  DevNotification.routeName: (context) => DevNotification(),
+  DevLocalStorage.routeName: (context) => DevLocalStorage(),
+  DevGetX.routeName: (context) => DevGetX(),
   DevRoutes.defaultPage: (BuildContext context) {
     dynamic obj = ModalRoute.of(context)!.settings.arguments;
     print('obj: $obj');
@@ -65,7 +102,6 @@ final Map<String, WidgetBuilder> routes = {
     title = obj["title"]; // 把接收到的參數存到變數
     return new DefaultPage(title: title);
   },
-  DevRoutes.testBottomNav: (_) => new TestBottomNavigationController(),
   DevRoutes.home: (_) => new DevEntryPage(), //route 為onBoarding，就開啟onBoarding 頁
   LoginScreen.routeName: (context) => new LoginScreen(),
   ForgotPasswordScreen.routeName: (context) => new ForgotPasswordScreen(),
