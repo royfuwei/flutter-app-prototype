@@ -200,13 +200,6 @@ List<Widget> getTestView(BuildContext context) {
     ),
     ListTile(
       leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
-      title: Text(DevInheritedWidget.routeName),
-      onTap: () {
-        routePushNamed(context, DevInheritedWidget.routeName);
-      },
-    ),
-    ListTile(
-      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
       title: Text(DevNotification.routeName),
       onTap: () {
         routePushNamed(context, DevNotification.routeName);
