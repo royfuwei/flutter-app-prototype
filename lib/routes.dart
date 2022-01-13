@@ -31,6 +31,9 @@ import 'package:seeks_flutter/core/test/screens/dev_listview_stickyHeader.dart';
 import 'package:seeks_flutter/core/test/screens/dev_local_storage.dart';
 import 'package:seeks_flutter/core/test/screens/dev_notification.dart';
 import 'package:seeks_flutter/core/test/screens/dev_path_provider.dart';
+import 'package:seeks_flutter/core/test/screens/dev_photo_manager.dart';
+import 'package:seeks_flutter/core/test/screens/dev_photo_manager_v2.dart';
+import 'package:seeks_flutter/core/test/screens/dev_photo_manager_v3.dart';
 import 'package:seeks_flutter/core/test/screens/dev_picker.dart';
 import 'package:seeks_flutter/core/test/screens/dev_carousel_silder.dart';
 import 'package:seeks_flutter/core/test/screens/dev_image_cropper.dart';
@@ -95,6 +98,9 @@ final Map<String, WidgetBuilder> routes = {
   DevNotification.routeName: (context) => DevNotification(),
   DevLocalStorage.routeName: (context) => DevLocalStorage(),
   DevGetX.routeName: (context) => DevGetX(),
+  DevPhotoManager.routeName: (context) => DevPhotoManager(),
+  DevPhotoManagerV2.routeName: (context) => DevPhotoManagerV2(),
+  DevPhotoManagerV3.routeName: (context) => DevPhotoManagerV3(),
   DevRoutes.defaultPage: (BuildContext context) {
     dynamic obj = ModalRoute.of(context)!.settings.arguments;
     print('obj: $obj');
