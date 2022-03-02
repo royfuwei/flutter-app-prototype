@@ -5,6 +5,7 @@ import 'package:seeks_flutter/infrastructures/develop/components/listVew.dart';
 import 'package:seeks_flutter/routes.dart';
 
 class DevEntryPage extends StatefulWidget {
+  static String routeName = '/develop';
   DevEntryPage({Key? key}) : super(key: key);
 
   _DevEntryState createState() => _DevEntryState();

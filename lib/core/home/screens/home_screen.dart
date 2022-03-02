@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:seeks_flutter/configs/size_config.dart';
 import 'package:seeks_flutter/constants.dart';
 import 'package:seeks_flutter/core/common/components/default_app_bar.dart';
@@ -25,6 +26,40 @@ class _HomeScreenState extends State<HomeScreen> {
               child: GestureDetector(
                 child: ListView(
                   children: [
+                    Slidable(
+                      startActionPane: ActionPane(
+                        // A motion is a widget used to control how the pane animates.
+                        motion: StretchMotion(),
+                        // A pane can dismiss the Slidable.
+                        /* dismissible: DismissiblePane(onDismissed: () {
+          deleteListItem(index);
+        }), */
+                        // All actions are defined in the children parameter.
+                        children: getStartActionMenu(1),
+                      ),
+                      endActionPane: ActionPane(
+                        motion: StretchMotion(),
+                        children: [],
+                      ),
+                      child: datingItem(),
+                    ),
+                    Slidable(
+                      startActionPane: ActionPane(
+                        // A motion is a widget used to control how the pane animates.
+                        motion: StretchMotion(),
+                        // A pane can dismiss the Slidable.
+                        /* dismissible: DismissiblePane(onDismissed: () {
+          deleteListItem(index);
+        }), */
+                        // All actions are defined in the children parameter.
+                        children: getStartActionMenu(1),
+                      ),
+                      endActionPane: ActionPane(
+                        motion: StretchMotion(),
+                        children: [],
+                      ),
+                      child: datingItem(),
+                    ),
                     datingItem(),
                   ],
                 ),
@@ -35,6 +70,28 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ],
     );
+  }
+
+  getStartActionMenu(int index) {
+    return [
+      SlidableAction(
+        onPressed: (_) {
+          // deleteListItem(index);
+        },
+        backgroundColor: Color(0xFFFE4A49),
+        foregroundColor: Colors.white,
+        icon: Icons.delete,
+        label: '刪除',
+      ),
+      SlidableAction(
+        // onPressed: doNothing,
+        onPressed: (_) {},
+        backgroundColor: Color(0xFF21B7CA),
+        foregroundColor: Colors.white,
+        icon: Icons.share,
+        label: '分享',
+      ),
+    ];
   }
 
   datingItem({
@@ -51,7 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
     String title = "一起讀書",
     String datingDate = "週四, 6月10日",
     String datingHour = "12:00-14:00",
-    String status = "媒合中",
+    String status = "配對中",
     String datingDuration = "預計2hr",
     String signupCount = "100人報名",
     String payment = "-1000元",
@@ -118,7 +175,7 @@ class _HomeScreenState extends State<HomeScreen> {
     String title = "一起讀書",
     String datingDate = "週四, 6月10日",
     String datingHour = "12:00-14:00",
-    String status = "媒合中",
+    String status = "配對中",
     String datingDuration = "預計2hr",
     String signupCount = "100人報名",
     String payment = "-1000元",

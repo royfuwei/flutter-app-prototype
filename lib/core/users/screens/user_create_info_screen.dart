@@ -3,7 +3,9 @@ import 'package:seeks_flutter/configs/size_config.dart';
 import 'package:seeks_flutter/core/common/components/default_flow_content.dart';
 import 'package:seeks_flutter/core/common/components/default_title.dart';
 import 'package:seeks_flutter/core/common/components/status_button.dart';
+import 'package:seeks_flutter/core/main/screens/main_screen.dart';
 import 'package:seeks_flutter/core/users/components/user_create_info_form.dart';
+import 'package:seeks_flutter/routes.dart';
 
 class UserCreateInfoScreen extends StatefulWidget {
   static String routeName = "user/create/info";
@@ -40,8 +42,10 @@ class _UserCreateInfoScreenState extends State<UserCreateInfoScreen> {
             ),
             child: StatusButton(
               text: "完成",
-              isDisabled: !goNext,
-              press: () {},
+              isDisabled: goNext,
+              press: () {
+                routePushNamedAndRemoveUntil(context, MainScreen.routeName);
+              },
             ),
           ),
         ],

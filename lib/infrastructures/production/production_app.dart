@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:seeks_flutter/configs/theme.dart';
-import 'package:seeks_flutter/infrastructures/develop/screens/develop_screens.dart';
+import 'package:seeks_flutter/core/entry/screens/entry_screen.dart';
+import 'package:seeks_flutter/core/login/screens/login_screen.dart';
 import 'package:seeks_flutter/routes.dart';
 
-class DevelopApp extends StatelessWidget {
+class ProductionApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,7 @@ class DevelopApp extends StatelessWidget {
       // ),
       theme: theme(),
       // home: AppRoutesPage(),
-      initialRoute: DevEntryPage.routeName,
+      initialRoute: LoginScreen.routeName,
       routes: routes,
     );
   }

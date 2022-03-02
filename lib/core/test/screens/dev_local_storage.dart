@@ -81,6 +81,43 @@ class _DevLocalStorageState extends State<DevLocalStorage> {
       title: Text("Local Storage"),
     );
 
+    final searchSide = Padding(
+      padding: EdgeInsets.only(
+        top: 16,
+        left: 16,
+        right: 16,
+      ),
+      child: TextField(
+        decoration: InputDecoration(
+          hintText: "Search...",
+          hintStyle: TextStyle(
+            color: Colors.grey.shade600,
+          ),
+          prefixIcon: Icon(
+            Icons.search,
+            color: Colors.grey.shade600,
+            size: 20,
+          ),
+          filled: true,
+          fillColor: Colors.grey.shade100,
+          contentPadding: EdgeInsets.all(8),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(20),
+            borderSide: BorderSide(
+              color: Colors.grey.shade100,
+            ),
+          ),
+        ),
+        onSubmitted: (string) {
+          setState(() {
+            isSearching = false;
+            keywords.insert(0, string);
+            setRecentKeywords();
+          });
+        },
+      ),
+    );
+
     final searchAppBar = AppBar(
       leading: IconButton(
         icon: Icon(Icons.close),
@@ -118,12 +155,20 @@ class _DevLocalStorageState extends State<DevLocalStorage> {
       /* appBar: AppBar(
         title: Text("local storage"),
       ), */
-      appBar: isSearching ? searchAppBar : normalAppBar,
-      body: ListView.builder(
-        itemCount: keywords.length,
-        itemBuilder: (ctx, idx) => ListTile(
-          title: Text(keywords[idx]),
-        ),
+      // appBar: isSearching ? searchAppBar : normalAppBar,
+      appBar: normalAppBar,
+      body: Column(
+        children: [
+          searchSide,
+          Expanded(
+            child: ListView.builder(
+              itemCount: keywords.length,
+              itemBuilder: (ctx, idx) => ListTile(
+                title: Text(keywords[idx]),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

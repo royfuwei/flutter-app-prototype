@@ -23,6 +23,7 @@ import 'package:seeks_flutter/core/test/screens/dev_custom_scroll_view.dart';
 import 'package:seeks_flutter/core/test/screens/dev_getx.dart';
 import 'package:seeks_flutter/core/test/screens/dev_inherited_widget.dart';
 import 'package:seeks_flutter/core/test/screens/dev_life_cycle.dart';
+import 'package:seeks_flutter/core/test/screens/dev_listview_chat.dart';
 import 'package:seeks_flutter/core/test/screens/dev_listview_checkbox.dart';
 import 'package:seeks_flutter/core/test/screens/dev_listview_msg.dart';
 import 'package:seeks_flutter/core/test/screens/dev_listview_refresh.dart';
@@ -42,6 +43,7 @@ import 'package:seeks_flutter/core/test/screens/dev_image_ig_picker.dart';
 import 'package:seeks_flutter/core/test/screens/dev_image_pickers.dart';
 import 'package:seeks_flutter/core/test/screens/dev_provider.dart';
 import 'package:seeks_flutter/core/test/screens/dev_shared_preference.dart';
+import 'package:seeks_flutter/core/test/screens/dev_sqflite.dart';
 import 'package:seeks_flutter/core/users/screens/user_create_info_screen.dart';
 import 'package:seeks_flutter/core/users/screens/user_create_screen.dart';
 
@@ -101,6 +103,8 @@ final Map<String, WidgetBuilder> routes = {
   DevPhotoManager.routeName: (context) => DevPhotoManager(),
   DevPhotoManagerV2.routeName: (context) => DevPhotoManagerV2(),
   DevPhotoManagerV3.routeName: (context) => DevPhotoManagerV3(),
+  DevSqflite.routeName: (context) => DevSqflite(),
+  DevListViewChat.routeName: (context) => DevListViewChat(),
   DevRoutes.defaultPage: (BuildContext context) {
     dynamic obj = ModalRoute.of(context)!.settings.arguments;
     print('obj: $obj');
@@ -108,7 +112,7 @@ final Map<String, WidgetBuilder> routes = {
     title = obj["title"]; // 把接收到的參數存到變數
     return new DefaultPage(title: title);
   },
-  DevRoutes.home: (_) => new DevEntryPage(), //route 為onBoarding，就開啟onBoarding 頁
+  DevEntryPage.routeName: (context) => DevEntryPage(),
   LoginScreen.routeName: (context) => new LoginScreen(),
   ForgotPasswordScreen.routeName: (context) => new ForgotPasswordScreen(),
 };

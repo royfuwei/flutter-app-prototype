@@ -1,11 +1,15 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:seeks_flutter/configs/size_config.dart';
 import 'package:seeks_flutter/constants.dart';
 import 'package:seeks_flutter/core/common/components/default_flow_content.dart';
 import 'package:seeks_flutter/core/common/components/default_title.dart';
 import 'package:seeks_flutter/core/common/components/status_button.dart';
+import 'package:seeks_flutter/core/login/controllers/login_status_controller.dart';
+import 'package:seeks_flutter/core/users/screens/user_create_screen.dart';
+import 'package:seeks_flutter/routes.dart';
 
 class CaptchaScreen extends StatefulWidget {
   static String routeName = "captcha";
@@ -18,16 +22,27 @@ class CaptchaScreen extends StatefulWidget {
 class _CaptchaScreenState extends State<CaptchaScreen> {
   late FocusNode focusNode;
   late Timer _timer;
-  String telephone = '0966000996';
+  String telephone = '';
   String captcha = '';
   int _counter = 60;
   bool goNext = false;
+
+  final LoginStatusController loginStatusController =
+      Get.put(LoginStatusController());
 
   @override
   void initState() {
     super.initState();
     startTimer();
     focusNode = FocusNode();
+    getStatusModel();
+  }
+
+  getStatusModel() async {
+    var result = await loginStatusController.getLocalStorage();
+    setState(() {
+      telephone = result.telephone;
+    });
   }
 
   @override
@@ -71,7 +86,9 @@ class _CaptchaScreenState extends State<CaptchaScreen> {
             child: StatusButton(
               text: "下一步",
               isDisabled: !goNext,
-              press: () {},
+              press: () {
+                routePushNamed(context, UserCreateScreen.routeName);
+              },
             ),
           ),
         ],

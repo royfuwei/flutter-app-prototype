@@ -21,6 +21,7 @@ import 'package:seeks_flutter/core/test/screens/dev_custom_scroll_view.dart';
 import 'package:seeks_flutter/core/test/screens/dev_getx.dart';
 import 'package:seeks_flutter/core/test/screens/dev_inherited_widget.dart';
 import 'package:seeks_flutter/core/test/screens/dev_life_cycle.dart';
+import 'package:seeks_flutter/core/test/screens/dev_listview_chat.dart';
 import 'package:seeks_flutter/core/test/screens/dev_listview_checkbox.dart';
 import 'package:seeks_flutter/core/test/screens/dev_listview_msg.dart';
 import 'package:seeks_flutter/core/test/screens/dev_listview_refresh.dart';
@@ -40,6 +41,7 @@ import 'package:seeks_flutter/core/test/screens/dev_image_ig_picker.dart';
 import 'package:seeks_flutter/core/test/screens/dev_image_pickers.dart';
 import 'package:seeks_flutter/core/test/screens/dev_provider.dart';
 import 'package:seeks_flutter/core/test/screens/dev_shared_preference.dart';
+import 'package:seeks_flutter/core/test/screens/dev_sqflite.dart';
 import 'package:seeks_flutter/core/users/screens/user_create_info_screen.dart';
 import 'package:seeks_flutter/core/users/screens/user_create_screen.dart';
 import 'package:seeks_flutter/routes.dart';
@@ -241,6 +243,20 @@ List<Widget> getTestView(BuildContext context) {
       title: Text(DevPhotoManagerV3.routeName),
       onTap: () {
         routePushNamed(context, DevPhotoManagerV3.routeName);
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(DevSqflite.routeName),
+      onTap: () {
+        routePushNamed(context, DevSqflite.routeName);
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(DevListViewChat.routeName),
+      onTap: () {
+        routePushNamed(context, DevListViewChat.routeName);
       },
     ),
   ];

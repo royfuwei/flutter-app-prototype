@@ -14,6 +14,8 @@ class UserCreateForm extends StatefulWidget {
 
 class _UserCreateFormState extends State<UserCreateForm> {
   final _formKey = GlobalKey<FormState>();
+  String email = '';
+  String referralCode = '';
 
   @override
   Widget build(BuildContext context) {
@@ -26,12 +28,38 @@ class _UserCreateFormState extends State<UserCreateForm> {
             title: "Email(不會公開資訊)",
             subTitle: "填寫正確的Email來註冊您的帳號",
             keyboardType: TextInputType.emailAddress,
+            onChanged: (value) {
+              if (value.isNotEmpty) {
+                setState(() {
+                  email = value;
+                });
+              } else {
+                setState(() {
+                  email = '';
+                });
+              }
+              print("onChanged value: ${value}");
+            },
+            onSaved: (value) {
+              print("onSaved value: ${value}");
+            },
           ),
           InputTextField(
             hintText: "填寫推薦碼",
             title: "推薦碼",
             subTitle: "(選填)輸入其他用戶推薦代碼",
             keyboardType: TextInputType.text,
+            onChanged: (value) {
+              if (value.isNotEmpty) {
+                setState(() {
+                  referralCode = value;
+                });
+              } else {
+                setState(() {
+                  referralCode = '';
+                });
+              }
+            },
           ),
         ],
       ),

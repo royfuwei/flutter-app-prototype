@@ -2,10 +2,16 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:seeks_flutter/configs/size_config.dart';
 import 'package:seeks_flutter/constants.dart';
 import 'package:seeks_flutter/core/common/components/default_button.dart';
 import 'package:seeks_flutter/core/login/components/content_text.dart';
+import 'package:seeks_flutter/core/login/screens/login_splash_screen.dart';
+import 'package:seeks_flutter/core/main/screens/main_screen.dart';
+import 'package:seeks_flutter/core/users/controllers/user_status_controller.dart';
+import 'package:seeks_flutter/core/users/models/user_status_model.dart';
+import 'package:seeks_flutter/routes.dart';
 
 class LoginScreen extends StatefulWidget {
   static String routeName = 'login';
@@ -20,6 +26,9 @@ class _LoginScreenState extends State<LoginScreen> {
   bool startAnimationTitle = false;
   int startAnimationTitleDurationMill = 5000;
   late Timer periodicTimer;
+  late UserStatusModel userStatusModel;
+
+  final UserStatusController controller = Get.put(UserStatusController());
 
   @override
   void initState() {
@@ -38,6 +47,17 @@ class _LoginScreenState extends State<LoginScreen> {
         });
       });
     });
+    getStatusModel();
+    // print("initState islogin: ${isLogin}");
+  }
+
+  getStatusModel() async {
+    // await controller.clearLocalStorage();
+    var result = await controller.getLocalStorage();
+    setState(() {
+      userStatusModel = result;
+    });
+    print("getStatusModel userStatusModel.isLogin: ${userStatusModel.isLogin}");
   }
 
   @override
@@ -102,7 +122,14 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
       child: DefaultButton(
         text: "登入/註冊",
-        press: () {},
+        press: () {
+          print("userStatusModel.isLogin: ${userStatusModel.isLogin}");
+          if (userStatusModel.isLogin == true) {
+            routePushNamedAndRemoveUntil(context, MainScreen.routeName);
+          } else {
+            routePushNamed(context, LoginSplashScreen.routeName);
+          }
+        },
         color: seeksLoginColor01,
         bgButtonColor: colorIconWhite,
       ),

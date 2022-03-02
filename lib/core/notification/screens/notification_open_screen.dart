@@ -3,6 +3,9 @@ import 'package:seeks_flutter/configs/size_config.dart';
 import 'package:seeks_flutter/core/common/components/default_flow_content.dart';
 import 'package:seeks_flutter/core/common/components/default_title.dart';
 import 'package:seeks_flutter/core/common/components/status_button.dart';
+import 'package:seeks_flutter/core/image/screens/image_picker.dart';
+import 'package:seeks_flutter/core/image/screens/image_upload.dart';
+import 'package:seeks_flutter/routes.dart';
 
 class NotificationOpenScreen extends StatefulWidget {
   static String routeName = "notification/open";
@@ -41,8 +44,10 @@ class _NotificationOpenScreenState extends State<NotificationOpenScreen> {
             ),
             child: StatusButton(
               text: "開啟通知",
-              isDisabled: !goNext,
-              press: () {},
+              isDisabled: goNext,
+              press: () {
+                routePushNamed(context, ImageUploadScreen.routeName);
+              },
             ),
           ),
           Padding(
@@ -53,7 +58,9 @@ class _NotificationOpenScreenState extends State<NotificationOpenScreen> {
             child: StatusButton(
               text: "略過",
               isDisabled: !goNext,
-              press: () {},
+              press: () {
+                routePushNamed(context, ImageUploadScreen.routeName);
+              },
             ),
           ),
         ],

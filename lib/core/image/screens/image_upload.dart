@@ -4,6 +4,9 @@ import 'package:seeks_flutter/constants.dart';
 import 'package:seeks_flutter/core/common/components/default_flow_content.dart';
 import 'package:seeks_flutter/core/common/components/default_title.dart';
 import 'package:seeks_flutter/core/common/components/status_button.dart';
+import 'package:seeks_flutter/core/test/screens/dev_image_pickers.dart';
+import 'package:seeks_flutter/core/users/screens/user_create_info_screen.dart';
+import 'package:seeks_flutter/routes.dart';
 
 class ImageUploadScreen extends StatefulWidget {
   static String routeName = "image/upload";
@@ -14,6 +17,7 @@ class ImageUploadScreen extends StatefulWidget {
 }
 
 class _ImageUploadScreenState extends State<ImageUploadScreen> {
+  List<dynamic> imageList = [];
   bool goNext = false;
   @override
   Widget build(BuildContext context) {
@@ -42,7 +46,9 @@ class _ImageUploadScreenState extends State<ImageUploadScreen> {
               ),
               children: [
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    routePushNamed(context, DevImagePickers.routeName);
+                  },
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(kPrimaryColor),
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -97,7 +103,9 @@ class _ImageUploadScreenState extends State<ImageUploadScreen> {
             child: StatusButton(
               text: "下一步",
               isDisabled: !goNext,
-              press: () {},
+              press: () {
+                routePushNamed(context, UserCreateInfoScreen.routeName);
+              },
             ),
           ),
         ],

@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-const bgMainColor = Color.fromRGBO(180, 253, 155, 1);
+// const bgMainColor = Color.fromRGBO(180, 253, 155, 1);
+// const bgMainColor = Color.fromRGBO(240, 243, 255, 1);
+// const bgMainColor = Color.fromRGBO(250, 253, 155, 1);
+// const bgMainColor = Color.fromRGBO(230, 253, 225, 1);
+// const bgMainColor = Color.fromRGBO(240, 250, 245, 1);
+const bgMainColor = Color.fromRGBO(250, 250, 245, 1);
 
 Image seeksLogo = Image.asset("assets/logo/seeks_logo.png");
 const Color seeksLoginColor01 = Color.fromRGBO(64, 64, 64, 1);
