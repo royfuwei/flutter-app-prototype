@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:seeks_flutter/constants.dart';
-import 'package:seeks_flutter/core/common/components/default_button.dart';
+import 'package:seeks_app_prototype/constants.dart';
+import 'package:seeks_app_prototype/core/common/components/default_button.dart';
 
 class StatusButton extends StatelessWidget {
   final String text;

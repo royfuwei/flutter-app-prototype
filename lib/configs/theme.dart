@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:seeks_flutter/constants.dart';
+import 'package:seeks_app_prototype/constants.dart';
 
 ThemeData theme() {
   return ThemeData(

@@ -1,0 +1,39 @@
+---
+kind: pipeline
+name: default
+
+platform:
+    os: linux
+    arch: amd64
+
+steps:
+    - name: unit test
+      image: cirrusci/flutter:2.10.2
+      commands:
+          - echo $DRONE_REPO_NAME # ts-clean-arch
+          - echo $DRONE_REPO # test/ts-clean-arch
+          - echo $DRONE_REPO_NAMESPACE # test
+          - echo $DRONE_REPO_OWNER # test
+          - echo $DRONE_DEPLOY_TO # 
+          - flutter doctor -v
+          - flutter pub get
+          - flutter test
+
+    - name: sonar-scanner
+      image: aosapps/drone-sonar-plugin:1.1
+      settings:
+          sonar_host:
+              from_secret: sonar_host
+          sonar_token:
+              from_secret: sonar_token
+          sources: lib
+          level: DEBUG
+          showProfiling: true
+      commands:
+          - export DRONE_BUILD_NUMBER="${DRONE_TAG:-${DRONE_BRANCH}}-${DRONE_COMMIT:0:7}"
+          - /bin/drone-sonar
+
+volumes:
+    - name: dockersock
+      host:
+          path: /var/run/docker.sock

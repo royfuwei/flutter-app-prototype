@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:seeks_flutter/configs/size_config.dart';
-import 'package:seeks_flutter/constants.dart';
-import 'package:seeks_flutter/core/common/components/default_app_bar.dart';
-import 'package:seeks_flutter/core/notification/components/splash_data.dart';
+import 'package:seeks_app_prototype/configs/size_config.dart';
+import 'package:seeks_app_prototype/constants.dart';
+import 'package:seeks_app_prototype/core/common/components/default_app_bar.dart';
+import 'package:seeks_app_prototype/core/notification/components/splash_data.dart';
 
 class NotificationScreen extends StatefulWidget {
   static String routeName = "notification";

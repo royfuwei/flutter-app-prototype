@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:seeks_flutter/configs/size_config.dart';
-import 'package:seeks_flutter/constants.dart';
-import 'package:seeks_flutter/core/login/components/content_text.dart';
+import 'package:seeks_app_prototype/configs/size_config.dart';
+import 'package:seeks_app_prototype/constants.dart';
+import 'package:seeks_app_prototype/core/login/components/content_text.dart';
 
 class DefaultTitle extends StatelessWidget {
   final String title;

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:seeks_flutter/configs/size_config.dart';
-import 'package:seeks_flutter/constants.dart';
-import 'package:seeks_flutter/core/common/components/default_app_bar.dart';
-import 'package:seeks_flutter/core/login/screens/login_splash_screen.dart';
-import 'package:seeks_flutter/routes.dart';
+import 'package:seeks_app_prototype/configs/size_config.dart';
+import 'package:seeks_app_prototype/constants.dart';
+import 'package:seeks_app_prototype/core/common/components/default_app_bar.dart';
+import 'package:seeks_app_prototype/core/login/screens/login_splash_screen.dart';
+import 'package:seeks_app_prototype/routes.dart';
 
 class HomeScreen extends StatefulWidget {
   static String routeName = "home";

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:seeks_flutter/configs/size_config.dart';
+import 'package:seeks_app_prototype/configs/size_config.dart';
 
 class FormError extends StatelessWidget {
   final List<String> errors;

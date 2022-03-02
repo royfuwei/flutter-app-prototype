@@ -3,15 +3,15 @@ import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:seeks_flutter/configs/size_config.dart';
-import 'package:seeks_flutter/constants.dart';
-import 'package:seeks_flutter/core/common/components/default_button.dart';
-import 'package:seeks_flutter/core/login/components/content_text.dart';
-import 'package:seeks_flutter/core/login/screens/login_splash_screen.dart';
-import 'package:seeks_flutter/core/main/screens/main_screen.dart';
-import 'package:seeks_flutter/core/users/controllers/user_status_controller.dart';
-import 'package:seeks_flutter/core/users/models/user_status_model.dart';
-import 'package:seeks_flutter/routes.dart';
+import 'package:seeks_app_prototype/configs/size_config.dart';
+import 'package:seeks_app_prototype/constants.dart';
+import 'package:seeks_app_prototype/core/common/components/default_button.dart';
+import 'package:seeks_app_prototype/core/login/components/content_text.dart';
+import 'package:seeks_app_prototype/core/login/screens/login_splash_screen.dart';
+import 'package:seeks_app_prototype/core/main/screens/main_screen.dart';
+import 'package:seeks_app_prototype/core/users/controllers/user_status_controller.dart';
+import 'package:seeks_app_prototype/core/users/models/user_status_model.dart';
+import 'package:seeks_app_prototype/routes.dart';
 
 class LoginScreen extends StatefulWidget {
   static String routeName = 'login';

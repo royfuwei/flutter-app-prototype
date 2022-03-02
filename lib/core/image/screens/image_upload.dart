@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:seeks_flutter/configs/size_config.dart';
-import 'package:seeks_flutter/constants.dart';
-import 'package:seeks_flutter/core/common/components/default_flow_content.dart';
-import 'package:seeks_flutter/core/common/components/default_title.dart';
-import 'package:seeks_flutter/core/common/components/status_button.dart';
-import 'package:seeks_flutter/core/test/screens/dev_image_pickers.dart';
-import 'package:seeks_flutter/core/users/screens/user_create_info_screen.dart';
-import 'package:seeks_flutter/routes.dart';
+import 'package:seeks_app_prototype/configs/size_config.dart';
+import 'package:seeks_app_prototype/constants.dart';
+import 'package:seeks_app_prototype/core/common/components/default_flow_content.dart';
+import 'package:seeks_app_prototype/core/common/components/default_title.dart';
+import 'package:seeks_app_prototype/core/common/components/status_button.dart';
+import 'package:seeks_app_prototype/core/test/screens/dev_image_pickers.dart';
+import 'package:seeks_app_prototype/core/users/screens/user_create_info_screen.dart';
+import 'package:seeks_app_prototype/routes.dart';
 
 class ImageUploadScreen extends StatefulWidget {
   static String routeName = "image/upload";

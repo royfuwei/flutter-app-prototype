@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:seeks_flutter/configs/size_config.dart';
-import 'package:seeks_flutter/constants.dart';
-import 'package:seeks_flutter/core/test/components/api.dart';
-import 'package:seeks_flutter/core/test/models/user.dart';
+import 'package:seeks_app_prototype/configs/size_config.dart';
+import 'package:seeks_app_prototype/constants.dart';
+import 'package:seeks_app_prototype/core/test/components/api.dart';
+import 'package:seeks_app_prototype/core/test/models/user.dart';
 
 class DevApiGet extends StatefulWidget {
   static String routeName = "dev/api/get";

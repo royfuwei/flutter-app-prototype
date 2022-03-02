@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:seeks_flutter/configs/theme.dart';
-import 'package:seeks_flutter/core/entry/screens/entry_screen.dart';
-import 'package:seeks_flutter/core/login/screens/login_screen.dart';
-import 'package:seeks_flutter/routes.dart';
+import 'package:seeks_app_prototype/configs/theme.dart';
+import 'package:seeks_app_prototype/core/entry/screens/entry_screen.dart';
+import 'package:seeks_app_prototype/core/login/screens/login_screen.dart';
+import 'package:seeks_app_prototype/routes.dart';
 
 class ProductionApp extends StatelessWidget {
   // This widget is the root of your application.

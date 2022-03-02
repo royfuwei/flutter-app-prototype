@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:seeks_flutter/configs/size_config.dart';
-import 'package:seeks_flutter/constants.dart';
+import 'package:seeks_app_prototype/configs/size_config.dart';
+import 'package:seeks_app_prototype/constants.dart';
 
 class MoreScreen extends StatefulWidget {
   static String routeName = "more";

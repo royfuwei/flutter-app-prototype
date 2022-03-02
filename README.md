@@ -1,4 +1,4 @@
-# seeks_flutter
+# seeks_app_prototype
 
 seeks app prototype
 

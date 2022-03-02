@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:seeks_flutter/core/common/components/default_button.dart';
-import 'package:seeks_flutter/core/common/components/form_error.dart';
-import 'package:seeks_flutter/constants.dart';
-import 'package:seeks_flutter/configs/size_config.dart';
+import 'package:seeks_app_prototype/core/common/components/default_button.dart';
+import 'package:seeks_app_prototype/core/common/components/form_error.dart';
+import 'package:seeks_app_prototype/constants.dart';
+import 'package:seeks_app_prototype/configs/size_config.dart';
 
 class ForgetPasswordForm extends StatefulWidget {
   @override

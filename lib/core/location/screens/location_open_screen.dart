@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:seeks_flutter/configs/size_config.dart';
-import 'package:seeks_flutter/core/common/components/default_flow_content.dart';
-import 'package:seeks_flutter/core/common/components/default_title.dart';
-import 'package:seeks_flutter/core/common/components/status_button.dart';
-import 'package:seeks_flutter/core/image/screens/image_picker.dart';
-import 'package:seeks_flutter/core/image/screens/image_upload.dart';
-import 'package:seeks_flutter/core/notification/screens/notification_open_screen.dart';
-import 'package:seeks_flutter/routes.dart';
+import 'package:seeks_app_prototype/configs/size_config.dart';
+import 'package:seeks_app_prototype/core/common/components/default_flow_content.dart';
+import 'package:seeks_app_prototype/core/common/components/default_title.dart';
+import 'package:seeks_app_prototype/core/common/components/status_button.dart';
+import 'package:seeks_app_prototype/core/image/screens/image_picker.dart';
+import 'package:seeks_app_prototype/core/image/screens/image_upload.dart';
+import 'package:seeks_app_prototype/core/notification/screens/notification_open_screen.dart';
+import 'package:seeks_app_prototype/routes.dart';
 
 class LocationOpenScreen extends StatefulWidget {
   static String routeName = "location/open";

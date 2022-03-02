@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:seeks_flutter/configs/size_config.dart';
-import 'package:seeks_flutter/constants.dart';
-import 'package:seeks_flutter/core/login/screens/login_screen.dart';
-import 'package:seeks_flutter/routes.dart';
+import 'package:seeks_app_prototype/configs/size_config.dart';
+import 'package:seeks_app_prototype/constants.dart';
+import 'package:seeks_app_prototype/core/login/screens/login_screen.dart';
+import 'package:seeks_app_prototype/routes.dart';
 
 class EntryScreen extends StatefulWidget {
   static String routeName = 'entry';

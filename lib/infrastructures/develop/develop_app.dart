@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:seeks_flutter/configs/theme.dart';
-import 'package:seeks_flutter/infrastructures/develop/screens/develop_screens.dart';
-import 'package:seeks_flutter/routes.dart';
+import 'package:seeks_app_prototype/configs/theme.dart';
+import 'package:seeks_app_prototype/infrastructures/develop/screens/develop_screens.dart';
+import 'package:seeks_app_prototype/routes.dart';
 
 class DevelopApp extends StatelessWidget {
   // This widget is the root of your application.

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:seeks_flutter/constants.dart';
+import 'package:seeks_app_prototype/constants.dart';
 
 TextStyle loginTextStyle({double? fontSize = 15}) {
   return TextStyle(

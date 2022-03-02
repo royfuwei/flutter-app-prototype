@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:seeks_flutter/configs/size_config.dart';
-import 'package:seeks_flutter/constants.dart';
-import 'package:seeks_flutter/core/common/components/default_flow_content.dart';
-import 'package:seeks_flutter/core/common/components/default_title.dart';
-import 'package:seeks_flutter/core/common/components/input_text_field.dart';
-import 'package:seeks_flutter/core/common/components/status_button.dart';
-import 'package:seeks_flutter/core/location/screens/location_open_screen.dart';
-import 'package:seeks_flutter/core/users/components/user_create_form.dart';
-import 'package:seeks_flutter/core/users/controllers/user_create_controller.dart';
-import 'package:seeks_flutter/routes.dart';
+import 'package:seeks_app_prototype/configs/size_config.dart';
+import 'package:seeks_app_prototype/constants.dart';
+import 'package:seeks_app_prototype/core/common/components/default_flow_content.dart';
+import 'package:seeks_app_prototype/core/common/components/default_title.dart';
+import 'package:seeks_app_prototype/core/common/components/input_text_field.dart';
+import 'package:seeks_app_prototype/core/common/components/status_button.dart';
+import 'package:seeks_app_prototype/core/location/screens/location_open_screen.dart';
+import 'package:seeks_app_prototype/core/users/components/user_create_form.dart';
+import 'package:seeks_app_prototype/core/users/controllers/user_create_controller.dart';
+import 'package:seeks_app_prototype/routes.dart';
 
 class UserCreateScreen extends StatefulWidget {
   static String routeName = "user/create";

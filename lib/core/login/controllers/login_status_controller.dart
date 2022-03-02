@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:get/get.dart';
-import 'package:seeks_flutter/core/login/models/login_status_model.dart';
+import 'package:seeks_app_prototype/core/login/models/login_status_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginStatusController extends GetxController {

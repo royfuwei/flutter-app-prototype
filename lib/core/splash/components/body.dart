@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:seeks_flutter/constants.dart';
-import 'package:seeks_flutter/core/common/components/default_button.dart';
-import 'package:seeks_flutter/core/login/screens/login_screen.dart';
-import 'package:seeks_flutter/configs/size_config.dart';
-import 'package:seeks_flutter/core/splash/components/splash_content.dart';
+import 'package:seeks_app_prototype/constants.dart';
+import 'package:seeks_app_prototype/core/common/components/default_button.dart';
+import 'package:seeks_app_prototype/core/login/screens/login_screen.dart';
+import 'package:seeks_app_prototype/configs/size_config.dart';
+import 'package:seeks_app_prototype/core/splash/components/splash_content.dart';
 
 class Body extends StatefulWidget {
   @override

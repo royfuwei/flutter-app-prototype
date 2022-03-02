@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:seeks_flutter/core/login/screens/login_screen.dart';
-import 'package:seeks_flutter/core/splash/screens/splash_screen.dart';
-import 'package:seeks_flutter/infrastructures/develop/components/listVew.dart';
-import 'package:seeks_flutter/routes.dart';
+import 'package:seeks_app_prototype/core/login/screens/login_screen.dart';
+import 'package:seeks_app_prototype/core/splash/screens/splash_screen.dart';
+import 'package:seeks_app_prototype/infrastructures/develop/components/listVew.dart';
+import 'package:seeks_app_prototype/routes.dart';
 
 class DevEntryPage extends StatefulWidget {
   static String routeName = '/develop';

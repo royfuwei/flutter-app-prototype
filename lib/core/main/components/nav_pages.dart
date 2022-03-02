@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:seeks_flutter/core/dating/screens/dating_add_screen.dart';
-import 'package:seeks_flutter/core/home/screens/home_screen.dart';
-import 'package:seeks_flutter/core/message/screens/message_screen.dart';
-import 'package:seeks_flutter/core/more/screens/more_screen.dart';
-import 'package:seeks_flutter/core/notification/screens/notfication_screen.dart';
+import 'package:seeks_app_prototype/core/dating/screens/dating_add_screen.dart';
+import 'package:seeks_app_prototype/core/home/screens/home_screen.dart';
+import 'package:seeks_app_prototype/core/message/screens/message_screen.dart';
+import 'package:seeks_app_prototype/core/more/screens/more_screen.dart';
+import 'package:seeks_app_prototype/core/notification/screens/notfication_screen.dart';
 
 List<Widget> navPages = [
   HomeScreen(),

@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:http/http.dart' as http;
 import 'package:dio/dio.dart';
-import 'package:seeks_flutter/core/test/models/user.dart';
+import 'package:seeks_app_prototype/core/test/models/user.dart';
 
 typedef UsersCallback = void Function(Users);
 

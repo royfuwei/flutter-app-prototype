@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:seeks_flutter/core/main/components/nav_pages.dart';
+import 'package:seeks_app_prototype/core/main/components/nav_pages.dart';
 
 class MainScreen extends StatefulWidget {
   static String routeName = "main";

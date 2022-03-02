@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:seeks_flutter/configs/size_config.dart';
-import 'package:seeks_flutter/core/common/components/default_flow_content.dart';
-import 'package:seeks_flutter/core/common/components/default_title.dart';
-import 'package:seeks_flutter/core/common/components/status_button.dart';
-import 'package:seeks_flutter/core/main/screens/main_screen.dart';
-import 'package:seeks_flutter/core/users/components/user_create_info_form.dart';
-import 'package:seeks_flutter/routes.dart';
+import 'package:seeks_app_prototype/configs/size_config.dart';
+import 'package:seeks_app_prototype/core/common/components/default_flow_content.dart';
+import 'package:seeks_app_prototype/core/common/components/default_title.dart';
+import 'package:seeks_app_prototype/core/common/components/status_button.dart';
+import 'package:seeks_app_prototype/core/main/screens/main_screen.dart';
+import 'package:seeks_app_prototype/core/users/components/user_create_info_form.dart';
+import 'package:seeks_app_prototype/routes.dart';
 
 class UserCreateInfoScreen extends StatefulWidget {
   static String routeName = "user/create/info";
