@@ -47,7 +47,7 @@ class _DevImageCropperState extends State<DevImageCropper> {
   }
 
   Future<String> croppedImage(String pickerFilePath) async {
-    File? croppedFile = await ImageCropper.cropImage(
+    File? croppedFile = await ImageCropper().cropImage(
       sourcePath: pickerFilePath,
       // aspectRatio: CropAspectRatio(ratioX: 4, ratioY: 4),
       cropStyle: CropStyle.circle,
