@@ -12,6 +12,9 @@ class DatingAddScreen extends StatefulWidget {
 }
 
 class _DatingAddScreenState extends State<DatingAddScreen> {
+  int currentPage = 0;
+  int pageLength = 1;
+
   @override
   Widget build(BuildContext context) {
     return Navigator(
@@ -33,6 +36,7 @@ class _DatingAddScreenState extends State<DatingAddScreen> {
         // mainAxisAlignment: MainAxisAlignment.spaceBetween,
         mainAxisSize: MainAxisSize.max,
         children: [
+          // bodyImageTest(),
           bodyImage(),
           bodySelecter(),
           bodyGridViewBuilder(),
@@ -41,7 +45,7 @@ class _DatingAddScreenState extends State<DatingAddScreen> {
     );
   }
 
-  bodyImage() {
+  bodyImageTest() {
     return Container(
       height: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
@@ -57,6 +61,73 @@ class _DatingAddScreenState extends State<DatingAddScreen> {
     );
   }
 
+  bodyImage() {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.width,
+      color: colorIconHidden,
+      child: pageLength == 0
+          ? Center(
+              child: Icon(
+                Icons.camera_alt_outlined,
+                size: 40,
+              ),
+            )
+          : imageFilesSplash(),
+    );
+  }
+
+  imageFilesSplash() {
+    return Expanded(
+      child: Container(
+        child: Stack(
+          alignment: Alignment.bottomCenter,
+          children: [
+            Expanded(
+              child: PageView.builder(
+                onPageChanged: (value) {
+                  setState(() {
+                    currentPage = value;
+                  });
+                },
+                itemCount: pageLength,
+                itemBuilder: (context, index) {
+                  return bodyImageTest();
+                },
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.all(10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: List.generate(pageLength, (index) {
+                  if (pageLength > 1) {
+                    return buildDot(index);
+                  } else {
+                    return Container();
+                  }
+                }),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  AnimatedContainer buildDot(int? index) {
+    return AnimatedContainer(
+      duration: kAnimationDuration,
+      margin: EdgeInsets.only(right: 5),
+      height: 6,
+      width: currentPage == index ? 20 : 6,
+      decoration: BoxDecoration(
+        color: Color(0xFFD8D8D8),
+        borderRadius: BorderRadius.circular(3),
+      ),
+    );
+  }
+
   bodyGridViewBuilder() {
     return Expanded(
       child: GridView.builder(
@@ -68,39 +139,40 @@ class _DatingAddScreenState extends State<DatingAddScreen> {
         itemCount: 100,
         itemBuilder: (BuildContext context, int index) {
           return ElevatedButton(
-              onPressed: null,
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(
-                  kPrimaryColor,
-                ),
-                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                  RoundedRectangleBorder(
-                    side: BorderSide(
-                      color: Colors.grey,
-                      width: 0.2,
-                    ),
+            onPressed: null,
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(
+                kPrimaryColor,
+              ),
+              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(
+                  side: BorderSide(
+                    color: Colors.grey,
+                    width: 0.2,
                   ),
                 ),
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    Icons.image,
-                    size: getProportionateScreenWidth(context, 40),
-                  ),
-                  Text(
-                    "$index",
-                    style: TextStyle(
-                      color: colorIconHidden,
-                      fontSize: getProportionateScreenWidth(
-                        context,
-                        20,
-                      ),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.image,
+                  size: getProportionateScreenWidth(context, 40),
+                ),
+                Text(
+                  "$index",
+                  style: TextStyle(
+                    color: colorIconHidden,
+                    fontSize: getProportionateScreenWidth(
+                      context,
+                      20,
                     ),
                   ),
-                ],
-              ));
+                ),
+              ],
+            ),
+          );
         },
       ),
     );
