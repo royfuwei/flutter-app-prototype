@@ -17,6 +17,7 @@ class _DatingAddScreenState extends State<DatingAddScreen> {
     return Navigator(
       pages: [
         MaterialPage(
+          name: DatingAddScreen.routeName,
           child: Scaffold(
             appBar: appBar(),
             body: body(),
@@ -160,7 +161,11 @@ class _DatingAddScreenState extends State<DatingAddScreen> {
       title: defaultExpandedAppBarTitle(
         startItems: [
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pop(
+                context,
+              );
+            },
             child: Icon(
               Icons.close,
               // size: getProportionateScreenWidth(context, 30),
