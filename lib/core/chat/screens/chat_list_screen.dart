@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:seeks_app_prototype/configs/size_config.dart';
 import 'package:seeks_app_prototype/constants.dart';
 
-class MessageScreen extends StatefulWidget {
-  static String routeName = "message";
-  const MessageScreen({Key? key}) : super(key: key);
+class ChatListScreen extends StatefulWidget {
+  static String routeName = "chat_list";
+  const ChatListScreen({Key? key}) : super(key: key);
 
   @override
-  _MessageScreenState createState() => _MessageScreenState();
+  _ChatListScreenState createState() => _ChatListScreenState();
 }
 
-class _MessageScreenState extends State<MessageScreen> {
+class _ChatListScreenState extends State<ChatListScreen> {
   @override
   Widget build(BuildContext context) {
     return Navigator(

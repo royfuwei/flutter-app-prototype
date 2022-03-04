@@ -9,7 +9,7 @@ import 'package:seeks_app_prototype/core/location/screens/location_open_screen.d
 import 'package:seeks_app_prototype/core/login/screens/login_screen.dart';
 import 'package:seeks_app_prototype/core/login/screens/login_splash_screen.dart';
 import 'package:seeks_app_prototype/core/main/screens/main_screen.dart';
-import 'package:seeks_app_prototype/core/message/screens/message_screen.dart';
+import 'package:seeks_app_prototype/core/chat/screens/chat_list_screen.dart';
 import 'package:seeks_app_prototype/core/more/screens/more_screen.dart';
 import 'package:seeks_app_prototype/core/notification/screens/notfication_screen.dart';
 import 'package:seeks_app_prototype/core/notification/screens/notification_open_screen.dart';
@@ -364,9 +364,9 @@ List<Widget> getDevView(BuildContext context) {
     ),
     ListTile(
       leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
-      title: Text(MessageScreen.routeName),
+      title: Text(ChatListScreen.routeName),
       onTap: () {
-        routePushNamed(context, MessageScreen.routeName);
+        routePushNamed(context, ChatListScreen.routeName);
       },
     ),
     ListTile(

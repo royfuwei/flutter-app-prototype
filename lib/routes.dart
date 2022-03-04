@@ -9,7 +9,7 @@ import 'package:seeks_app_prototype/core/image/screens/image_upload.dart';
 import 'package:seeks_app_prototype/core/location/screens/location_open_screen.dart';
 import 'package:seeks_app_prototype/core/login/screens/login_screen.dart';
 import 'package:seeks_app_prototype/core/main/screens/main_screen.dart';
-import 'package:seeks_app_prototype/core/message/screens/message_screen.dart';
+import 'package:seeks_app_prototype/core/chat/screens/chat_list_screen.dart';
 import 'package:seeks_app_prototype/core/more/screens/more_screen.dart';
 import 'package:seeks_app_prototype/core/notification/screens/notfication_screen.dart';
 import 'package:seeks_app_prototype/core/notification/screens/notification_open_screen.dart';
@@ -73,7 +73,7 @@ final Map<String, WidgetBuilder> routes = {
   MainScreen.routeName: (context) => MainScreen(),
   HomeScreen.routeName: (context) => HomeScreen(),
   NotificationScreen.routeName: (context) => NotificationScreen(),
-  MessageScreen.routeName: (context) => MessageScreen(),
+  ChatListScreen.routeName: (context) => ChatListScreen(),
   DatingAddScreen.routeName: (context) => DatingAddScreen(),
   MoreScreen.routeName: (context) => MoreScreen(),
   DevImagePicker.routeName: (context) => DevImagePicker(),

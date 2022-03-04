@@ -12,7 +12,40 @@ ThemeData theme() {
     visualDensity: VisualDensity.adaptivePlatformDensity,
     // dev
     backgroundColor: bgMainColor,
+    buttonTheme: ButtonThemeData(
+      hoverColor: Colors.transparent,
+      highlightColor: Colors.transparent,
+      splashColor: Colors.transparent,
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ButtonStyle(
+        // 按鈕padding margin 為0
+        padding: MaterialStateProperty.all(EdgeInsets.all(0)),
+        minimumSize: MaterialStateProperty.all(Size(0, 0)),
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        // 去掉水波紋
+        splashFactory: NoSplash.splashFactory,
+        overlayColor: MaterialStateProperty.all(Colors.transparent),
+        shadowColor: MaterialStateProperty.all(Colors.transparent),
+        backgroundColor: MaterialStateProperty.all(Colors.transparent),
+        // foregroundColor: MaterialStateProperty.all(Colors.transparent),
+      ),
+    ),
+    textButtonTheme: TextButtonThemeData(
+      style: ButtonStyle(
+        // 按鈕padding margin 為0
+        padding: MaterialStateProperty.all(EdgeInsets.all(0)),
+        minimumSize: MaterialStateProperty.all(Size(0, 0)),
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        // 設定按鈕形狀
+        // 去掉水波紋
+        splashFactory: NoSplash.splashFactory,
+        overlayColor: MaterialStateProperty.all(Colors.transparent),
+        shadowColor: MaterialStateProperty.all(Colors.transparent),
+      ),
+    ),
     appBarTheme: AppBarTheme(
+      toolbarHeight: kToolbarHeight * 0.78,
       backgroundColor: bgMainColor,
       titleTextStyle: TextStyle(
         color: colorFont02,
