@@ -25,9 +25,9 @@ ThemeData theme() {
         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
         // 去掉水波紋
         splashFactory: NoSplash.splashFactory,
-        overlayColor: MaterialStateProperty.all(Colors.transparent),
-        shadowColor: MaterialStateProperty.all(Colors.transparent),
-        backgroundColor: MaterialStateProperty.all(Colors.transparent),
+        // overlayColor: MaterialStateProperty.all(Colors.transparent),
+        // shadowColor: MaterialStateProperty.all(Colors.transparent),
+        // backgroundColor: MaterialStateProperty.all(Colors.transparent),
         // foregroundColor: MaterialStateProperty.all(Colors.transparent),
       ),
     ),

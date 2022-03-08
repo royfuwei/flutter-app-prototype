@@ -10,6 +10,9 @@ import 'package:seeks_app_prototype/core/location/screens/location_open_screen.d
 import 'package:seeks_app_prototype/core/login/screens/login_screen.dart';
 import 'package:seeks_app_prototype/core/main/screens/main_screen.dart';
 import 'package:seeks_app_prototype/core/chat/screens/chat_list_screen.dart';
+import 'package:seeks_app_prototype/core/media/components/media_asset_selector.dart';
+import 'package:seeks_app_prototype/core/media/components/media_album_selector.dart';
+import 'package:seeks_app_prototype/core/media/components/media_grid_selector.dart';
 import 'package:seeks_app_prototype/core/more/screens/more_screen.dart';
 import 'package:seeks_app_prototype/core/notification/screens/notfication_screen.dart';
 import 'package:seeks_app_prototype/core/notification/screens/notification_open_screen.dart';
@@ -115,6 +118,9 @@ final Map<String, WidgetBuilder> routes = {
   DevEntryPage.routeName: (context) => DevEntryPage(),
   LoginScreen.routeName: (context) => new LoginScreen(),
   ForgotPasswordScreen.routeName: (context) => new ForgotPasswordScreen(),
+  MediaAssetSelector.routeName: (context) => new MediaAssetSelector(),
+  MediaAlbumSelector.routeName: (context) => new MediaAlbumSelector(),
+  MediaGridSelector.routeName: (context) => new MediaGridSelector(),
 };
 
 void routePushNamed(BuildContext context, String route, {Object? arguments}) {

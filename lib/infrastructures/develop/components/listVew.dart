@@ -10,6 +10,9 @@ import 'package:seeks_app_prototype/core/login/screens/login_screen.dart';
 import 'package:seeks_app_prototype/core/login/screens/login_splash_screen.dart';
 import 'package:seeks_app_prototype/core/main/screens/main_screen.dart';
 import 'package:seeks_app_prototype/core/chat/screens/chat_list_screen.dart';
+import 'package:seeks_app_prototype/core/media/components/media_asset_selector.dart';
+import 'package:seeks_app_prototype/core/media/components/media_album_selector.dart';
+import 'package:seeks_app_prototype/core/media/components/media_grid_selector.dart';
 import 'package:seeks_app_prototype/core/more/screens/more_screen.dart';
 import 'package:seeks_app_prototype/core/notification/screens/notfication_screen.dart';
 import 'package:seeks_app_prototype/core/notification/screens/notification_open_screen.dart';
@@ -374,6 +377,27 @@ List<Widget> getDevView(BuildContext context) {
       title: Text(MoreScreen.routeName),
       onTap: () {
         routePushNamed(context, MoreScreen.routeName);
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(MediaAssetSelector.routeName),
+      onTap: () {
+        routePushNamed(context, MediaAssetSelector.routeName);
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(MediaAlbumSelector.routeName),
+      onTap: () {
+        routePushNamed(context, MediaAlbumSelector.routeName);
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(MediaGridSelector.routeName),
+      onTap: () {
+        routePushNamed(context, MediaGridSelector.routeName);
       },
     ),
   ];

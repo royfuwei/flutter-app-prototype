@@ -7,17 +7,16 @@ import 'package:seeks_app_prototype/configs/size_config.dart';
 import 'package:seeks_app_prototype/constants.dart';
 import 'package:seeks_app_prototype/core/common/components/default_app_bar.dart';
 import 'package:seeks_app_prototype/core/media/components/media_asset_selector.dart';
-import 'package:seeks_app_prototype/core/media/components/media_grid_selector.dart';
 
-class DatingAddScreen extends StatefulWidget {
-  static String routeName = "dating_add";
-  const DatingAddScreen({Key? key}) : super(key: key);
+class MediaGridSelector extends StatefulWidget {
+  static String routeName = "media/cpt/grid_selector";
+  const MediaGridSelector({Key? key}) : super(key: key);
 
   @override
-  _DatingAddScreenState createState() => _DatingAddScreenState();
+  _MediaGridSelectorState createState() => _MediaGridSelectorState();
 }
 
-class _DatingAddScreenState extends State<DatingAddScreen> {
+class _MediaGridSelectorState extends State<MediaGridSelector> {
   int currentPage = 0;
   int pageLength = 1;
   List<AssetEntity> selectAssets = [];
@@ -28,10 +27,11 @@ class _DatingAddScreenState extends State<DatingAddScreen> {
     return Navigator(
       pages: [
         MaterialPage(
-          name: DatingAddScreen.routeName,
+          name: MediaGridSelector.routeName,
           child: Scaffold(
-            appBar: appBar(),
-            body: MediaGridSelector(),
+            backgroundColor: Colors.black,
+            // appBar: appBar(),
+            body: body(),
           ),
         ),
       ],
@@ -39,17 +39,20 @@ class _DatingAddScreenState extends State<DatingAddScreen> {
   }
 
   body() {
-    return Container(
-      child: Column(
-        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          // bodyImageTest(),
-          bodyImage(),
-          // bodySelecter(),
-          // bodyGridViewBuilder(),
-          bodyGridViewNotification(),
-        ],
+    return SafeArea(
+      bottom: false,
+      child: Container(
+        child: Column(
+          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            // bodyImageTest(),
+            bodyImage(),
+            // bodySelecter(),
+            // bodyGridViewBuilder(),
+            bodyGridViewNotification(),
+          ],
+        ),
       ),
     );
   }
@@ -96,11 +99,16 @@ class _DatingAddScreenState extends State<DatingAddScreen> {
 
   genBodyImage(AssetEntity asset) {
     return FutureBuilder(
-      future: asset.thumbDataWithSize(600, 600),
+      // future: asset.thumbDataWithSize(600, 600),
+      future: asset.originFile,
       builder: (BuildContext context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
-          return Image.memory(
+          /* return Image.memory(
             snapshot.data! as Uint8List,
+            fit: BoxFit.cover,
+          ); */
+          return Image.file(
+            snapshot.data! as File,
             fit: BoxFit.cover,
           );
         }

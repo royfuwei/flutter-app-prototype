@@ -10,6 +10,7 @@ const bgMainColor = Color.fromRGBO(250, 250, 245, 1);
 
 Image seeksLogo = Image.asset("assets/logo/seeks_logo.png");
 const Color seeksLoginColor01 = Color.fromRGBO(64, 64, 64, 1);
+const Color mediaSelectColor = Color.fromRGBO(139, 139, 139, 0.7);
 const Color colorIconWhite = Color.fromRGBO(255, 255, 255, 1);
 const Color colorBarWhite = Color.fromRGBO(250, 248, 248, 1);
 const Color colorFont03 = Color.fromRGBO(139, 139, 139, 1);
