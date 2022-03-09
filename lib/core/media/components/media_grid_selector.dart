@@ -85,7 +85,8 @@ class _MediaGridSelectorState extends State<MediaGridSelector> {
     return NotificationListener<MediaAssetSelectorNotification>(
       onNotification: ((notification) {
         setState(() {
-          selectAssets = notification.selectAssets;
+          selectAssets = [notification.selectAsset];
+          // selectAssets = notification.selectAssets;
         });
         return true;
       }),
@@ -101,16 +102,21 @@ class _MediaGridSelectorState extends State<MediaGridSelector> {
       future: asset.originFile,
       builder: (BuildContext context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
-          /* return Image.memory(
-            snapshot.data! as Uint8List,
-            fit: BoxFit.cover,
-          ); */
-          return Image.file(
-            snapshot.data! as File,
-            fit: BoxFit.cover,
+          return Container(
+            color: Colors.black87,
+            child: Image.file(
+              snapshot.data! as File,
+              fit: BoxFit.contain,
+            ),
+            /* child: Image.memory(
+              snapshot.data! as Uint8List,
+              fit: BoxFit.cover,
+            ), */
           );
         }
-        return Container();
+        return Container(
+          color: Colors.black87,
+        );
       },
     );
   }
@@ -138,8 +144,8 @@ class _MediaGridSelectorState extends State<MediaGridSelector> {
               padding: EdgeInsets.all(10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: List.generate(pageLength, (index) {
-                  if (pageLength > 1) {
+                children: List.generate(selectAssets.length, (index) {
+                  if (selectAssets.length > 1) {
                     return buildDot(index);
                   } else {
                     return Container();

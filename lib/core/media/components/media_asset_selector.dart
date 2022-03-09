@@ -6,10 +6,15 @@ import 'package:photo_manager/photo_manager.dart';
 import 'package:seeks_app_prototype/configs/size_config.dart';
 import 'package:seeks_app_prototype/constants.dart';
 import 'package:seeks_app_prototype/core/media/components/media_album_selector.dart';
+import 'package:seeks_app_prototype/core/media/models/media_asset.dart';
 
 class MediaAssetSelectorNotification extends Notification {
   final List<AssetEntity> selectAssets;
-  MediaAssetSelectorNotification(this.selectAssets);
+  final AssetEntity selectAsset;
+  MediaAssetSelectorNotification({
+    required this.selectAssets,
+    required this.selectAsset,
+  });
 }
 
 class MediaAssetSelector extends StatefulWidget {
@@ -21,14 +26,16 @@ class MediaAssetSelector extends StatefulWidget {
 }
 
 class _MediaAssetSelectorState extends State<MediaAssetSelector> {
-  List<Widget> _mediaList = [];
-  List<AssetEntity> _assetList = [];
+  ScrollController _scrollController = new ScrollController();
+  List<MediaAssetModel> _mediaAssetModelList = [];
   List<AssetPathEntity> albums = [];
   int currentPage = 0;
   late AssetPathEntity selectAlbum;
   late int lastPage;
   late String selectName = '';
   List<AssetEntity> selectAssets = [];
+  late AssetEntity selectAsset;
+  bool isSelectMulti = false;
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +61,9 @@ class _MediaAssetSelectorState extends State<MediaAssetSelector> {
   @override
   void initState() {
     super.initState();
+    /* _scrollController.addListener(() {
+      print(_scrollController.offset);
+    }); */
     initStateAsync();
   }
 
@@ -86,8 +96,7 @@ class _MediaAssetSelectorState extends State<MediaAssetSelector> {
                   child: Row(
                     children: [
                       Text(
-                        // "最近項目",
-                        selectName,
+                        selectName, // "最近項目",
                         style: TextStyle(
                           color: colorIconHidden,
                           fontSize: getProportionateScreenWidth(context, 20),
@@ -108,10 +117,54 @@ class _MediaAssetSelectorState extends State<MediaAssetSelector> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 TextButton(
-                  onPressed: null,
-                  child: Icon(
-                    Icons.camera_alt,
-                    color: colorIconHidden,
+                  style: ButtonStyle(
+                    padding: MaterialStateProperty.all(
+                      EdgeInsets.only(
+                        right: 5,
+                        left: 5,
+                      ),
+                    ),
+                  ),
+                  onPressed: () {
+                    toggleSelectMulit();
+                  },
+                  child: Container(
+                    padding: EdgeInsets.all(3),
+                    decoration: BoxDecoration(
+                      color: isSelectMulti ? Colors.blue : Colors.black45,
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        color: colorIconHidden,
+                      ),
+                    ),
+                    child: Icon(
+                      Icons.my_library_add_sharp,
+                      color: colorIconHidden,
+                      size: getProportionateScreenWidth(context, 24),
+                    ),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {},
+                  style: ButtonStyle(
+                    padding: MaterialStateProperty.all(
+                      EdgeInsets.only(right: 2, left: 5),
+                    ),
+                  ),
+                  child: Container(
+                    padding: EdgeInsets.all(3),
+                    decoration: BoxDecoration(
+                      color: Colors.black45,
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        color: colorIconHidden,
+                      ),
+                    ),
+                    child: Icon(
+                      Icons.camera_alt,
+                      color: colorIconHidden,
+                      size: getProportionateScreenWidth(context, 24),
+                    ),
                   ),
                 ),
               ],
@@ -130,12 +183,67 @@ class _MediaAssetSelectorState extends State<MediaAssetSelector> {
           return true;
         },
         child: GridView.builder(
+          controller: _scrollController,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 4,
           ),
-          itemCount: _mediaList.length,
+          itemCount: _mediaAssetModelList.length,
           itemBuilder: (BuildContext context, int index) {
-            return _mediaList[index];
+            var model = _mediaAssetModelList[index];
+            var asset = model.asset;
+            return GestureDetector(
+              key: Key(asset.id),
+              child: Stack(
+                children: <Widget>[
+                  model.widget,
+                  Positioned.fill(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: isSelectAsset(asset) ? mediaSelectColor : null,
+                        border: Border.all(
+                          width: 0.5,
+                        ),
+                      ),
+                    ),
+                  ),
+                  if (isSelectMulti)
+                    Align(
+                      alignment: Alignment.topRight,
+                      child: Padding(
+                        padding: EdgeInsets.only(right: 3, top: 3),
+                        child: Container(
+                          width: getProportionateScreenWidth(context, 24),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: isSelectAssets(asset) ? Colors.blue : null,
+                            border: Border.all(
+                              width: 1,
+                              color: Colors.white,
+                            ),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.only(bottom: 2),
+                            child: Text(
+                              isSelectAssets(asset)
+                                  ? "${selectAssets.indexOf(asset) + 1}"
+                                  : "",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize:
+                                    getProportionateScreenWidth(context, 18),
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                ],
+              ),
+              onTap: () {
+                updateSelectAssets(asset);
+              },
+            );
           },
         ),
       ),
@@ -181,9 +289,10 @@ class _MediaAssetSelectorState extends State<MediaAssetSelector> {
     selectName = selectAlbum.name;
     currentPage = 0;
     lastPage = 0;
-    _mediaList = [];
-    _assetList = [];
-    selectAssets = [];
+    _mediaAssetModelList = [];
+    if (!isSelectMulti) {
+      selectAssets = [];
+    }
     await _fetchNewMedia();
   }
 
@@ -195,19 +304,25 @@ class _MediaAssetSelectorState extends State<MediaAssetSelector> {
     }
     List<AssetEntity> media =
         await selectAlbum.getAssetListPaged(currentPage, 40);
-    List<Widget> temp = [];
+    List<MediaAssetModel> temp = [];
     for (var asset in media) {
-      File? imageFile = await asset.originFile;
       if (selectAssets.isEmpty) {
         selectAssets.add(asset);
-        MediaAssetSelectorNotification(selectAssets).dispatch(context);
+        selectAsset = asset;
+        MediaAssetSelectorNotification(
+          selectAssets: selectAssets,
+          selectAsset: selectAsset,
+        ).dispatch(context);
       }
       var mediaGridItem = genMediaGridItem(asset);
-      temp.add(mediaGridItem);
+      MediaAssetModel model = MediaAssetModel(
+        widget: mediaGridItem,
+        asset: asset,
+      );
+      temp.add(model);
     }
     setState(() {
-      _assetList.addAll(media);
-      _mediaList.addAll(temp);
+      _mediaAssetModelList.addAll(temp);
       currentPage++;
     });
   }
@@ -218,41 +333,26 @@ class _MediaAssetSelectorState extends State<MediaAssetSelector> {
       future: asset.thumbDataWithSize(300, 300),
       builder: (BuildContext context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
-          return GestureDetector(
-            child: Stack(
-              children: <Widget>[
-                Positioned.fill(
-                  child: Image.memory(
-                    snapshot.data! as Uint8List,
-                    fit: BoxFit.cover,
+          return Stack(
+            children: <Widget>[
+              Positioned.fill(
+                child: Image.memory(
+                  snapshot.data! as Uint8List,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              if (asset.type == AssetType.video)
+                Align(
+                  alignment: Alignment.bottomRight,
+                  child: Padding(
+                    padding: EdgeInsets.only(right: 5, bottom: 5),
+                    child: Icon(
+                      Icons.videocam,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
-                if (asset.type == AssetType.video)
-                  Align(
-                    alignment: Alignment.bottomRight,
-                    child: Padding(
-                      padding: EdgeInsets.only(right: 5, bottom: 5),
-                      child: Icon(
-                        Icons.videocam,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                Positioned.fill(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: isSelectAsset(asset) ? mediaSelectColor : null,
-                      border: Border.all(
-                        width: 0.5,
-                      ),
-                    ),
-                  ),
-                )
-              ],
-            ),
-            onTap: () {
-              updateAssetSelect(asset);
-            },
+            ],
           );
         }
         return Container();
@@ -260,29 +360,62 @@ class _MediaAssetSelectorState extends State<MediaAssetSelector> {
     );
   }
 
-  updateAssetSelect(AssetEntity asset) {
-    if (asset.id == selectAssets[0].id) return true;
-    var originalSelectAsset = selectAssets[0];
-    List<Widget> temp = _mediaList;
-    selectAssets[0] = asset;
-
-    for (var assetWidget in _mediaList) {
-      if (assetWidget.key == Key(originalSelectAsset.id)) {
-        var idx = _mediaList.indexOf(assetWidget);
-        _mediaList[idx] = genMediaGridItem(originalSelectAsset);
-      }
-      if (assetWidget.key == Key(asset.id)) {
-        var idx = _mediaList.indexOf(assetWidget);
-        _mediaList[idx] = genMediaGridItem(asset);
-      }
-    }
-    MediaAssetSelectorNotification(selectAssets).dispatch(context);
+  updateSelectAsset(AssetEntity asset) {
     setState(() {
-      _mediaList = _mediaList;
+      if (isSelectAssets(asset)) {
+        selectAsset = asset;
+      } else {
+        selectAsset = selectAssets.last;
+      }
     });
   }
 
+  updateSelectAssets(AssetEntity asset) {
+    if (!isSelectMulti && asset.id == selectAsset.id) return true;
+    setState(() {
+      if (!isSelectMulti) {
+        selectAssets = [asset];
+      } else {
+        if (selectAsset == asset) {
+          selectAssets.remove(asset);
+        } else if (!isSelectAssets(asset)) {
+          selectAssets.add(asset);
+        }
+      }
+    });
+    updateSelectAsset(asset);
+    MediaAssetSelectorNotification(
+      selectAssets: selectAssets,
+      selectAsset: selectAsset,
+    ).dispatch(context);
+  }
+
   isSelectAsset(AssetEntity asset) {
+    return selectAsset == asset;
+  }
+
+  isSelectAssets(AssetEntity asset) {
     return selectAssets.indexOf(asset) >= 0;
+  }
+
+  toggleSelectMulit() {
+    setState(() {
+      isSelectMulti = !isSelectMulti;
+      if (!isSelectMulti) {
+        selectAssets = [selectAsset];
+        _jumpToGridView(selectAsset);
+      }
+    });
+  }
+
+  _jumpToGridView(AssetEntity asset) {
+    var assets = _mediaAssetModelList.map((e) => e.asset).toList();
+    var count = assets.indexOf(selectAsset) + 1;
+    var gridIndex = (count ~/ 4);
+    _scrollController.animateTo(
+      gridIndex * MediaQuery.of(context).size.width / 4,
+      duration: Duration(seconds: 1),
+      curve: Curves.easeIn,
+    );
   }
 }
