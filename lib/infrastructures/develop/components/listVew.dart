@@ -13,6 +13,7 @@ import 'package:seeks_app_prototype/core/chat/screens/chat_list_screen.dart';
 import 'package:seeks_app_prototype/core/media/components/media_asset_selector.dart';
 import 'package:seeks_app_prototype/core/media/components/media_album_selector.dart';
 import 'package:seeks_app_prototype/core/media/components/media_grid_selector.dart';
+import 'package:seeks_app_prototype/core/media/components/media_grid_selector_crop.dart';
 import 'package:seeks_app_prototype/core/more/screens/more_screen.dart';
 import 'package:seeks_app_prototype/core/notification/screens/notfication_screen.dart';
 import 'package:seeks_app_prototype/core/notification/screens/notification_open_screen.dart';
@@ -398,6 +399,13 @@ List<Widget> getDevView(BuildContext context) {
       title: Text(MediaGridSelector.routeName),
       onTap: () {
         routePushNamed(context, MediaGridSelector.routeName);
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(MediaGridSelectorCrop.routeName),
+      onTap: () {
+        routePushNamed(context, MediaGridSelectorCrop.routeName);
       },
     ),
   ];

@@ -13,6 +13,7 @@ import 'package:seeks_app_prototype/core/chat/screens/chat_list_screen.dart';
 import 'package:seeks_app_prototype/core/media/components/media_asset_selector.dart';
 import 'package:seeks_app_prototype/core/media/components/media_album_selector.dart';
 import 'package:seeks_app_prototype/core/media/components/media_grid_selector.dart';
+import 'package:seeks_app_prototype/core/media/components/media_grid_selector_crop.dart';
 import 'package:seeks_app_prototype/core/more/screens/more_screen.dart';
 import 'package:seeks_app_prototype/core/notification/screens/notfication_screen.dart';
 import 'package:seeks_app_prototype/core/notification/screens/notification_open_screen.dart';
@@ -121,6 +122,7 @@ final Map<String, WidgetBuilder> routes = {
   MediaAssetSelector.routeName: (context) => new MediaAssetSelector(),
   MediaAlbumSelector.routeName: (context) => new MediaAlbumSelector(),
   MediaGridSelector.routeName: (context) => new MediaGridSelector(),
+  MediaGridSelectorCrop.routeName: (context) => new MediaGridSelectorCrop(),
 };
 
 void routePushNamed(BuildContext context, String route, {Object? arguments}) {

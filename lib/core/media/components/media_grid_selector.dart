@@ -1,10 +1,14 @@
 import 'dart:io';
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
+import 'package:image_crop/image_crop.dart';
+import 'package:image_cropper/image_cropper.dart';
 import 'package:photo_manager/photo_manager.dart';
 import 'package:seeks_app_prototype/configs/size_config.dart';
 import 'package:seeks_app_prototype/constants.dart';
 import 'package:seeks_app_prototype/core/common/components/default_app_bar.dart';
 import 'package:seeks_app_prototype/core/media/components/media_asset_selector.dart';
+import 'package:extended_image/extended_image.dart';
 
 class MediaGridSelector extends StatefulWidget {
   static String routeName = "media/cpt/grid_selector";
@@ -18,6 +22,7 @@ class _MediaGridSelectorState extends State<MediaGridSelector> {
   int currentPage = 0;
   int pageLength = 1;
   List<AssetEntity> selectAssets = [];
+  List<Widget> selectAssetWidgets = [];
   MediaAssetSelector mediaAssetSelector = new MediaAssetSelector();
 
   @override
@@ -36,6 +41,12 @@ class _MediaGridSelectorState extends State<MediaGridSelector> {
     );
   }
 
+  @override
+  void initState() {
+    super.initState();
+    _fetchGenBodyImage();
+  }
+
   body() {
     return SafeArea(
       bottom: false,
@@ -44,10 +55,7 @@ class _MediaGridSelectorState extends State<MediaGridSelector> {
           // mainAxisAlignment: MainAxisAlignment.spaceBetween,
           mainAxisSize: MainAxisSize.max,
           children: [
-            // bodyImageTest(),
             bodyImage(),
-            // bodySelecter(),
-            // bodyGridViewBuilder(),
             bodyGridViewNotification(),
           ],
         ),
@@ -84,10 +92,13 @@ class _MediaGridSelectorState extends State<MediaGridSelector> {
   bodyGridViewNotification() {
     return NotificationListener<MediaAssetSelectorNotification>(
       onNotification: ((notification) {
-        setState(() {
+        if (notification.isSelectMulti &&
+            notification.selectAssets.length != 0) {
+          selectAssets = notification.selectAssets;
+        } else {
           selectAssets = [notification.selectAsset];
-          // selectAssets = notification.selectAssets;
-        });
+        }
+        _fetchGenBodyImage();
         return true;
       }),
       child: Expanded(
@@ -96,22 +107,44 @@ class _MediaGridSelectorState extends State<MediaGridSelector> {
     );
   }
 
+  _fetchGenBodyImage() {
+    List<Widget> temp = [];
+    for (var selectAsset in selectAssets) {
+      var _widget = genBodyImage(selectAsset);
+      temp.add(_widget);
+    }
+    setState(() {
+      selectAssetWidgets = temp;
+    });
+  }
+
   genBodyImage(AssetEntity asset) {
     return FutureBuilder(
-      // future: asset.thumbDataWithSize(600, 600),
-      future: asset.originFile,
+      future: asset.originBytes,
       builder: (BuildContext context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           return Container(
             color: Colors.black87,
-            child: Image.file(
-              snapshot.data! as File,
+            child: ExtendedImage(
+              image: Image.memory(
+                snapshot.data! as Uint8List,
+              ).image,
               fit: BoxFit.contain,
+              mode: ExtendedImageMode.gesture,
+              initGestureConfigHandler: (state) {
+                return GestureConfig(
+                  minScale: 1.0,
+                  animationMinScale: 0.7,
+                  maxScale: 50.0,
+                  animationMaxScale: 50.0,
+                  speed: 1.0,
+                  inertialSpeed: 100.0,
+                  initialScale: 1.0,
+                  inPageView: false,
+                  initialAlignment: InitialAlignment.center,
+                );
+              },
             ),
-            /* child: Image.memory(
-              snapshot.data! as Uint8List,
-              fit: BoxFit.cover,
-            ), */
           );
         }
         return Container(
@@ -136,7 +169,7 @@ class _MediaGridSelectorState extends State<MediaGridSelector> {
                 },
                 itemCount: selectAssets.length,
                 itemBuilder: (context, index) {
-                  return genBodyImage(selectAssets[index]);
+                  return selectAssetWidgets[index];
                 },
               ),
             ),

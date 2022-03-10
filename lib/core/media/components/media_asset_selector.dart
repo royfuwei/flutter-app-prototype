@@ -11,9 +11,11 @@ import 'package:seeks_app_prototype/core/media/models/media_asset.dart';
 class MediaAssetSelectorNotification extends Notification {
   final List<AssetEntity> selectAssets;
   final AssetEntity selectAsset;
+  bool isSelectMulti;
   MediaAssetSelectorNotification({
     required this.selectAssets,
     required this.selectAsset,
+    this.isSelectMulti = false,
   });
 }
 
@@ -26,7 +28,7 @@ class MediaAssetSelector extends StatefulWidget {
 }
 
 class _MediaAssetSelectorState extends State<MediaAssetSelector> {
-  ScrollController _scrollController = new ScrollController();
+  late ScrollController _scrollController;
   List<MediaAssetModel> _mediaAssetModelList = [];
   List<AssetPathEntity> albums = [];
   int currentPage = 0;
@@ -60,11 +62,18 @@ class _MediaAssetSelectorState extends State<MediaAssetSelector> {
 
   @override
   void initState() {
-    super.initState();
+    _scrollController = new ScrollController();
     /* _scrollController.addListener(() {
       print(_scrollController.offset);
     }); */
     initStateAsync();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
   }
 
   initStateAsync() async {
@@ -186,6 +195,8 @@ class _MediaAssetSelectorState extends State<MediaAssetSelector> {
           controller: _scrollController,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 4,
+            childAspectRatio: 1,
+            mainAxisExtent: MediaQuery.of(context).size.width / 4,
           ),
           itemCount: _mediaAssetModelList.length,
           itemBuilder: (BuildContext context, int index) {
@@ -312,6 +323,7 @@ class _MediaAssetSelectorState extends State<MediaAssetSelector> {
         MediaAssetSelectorNotification(
           selectAssets: selectAssets,
           selectAsset: selectAsset,
+          isSelectMulti: isSelectMulti,
         ).dispatch(context);
       }
       var mediaGridItem = genMediaGridItem(asset);
@@ -362,7 +374,7 @@ class _MediaAssetSelectorState extends State<MediaAssetSelector> {
 
   updateSelectAsset(AssetEntity asset) {
     setState(() {
-      if (isSelectAssets(asset)) {
+      if (isSelectAssets(asset) || selectAssets.isEmpty) {
         selectAsset = asset;
       } else {
         selectAsset = selectAssets.last;
@@ -376,7 +388,7 @@ class _MediaAssetSelectorState extends State<MediaAssetSelector> {
       if (!isSelectMulti) {
         selectAssets = [asset];
       } else {
-        if (selectAsset == asset) {
+        if (selectAssets.length != 0 && selectAsset == asset) {
           selectAssets.remove(asset);
         } else if (!isSelectAssets(asset)) {
           selectAssets.add(asset);
@@ -387,6 +399,7 @@ class _MediaAssetSelectorState extends State<MediaAssetSelector> {
     MediaAssetSelectorNotification(
       selectAssets: selectAssets,
       selectAsset: selectAsset,
+      isSelectMulti: isSelectMulti,
     ).dispatch(context);
   }
 
@@ -406,12 +419,17 @@ class _MediaAssetSelectorState extends State<MediaAssetSelector> {
         _jumpToGridView(selectAsset);
       }
     });
+    MediaAssetSelectorNotification(
+      selectAssets: selectAssets,
+      selectAsset: selectAsset,
+      isSelectMulti: isSelectMulti,
+    ).dispatch(context);
   }
 
   _jumpToGridView(AssetEntity asset) {
     var assets = _mediaAssetModelList.map((e) => e.asset).toList();
     var count = assets.indexOf(selectAsset) + 1;
-    var gridIndex = (count ~/ 4);
+    var gridIndex = (count ~/ 4) + (count % 4 == 0 ? -1 : 0);
     _scrollController.animateTo(
       gridIndex * MediaQuery.of(context).size.width / 4,
       duration: Duration(seconds: 1),
