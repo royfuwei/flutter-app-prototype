@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'dart:typed_data';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:image_crop/image_crop.dart';
 import 'package:image_cropper/image_cropper.dart';
@@ -9,6 +10,7 @@ import 'package:seeks_app_prototype/constants.dart';
 import 'package:seeks_app_prototype/core/common/components/default_app_bar.dart';
 import 'package:seeks_app_prototype/core/media/components/media_asset_selector.dart';
 import 'package:extended_image/extended_image.dart';
+import 'package:seeks_app_prototype/core/media/widgets/media_view_widget.dart';
 
 class MediaGridSelector extends StatefulWidget {
   static String routeName = "media/cpt/grid_selector";
@@ -21,9 +23,11 @@ class MediaGridSelector extends StatefulWidget {
 class _MediaGridSelectorState extends State<MediaGridSelector> {
   int currentPage = 0;
   int pageLength = 1;
+  late AssetEntity selectAsset;
   List<AssetEntity> selectAssets = [];
   List<Widget> selectAssetWidgets = [];
   MediaAssetSelector mediaAssetSelector = new MediaAssetSelector();
+  PageController _pageController = new PageController();
 
   @override
   Widget build(BuildContext context) {
@@ -92,10 +96,14 @@ class _MediaGridSelectorState extends State<MediaGridSelector> {
   bodyGridViewNotification() {
     return NotificationListener<MediaAssetSelectorNotification>(
       onNotification: ((notification) {
+        print("notification.selectAssets: ${notification.selectAssets}");
+        print("notification.selectAsset: ${notification.selectAsset}");
+        selectAsset = notification.selectAsset;
         if (notification.isSelectMulti &&
             notification.selectAssets.length != 0) {
           selectAssets = notification.selectAssets;
         } else {
+          selectAssetWidgets = [];
           selectAssets = [notification.selectAsset];
         }
         _fetchGenBodyImage();
@@ -108,14 +116,77 @@ class _MediaGridSelectorState extends State<MediaGridSelector> {
   }
 
   _fetchGenBodyImage() {
-    List<Widget> temp = [];
-    for (var selectAsset in selectAssets) {
-      var _widget = genBodyImage(selectAsset);
-      temp.add(_widget);
-    }
     setState(() {
-      selectAssetWidgets = temp;
+      _removeSelectAssetWidget();
+      _addSelectAssetWidget();
+      if (selectAssetWidgets.length > 1 && selectAsset != null) {
+        Future.delayed(Duration(milliseconds: 100), () {
+          var _assetKey = Key(selectAsset.id);
+          var selectAssetWidgetKeys = selectAssetWidgets
+              .map(
+                (e) => e.key,
+              )
+              .toList();
+          var page = selectAssetWidgetKeys.indexOf(_assetKey) >= 0
+              ? selectAssetWidgetKeys.indexOf(_assetKey)
+              : selectAssetWidgetKeys.length;
+          _pageController.animateToPage(page,
+              duration: Duration(milliseconds: 10), curve: Curves.easeIn);
+        });
+      }
     });
+  }
+
+  _removeSelectAssetWidget() {
+    print(
+        "_removeSelectAssetWidget start selectAssetWidgets: ${selectAssetWidgets}");
+    var selectAssetKeys = selectAssets
+        .map(
+          (e) => Key(e.id),
+        )
+        .toList();
+    for (var selectAssetWidget in selectAssetWidgets) {
+      Key? widgetKey = selectAssetWidget.key;
+      bool hasWidget = selectAssetKeys.indexOf(widgetKey!) >= 0;
+      if (!hasWidget) {
+        if (selectAssetWidgets.length == 1) {
+          setState(() {
+            selectAssetWidgets = [];
+          });
+        } else {
+          setState(() {
+            selectAssetWidgets.remove(selectAssetWidget);
+          });
+        }
+      }
+    }
+    print(
+        "_removeSelectAssetWidget end selectAssetWidgets: ${selectAssetWidgets}");
+  }
+
+  _addSelectAssetWidget() {
+    print(
+        "_addSelectAssetWidget start selectAssetWidgets: ${selectAssetWidgets}");
+    var selectAssetWidgetKeys = selectAssetWidgets
+        .map(
+          (e) => e.key,
+        )
+        .toList();
+    for (var selectAsset in selectAssets) {
+      Key widgetKey = Key(selectAsset.id);
+      bool hasWidget = selectAssetWidgetKeys.indexOf(widgetKey) >= 0;
+      if (!hasWidget) {
+        var _widget = new MediaViewWidget(
+          asset: selectAsset,
+          key: Key(selectAsset.id),
+        );
+        setState(() {
+          selectAssetWidgets.add(_widget);
+        });
+      }
+    }
+    print(
+        "_addSelectAssetWidget end selectAssetWidgets: ${selectAssetWidgets}");
   }
 
   genBodyImage(AssetEntity asset) {
@@ -167,7 +238,10 @@ class _MediaGridSelectorState extends State<MediaGridSelector> {
                     currentPage = value;
                   });
                 },
-                itemCount: selectAssets.length,
+                itemCount: selectAssetWidgets.length,
+                key: ObjectKey(selectAssetWidgets),
+                // dragStartBehavior: DragStartBehavior.down,
+                controller: _pageController,
                 itemBuilder: (context, index) {
                   return selectAssetWidgets[index];
                 },

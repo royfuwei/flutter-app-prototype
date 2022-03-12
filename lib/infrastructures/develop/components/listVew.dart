@@ -46,6 +46,9 @@ import 'package:seeks_app_prototype/core/test/screens/dev_image_pickers.dart';
 import 'package:seeks_app_prototype/core/test/screens/dev_provider.dart';
 import 'package:seeks_app_prototype/core/test/screens/dev_shared_preference.dart';
 import 'package:seeks_app_prototype/core/test/screens/dev_sqflite.dart';
+import 'package:seeks_app_prototype/core/test/screens/dev_widget_key.dart';
+import 'package:seeks_app_prototype/core/test/screens/dev_widget_key_change.dart';
+import 'package:seeks_app_prototype/core/test/screens/dev_widget_key_change_less.dart';
 import 'package:seeks_app_prototype/core/users/screens/user_create_info_screen.dart';
 import 'package:seeks_app_prototype/core/users/screens/user_create_screen.dart';
 import 'package:seeks_app_prototype/routes.dart';
@@ -261,6 +264,27 @@ List<Widget> getTestView(BuildContext context) {
       title: Text(DevListViewChat.routeName),
       onTap: () {
         routePushNamed(context, DevListViewChat.routeName);
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(DevWidgetKey.routeName),
+      onTap: () {
+        routePushNamed(context, DevWidgetKey.routeName);
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(DevWidgetKeyChange.routeName),
+      onTap: () {
+        routePushNamed(context, DevWidgetKeyChange.routeName);
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(DevWidgetKeyChangeLess.routeName),
+      onTap: () {
+        routePushNamed(context, DevWidgetKeyChangeLess.routeName);
       },
     ),
   ];

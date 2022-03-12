@@ -48,6 +48,9 @@ import 'package:seeks_app_prototype/core/test/screens/dev_image_pickers.dart';
 import 'package:seeks_app_prototype/core/test/screens/dev_provider.dart';
 import 'package:seeks_app_prototype/core/test/screens/dev_shared_preference.dart';
 import 'package:seeks_app_prototype/core/test/screens/dev_sqflite.dart';
+import 'package:seeks_app_prototype/core/test/screens/dev_widget_key.dart';
+import 'package:seeks_app_prototype/core/test/screens/dev_widget_key_change.dart';
+import 'package:seeks_app_prototype/core/test/screens/dev_widget_key_change_less.dart';
 import 'package:seeks_app_prototype/core/users/screens/user_create_info_screen.dart';
 import 'package:seeks_app_prototype/core/users/screens/user_create_screen.dart';
 
@@ -123,6 +126,9 @@ final Map<String, WidgetBuilder> routes = {
   MediaAlbumSelector.routeName: (context) => new MediaAlbumSelector(),
   MediaGridSelector.routeName: (context) => new MediaGridSelector(),
   MediaGridSelectorCrop.routeName: (context) => new MediaGridSelectorCrop(),
+  DevWidgetKey.routeName: (context) => new DevWidgetKey(),
+  DevWidgetKeyChange.routeName: (context) => new DevWidgetKeyChange(),
+  DevWidgetKeyChangeLess.routeName: (context) => new DevWidgetKeyChangeLess(),
 };
 
 void routePushNamed(BuildContext context, String route, {Object? arguments}) {

@@ -9,6 +9,7 @@ import 'package:seeks_app_prototype/constants.dart';
 import 'package:seeks_app_prototype/core/common/components/default_app_bar.dart';
 import 'package:seeks_app_prototype/core/media/components/media_asset_selector.dart';
 import 'package:extended_image/extended_image.dart';
+import 'package:seeks_app_prototype/core/media/widgets/media_image_crop_widget.dart';
 
 class MediaGridSelectorCrop extends StatefulWidget {
   static String routeName = "media/cpt/grid_selector_crop";
@@ -19,38 +20,32 @@ class MediaGridSelectorCrop extends StatefulWidget {
 }
 
 class CropAssetEntity {
-  String id;
   AssetEntity asset;
-  Uint8List? rawImageData;
+  Rect? cropRect;
 
   CropAssetEntity({
-    required this.id,
     required this.asset,
-    this.rawImageData,
+    this.cropRect,
   });
 }
 
 class CropAssetWidgetEntity extends CropAssetEntity {
-  String id;
   AssetEntity asset;
   Widget widget;
-  Uint8List? rawImageData;
+  Rect? cropRect;
   CropAssetWidgetEntity({
-    required this.id,
     required this.asset,
     required this.widget,
-    this.rawImageData,
+    this.cropRect,
   }) : super(
-          id: id,
           asset: asset,
-          rawImageData: rawImageData,
+          cropRect: cropRect,
         );
 
   getData() {
     return CropAssetEntity(
-      id: this.id,
       asset: this.asset,
-      rawImageData: this.rawImageData,
+      cropRect: this.cropRect,
     );
   }
 }
@@ -59,10 +54,10 @@ class _MediaGridSelectorCropState extends State<MediaGridSelectorCrop> {
   int currentPage = 0;
   int pageLength = 1;
   List<AssetEntity> notifySelectAssets = [];
-  // List<AssetEntity> selectAssets = [];
-  List<CropAssetWidgetEntity> selectCropAssetWidgets = [];
-  List<CropAssetWidgetEntity> cropAssetWidgets = [];
+  List<CropAssetWidgetEntity> tempCropAssetWidgets = [];
+  List<CropAssetEntity> cropAsset = [];
   MediaAssetSelector mediaAssetSelector = new MediaAssetSelector();
+  PageController _pageController = new PageController();
 
   GlobalKey<ExtendedImageEditorState> editorKey =
       GlobalKey<ExtendedImageEditorState>();
@@ -103,7 +98,7 @@ class _MediaGridSelectorCropState extends State<MediaGridSelectorCrop> {
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.width,
       color: colorIconHidden,
-      child: imageFilesSplash(),
+      child: imageCropper(),
     );
   }
 
@@ -111,10 +106,6 @@ class _MediaGridSelectorCropState extends State<MediaGridSelectorCrop> {
     return NotificationListener<MediaAssetSelectorNotification>(
       onNotification: ((notification) {
         _notifySelectAssetWidget(notification);
-        setState(() {
-          notifySelectAssets = [notification.selectAsset];
-          // notifySelectAssets = notification.notifySelectAssets;
-        });
         return true;
       }),
       child: Expanded(
@@ -124,130 +115,135 @@ class _MediaGridSelectorCropState extends State<MediaGridSelectorCrop> {
   }
 
   _notifySelectAssetWidget(MediaAssetSelectorNotification notification) {
-    List<AssetEntity> thisNotifySelectAssets = [];
-    if (notification.selectAssets.isEmpty) {
-      thisNotifySelectAssets.add(notification.selectAsset);
-    } else {
-      thisNotifySelectAssets.addAll(notification.selectAssets);
-    }
-    var cropAssetIds = cropAssetWidgets.map((e) => e.id).toList();
-    List<CropAssetWidgetEntity> temp = [];
-    for (var asset in thisNotifySelectAssets) {
-      var cropAssetIdx = cropAssetIds.indexOf(asset.id);
-      var existCropAsset = cropAssetIdx >= 0;
-      CropAssetWidgetEntity _cropAssetWidget;
-      if (existCropAsset) {
-        _cropAssetWidget = cropAssetWidgets[cropAssetIdx];
-      } else {
-        var newCropAssetWidget = CropAssetWidgetEntity(
-          id: asset.id,
-          asset: asset,
-          widget: Container(),
-        );
-        _cropAssetWidget = genCropAssetWedget(newCropAssetWidget);
+    setState(() {
+      if (!notification.isSelectMulti) {
+        tempCropAssetWidgets = [];
       }
-      temp.add(genCropAssetWedget(_cropAssetWidget));
-    }
-    cropAssetWidgets = temp;
-    _updateSelectCropAssets(notification.selectAsset);
-  }
+      notifySelectAssets = [];
+      var _selectAsset = notification.selectAsset;
 
-  _updateSelectCropAssets(AssetEntity selectAsset) {
-    var cropAssetWidgetIds = cropAssetWidgets.map((e) => e.id).toList();
-    var cropAssetWidgetIdx = cropAssetWidgetIds.indexOf(selectAsset.id);
-    var cropAssetWidget = cropAssetWidgets[cropAssetWidgetIdx];
-    var selectCropAssetWidgetIds =
-        selectCropAssetWidgets.map((e) => e.id).toList();
-    if (selectCropAssetWidgetIds.indexOf(cropAssetWidget.id) < 0) {
-      setState(() {
-        selectCropAssetWidgets = [cropAssetWidget];
-      });
-    }
-  }
+      if (notification.selectAssets.length == 0) {
+        notifySelectAssets.add(notification.selectAsset);
+      } else {
+        notifySelectAssets.addAll(notification.selectAssets);
+      }
 
-  genCropAssetWedget(CropAssetWidgetEntity cropAsset) {
-    var imageByte = cropAsset.asset.originBytes;
-    var _widget = GestureDetector(
-      child: FutureBuilder(
-        future: imageByte,
-        builder: (BuildContext context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
-            return Container(
-              color: Colors.black87,
-              child: ExtendedImage.memory(
-                cropAsset.rawImageData != null
-                    ? cropAsset.rawImageData as Uint8List
-                    : snapshot.data! as Uint8List,
-                fit: BoxFit.contain,
-                extendedImageEditorKey: editorKey,
-                mode: ExtendedImageMode.editor,
-                shape: BoxShape.circle,
-                initEditorConfigHandler: (state) {
-                  return EditorConfig(
-                    initCropRectType: InitCropRectType.layoutRect,
-                    cropRectPadding: EdgeInsets.all(0),
-                    cornerSize: Size(0, 0),
-                    cornerColor: Colors.grey,
-                    hitTestSize: 0.1,
-                    cropAspectRatio: 1,
-                    editorMaskColorHandler: (bc, pointDown) {
-                      return Colors.black.withOpacity(pointDown ? 0.4 : 0.8);
-                    },
-                    // lineColor: Colors.black.withOpacity(0.8),
-                  );
-                },
-              ),
+      if (tempCropAssetWidgets.length > notifySelectAssets.length) {
+        var _selectAssetIds = notifySelectAssets.map((e) => e.id).toList();
+        // 減少
+        for (var tempCropAssetWidget in tempCropAssetWidgets) {
+          var _asset = tempCropAssetWidget.asset;
+          var _id = _asset.id;
+          if (_selectAssetIds.indexOf(_id) < 0) {
+            var _idx = tempCropAssetWidgets.indexOf(tempCropAssetWidget);
+            var _widget = new MediaImageCropWidget(
+              asset: _asset,
+              key: Key(_asset.id),
             );
+            tempCropAssetWidget.widget = _widget;
+            tempCropAssetWidgets[_idx] = tempCropAssetWidget;
           }
-          return Container(
-            color: Colors.black87,
-          );
-        },
-      ),
-    );
-    cropAsset.widget = _widget;
-    // var rawImageData = editorKey.currentState?.rawImageData;
-    // print("rawImageData: ${rawImageData}");
-    return cropAsset;
+        }
+      } else {
+        // 增加
+        for (var _asset in notifySelectAssets) {
+          var _tempCropAssetWidgetIds =
+              tempCropAssetWidgets.map((e) => e.asset.id).toList();
+          var _tempCropAssetWidgetIdx =
+              _tempCropAssetWidgetIds.indexOf(_asset.id);
+          if (_tempCropAssetWidgetIdx < 0) {
+            var _widget = new MediaImageCropWidget(
+              asset: _asset,
+              key: Key(_asset.id),
+            );
+            var _tempCropAssetWidgetIdx =
+                new CropAssetWidgetEntity(asset: _asset, widget: _widget);
+            tempCropAssetWidgets.add(_tempCropAssetWidgetIdx);
+          }
+        }
+      }
+      var tempCropAssetWidgetIds =
+          tempCropAssetWidgets.map((e) => e.asset.id).toList();
+      var selectTempIdx = tempCropAssetWidgetIds.indexOf(_selectAsset.id);
+      _pageController.animateToPage(
+        selectTempIdx,
+        duration: Duration(milliseconds: 10),
+        curve: Curves.easeIn,
+      );
+    });
   }
 
-  imageFilesSplash() {
+  imageCropper() {
     return Expanded(
       child: Container(
         child: Stack(
           alignment: Alignment.bottomCenter,
           children: [
-            Expanded(
+            /* Expanded(
               child: PageView.builder(
+                physics: NeverScrollableScrollPhysics(),
                 onPageChanged: (value) {
                   setState(() {
                     currentPage = value;
                   });
                 },
-                itemCount: selectCropAssetWidgets.length,
+                itemCount: tempWidgets.length,
+                controller: _pageController,
                 itemBuilder: (context, index) {
-                  CropAssetWidgetEntity selectCropAssetWidget =
-                      selectCropAssetWidgets[index];
-                  return selectCropAssetWidget.widget;
+                  return tempWidgets[index];
+                },
+              ),
+            ), */
+            Expanded(
+              child: PageView.builder(
+                physics: NeverScrollableScrollPhysics(),
+                onPageChanged: (value) {
+                  setState(() {
+                    currentPage = value;
+                  });
+                },
+                itemCount: tempCropAssetWidgets.length,
+                controller: _pageController,
+                itemBuilder: (context, index) {
+                  return tempCropAssetWidgets[index].widget;
                 },
               ),
             ),
-            Padding(
-              padding: EdgeInsets.all(10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: List.generate(notifySelectAssets.length, (index) {
-                  if (notifySelectAssets.length > 1) {
-                    return buildDot(index);
-                  } else {
-                    return Container();
-                  }
-                }),
-              ),
-            ),
+            // imageCropperStackIcon(),
           ],
         ),
       ),
+    );
+  }
+
+  imageCropperStackIcon() {
+    return Padding(
+      padding: EdgeInsets.all(10),
+      child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+        TextButton(
+          onPressed: () {},
+          style: ButtonStyle(
+            padding: MaterialStateProperty.all(
+              EdgeInsets.only(right: 2, left: 5),
+            ),
+          ),
+          child: Container(
+            padding: EdgeInsets.all(3),
+            decoration: BoxDecoration(
+              color: Colors.black45,
+              shape: BoxShape.circle,
+              border: Border.all(
+                color: colorIconHidden,
+              ),
+            ),
+            child: Icon(
+              Icons.crop_free_outlined,
+              color: colorIconHidden,
+              size: getProportionateScreenWidth(context, 20),
+            ),
+          ),
+        ),
+      ]),
     );
   }
 

@@ -18,11 +18,13 @@ class _DevBottomNavigationTabBarState extends State<DevBottomNavigationTabBar> {
 
   int currentIndex = 1;
   final pages = [
-    CenterMessageWidget("首頁", Colors.lightGreenAccent),
+    CenterMessageWidget(
+        centerMessage: "首頁", backgroundColor: Colors.lightGreenAccent),
     LessonPageTabBar(),
-    CenterMessageWidget("第三頁", Colors.lightBlueAccent),
-    CenterMessageWidget("第四頁", Colors.grey),
-    CenterMessageWidget("第五頁", Colors.grey),
+    CenterMessageWidget(
+        centerMessage: "第三頁", backgroundColor: Colors.lightBlueAccent),
+    CenterMessageWidget(centerMessage: "第四頁", backgroundColor: Colors.grey),
+    CenterMessageWidget(centerMessage: "第五頁", backgroundColor: Colors.grey),
   ];
   final items = [
     BottomNavigationBarItem(
@@ -52,7 +54,7 @@ class _DevBottomNavigationTabBarState extends State<DevBottomNavigationTabBar> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Shared Preference"),
+        title: Text("buttom navigation tarbar"),
       ),
       body: pages[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
@@ -74,9 +76,14 @@ class _DevBottomNavigationTabBarState extends State<DevBottomNavigationTabBar> {
 
 class LessonPageTabBar extends StatelessWidget {
   final pages = [
-    CenterMessageWidget("2.1頁", Colors.redAccent),
-    CenterMessageWidget("2.2頁", Colors.yellow),
-    CenterMessageWidget("2.3頁", Colors.pinkAccent),
+    // CenterMessageWidget("2.1頁", Colors.redAccent),
+    // CenterMessageWidget("2.2頁", Colors.yellow),
+    // CenterMessageWidget("2.3頁", Colors.pinkAccent),
+    CenterMessageWidget(
+        centerMessage: "2.1頁", backgroundColor: Colors.redAccent),
+    CenterMessageWidget(centerMessage: "2.2頁", backgroundColor: Colors.yellow),
+    CenterMessageWidget(
+        centerMessage: "2.3頁", backgroundColor: Colors.pinkAccent),
   ];
   final tabs = [Tab(text: "第2.1頁"), Tab(text: "第2.2頁"), Tab(text: "第2.3頁")];
 
@@ -98,7 +105,47 @@ class LessonPageTabBar extends StatelessWidget {
   }
 }
 
-class CenterMessageWidget extends StatelessWidget {
+class CenterMessageWidget extends StatefulWidget {
+  final String centerMessage;
+  final Color backgroundColor;
+  const CenterMessageWidget({
+    Key? key,
+    this.centerMessage = "",
+    this.backgroundColor = Colors.white,
+  }) : super(key: key);
+
+  @override
+  State<CenterMessageWidget> createState() => _CenterMessageWidgetState();
+}
+
+class _CenterMessageWidgetState extends State<CenterMessageWidget>
+    with AutomaticKeepAliveClientMixin {
+  bool istap = false;
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          istap = !istap;
+        });
+      },
+      child: Container(
+        color: widget.backgroundColor,
+        alignment: Alignment.center,
+        child: Text(
+          widget.centerMessage,
+          textAlign: TextAlign.center,
+          style: TextStyle(fontSize: istap ? 50 : 100),
+        ),
+      ),
+    );
+  }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
+}
+/* class CenterMessageWidget extends StatelessWidget {
   String centerMessage = "";
   Color backgroundColor = Colors.white;
 
@@ -116,4 +163,4 @@ class CenterMessageWidget extends StatelessWidget {
       ),
     );
   }
-}
+} */
