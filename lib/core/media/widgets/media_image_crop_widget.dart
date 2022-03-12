@@ -4,6 +4,11 @@ import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:photo_manager/photo_manager.dart';
 
+class MediaImageCropWidgetNotification extends Notification {
+  final Rect cropRect;
+  MediaImageCropWidgetNotification({required this.cropRect});
+}
+
 class MediaImageCropWidget extends StatefulWidget {
   final AssetEntity asset;
   const MediaImageCropWidget({
@@ -25,7 +30,7 @@ class _MediaImageCropWidgetState extends State<MediaImageCropWidget>
       key: Key(widget.asset.id),
       child: FutureBuilder(
         future: widget.asset.originBytes,
-        builder: (BuildContext context, snapshot) {
+        builder: (BuildContext bc, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
             return Container(
               color: Colors.black87,
@@ -50,6 +55,10 @@ class _MediaImageCropWidgetState extends State<MediaImageCropWidget>
                     editActionDetailsIsChanged:
                         (EditActionDetails? editActionDetails) {
                       var getCropRect = editorKey.currentState!.getCropRect();
+                      MediaImageCropWidgetNotification(cropRect: getCropRect!)
+                          .dispatch(context);
+                      // print("widget.asset.id: ${widget.asset.id}");
+                      // print("getCropRect: ${getCropRect}");
                     },
                   );
                 },

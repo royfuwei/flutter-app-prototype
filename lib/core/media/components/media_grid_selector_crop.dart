@@ -51,11 +51,9 @@ class CropAssetWidgetEntity extends CropAssetEntity {
 }
 
 class _MediaGridSelectorCropState extends State<MediaGridSelectorCrop> {
-  int currentPage = 0;
-  int pageLength = 1;
   List<AssetEntity> notifySelectAssets = [];
   List<CropAssetWidgetEntity> tempCropAssetWidgets = [];
-  List<CropAssetEntity> cropAsset = [];
+  List<CropAssetEntity> cropAssets = [];
   MediaAssetSelector mediaAssetSelector = new MediaAssetSelector();
   PageController _pageController = new PageController();
 
@@ -114,6 +112,22 @@ class _MediaGridSelectorCropState extends State<MediaGridSelectorCrop> {
     );
   }
 
+  cropAssetWidgetNotification(AssetEntity asset) {
+    return NotificationListener<MediaImageCropWidgetNotification>(
+      onNotification: (notification) {
+        print("asset.id: ${asset.id}");
+        print("notification.cropRect: ${notification.cropRect}");
+        return true;
+      },
+      child: MediaImageCropWidget(
+        asset: asset,
+        key: Key(
+          asset.id,
+        ),
+      ),
+    );
+  }
+
   _notifySelectAssetWidget(MediaAssetSelectorNotification notification) {
     setState(() {
       if (!notification.isSelectMulti) {
@@ -136,10 +150,7 @@ class _MediaGridSelectorCropState extends State<MediaGridSelectorCrop> {
           var _id = _asset.id;
           if (_selectAssetIds.indexOf(_id) < 0) {
             var _idx = tempCropAssetWidgets.indexOf(tempCropAssetWidget);
-            var _widget = new MediaImageCropWidget(
-              asset: _asset,
-              key: Key(_asset.id),
-            );
+            var _widget = cropAssetWidgetNotification(_asset);
             tempCropAssetWidget.widget = _widget;
             tempCropAssetWidgets[_idx] = tempCropAssetWidget;
           }
@@ -152,10 +163,7 @@ class _MediaGridSelectorCropState extends State<MediaGridSelectorCrop> {
           var _tempCropAssetWidgetIdx =
               _tempCropAssetWidgetIds.indexOf(_asset.id);
           if (_tempCropAssetWidgetIdx < 0) {
-            var _widget = new MediaImageCropWidget(
-              asset: _asset,
-              key: Key(_asset.id),
-            );
+            var _widget = cropAssetWidgetNotification(_asset);
             var _tempCropAssetWidgetIdx =
                 new CropAssetWidgetEntity(asset: _asset, widget: _widget);
             tempCropAssetWidgets.add(_tempCropAssetWidgetIdx);
@@ -179,29 +187,9 @@ class _MediaGridSelectorCropState extends State<MediaGridSelectorCrop> {
         child: Stack(
           alignment: Alignment.bottomCenter,
           children: [
-            /* Expanded(
-              child: PageView.builder(
-                physics: NeverScrollableScrollPhysics(),
-                onPageChanged: (value) {
-                  setState(() {
-                    currentPage = value;
-                  });
-                },
-                itemCount: tempWidgets.length,
-                controller: _pageController,
-                itemBuilder: (context, index) {
-                  return tempWidgets[index];
-                },
-              ),
-            ), */
             Expanded(
               child: PageView.builder(
                 physics: NeverScrollableScrollPhysics(),
-                onPageChanged: (value) {
-                  setState(() {
-                    currentPage = value;
-                  });
-                },
                 itemCount: tempCropAssetWidgets.length,
                 controller: _pageController,
                 itemBuilder: (context, index) {
@@ -244,19 +232,6 @@ class _MediaGridSelectorCropState extends State<MediaGridSelectorCrop> {
           ),
         ),
       ]),
-    );
-  }
-
-  AnimatedContainer buildDot(int? index) {
-    return AnimatedContainer(
-      duration: kAnimationDuration,
-      margin: EdgeInsets.only(right: 5),
-      height: 6,
-      width: currentPage == index ? 20 : 6,
-      decoration: BoxDecoration(
-        color: Color(0xFFD8D8D8),
-        borderRadius: BorderRadius.circular(3),
-      ),
     );
   }
 }
