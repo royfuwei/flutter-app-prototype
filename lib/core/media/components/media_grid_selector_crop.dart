@@ -115,14 +115,7 @@ class _MediaGridSelectorCropState extends State<MediaGridSelectorCrop> {
   cropAssetWidgetNotification(AssetEntity asset) {
     return NotificationListener<MediaImageCropWidgetNotification>(
       onNotification: (notification) {
-        print("cropAssetWidgetNotification asset.id: ${asset.id}");
-        print(
-            "cropAssetWidgetNotification notification.editorKey: ${notification.editorKey}");
-        print(
-            "cropAssetWidgetNotification notification.editorKey.currentState: ${notification.editorKey.currentState}");
         var getCropRect = notification.editorKey.currentState!.getCropRect();
-        print("cropAssetWidgetNotification getCropRect: ${getCropRect}");
-
         _updateCropAssetsByCropper(asset, getCropRect);
         return true;
       },
@@ -134,15 +127,10 @@ class _MediaGridSelectorCropState extends State<MediaGridSelectorCrop> {
   }
 
   _notifySelectAssetWidget(MediaAssetSelectorNotification notification) {
-    print("notification.isSelectMulti: ${notification.isSelectMulti}");
-    print("tempCropAssetWidgets.length before: ${tempCropAssetWidgets.length}");
     if (!notification.isSelectMulti) {
       tempCropAssetWidgets = [];
     }
-    print("tempCropAssetWidgets.length after: ${tempCropAssetWidgets.length}");
-
     var _selectAsset = notification.selectAsset;
-
     var notifySelectAssetIds = notifySelectAssets.map((e) => e.id).toList();
     for (var _cropAssetWidget in tempCropAssetWidgets) {
       var tempCropAssetWidgetId = _cropAssetWidget.asset.id;
