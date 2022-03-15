@@ -1,7 +1,11 @@
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:gallery_saver/gallery_saver.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:photo_manager/photo_manager.dart';
 import 'package:seeks_app_prototype/configs/size_config.dart';
 import 'package:seeks_app_prototype/constants.dart';
@@ -154,7 +158,9 @@ class _MediaAssetSelectorState extends State<MediaAssetSelector> {
                   ),
                 ),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    pickImageFromCamera();
+                  },
                   style: ButtonStyle(
                     padding: MaterialStateProperty.all(
                       EdgeInsets.only(right: 2, left: 5),
@@ -182,6 +188,51 @@ class _MediaAssetSelectorState extends State<MediaAssetSelector> {
         ],
       ),
     );
+  }
+
+  pickImageFromCamera() async {
+    final imagePicker =
+        await ImagePicker().pickImage(source: ImageSource.camera);
+    var imagePath = imagePicker!.path;
+    if (imagePath != null) {
+      await GallerySaver.saveImage(imagePath);
+    }
+    await initStateAsync();
+    await _refreshFetchNewMedia(selectAlbum);
+    setState(() {});
+  }
+
+  Future<bool> saveVideoToAlbum(String urlPath) async {
+    //先創一個暫時路徑, getTemporaryDirectory() 需導入path_provider
+    Directory appDocDir = await getTemporaryDirectory();
+    final String timeStamp = DateTime.now().millisecondsSinceEpoch.toString();
+    //檔名暫時用timeStamp命名
+    String temporaryPath = appDocDir.path + "$timeStamp.mp4";
+    //把檔案用Dio download存到暫時路徑
+    final response = await Dio().download(urlPath, temporaryPath,
+        onReceiveProgress: (count, total) {
+      //這邊是下載進度的換算, 可以從這裡取出數值
+      print((count / total * 100).toStringAsFixed(0) + "%");
+    });
+    //再用GallerySaver存到相簿
+    bool? isSucceed = await GallerySaver.saveVideo(temporaryPath);
+    if (isSucceed != null) {
+      if (isSucceed) {
+        //最後再將暫存的檔案刪除
+        deleteTemporaryFile(temporaryPath);
+        return true;
+      }
+    }
+    return false;
+  }
+
+  deleteTemporaryFile(String filePath) async {
+    try {
+      await File(filePath).delete();
+    } catch (error) {
+      print('Delete TemporaryFile error');
+      print(error);
+    }
   }
 
   bodyMediaGridView() {
