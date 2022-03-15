@@ -113,7 +113,8 @@ class DatabaseHelper {
   }
 
   _initDatabase() async {
-    Directory documentsDirectory = await getApplicationDocumentsDirectory();
+    // Directory documentsDirectory = await getApplicationDocumentsDirectory();
+    Directory documentsDirectory = await getTemporaryDirectory();
     print('documentsDirectory: ${documentsDirectory}');
     print('documentsDirectory.list(): ${documentsDirectory.listSync()}');
     String path = join(documentsDirectory.path, _databaseName);

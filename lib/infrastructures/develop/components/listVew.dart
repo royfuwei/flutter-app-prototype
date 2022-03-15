@@ -14,6 +14,7 @@ import 'package:seeks_app_prototype/core/media/components/media_asset_selector.d
 import 'package:seeks_app_prototype/core/media/components/media_album_selector.dart';
 import 'package:seeks_app_prototype/core/media/components/media_grid_selector.dart';
 import 'package:seeks_app_prototype/core/media/components/media_grid_selector_crop.dart';
+import 'package:seeks_app_prototype/core/media/screens/media_image_selector.dart';
 import 'package:seeks_app_prototype/core/more/screens/more_screen.dart';
 import 'package:seeks_app_prototype/core/notification/screens/notfication_screen.dart';
 import 'package:seeks_app_prototype/core/notification/screens/notification_open_screen.dart';
@@ -430,6 +431,13 @@ List<Widget> getDevView(BuildContext context) {
       title: Text(MediaGridSelectorCrop.routeName),
       onTap: () {
         routePushNamed(context, MediaGridSelectorCrop.routeName);
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(ImageSelector.routeName),
+      onTap: () {
+        routePushNamed(context, ImageSelector.routeName);
       },
     ),
   ];

@@ -11,10 +11,38 @@ class MediaImageCropWidgetNotification extends Notification {
   });
 }
 
+class ImageCropAspectRatios {
+  /// no aspect ratio for crop
+  static const Null custom = null;
+
+  /// the same as aspect ratio of image
+  /// [cropAspectRatio] is not more than 0.0, it's original
+  static const double original = 0.0;
+
+  /// ratio of width and height is 1 : 1
+  static const double ratio1_1 = 1.0;
+
+  /// ratio of width and height is 3 : 4
+  static const double ratio3_4 = 3.0 / 4.0;
+
+  /// ratio of width and height is 4 : 3
+  static const double ratio4_3 = 4.0 / 3.0;
+
+  /// ratio of width and height is 9 : 16
+  static const double ratio9_16 = 9.0 / 16.0;
+
+  /// ratio of width and height is 16 : 9
+  static const double ratio16_9 = 16.0 / 9.0;
+}
+
 class MediaImageCropWidget extends StatefulWidget {
   final AssetEntity asset;
+  final BoxShape shape;
+  final double? cropAspectRatios;
   const MediaImageCropWidget({
     Key? key,
+    this.shape: BoxShape.rectangle,
+    this.cropAspectRatios: ImageCropAspectRatios.ratio1_1,
     required this.asset,
   }) : super(key: key);
 
@@ -53,14 +81,7 @@ class _MediaImageCropWidgetState extends State<MediaImageCropWidget>
                 fit: BoxFit.contain,
                 extendedImageEditorKey: editorKey,
                 mode: ExtendedImageMode.editor,
-                shape: BoxShape.circle,
-                afterPaintImage: (canvas, rect, image, paint) {
-                  print("afterPaintImage rect: ${rect}");
-                },
-                beforePaintImage: (canvas, rect, image, paint) {
-                  print("beforePaintImage rect: ${rect}");
-                  return false;
-                },
+                shape: widget.shape,
                 initEditorConfigHandler: (state) {
                   return EditorConfig(
                     cropLayerPainter: EditorCropLayerPainter(),
@@ -69,7 +90,7 @@ class _MediaImageCropWidgetState extends State<MediaImageCropWidget>
                     cornerSize: Size(0, 0),
                     cornerColor: Colors.grey,
                     hitTestSize: 0.1,
-                    cropAspectRatio: 1,
+                    cropAspectRatio: widget.cropAspectRatios,
                     editorMaskColorHandler: (bc, pointDown) {
                       return Colors.black.withOpacity(pointDown ? 0.4 : 0.8);
                     },

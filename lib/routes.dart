@@ -14,6 +14,7 @@ import 'package:seeks_app_prototype/core/media/components/media_asset_selector.d
 import 'package:seeks_app_prototype/core/media/components/media_album_selector.dart';
 import 'package:seeks_app_prototype/core/media/components/media_grid_selector.dart';
 import 'package:seeks_app_prototype/core/media/components/media_grid_selector_crop.dart';
+import 'package:seeks_app_prototype/core/media/screens/media_image_selector.dart';
 import 'package:seeks_app_prototype/core/more/screens/more_screen.dart';
 import 'package:seeks_app_prototype/core/notification/screens/notfication_screen.dart';
 import 'package:seeks_app_prototype/core/notification/screens/notification_open_screen.dart';
@@ -129,6 +130,7 @@ final Map<String, WidgetBuilder> routes = {
   DevWidgetKey.routeName: (context) => new DevWidgetKey(),
   DevWidgetKeyChange.routeName: (context) => new DevWidgetKeyChange(),
   DevWidgetKeyChangeLess.routeName: (context) => new DevWidgetKeyChangeLess(),
+  ImageSelector.routeName: (context) => new ImageSelector(),
 };
 
 void routePushNamed(BuildContext context, String route, {Object? arguments}) {

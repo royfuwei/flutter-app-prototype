@@ -11,9 +11,22 @@ import 'package:seeks_app_prototype/core/media/components/media_asset_selector.d
 import 'package:extended_image/extended_image.dart';
 import 'package:seeks_app_prototype/core/media/widgets/media_image_crop_widget.dart';
 
+class MediaGridSelectorCropNotification extends Notification {
+  List<CropAssetEntity> cropAssets = [];
+  MediaGridSelectorCropNotification({
+    required this.cropAssets,
+  });
+}
+
 class MediaGridSelectorCrop extends StatefulWidget {
   static String routeName = "media/cpt/grid_selector_crop";
-  const MediaGridSelectorCrop({Key? key}) : super(key: key);
+  final BoxShape shape;
+  final double? cropAspectRatios;
+  const MediaGridSelectorCrop({
+    Key? key,
+    this.shape: BoxShape.rectangle,
+    this.cropAspectRatios: ImageCropAspectRatios.ratio1_1,
+  }) : super(key: key);
 
   @override
   _MediaGridSelectorCropState createState() => _MediaGridSelectorCropState();
@@ -117,11 +130,16 @@ class _MediaGridSelectorCropState extends State<MediaGridSelectorCrop> {
       onNotification: (notification) {
         var getCropRect = notification.editorKey.currentState!.getCropRect();
         _updateCropAssetsByCropper(asset, getCropRect);
+        MediaGridSelectorCropNotification(
+          cropAssets: cropAssets,
+        ).dispatch(context);
         return true;
       },
       child: MediaImageCropWidget(
         asset: asset,
         key: Key(asset.id),
+        shape: widget.shape,
+        cropAspectRatios: widget.cropAspectRatios,
       ),
     );
   }
