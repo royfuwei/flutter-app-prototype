@@ -41,7 +41,7 @@ class _MediaImageCropWidgetState extends State<MediaImageCropWidget>
     super.initState();
     print('${widget.asset.id}: A1. widget initState');
     _widget = GestureDetector(
-      key: Key(widget.asset.id),
+      key: widget.key,
       child: FutureBuilder(
         future: widget.asset.originBytes,
         builder: (BuildContext bc, snapshot) {

@@ -30,22 +30,20 @@ class CropAssetEntity {
 }
 
 class CropAssetWidgetEntity extends CropAssetEntity {
+  bool isRemove;
   AssetEntity asset;
   Widget widget;
-  Rect? cropRect;
   CropAssetWidgetEntity({
+    required this.isRemove,
     required this.asset,
     required this.widget,
-    this.cropRect,
   }) : super(
           asset: asset,
-          cropRect: cropRect,
         );
 
   getData() {
     return CropAssetEntity(
       asset: this.asset,
-      cropRect: this.cropRect,
     );
   }
 }
@@ -103,6 +101,8 @@ class _MediaGridSelectorCropState extends State<MediaGridSelectorCrop> {
   bodyGridViewNotification() {
     return NotificationListener<MediaAssetSelectorNotification>(
       onNotification: ((notification) {
+        _updateNotifySelectAssets(notification);
+        _getCropAssetsByNotifySelectAssets(notification);
         _notifySelectAssetWidget(notification);
         return true;
       }),
@@ -115,70 +115,129 @@ class _MediaGridSelectorCropState extends State<MediaGridSelectorCrop> {
   cropAssetWidgetNotification(AssetEntity asset) {
     return NotificationListener<MediaImageCropWidgetNotification>(
       onNotification: (notification) {
-        print("asset.id: ${asset.id}");
-        print("notification.cropRect: ${notification.cropRect}");
+        print("cropAssetWidgetNotification asset.id: ${asset.id}");
+        print(
+            "cropAssetWidgetNotification notification.editorKey: ${notification.editorKey}");
+        print(
+            "cropAssetWidgetNotification notification.editorKey.currentState: ${notification.editorKey.currentState}");
+        var getCropRect = notification.editorKey.currentState!.getCropRect();
+        print("cropAssetWidgetNotification getCropRect: ${getCropRect}");
+
+        _updateCropAssetsByCropper(asset, getCropRect);
         return true;
       },
       child: MediaImageCropWidget(
         asset: asset,
-        key: Key(
-          asset.id,
-        ),
+        key: Key(asset.id),
       ),
     );
   }
 
   _notifySelectAssetWidget(MediaAssetSelectorNotification notification) {
+    print("notification.isSelectMulti: ${notification.isSelectMulti}");
+    print("tempCropAssetWidgets.length before: ${tempCropAssetWidgets.length}");
+    if (!notification.isSelectMulti) {
+      tempCropAssetWidgets = [];
+    }
+    print("tempCropAssetWidgets.length after: ${tempCropAssetWidgets.length}");
+
+    var _selectAsset = notification.selectAsset;
+
+    var notifySelectAssetIds = notifySelectAssets.map((e) => e.id).toList();
+    for (var _cropAssetWidget in tempCropAssetWidgets) {
+      var tempCropAssetWidgetId = _cropAssetWidget.asset.id;
+      var notifySelectAssetIdx =
+          notifySelectAssetIds.indexOf(tempCropAssetWidgetId);
+      if (notifySelectAssetIdx < 0) {
+        var _idx = tempCropAssetWidgets.indexOf(_cropAssetWidget);
+        var _widget = Container(
+          color: Colors.black87,
+        );
+        _cropAssetWidget.isRemove = true;
+        _cropAssetWidget.widget = _widget;
+        tempCropAssetWidgets[_idx] = _cropAssetWidget;
+      }
+    }
+
+    var tempCropAssetWidgetIds =
+        tempCropAssetWidgets.map((e) => e.asset.id).toList();
+    for (var _asset in notifySelectAssets) {
+      var notifySelectAssetId = _asset.id;
+      var tempCropAssetWidgetIdx =
+          tempCropAssetWidgetIds.indexOf(notifySelectAssetId);
+      if (tempCropAssetWidgetIdx < 0) {
+        var _widget = cropAssetWidgetNotification(_asset);
+        var _newCropAssetWidget = new CropAssetWidgetEntity(
+            asset: _asset, widget: _widget, isRemove: false);
+        tempCropAssetWidgets.add(_newCropAssetWidget);
+      } else {
+        var tempCropAssetWidget = tempCropAssetWidgets[tempCropAssetWidgetIdx];
+        if (tempCropAssetWidget.isRemove) {
+          var _widget = cropAssetWidgetNotification(_asset);
+          tempCropAssetWidget.isRemove = false;
+          tempCropAssetWidget.widget = _widget;
+          tempCropAssetWidgets[tempCropAssetWidgetIdx] = tempCropAssetWidget;
+        }
+      }
+    }
+
+    var pageWidgetIds = tempCropAssetWidgets.map((e) => e.asset.id).toList();
+    var selectPageIdx = pageWidgetIds.indexOf(_selectAsset.id);
+
     setState(() {
-      if (!notification.isSelectMulti) {
-        tempCropAssetWidgets = [];
-      }
-      notifySelectAssets = [];
-      var _selectAsset = notification.selectAsset;
-
-      if (notification.selectAssets.length == 0) {
-        notifySelectAssets.add(notification.selectAsset);
-      } else {
-        notifySelectAssets.addAll(notification.selectAssets);
-      }
-
-      if (tempCropAssetWidgets.length > notifySelectAssets.length) {
-        var _selectAssetIds = notifySelectAssets.map((e) => e.id).toList();
-        // 減少
-        for (var tempCropAssetWidget in tempCropAssetWidgets) {
-          var _asset = tempCropAssetWidget.asset;
-          var _id = _asset.id;
-          if (_selectAssetIds.indexOf(_id) < 0) {
-            var _idx = tempCropAssetWidgets.indexOf(tempCropAssetWidget);
-            var _widget = cropAssetWidgetNotification(_asset);
-            tempCropAssetWidget.widget = _widget;
-            tempCropAssetWidgets[_idx] = tempCropAssetWidget;
-          }
-        }
-      } else {
-        // 增加
-        for (var _asset in notifySelectAssets) {
-          var _tempCropAssetWidgetIds =
-              tempCropAssetWidgets.map((e) => e.asset.id).toList();
-          var _tempCropAssetWidgetIdx =
-              _tempCropAssetWidgetIds.indexOf(_asset.id);
-          if (_tempCropAssetWidgetIdx < 0) {
-            var _widget = cropAssetWidgetNotification(_asset);
-            var _tempCropAssetWidgetIdx =
-                new CropAssetWidgetEntity(asset: _asset, widget: _widget);
-            tempCropAssetWidgets.add(_tempCropAssetWidgetIdx);
-          }
-        }
-      }
-      var tempCropAssetWidgetIds =
-          tempCropAssetWidgets.map((e) => e.asset.id).toList();
-      var selectTempIdx = tempCropAssetWidgetIds.indexOf(_selectAsset.id);
       _pageController.animateToPage(
-        selectTempIdx,
+        selectPageIdx,
         duration: Duration(milliseconds: 10),
         curve: Curves.easeIn,
       );
     });
+  }
+
+  _updateNotifySelectAssets(MediaAssetSelectorNotification notification) {
+    notifySelectAssets = [];
+    if (notification.selectAssets.length == 0) {
+      notifySelectAssets.add(notification.selectAsset);
+    } else {
+      notifySelectAssets.addAll(notification.selectAssets);
+    }
+  }
+
+  _updateCropAssetsByCropper(AssetEntity asset, Rect? getCropRect) {
+    var _cropAssetIds = cropAssets.map((e) => e.asset.id).toList();
+    var _cropAssetIdx = _cropAssetIds.indexOf(asset.id);
+    if (_cropAssetIdx >= 0) {
+      cropAssets[_cropAssetIdx].cropRect = getCropRect;
+    }
+  }
+
+  _getCropAssetsByNotifySelectAssets(
+      MediaAssetSelectorNotification notification) {
+    if (!notification.isSelectMulti) {
+      cropAssets = [];
+    }
+    List<CropAssetEntity> temp = [];
+    if (cropAssets.length > notifySelectAssets.length) {
+      // 減少
+      var _selectAssetIds = notifySelectAssets.map((e) => e.id).toList();
+      for (var cropAsset in cropAssets) {
+        var cropAssetId = cropAsset.asset.id;
+        if (_selectAssetIds.indexOf(cropAssetId) >= 0) {
+          temp.add(cropAsset);
+        }
+      }
+    } else {
+      // 增加
+      temp = cropAssets;
+      var cropAssetIds = cropAssets.map((e) => e.asset.id).toList();
+      for (var notifySelectAsset in notifySelectAssets) {
+        var notifySelectAssetId = notifySelectAsset.id;
+        if (cropAssetIds.indexOf(notifySelectAssetId) < 0) {
+          var cropAsset = CropAssetEntity(asset: notifySelectAsset);
+          temp.add(cropAsset);
+        }
+      }
+    }
+    cropAssets = temp;
   }
 
   imageCropper() {
