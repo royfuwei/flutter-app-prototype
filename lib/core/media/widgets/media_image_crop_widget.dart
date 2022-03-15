@@ -5,8 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:photo_manager/photo_manager.dart';
 
 class MediaImageCropWidgetNotification extends Notification {
-  final Rect cropRect;
-  MediaImageCropWidgetNotification({required this.cropRect});
+  GlobalKey<ExtendedImageEditorState> editorKey;
+  MediaImageCropWidgetNotification({
+    required this.editorKey,
+  });
 }
 
 class MediaImageCropWidget extends StatefulWidget {
@@ -24,9 +26,21 @@ class _MediaImageCropWidgetState extends State<MediaImageCropWidget>
     with WidgetsBindingObserver, AutomaticKeepAliveClientMixin {
   GlobalKey<ExtendedImageEditorState> editorKey =
       GlobalKey<ExtendedImageEditorState>();
+
+  Widget _widget = Container(
+    color: Colors.black87,
+  );
+
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return _widget;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    print('${widget.asset.id}: A1. widget initState');
+    _widget = GestureDetector(
       key: Key(widget.asset.id),
       child: FutureBuilder(
         future: widget.asset.originBytes,
@@ -40,6 +54,13 @@ class _MediaImageCropWidgetState extends State<MediaImageCropWidget>
                 extendedImageEditorKey: editorKey,
                 mode: ExtendedImageMode.editor,
                 shape: BoxShape.circle,
+                afterPaintImage: (canvas, rect, image, paint) {
+                  print("afterPaintImage rect: ${rect}");
+                },
+                beforePaintImage: (canvas, rect, image, paint) {
+                  print("beforePaintImage rect: ${rect}");
+                  return false;
+                },
                 initEditorConfigHandler: (state) {
                   return EditorConfig(
                     cropLayerPainter: EditorCropLayerPainter(),
@@ -54,11 +75,9 @@ class _MediaImageCropWidgetState extends State<MediaImageCropWidget>
                     },
                     editActionDetailsIsChanged:
                         (EditActionDetails? editActionDetails) {
-                      var getCropRect = editorKey.currentState!.getCropRect();
-                      MediaImageCropWidgetNotification(cropRect: getCropRect!)
-                          .dispatch(context);
-                      // print("widget.asset.id: ${widget.asset.id}");
-                      // print("getCropRect: ${getCropRect}");
+                      MediaImageCropWidgetNotification(
+                        editorKey: editorKey,
+                      ).dispatch(context);
                     },
                   );
                 },
@@ -71,13 +90,19 @@ class _MediaImageCropWidgetState extends State<MediaImageCropWidget>
         },
       ),
     );
+    initImageCropWidgetNotification();
   }
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    print('${widget.asset.id}: A1. widget initState');
+  initImageCropWidgetNotification() {
+    Future.delayed(Duration(milliseconds: 100), () {
+      if (editorKey.currentState != null) {
+        MediaImageCropWidgetNotification(
+          editorKey: editorKey,
+        ).dispatch(context);
+      } else {
+        initImageCropWidgetNotification();
+      }
+    });
   }
 
   @override
