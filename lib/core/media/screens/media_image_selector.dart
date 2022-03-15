@@ -59,13 +59,13 @@ class _ImageSelectorState extends State<ImageSelector> {
       backgroundColor: Colors.black,
       title: defaultExpandedAppBarTitle(
         startItems: [
-          IconButton(
+          TextButton(
             onPressed: () {
               Navigator.pop(
                 context,
               );
             },
-            icon: Icon(
+            child: Icon(
               Icons.close,
               // size: getProportionateScreenWidth(context, 30),
               color: colorFont02,
