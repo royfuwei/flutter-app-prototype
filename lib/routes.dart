@@ -23,8 +23,10 @@ import 'package:seeks_app_prototype/core/test/screens/default_page.dart';
 import 'package:seeks_app_prototype/core/test/screens/dev_alert.dart';
 import 'package:seeks_app_prototype/core/test/screens/dev_api_get.dart';
 import 'package:seeks_app_prototype/core/test/screens/dev_api_post.dart';
+import 'package:seeks_app_prototype/core/test/screens/dev_biometric.dart';
 import 'package:seeks_app_prototype/core/test/screens/dev_buttom_navigation_tarbar.dart';
 import 'package:seeks_app_prototype/core/test/screens/dev_custom_scroll_view.dart';
+import 'package:seeks_app_prototype/core/test/screens/dev_geolocator.dart';
 import 'package:seeks_app_prototype/core/test/screens/dev_getx.dart';
 import 'package:seeks_app_prototype/core/test/screens/dev_inherited_widget.dart';
 import 'package:seeks_app_prototype/core/test/screens/dev_life_cycle.dart';
@@ -49,6 +51,8 @@ import 'package:seeks_app_prototype/core/test/screens/dev_image_pickers.dart';
 import 'package:seeks_app_prototype/core/test/screens/dev_provider.dart';
 import 'package:seeks_app_prototype/core/test/screens/dev_shared_preference.dart';
 import 'package:seeks_app_prototype/core/test/screens/dev_sqflite.dart';
+import 'package:seeks_app_prototype/core/test/screens/dev_url_launcher.dart';
+import 'package:seeks_app_prototype/core/test/screens/dev_webview.dart';
 import 'package:seeks_app_prototype/core/test/screens/dev_widget_key.dart';
 import 'package:seeks_app_prototype/core/test/screens/dev_widget_key_change.dart';
 import 'package:seeks_app_prototype/core/test/screens/dev_widget_key_change_less.dart';
@@ -131,6 +135,10 @@ final Map<String, WidgetBuilder> routes = {
   DevWidgetKeyChange.routeName: (context) => new DevWidgetKeyChange(),
   DevWidgetKeyChangeLess.routeName: (context) => new DevWidgetKeyChangeLess(),
   ImageSelector.routeName: (context) => new ImageSelector(),
+  DevUrlLauncher.routeName: (context) => new DevUrlLauncher(),
+  DevWebView.routeName: (context) => new DevWebView(),
+  DevBiometric.routeName: (context) => new DevBiometric(),
+  DevGeoLocator.routeName: (context) => new DevGeoLocator(),
 };
 
 void routePushNamed(BuildContext context, String route, {Object? arguments}) {

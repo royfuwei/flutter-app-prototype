@@ -4,6 +4,7 @@ import 'dart:typed_data';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:gallery_saver/gallery_saver.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:photo_manager/photo_manager.dart';
@@ -195,11 +196,24 @@ class _MediaAssetSelectorState extends State<MediaAssetSelector> {
         await ImagePicker().pickImage(source: ImageSource.camera);
     var imagePath = imagePicker!.path;
     if (imagePath != null) {
-      await GallerySaver.saveImage(imagePath);
+      Map<String, String> _headers = {};
+      // _headers = await getPickImageFromCameraPosition(_headers);
+      await GallerySaver.saveImage(imagePath, headers: _headers);
     }
     await initStateAsync();
     await _refreshFetchNewMedia(selectAlbum);
     setState(() {});
+  }
+
+  // 增加座標資訊 not working
+  getPickImageFromCameraPosition(Map<String, String> _headers) async {
+    var permission = await Geolocator.checkPermission();
+    if (permission.name != LocationPermission.denied) {
+      Position position = await Geolocator.getCurrentPosition();
+      _headers["latitude"] = "${position.latitude}";
+      _headers["longitude"] = "${position.longitude}";
+    }
+    return _headers;
   }
 
   Future<bool> saveVideoToAlbum(String urlPath) async {

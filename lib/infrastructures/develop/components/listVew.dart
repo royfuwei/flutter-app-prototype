@@ -21,8 +21,10 @@ import 'package:seeks_app_prototype/core/notification/screens/notification_open_
 import 'package:seeks_app_prototype/core/test/screens/dev_alert.dart';
 import 'package:seeks_app_prototype/core/test/screens/dev_api_get.dart';
 import 'package:seeks_app_prototype/core/test/screens/dev_api_post.dart';
+import 'package:seeks_app_prototype/core/test/screens/dev_biometric.dart';
 import 'package:seeks_app_prototype/core/test/screens/dev_buttom_navigation_tarbar.dart';
 import 'package:seeks_app_prototype/core/test/screens/dev_custom_scroll_view.dart';
+import 'package:seeks_app_prototype/core/test/screens/dev_geolocator.dart';
 import 'package:seeks_app_prototype/core/test/screens/dev_getx.dart';
 import 'package:seeks_app_prototype/core/test/screens/dev_inherited_widget.dart';
 import 'package:seeks_app_prototype/core/test/screens/dev_life_cycle.dart';
@@ -47,6 +49,8 @@ import 'package:seeks_app_prototype/core/test/screens/dev_image_pickers.dart';
 import 'package:seeks_app_prototype/core/test/screens/dev_provider.dart';
 import 'package:seeks_app_prototype/core/test/screens/dev_shared_preference.dart';
 import 'package:seeks_app_prototype/core/test/screens/dev_sqflite.dart';
+import 'package:seeks_app_prototype/core/test/screens/dev_url_launcher.dart';
+import 'package:seeks_app_prototype/core/test/screens/dev_webview.dart';
 import 'package:seeks_app_prototype/core/test/screens/dev_widget_key.dart';
 import 'package:seeks_app_prototype/core/test/screens/dev_widget_key_change.dart';
 import 'package:seeks_app_prototype/core/test/screens/dev_widget_key_change_less.dart';
@@ -286,6 +290,34 @@ List<Widget> getTestView(BuildContext context) {
       title: Text(DevWidgetKeyChangeLess.routeName),
       onTap: () {
         routePushNamed(context, DevWidgetKeyChangeLess.routeName);
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(DevUrlLauncher.routeName),
+      onTap: () {
+        routePushNamed(context, DevUrlLauncher.routeName);
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(DevWebView.routeName),
+      onTap: () {
+        routePushNamed(context, DevWebView.routeName);
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(DevBiometric.routeName),
+      onTap: () {
+        routePushNamed(context, DevBiometric.routeName);
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(DevGeoLocator.routeName),
+      onTap: () {
+        routePushNamed(context, DevGeoLocator.routeName);
       },
     ),
   ];

@@ -85,7 +85,10 @@ class _ImageSelectorState extends State<ImageSelector> {
           TextButton(
             onPressed: cropAssets.length > 0
                 ? () {
-                    print("cropAsset: ${cropAssets}");
+                    for (var cropAsset in cropAssets) {
+                      debugPrint(
+                          "cropAsset.asset.id: ${cropAsset.asset.id}, longitude: ${cropAsset.asset.longitude}, latitude: ${cropAsset.asset.latitude}");
+                    }
                   }
                 : null,
             child: Row(
