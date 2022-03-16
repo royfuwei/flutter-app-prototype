@@ -51,6 +51,7 @@ A new Flutter project.
 - [google_maps_flutter](https://pub.dev/packages/google_maps_flutter)
 - [flutter_map](https://pub.dev/packages/flutter_map)
 - [heremaps/here-sdk-ref-app-flutter](https://github.com/heremaps/here-sdk-ref-app-flutter)
+- [firebase_messaging](https://pub.dev/packages/firebase_messaging)
 
 ## ISSUE
 
