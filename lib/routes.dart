@@ -28,6 +28,7 @@ import 'package:seeks_app_prototype/core/test/screens/dev_buttom_navigation_tarb
 import 'package:seeks_app_prototype/core/test/screens/dev_custom_scroll_view.dart';
 import 'package:seeks_app_prototype/core/test/screens/dev_geolocator.dart';
 import 'package:seeks_app_prototype/core/test/screens/dev_getx.dart';
+import 'package:seeks_app_prototype/core/test/screens/dev_google_map.dart';
 import 'package:seeks_app_prototype/core/test/screens/dev_inherited_widget.dart';
 import 'package:seeks_app_prototype/core/test/screens/dev_life_cycle.dart';
 import 'package:seeks_app_prototype/core/test/screens/dev_listview_chat.dart';
@@ -139,6 +140,7 @@ final Map<String, WidgetBuilder> routes = {
   DevWebView.routeName: (context) => new DevWebView(),
   DevBiometric.routeName: (context) => new DevBiometric(),
   DevGeoLocator.routeName: (context) => new DevGeoLocator(),
+  DevGoogleMap.routeName: (context) => new DevGoogleMap(),
 };
 
 void routePushNamed(BuildContext context, String route, {Object? arguments}) {

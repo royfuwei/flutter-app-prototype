@@ -47,8 +47,19 @@ A new Flutter project.
 - [url_launcher](https://pub.dev/packages/url_launcher)
 - [local_auth](https://pub.dev/packages/local_auth)
 - [location](https://pub.dev/packages/location)
+- [mapbox_gl](https://pub.dev/packages/mapbox_gl)
+- [google_maps_flutter](https://pub.dev/packages/google_maps_flutter)
+- [flutter_map](https://pub.dev/packages/flutter_map)
+- [heremaps/here-sdk-ref-app-flutter](https://github.com/heremaps/here-sdk-ref-app-flutter)
 
 ## ISSUE
+
+### 地圖
+- [[1-1] 該選哪種地圖API？小孩子才做選擇。](https://ithelp.ithome.com.tw/articles/10238282)
+
+#### google map style
+- [Switch to Dark Mode in Real-Time With Flutter and Google Maps](https://medium.com/swlh/switch-to-dark-mode-in-real-time-with-flutter-and-google-maps-f0f080cd72e9)
+- [https://mapstyle.withgoogle.com/](https://mapstyle.withgoogle.com/)
 
 ### webview
 - [如何在 Flutter 中使用 WebView？- 小女 Android 工程師實驗筆記](https://chloe-thhsu.medium.com/%E5%A6%82%E4%BD%95%E5%9C%A8-flutter-%E4%B8%AD%E4%BD%BF%E7%94%A8-webview-%E5%B0%8F%E5%A5%B3-android-%E5%B7%A5%E7%A8%8B%E5%B8%AB%E5%AF%A6%E9%A9%97%E7%AD%86%E8%A8%98-75969b36abba)

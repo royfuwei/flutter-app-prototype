@@ -19,10 +19,6 @@ class DevGeoLocator extends StatefulWidget {
 
 class _DevGeoLocatorState extends State<DevGeoLocator> {
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-
-  final noEnrolledWording = "未啟用生物辨識";
-
-  final LocalAuthentication _localAuth = LocalAuthentication();
   String _canEvaluatePolicy = "";
   Position? position;
 

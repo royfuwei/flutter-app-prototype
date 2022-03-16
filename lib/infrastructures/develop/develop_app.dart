@@ -20,6 +20,7 @@ class DevelopApp extends StatelessWidget {
       //   splashColor: Color.fromRGBO(0, 0, 0, 0),
       // ),
       theme: theme(),
+      // darkTheme: ThemeData.dark(),
       // home: AppRoutesPage(),
       initialRoute: DevEntryPage.routeName,
       routes: routes,

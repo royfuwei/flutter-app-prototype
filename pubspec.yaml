@@ -57,6 +57,8 @@ dependencies:
   gallery_saver: ^2.3.2
   modal_bottom_sheet: ^2.0.1
   webview_flutter: ^3.0.1
+  mapbox_gl: ^0.15.0
+  flutter_map: ^0.14.0
 
 dev_dependencies:
   flutter_test:
@@ -81,6 +83,7 @@ flutter:
     - assets/images/
     - assets/logo/
     - assets/icons/
+    - assets/map_styles/
   # assets:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
