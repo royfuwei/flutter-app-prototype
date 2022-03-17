@@ -34,10 +34,12 @@ class MediaGridSelectorCrop extends StatefulWidget {
 
 class CropAssetEntity {
   AssetEntity asset;
+  EditActionDetails? editAction;
   Rect? cropRect;
 
   CropAssetEntity({
     required this.asset,
+    this.editAction,
     this.cropRect,
   });
 }
@@ -129,7 +131,8 @@ class _MediaGridSelectorCropState extends State<MediaGridSelectorCrop> {
     return NotificationListener<MediaImageCropWidgetNotification>(
       onNotification: (notification) {
         var getCropRect = notification.editorKey.currentState!.getCropRect();
-        _updateCropAssetsByCropper(asset, getCropRect);
+        var editAction = notification.editorKey.currentState!.editAction;
+        _updateCropAssetsByCropper(asset, getCropRect, editAction);
         MediaGridSelectorCropNotification(
           cropAssets: cropAssets,
         ).dispatch(context);
@@ -208,11 +211,13 @@ class _MediaGridSelectorCropState extends State<MediaGridSelectorCrop> {
     }
   }
 
-  _updateCropAssetsByCropper(AssetEntity asset, Rect? getCropRect) {
+  _updateCropAssetsByCropper(
+      AssetEntity asset, Rect? getCropRect, EditActionDetails? editAction) {
     var _cropAssetIds = cropAssets.map((e) => e.asset.id).toList();
     var _cropAssetIdx = _cropAssetIds.indexOf(asset.id);
     if (_cropAssetIdx >= 0) {
       cropAssets[_cropAssetIdx].cropRect = getCropRect;
+      cropAssets[_cropAssetIdx].editAction = editAction;
     }
   }
 
