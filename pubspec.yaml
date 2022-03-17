@@ -59,6 +59,8 @@ dependencies:
   webview_flutter: ^3.0.1
   # mapbox_gl: ^0.15.0
   flutter_map: ^0.14.0
+  firebase_messaging: ^11.2.11
+  firebase_core: ^1.13.1
 
 dev_dependencies:
   flutter_test:

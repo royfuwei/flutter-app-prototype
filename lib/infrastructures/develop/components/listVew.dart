@@ -24,6 +24,7 @@ import 'package:seeks_app_prototype/core/test/screens/dev_api_post.dart';
 import 'package:seeks_app_prototype/core/test/screens/dev_biometric.dart';
 import 'package:seeks_app_prototype/core/test/screens/dev_buttom_navigation_tarbar.dart';
 import 'package:seeks_app_prototype/core/test/screens/dev_custom_scroll_view.dart';
+import 'package:seeks_app_prototype/core/test/screens/dev_firebase.dart';
 import 'package:seeks_app_prototype/core/test/screens/dev_geolocator.dart';
 import 'package:seeks_app_prototype/core/test/screens/dev_getx.dart';
 import 'package:seeks_app_prototype/core/test/screens/dev_google_map.dart';
@@ -326,6 +327,13 @@ List<Widget> getTestView(BuildContext context) {
       title: Text(DevGoogleMap.routeName),
       onTap: () {
         routePushNamed(context, DevGoogleMap.routeName);
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(DevFirebaseFCM.routeName),
+      onTap: () {
+        routePushNamed(context, DevFirebaseFCM.routeName);
       },
     ),
   ];

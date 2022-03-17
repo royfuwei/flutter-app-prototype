@@ -8,7 +8,7 @@ A new Flutter project.
 - icon
   - [flaticon](https://www.flaticon.com/)
 
-## note
+## 隨便紀錄
 
 - 更改app name, icon
   - [Change Application Name and Icon in Flutter project(Android and iOS)](https://medium.com/@vaibhavi.rana99/change-application-name-and-icon-in-flutter-bebbec297c57)
@@ -28,9 +28,6 @@ A new Flutter project.
 - [StatefulWidget/StatelessWidget 传参及使用](https://blog.csdn.net/weixin_42322441/article/details/109237716)
 - [How to Build a Chat App UI With Flutter and Dart](https://www.freecodecamp.org/news/build-a-chat-app-ui-with-flutter/)
 
-
-
-## 隨便紀錄
 - [nicee](https://www.nicee.tw/)
 - 
 
@@ -52,8 +49,15 @@ A new Flutter project.
 - [flutter_map](https://pub.dev/packages/flutter_map)
 - [heremaps/here-sdk-ref-app-flutter](https://github.com/heremaps/here-sdk-ref-app-flutter)
 - [firebase_messaging](https://pub.dev/packages/firebase_messaging)
+- [firebase_core](https://pub.dev/packages/firebase_core)
+- [flutter_staggered_grid_view](https://pub.dev/packages/flutter_staggered_grid_view)
+- [timeline_tile](https://pub.dev/packages/timeline_tile)
+- [animated_text_kit](https://pub.dev/packages/animated_text_kit)
 
 ## ISSUE
+
+
+
 
 ### 地圖
 - [[1-1] 該選哪種地圖API？小孩子才做選擇。](https://ithelp.ithome.com.tw/articles/10238282)
