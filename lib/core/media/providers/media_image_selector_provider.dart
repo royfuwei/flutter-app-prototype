@@ -18,6 +18,11 @@ class MediaImageSelectorProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  removeItemByIndex(int idx) {
+    _selectImageInfoList.removeAt(idx);
+    notifyListeners();
+  }
+
   addItem(CropImageInfoEntity item) {
     _selectImageInfoList.add(item);
     notifyListeners();

@@ -106,17 +106,17 @@ class _ImageUploadNotifyScreenState extends State<ImageUploadNotifyScreen> {
       ),
       itemCount: selectImageInfoList.length,
       itemBuilder: (bc, idx) {
-        return genGirdViewItem(selectImageInfoList[idx]);
+        return genGirdViewItem(selectImageInfoList[idx], idx);
       },
     );
   }
 
-  genGirdViewItem(CropImageInfoEntity cropImageInfo) {
+  genGirdViewItem(CropImageInfoEntity cropImageInfo, int idx) {
     Widget _widget;
     if (cropImageInfo.id == "btn") {
       _widget = _selectImagePageBtn();
     } else {
-      _widget = _imageGridViewItem(cropImageInfo);
+      _widget = _imageGridViewItem(cropImageInfo, idx);
     }
     return _widget;
   }
@@ -166,7 +166,7 @@ class _ImageUploadNotifyScreenState extends State<ImageUploadNotifyScreen> {
     );
   }
 
-  Container _imageGridViewItem(CropImageInfoEntity cropImageInfo) {
+  Container _imageGridViewItem(CropImageInfoEntity cropImageInfo, int idx) {
     return Container(
       decoration: BoxDecoration(
         color: Colors.grey,
@@ -182,9 +182,7 @@ class _ImageUploadNotifyScreenState extends State<ImageUploadNotifyScreen> {
             child: TextButton(
               onPressed: () {
                 setState(() {
-                  selectImageInfoList.removeWhere(
-                    (element) => element.id == cropImageInfo.id,
-                  );
+                  selectImageInfoList.removeAt(idx);
                 });
               },
               style: TextButton.styleFrom(

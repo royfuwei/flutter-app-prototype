@@ -107,12 +107,12 @@ class _ImageUploadScreenState extends State<ImageUploadScreen> {
     );
   }
 
-  genGirdViewItem(CropImageInfoEntity cropImageInfo) {
+  genGirdViewItem(CropImageInfoEntity cropImageInfo, int idx) {
     Widget _widget;
     if (cropImageInfo.id == "btn") {
       _widget = _selectImagePageBtn();
     } else {
-      _widget = _imageGridViewItem(cropImageInfo);
+      _widget = _imageGridViewItem(cropImageInfo, idx);
     }
     return _widget;
   }
@@ -131,8 +131,7 @@ class _ImageUploadScreenState extends State<ImageUploadScreen> {
       ),
       itemCount: selectImageInfoList.length,
       itemBuilder: (bc, idx) {
-        print("selectImageInfoList: ${selectImageInfoList}");
-        return genGirdViewItem(selectImageInfoList[idx]);
+        return genGirdViewItem(selectImageInfoList[idx], idx);
       },
     );
   }
@@ -178,7 +177,7 @@ class _ImageUploadScreenState extends State<ImageUploadScreen> {
     );
   }
 
-  Container _imageGridViewItem(CropImageInfoEntity cropImageInfo) {
+  Container _imageGridViewItem(CropImageInfoEntity cropImageInfo, int idx) {
     return Container(
       decoration: BoxDecoration(
         color: Colors.grey,
@@ -195,7 +194,8 @@ class _ImageUploadScreenState extends State<ImageUploadScreen> {
               onPressed: () {
                 context
                     .read<MediaImageSelectorProvider>()
-                    .removeItemById(cropImageInfo.id);
+                    // .removeItemById(cropImageInfo.id);
+                    .removeItemByIndex(idx - 1);
               },
               style: TextButton.styleFrom(
                 backgroundColor: Colors.black54,
