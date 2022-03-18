@@ -96,8 +96,6 @@ class _MediaGridSelectorState extends State<MediaGridSelector> {
   bodyGridViewNotification() {
     return NotificationListener<MediaAssetSelectorNotification>(
       onNotification: ((notification) {
-        print("notification.selectAssets: ${notification.selectAssets}");
-        print("notification.selectAsset: ${notification.selectAsset}");
         selectAsset = notification.selectAsset;
         if (notification.isSelectMulti &&
             notification.selectAssets.length != 0) {
@@ -138,8 +136,6 @@ class _MediaGridSelectorState extends State<MediaGridSelector> {
   }
 
   _removeSelectAssetWidget() {
-    print(
-        "_removeSelectAssetWidget start selectAssetWidgets: ${selectAssetWidgets}");
     var selectAssetKeys = selectAssets
         .map(
           (e) => Key(e.id),
@@ -160,13 +156,9 @@ class _MediaGridSelectorState extends State<MediaGridSelector> {
         }
       }
     }
-    print(
-        "_removeSelectAssetWidget end selectAssetWidgets: ${selectAssetWidgets}");
   }
 
   _addSelectAssetWidget() {
-    print(
-        "_addSelectAssetWidget start selectAssetWidgets: ${selectAssetWidgets}");
     var selectAssetWidgetKeys = selectAssetWidgets
         .map(
           (e) => e.key,
@@ -185,8 +177,6 @@ class _MediaGridSelectorState extends State<MediaGridSelector> {
         });
       }
     }
-    print(
-        "_addSelectAssetWidget end selectAssetWidgets: ${selectAssetWidgets}");
   }
 
   genBodyImage(AssetEntity asset) {

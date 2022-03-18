@@ -5,6 +5,7 @@ import 'package:seeks_app_prototype/core/entry/screens/entry_screen.dart';
 import 'package:seeks_app_prototype/core/home/screens/home_screen.dart';
 import 'package:seeks_app_prototype/core/image/screens/image_picker.dart';
 import 'package:seeks_app_prototype/core/image/screens/image_upload.dart';
+import 'package:seeks_app_prototype/core/image/screens/image_upload_notify.dart';
 import 'package:seeks_app_prototype/core/location/screens/location_open_screen.dart';
 import 'package:seeks_app_prototype/core/login/screens/login_screen.dart';
 import 'package:seeks_app_prototype/core/login/screens/login_splash_screen.dart';
@@ -486,6 +487,13 @@ List<Widget> getDevView(BuildContext context) {
       title: Text(ImageSelector.routeName),
       onTap: () {
         routePushNamed(context, ImageSelector.routeName);
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(ImageUploadNotifyScreen.routeName),
+      onTap: () {
+        routePushNamed(context, ImageUploadNotifyScreen.routeName);
       },
     ),
   ];

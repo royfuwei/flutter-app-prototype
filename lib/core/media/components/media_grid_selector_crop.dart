@@ -116,9 +116,22 @@ class _MediaGridSelectorCropState extends State<MediaGridSelectorCrop> {
   bodyGridViewNotification() {
     return NotificationListener<MediaAssetSelectorNotification>(
       onNotification: ((notification) {
+        bool isDispatchNotify = false;
+        if (notification.selectAssets.length < cropAssets.length) {
+          isDispatchNotify = true;
+        }
         _updateNotifySelectAssets(notification);
         _getCropAssetsByNotifySelectAssets(notification);
         _notifySelectAssetWidget(notification);
+        print(
+            "bodyGridViewNotification cropAssets.length: ${cropAssets.length}");
+        print(
+            "bodyGridViewNotification notifySelectAssets.length: ${notifySelectAssets.length}");
+        if (isDispatchNotify == true) {
+          MediaGridSelectorCropNotification(
+            cropAssets: cropAssets,
+          ).dispatch(context);
+        }
         return true;
       }),
       child: Expanded(
@@ -133,6 +146,10 @@ class _MediaGridSelectorCropState extends State<MediaGridSelectorCrop> {
         var getCropRect = notification.editorKey.currentState!.getCropRect();
         var editAction = notification.editorKey.currentState!.editAction;
         _updateCropAssetsByCropper(asset, getCropRect, editAction);
+        print(
+            "cropAssetWidgetNotification cropAssets.length: ${cropAssets.length}");
+        print(
+            "cropAssetWidgetNotification notifySelectAssets.length: ${notifySelectAssets.length}");
         MediaGridSelectorCropNotification(
           cropAssets: cropAssets,
         ).dispatch(context);

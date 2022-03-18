@@ -6,6 +6,7 @@ import 'package:seeks_app_prototype/core/forgot_password/screens/forgot_password
 import 'package:seeks_app_prototype/core/home/screens/home_screen.dart';
 import 'package:seeks_app_prototype/core/image/screens/image_picker.dart';
 import 'package:seeks_app_prototype/core/image/screens/image_upload.dart';
+import 'package:seeks_app_prototype/core/image/screens/image_upload_notify.dart';
 import 'package:seeks_app_prototype/core/location/screens/location_open_screen.dart';
 import 'package:seeks_app_prototype/core/login/screens/login_screen.dart';
 import 'package:seeks_app_prototype/core/main/screens/main_screen.dart';
@@ -51,6 +52,7 @@ import 'package:seeks_app_prototype/core/test/screens/dev_image_picker.dart';
 import 'package:seeks_app_prototype/core/test/screens/dev_image_ig_picker.dart';
 import 'package:seeks_app_prototype/core/test/screens/dev_image_pickers.dart';
 import 'package:seeks_app_prototype/core/test/screens/dev_provider.dart';
+import 'package:seeks_app_prototype/core/test/screens/dev_provider2.dart';
 import 'package:seeks_app_prototype/core/test/screens/dev_shared_preference.dart';
 import 'package:seeks_app_prototype/core/test/screens/dev_sqflite.dart';
 import 'package:seeks_app_prototype/core/test/screens/dev_url_launcher.dart';
@@ -143,6 +145,8 @@ final Map<String, WidgetBuilder> routes = {
   DevGeoLocator.routeName: (context) => new DevGeoLocator(),
   DevGoogleMap.routeName: (context) => new DevGoogleMap(),
   DevFirebaseFCM.routeName: (context) => new DevFirebaseFCM(),
+  DevProvider2.routeName: (context) => new DevProvider2(),
+  ImageUploadNotifyScreen.routeName: (context) => new ImageUploadNotifyScreen(),
 };
 
 void routePushNamed(BuildContext context, String route, {Object? arguments}) {

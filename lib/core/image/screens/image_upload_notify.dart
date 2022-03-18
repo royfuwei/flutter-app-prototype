@@ -1,9 +1,9 @@
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:seeks_app_prototype/configs/size_config.dart';
 import 'package:seeks_app_prototype/constants.dart';
+import 'package:seeks_app_prototype/core/common/components/default_app_bar.dart';
 import 'package:seeks_app_prototype/core/common/components/default_flow_content.dart';
 import 'package:seeks_app_prototype/core/common/components/default_title.dart';
 import 'package:seeks_app_prototype/core/common/components/status_button.dart';
@@ -13,22 +13,22 @@ import 'package:seeks_app_prototype/core/test/screens/dev_image_pickers.dart';
 import 'package:seeks_app_prototype/core/users/screens/user_create_info_screen.dart';
 import 'package:seeks_app_prototype/routes.dart';
 
-class ImageUploadScreen extends StatefulWidget {
-  static String routeName = "image/upload";
-  const ImageUploadScreen({Key? key}) : super(key: key);
+class ImageUploadNotifyScreen extends StatefulWidget {
+  static String routeName = "image/upload_notify";
+  const ImageUploadNotifyScreen({Key? key}) : super(key: key);
 
   @override
-  _ImageUploadScreenState createState() => _ImageUploadScreenState();
+  _ImageUploadNotifyScreenState createState() =>
+      _ImageUploadNotifyScreenState();
 }
 
-class _ImageUploadScreenState extends State<ImageUploadScreen> {
+class _ImageUploadNotifyScreenState extends State<ImageUploadNotifyScreen> {
   bool goNext = false;
   List<CropImageInfoEntity> selectImageInfoList = [];
 
   @override
   void initState() {
     super.initState();
-    context.read<MediaImageSelectorProvider>().clear();
     genSelectImageInfoList();
   }
 
@@ -36,85 +36,60 @@ class _ImageUploadScreenState extends State<ImageUploadScreen> {
     if (selectImageInfoList.length == 0) {
       selectImageInfoList.add(
         CropImageInfoEntity(
-          id: "btn",
-          data: Uint8List.fromList([]),
-          shape: BoxShape.rectangle,
-        ),
+            id: "btn", data: Uint8List.fromList([]), shape: BoxShape.rectangle),
       );
     }
-  }
-
-  genProviderSelectImageInfoList(
-    List<CropImageInfoEntity> selectImageInfoList,
-  ) {
-    List<CropImageInfoEntity> temp = [
-      CropImageInfoEntity(
-        id: "btn",
-        data: Uint8List.fromList([]),
-        shape: BoxShape.rectangle,
-      ),
-    ];
-    temp.addAll(selectImageInfoList);
-    return temp;
+    /* List<CropImageInfoEntity> temp = [];
+    for (var selectImageInfo in selectImageInfoList) {
+      temp.add(selectImageInfo);
+    }
+    selectImageInfoList.addAll(temp); */
   }
 
   @override
   Widget build(BuildContext context) {
-    var _widget = buildWidget();
-    return _widget;
-  }
-
-  buildWidget() {
-    return Consumer<MediaImageSelectorProvider>(
-      builder: (bc, model, wg) {
-        print("Consumer model: ${model.selectImageInfoList}");
-        // selectImageInfoList.addAll(model.selectImageInfoList);
-        selectImageInfoList =
-            genProviderSelectImageInfoList(model.selectImageInfoList);
-
-        return Container(
-          child: DefaultFlowPage(
-            // contentMainAxisAlignment: MainAxisAlignment.start,
-            content: [
-              DefaultTitle(
-                title: "上傳照片",
-                subTitle: "請至少上傳一張照片",
-              ),
-              VerticalSpacing(of: 25),
-              Container(
-                height: MediaQuery.of(context).size.height * 0.6,
-                child: getGirdView(),
-              ),
-            ],
-            buttom: [
-              Padding(
-                padding: EdgeInsets.symmetric(
-                  vertical: getProportionateScreenHeight(context, 24),
-                  // horizontal: getProportionateScreenWidth(context, 100),
-                ),
-                child: StatusButton(
-                  text: "下一步",
-                  isDisabled: selectImageInfoList.length - 1 <= 0,
-                  press: () {
-                    routePushNamed(context, UserCreateInfoScreen.routeName);
-                  },
-                ),
-              ),
-            ],
+    return Container(
+      child: DefaultFlowPage(
+        // contentMainAxisAlignment: MainAxisAlignment.start,
+        content: [
+          DefaultTitle(
+            title: "上傳照片",
+            subTitle: "請至少上傳一張照片",
           ),
-        );
-      },
+          VerticalSpacing(of: 25),
+          Container(
+            height: MediaQuery.of(context).size.height * 0.5,
+            // height: MediaQuery.of(context).size.height * 0.3,
+            // child: getGirdView(),
+            child: getGirdView(),
+          ),
+        ],
+        buttom: [
+          Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: getProportionateScreenHeight(context, 24),
+              // horizontal: getProportionateScreenWidth(context, 100),
+            ),
+            child: StatusButton(
+              text: "下一步",
+              isDisabled: selectImageInfoList.length - 1 <= 0,
+              press: () {
+                routePushNamed(context, UserCreateInfoScreen.routeName);
+              },
+            ),
+          ),
+        ],
+      ),
     );
   }
 
-  genGirdViewItem(CropImageInfoEntity cropImageInfo) {
-    Widget _widget;
-    if (cropImageInfo.id == "btn") {
-      _widget = _selectImagePageBtn();
-    } else {
-      _widget = _imageGridViewItem(cropImageInfo);
-    }
-    return _widget;
+  appBar() {
+    return AppBar(
+      iconTheme: IconThemeData(color: seeksLoginColor01),
+      elevation: 0,
+      backgroundColor: colorBarWhite,
+      title: defaultExpandedAppBarTitle(),
+    );
   }
 
   getGirdView() {
@@ -131,10 +106,19 @@ class _ImageUploadScreenState extends State<ImageUploadScreen> {
       ),
       itemCount: selectImageInfoList.length,
       itemBuilder: (bc, idx) {
-        print("selectImageInfoList: ${selectImageInfoList}");
         return genGirdViewItem(selectImageInfoList[idx]);
       },
     );
+  }
+
+  genGirdViewItem(CropImageInfoEntity cropImageInfo) {
+    Widget _widget;
+    if (cropImageInfo.id == "btn") {
+      _widget = _selectImagePageBtn();
+    } else {
+      _widget = _imageGridViewItem(cropImageInfo);
+    }
+    return _widget;
   }
 
   Widget _selectImagePageBtn() {
@@ -148,6 +132,7 @@ class _ImageUploadScreenState extends State<ImageUploadScreen> {
         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
           RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(10.0)),
+            // side: BorderSide(color: Colors.red),
           ),
         ),
       ),
@@ -166,6 +151,9 @@ class _ImageUploadScreenState extends State<ImageUploadScreen> {
       builder: (BuildContext bc) {
         return NotificationListener<ImageSelectorNotification>(
           onNotification: (notification) {
+            setState(() {
+              selectImageInfoList.addAll(notification.selectImageInfoList);
+            });
             Navigator.pop(context);
             return true;
           },
@@ -190,12 +178,14 @@ class _ImageUploadScreenState extends State<ImageUploadScreen> {
         alignment: Alignment.topRight,
         children: [
           Transform.translate(
-            offset: Offset(1, -1),
+            offset: Offset(0, 0),
             child: TextButton(
               onPressed: () {
-                context
-                    .read<MediaImageSelectorProvider>()
-                    .removeItemById(cropImageInfo.id);
+                setState(() {
+                  selectImageInfoList.removeWhere(
+                    (element) => element.id == cropImageInfo.id,
+                  );
+                });
               },
               style: TextButton.styleFrom(
                 backgroundColor: Colors.black54,

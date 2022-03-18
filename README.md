@@ -53,10 +53,12 @@ A new Flutter project.
 - [flutter_staggered_grid_view](https://pub.dev/packages/flutter_staggered_grid_view)
 - [timeline_tile](https://pub.dev/packages/timeline_tile)
 - [animated_text_kit](https://pub.dev/packages/animated_text_kit)
+- [flutter_bloc](https://pub.dev/packages/flutter_bloc)
 
 ## ISSUE
 
-
+### Flutter 狀態管理
+- [Flutter状态管理框架使用比较](https://blog.csdn.net/blog_jihq/article/details/114288114)
 
 
 ### 地圖

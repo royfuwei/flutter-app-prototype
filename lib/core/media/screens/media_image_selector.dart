@@ -4,10 +4,12 @@ import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:image/image.dart' as DartImageEdit;
 import 'package:photo_manager/photo_manager.dart';
+import 'package:provider/provider.dart';
 import 'package:seeks_app_prototype/configs/size_config.dart';
 import 'package:seeks_app_prototype/constants.dart';
 import 'package:seeks_app_prototype/core/common/components/default_app_bar.dart';
 import 'package:seeks_app_prototype/core/media/components/media_grid_selector_crop.dart';
+import 'package:seeks_app_prototype/core/media/providers/media_image_selector_provider.dart';
 import 'package:seeks_app_prototype/core/media/widgets/media_image_crop_widget.dart';
 
 class ImageSelectorNotification extends Notification {
@@ -50,6 +52,13 @@ class _ImageSelectorState extends State<ImageSelector> {
   List<CropAssetEntity> cropAssets = [];
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    // context.read<MediaImageSelectorProvider>().clear();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Navigator(
       pages: [
@@ -70,7 +79,7 @@ class _ImageSelectorState extends State<ImageSelector> {
 
     print('getCropRect : $cropRect');
 
-    var data = await asset.originBytes;
+    var data = await asset.thumbDataWithSize(1000, 1000);
     if (data != null) {
       DartImageEdit.Image? src = DartImageEdit.decodeImage(data);
       if (src != null) {
@@ -109,6 +118,7 @@ class _ImageSelectorState extends State<ImageSelector> {
   }
 
   _cropCropAssets() async {
+    print("_cropCropAssets cropAssets.length: ${cropAssets.length}");
     List<CropImageInfoEntity> temp = [];
     for (var cropAsset in cropAssets) {
       debugPrint("id: ${cropAsset.asset.id}");
@@ -129,16 +139,22 @@ class _ImageSelectorState extends State<ImageSelector> {
       );
       temp.add(cropImageInfoEntity);
     }
-
-    print("temp: ${temp}");
-
+    print("temp.length: ${temp.length}");
     ImageSelectorNotification(selectImageInfoList: temp).dispatch(context);
+
+    var selectImageInfoList =
+        context.read<MediaImageSelectorProvider>().selectImageInfoList;
+    print("context.read selectImageInfoList: ${selectImageInfoList}");
+
+    // context.read<MediaImageSelectorProvider>().setSelectImageInfoList(temp);
+    context.read<MediaImageSelectorProvider>().addItemByList(temp);
   }
 
   body() {
     return NotificationListener<MediaGridSelectorCropNotification>(
       onNotification: (notification) {
         cropAssets = notification.cropAssets;
+        print("media_image_selector cropAssets: ${cropAssets.length}");
         setState(() {});
         return true;
       },

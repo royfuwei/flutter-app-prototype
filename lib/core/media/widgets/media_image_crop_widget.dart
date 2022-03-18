@@ -71,7 +71,7 @@ class _MediaImageCropWidgetState extends State<MediaImageCropWidget>
     _widget = GestureDetector(
       key: widget.key,
       child: FutureBuilder(
-        future: widget.asset.originBytes,
+        future: widget.asset.thumbDataWithSize(1000, 1000),
         builder: (BuildContext bc, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
             return Container(
@@ -129,33 +129,33 @@ class _MediaImageCropWidgetState extends State<MediaImageCropWidget>
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    print("${widget.asset.id}:  A2. widget didChangeDependencies");
+    // print("${widget.asset.id}:  A2. widget didChangeDependencies");
   }
 
   @override
   void didUpdateWidget(MediaImageCropWidget oldWidget) {
     super.didUpdateWidget(oldWidget);
-    print("${widget.asset.id}: A3. widget didUpdateWidget");
-    print("oldWidget: ${oldWidget}");
+    // print("${widget.asset.id}: A3. widget didUpdateWidget");
+    // print("oldWidget: ${oldWidget}");
   }
 
   @override
   void reassemble() {
     super.reassemble();
-    print("${widget.asset.id}: D1. widget reassemble");
+    // print("${widget.asset.id}: D1. widget reassemble");
   }
 
   @override
   void deactivate() {
     super.deactivate();
-    print("${widget.asset.id}: Z1. widget deactivate");
+    // print("${widget.asset.id}: Z1. widget deactivate");
   }
 
   @override
   void dispose() {
     super.dispose();
     WidgetsBinding.instance!.removeObserver(this);
-    print("${widget.asset.id}: Z2. widget dispose");
+    // print("${widget.asset.id}: Z2. widget dispose");
     editorKey.currentState?.dispose();
   }
 
