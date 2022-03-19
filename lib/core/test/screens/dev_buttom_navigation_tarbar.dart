@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:seeks_app_prototype/configs/size_config.dart';
 import 'package:seeks_app_prototype/constants.dart';
+import 'package:seeks_app_prototype/infrastructures/util/keep-alive-wrapper.dart';
 
 class DevBottomNavigationTabBar extends StatefulWidget {
   static String routeName = "dev/buttom_navigation_tarbar";
@@ -18,13 +19,30 @@ class _DevBottomNavigationTabBarState extends State<DevBottomNavigationTabBar> {
 
   int currentIndex = 1;
   final pages = [
-    CenterMessageWidget(
-        centerMessage: "首頁", backgroundColor: Colors.lightGreenAccent),
+    KeepAliveWrapper(
+      child: CenterMessageWidget(
+        centerMessage: "首頁",
+        backgroundColor: Colors.lightGreenAccent,
+      ),
+      keepAlive: true,
+    ),
     LessonPageTabBar(),
-    CenterMessageWidget(
-        centerMessage: "第三頁", backgroundColor: Colors.lightBlueAccent),
-    CenterMessageWidget(centerMessage: "第四頁", backgroundColor: Colors.grey),
-    CenterMessageWidget(centerMessage: "第五頁", backgroundColor: Colors.grey),
+    KeepAliveWrapper(
+      child: CenterMessageWidget(
+        centerMessage: "第三頁",
+        backgroundColor: Colors.lightBlueAccent,
+      ),
+    ),
+    KeepAliveWrapper(
+      child: CenterMessageWidget(
+        centerMessage: "第四頁",
+        backgroundColor: Colors.grey,
+      ),
+    ),
+    KeepAliveWrapper(
+      child: CenterMessageWidget(
+          centerMessage: "第五頁", backgroundColor: Colors.grey),
+    ),
   ];
   final items = [
     BottomNavigationBarItem(
@@ -79,11 +97,24 @@ class LessonPageTabBar extends StatelessWidget {
     // CenterMessageWidget("2.1頁", Colors.redAccent),
     // CenterMessageWidget("2.2頁", Colors.yellow),
     // CenterMessageWidget("2.3頁", Colors.pinkAccent),
-    CenterMessageWidget(
-        centerMessage: "2.1頁", backgroundColor: Colors.redAccent),
-    CenterMessageWidget(centerMessage: "2.2頁", backgroundColor: Colors.yellow),
-    CenterMessageWidget(
-        centerMessage: "2.3頁", backgroundColor: Colors.pinkAccent),
+    KeepAliveWrapper(
+      child: CenterMessageWidget(
+        centerMessage: "2.1頁",
+        backgroundColor: Colors.redAccent,
+      ),
+    ),
+    KeepAliveWrapper(
+      child: CenterMessageWidget(
+        centerMessage: "2.2頁",
+        backgroundColor: Colors.yellow,
+      ),
+    ),
+    KeepAliveWrapper(
+      child: CenterMessageWidget(
+        centerMessage: "2.3頁",
+        backgroundColor: Colors.pinkAccent,
+      ),
+    ),
   ];
   final tabs = [Tab(text: "第2.1頁"), Tab(text: "第2.2頁"), Tab(text: "第2.3頁")];
 
@@ -118,8 +149,7 @@ class CenterMessageWidget extends StatefulWidget {
   State<CenterMessageWidget> createState() => _CenterMessageWidgetState();
 }
 
-class _CenterMessageWidgetState extends State<CenterMessageWidget>
-    with AutomaticKeepAliveClientMixin {
+class _CenterMessageWidgetState extends State<CenterMessageWidget> {
   bool istap = false;
   @override
   Widget build(BuildContext context) {
@@ -140,10 +170,6 @@ class _CenterMessageWidgetState extends State<CenterMessageWidget>
       ),
     );
   }
-
-  @override
-  // TODO: implement wantKeepAlive
-  bool get wantKeepAlive => true;
 }
 /* class CenterMessageWidget extends StatelessWidget {
   String centerMessage = "";

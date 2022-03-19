@@ -51,7 +51,7 @@ class MediaImageCropWidget extends StatefulWidget {
 }
 
 class _MediaImageCropWidgetState extends State<MediaImageCropWidget>
-    with WidgetsBindingObserver, AutomaticKeepAliveClientMixin {
+    with WidgetsBindingObserver {
   GlobalKey<ExtendedImageEditorState> editorKey =
       GlobalKey<ExtendedImageEditorState>();
 
@@ -158,8 +158,4 @@ class _MediaImageCropWidgetState extends State<MediaImageCropWidget>
     // print("${widget.asset.id}: Z2. widget dispose");
     editorKey.currentState?.dispose();
   }
-
-  @override
-  // TODO: implement wantKeepAlive
-  bool get wantKeepAlive => true;
 }

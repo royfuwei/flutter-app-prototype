@@ -11,6 +11,7 @@ import 'package:seeks_app_prototype/core/common/components/default_app_bar.dart'
 import 'package:seeks_app_prototype/core/media/components/media_asset_selector.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:seeks_app_prototype/core/media/widgets/media_view_widget.dart';
+import 'package:seeks_app_prototype/infrastructures/util/keep-alive-wrapper.dart';
 
 class MediaGridSelector extends StatefulWidget {
   static String routeName = "media/cpt/grid_selector";
@@ -168,9 +169,11 @@ class _MediaGridSelectorState extends State<MediaGridSelector> {
       Key widgetKey = Key(selectAsset.id);
       bool hasWidget = selectAssetWidgetKeys.indexOf(widgetKey) >= 0;
       if (!hasWidget) {
-        var _widget = new MediaViewWidget(
-          asset: selectAsset,
+        var _widget = KeepAliveWrapper(
           key: Key(selectAsset.id),
+          child: new MediaViewWidget(
+            asset: selectAsset,
+          ),
         );
         setState(() {
           selectAssetWidgets.add(_widget);

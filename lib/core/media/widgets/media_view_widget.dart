@@ -16,7 +16,7 @@ class MediaViewWidget extends StatefulWidget {
 }
 
 class _MediaViewWidgetState extends State<MediaViewWidget>
-    with WidgetsBindingObserver, AutomaticKeepAliveClientMixin {
+    with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(

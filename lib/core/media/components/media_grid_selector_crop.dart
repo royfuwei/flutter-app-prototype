@@ -10,6 +10,7 @@ import 'package:seeks_app_prototype/core/common/components/default_app_bar.dart'
 import 'package:seeks_app_prototype/core/media/components/media_asset_selector.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:seeks_app_prototype/core/media/widgets/media_image_crop_widget.dart';
+import 'package:seeks_app_prototype/infrastructures/util/keep-alive-wrapper.dart';
 
 class MediaGridSelectorCropNotification extends Notification {
   List<CropAssetEntity> cropAssets = [];
@@ -155,11 +156,13 @@ class _MediaGridSelectorCropState extends State<MediaGridSelectorCrop> {
         ).dispatch(context);
         return true;
       },
-      child: MediaImageCropWidget(
-        asset: asset,
-        key: Key(asset.id),
-        shape: widget.shape,
-        cropAspectRatios: widget.cropAspectRatios,
+      child: KeepAliveWrapper(
+        child: MediaImageCropWidget(
+          asset: asset,
+          key: Key(asset.id),
+          shape: widget.shape,
+          cropAspectRatios: widget.cropAspectRatios,
+        ),
       ),
     );
   }
