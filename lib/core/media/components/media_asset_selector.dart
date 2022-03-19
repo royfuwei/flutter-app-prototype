@@ -374,10 +374,12 @@ class _MediaAssetSelectorState extends State<MediaAssetSelector> {
 
   _fetchNewMedia() async {
     lastPage = currentPage;
-    var isReqPermission = await PhotoManager.requestPermission();
-    if (!isReqPermission) {
+    var reqPermission = await PhotoManager.requestPermissionExtend();
+    print("reqPermission.name: ${reqPermission.name}");
+    if (reqPermission.name == PermissionState.denied) {
       return;
     }
+
     List<AssetEntity> media =
         await selectAlbum.getAssetListPaged(currentPage, 40);
     List<MediaAssetModel> temp = [];

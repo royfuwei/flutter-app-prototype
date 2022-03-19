@@ -95,3 +95,16 @@ A new Flutter project.
 
 ### ios 企業憑證
 
+
+
+## fcm
+
+```
+flutter: User granted permission: AuthorizationStatus.denied
+flutter: APNSToken: 5A35183762724398D5AF6D7E814B5F7533AA822C6A2CCB81452DF41CC866C8E1
+flutter: FCMToken: dUiJHrhrGEG9msxQSQ9xuw:APA91bH8MSHpe8EZDA98IR9h6fUal1MSRhsr_SsKmsWZw9iMr1BAVyMO9Gs_-iUrQFDqGSoUwZ6G6uSiLXMvGwM7SY71USBJcz_ksddocaAYahMFdt2y94MPqZT3mReJkW5nDmUSh-zC
+
+flutter: User granted permission: AuthorizationStatus.denied
+flutter: APNSToken: 35D4D2167DB5C476F5956AC576790F6FBAF0A68271DAAF5BF1A138909A0C09F6
+flutter: FCMToken: f2DTfW6CZ0EFlAdnaTPhO0:APA91bGLzrd5ZTQvoId4FyCPAWrQGWgMOp4lLh9tGYNccWxD-iq3YYlpFo8-T9MUCnI5K36pwUjUdW2hBOkDXQaww_wgIlq5EjAfkEsQxaWeeUqr5v2t7otb7FJ9PTRNtI5VNUeJ8vYb
+```

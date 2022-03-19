@@ -5,6 +5,7 @@ import 'package:seeks_app_prototype/core/common/components/default_title.dart';
 import 'package:seeks_app_prototype/core/common/components/status_button.dart';
 import 'package:seeks_app_prototype/core/image/screens/image_picker.dart';
 import 'package:seeks_app_prototype/core/image/screens/image_upload.dart';
+import 'package:seeks_app_prototype/infrastructures/fcm/push-notification.dart';
 import 'package:seeks_app_prototype/routes.dart';
 
 class NotificationOpenScreen extends StatefulWidget {
@@ -17,6 +18,18 @@ class NotificationOpenScreen extends StatefulWidget {
 
 class _NotificationOpenScreenState extends State<NotificationOpenScreen> {
   bool goNext = false;
+
+  @override
+  void initState() {
+    super.initState();
+    asyncInitState();
+  }
+
+  asyncInitState() async {
+    // var permission = await PushNotificationManager.requestPermission();
+    // print("PushNotificationManager permission: ${permission.name}");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -46,7 +59,7 @@ class _NotificationOpenScreenState extends State<NotificationOpenScreen> {
               text: "開啟通知",
               isDisabled: goNext,
               press: () {
-                routePushNamed(context, ImageUploadScreen.routeName);
+                _openPushNotification();
               },
             ),
           ),
@@ -66,5 +79,10 @@ class _NotificationOpenScreenState extends State<NotificationOpenScreen> {
         ],
       ),
     );
+  }
+
+  _openPushNotification() async {
+    await PushNotificationManager.init();
+    routePushNamed(context, ImageUploadScreen.routeName);
   }
 }
