@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:seeks_app_prototype/configs/size_config.dart';
-import 'package:seeks_app_prototype/constants.dart';
 import 'package:seeks_app_prototype/core/common/components/input_text_field.dart';
 
 class UserCreateForm extends StatefulWidget {

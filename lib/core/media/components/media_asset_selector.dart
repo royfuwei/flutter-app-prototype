@@ -25,7 +25,7 @@ class MediaAssetSelectorNotification extends Notification {
 }
 
 class MediaAssetSelector extends StatefulWidget {
-  static String routeName = 'media/cpt/asset_selector';
+  static String routeName = '/media/cpt/asset_selector';
   const MediaAssetSelector({Key? key}) : super(key: key);
 
   @override

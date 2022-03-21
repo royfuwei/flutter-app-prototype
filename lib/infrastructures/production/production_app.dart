@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:seeks_app_prototype/configs/theme.dart';
-import 'package:seeks_app_prototype/core/entry/screens/entry_screen.dart';
-import 'package:seeks_app_prototype/core/login/screens/login_screen.dart';
-import 'package:seeks_app_prototype/routes.dart';
+import 'package:seeks_app_prototype/core/login/pages/login.page.dart';
+import 'package:seeks_app_prototype/routes/default_routes.dart';
 
 class ProductionApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -22,7 +21,7 @@ class ProductionApp extends StatelessWidget {
       // ),
       theme: theme(),
       // home: AppRoutesPage(),
-      initialRoute: LoginScreen.routeName,
+      initialRoute: LoginPage.routeName,
       routes: routes,
     );
   }

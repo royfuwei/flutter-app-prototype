@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:seeks_app_prototype/constants.dart';
 import 'package:seeks_app_prototype/core/common/components/default_button.dart';
-import 'package:seeks_app_prototype/core/login/screens/login_screen.dart';
+import 'package:seeks_app_prototype/core/login/pages/login.page.dart';
 import 'package:seeks_app_prototype/configs/size_config.dart';
 import 'package:seeks_app_prototype/core/splash/components/splash_content.dart';
 
@@ -69,7 +69,7 @@ class _BodyState extends State<Body> {
                 DefaultButton(
                   text: getButtonText(),
                   press: () {
-                    Navigator.pushNamed(context, LoginScreen.routeName);
+                    Navigator.pushNamed(context, LoginPage.routeName);
                   },
                 ),
               ],

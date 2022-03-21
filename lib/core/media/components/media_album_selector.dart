@@ -12,7 +12,7 @@ class SelectMediaAlbumNotification extends Notification {
 }
 
 class MediaAlbumSelector extends StatefulWidget {
-  static String routeName = 'media/cpt/album_selector';
+  static String routeName = '/media/cpt/album_selector';
   const MediaAlbumSelector({
     Key? key,
   }) : super(key: key);

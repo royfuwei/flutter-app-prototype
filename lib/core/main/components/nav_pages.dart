@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:seeks_app_prototype/core/dating/screens/dating_add_screen.dart';
-import 'package:seeks_app_prototype/core/home/screens/home_screen.dart';
-import 'package:seeks_app_prototype/core/chat/screens/chat_list_screen.dart';
-import 'package:seeks_app_prototype/core/more/screens/more_screen.dart';
-import 'package:seeks_app_prototype/core/notification/screens/notfication_screen.dart';
+import 'package:seeks_app_prototype/core/dating/pages/dating_add.page.dart';
+import 'package:seeks_app_prototype/core/home/pages/home.page.dart';
+import 'package:seeks_app_prototype/core/chat/pages/chat_list.page.dart';
+import 'package:seeks_app_prototype/core/more/pages/more.page.dart';
+import 'package:seeks_app_prototype/core/notification/pages/notfication.page.dart';
 
 List<Widget> navPages = [
-  HomeScreen(),
-  NotificationScreen(),
-  DatingAddScreen(),
-  ChatListScreen(),
-  MoreScreen(),
+  HomePage(),
+  NotificationPage(),
+  DatingAddPage(),
+  ChatListPage(),
+  MorePage(),
 ];
 
 List<BottomNavigationBarItem> navPagesBottomBarItems = [

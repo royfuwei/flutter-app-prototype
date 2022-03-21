@@ -3,9 +3,7 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import 'package:seeks_app_prototype/core/common/components/no_account_text.dart';
 import 'package:seeks_app_prototype/constants.dart';
 import 'package:seeks_app_prototype/core/login/components/login_form.dart';
-import 'package:seeks_app_prototype/core/login/screens/login_screen.dart';
 import 'package:seeks_app_prototype/configs/size_config.dart';
-import 'package:seeks_app_prototype/routes.dart';
 
 class Body extends StatelessWidget {
   @override
@@ -60,9 +58,7 @@ class Body extends StatelessWidget {
                 ),
               ),
               IconButton(
-                onPressed: () {
-                  routePushNamedAndRemoveUntil(context, DevRoutes.home);
-                },
+                onPressed: () {},
                 icon: Icon(
                   MdiIcons.fromString("twitter"),
                 ),

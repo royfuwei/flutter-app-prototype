@@ -1,9 +1,5 @@
-import 'dart:io';
 import 'dart:typed_data';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:image_crop/image_crop.dart';
-import 'package:image_cropper/image_cropper.dart';
 import 'package:photo_manager/photo_manager.dart';
 import 'package:seeks_app_prototype/configs/size_config.dart';
 import 'package:seeks_app_prototype/constants.dart';
@@ -11,10 +7,10 @@ import 'package:seeks_app_prototype/core/common/components/default_app_bar.dart'
 import 'package:seeks_app_prototype/core/media/components/media_asset_selector.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:seeks_app_prototype/core/media/widgets/media_view_widget.dart';
-import 'package:seeks_app_prototype/infrastructures/util/keep-alive-wrapper.dart';
+import 'package:seeks_app_prototype/infrastructures/util/keep_alive_wrapper.dart';
 
 class MediaGridSelector extends StatefulWidget {
-  static String routeName = "media/cpt/grid_selector";
+  static String routeName = "/media/cpt/grid_selector";
   const MediaGridSelector({Key? key}) : super(key: key);
 
   @override

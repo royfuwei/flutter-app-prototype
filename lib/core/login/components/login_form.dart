@@ -3,9 +3,10 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import 'package:seeks_app_prototype/core/common/components/default_button.dart';
 import 'package:seeks_app_prototype/core/common/components/form_error.dart';
 import 'package:seeks_app_prototype/constants.dart';
-import 'package:seeks_app_prototype/core/forgot_password/screens/forgot_password_screen.dart';
+import 'package:seeks_app_prototype/core/entry/pages/entry.page.dart';
+import 'package:seeks_app_prototype/core/forgot_password/pages/forgot_password.page.dart';
 import 'package:seeks_app_prototype/configs/size_config.dart';
-import 'package:seeks_app_prototype/routes.dart';
+import 'package:seeks_app_prototype/infrastructures/util/getx_routes.dart';
 
 class LoginForm extends StatefulWidget {
   @override
@@ -61,7 +62,10 @@ class _LoginFromState extends State<LoginForm> {
               Spacer(), // 佔滿剩餘空間
               GestureDetector(
                 onTap: () {
-                  routePushNamed(context, ForgotPasswordScreen.routeName);
+                  toRoutesNamed([
+                    EntryPage.routeName,
+                    ForgotPasswordPage.routeName,
+                  ]);
                 }, //導入ForgotPasswordScreen
                 child: Text(
                   "Forget PAssword",

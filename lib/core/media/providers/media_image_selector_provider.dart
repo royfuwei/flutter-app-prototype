@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:provider/provider.dart';
-import 'package:seeks_app_prototype/core/media/screens/media_image_selector.dart';
+import 'package:seeks_app_prototype/core/media/pages/media_image_selector.page.dart';
 
 enum MediaImageSelectorState { init, selector }
 

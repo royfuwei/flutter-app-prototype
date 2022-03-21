@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:seeks_app_prototype/core/media/providers/media_image_selector_provider.dart';
 import 'package:seeks_app_prototype/infrastructures/develop/develop_app.dart';
+import 'package:seeks_app_prototype/infrastructures/develop/getx_develop_app.dart';
 import 'package:seeks_app_prototype/infrastructures/fcm/push-notification.dart';
 
 void main() async {
@@ -15,9 +16,11 @@ void main() async {
         create: (context) => MediaImageSelectorProvider(),
       ),
     ],
-    child: DevelopApp(),
+    // child: DevelopApp(),
+    child: GetxDevelopApp(),
   ));
   // runApp(DevelopApp());
+  // runApp(GetxDevelopApp());
   // runApp(ProductionApp());
 }
 
