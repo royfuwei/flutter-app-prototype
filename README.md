@@ -57,6 +57,13 @@ A new Flutter project.
 
 ## ISSUE
 
+### Wrap 使用方式
+- Wrap 使用中子Widget 有Row 會無法水平擴展
+
+### GetX
+- [Flutter GetX使用---簡潔的魅力！](https://iter01.com/584026.html)
+- [Flutter状态管理框架使用比较](https://blog.csdn.net/blog_jihq/article/details/114288114)
+
 ### Flutter 狀態管理
 - [Flutter状态管理框架使用比较](https://blog.csdn.net/blog_jihq/article/details/114288114)
 

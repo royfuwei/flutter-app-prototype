@@ -6,6 +6,7 @@ import 'package:seeks_app_prototype/constants.dart';
 import 'package:seeks_app_prototype/core/common/components/default_app_bar.dart';
 import 'package:seeks_app_prototype/core/media/components/media_asset_selector.dart';
 import 'package:extended_image/extended_image.dart';
+import 'package:seeks_app_prototype/core/media/widgets/images_viewer.widget.dart';
 import 'package:seeks_app_prototype/core/media/widgets/media_view_widget.dart';
 import 'package:seeks_app_prototype/infrastructures/util/keep_alive_wrapper.dart';
 
@@ -19,7 +20,6 @@ class MediaGridSelector extends StatefulWidget {
 
 class _MediaGridSelectorState extends State<MediaGridSelector> {
   int currentPage = 0;
-  int pageLength = 1;
   late AssetEntity selectAsset;
   List<AssetEntity> selectAssets = [];
   List<Widget> selectAssetWidgets = [];

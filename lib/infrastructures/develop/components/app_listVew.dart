@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:seeks_app_prototype/core/captcha/pages/captcha.page.dart';
+import 'package:seeks_app_prototype/core/dating/pages/dating_info.page.dart';
 import 'package:seeks_app_prototype/core/dating/pages/dating_add.page.dart';
 import 'package:seeks_app_prototype/core/dev/pages/default_page.dart';
 import 'package:seeks_app_prototype/core/entry/pages/entry.page.dart';
@@ -17,6 +19,7 @@ import 'package:seeks_app_prototype/core/media/components/media_album_selector.d
 import 'package:seeks_app_prototype/core/media/components/media_grid_selector.dart';
 import 'package:seeks_app_prototype/core/media/components/media_grid_selector_crop.dart';
 import 'package:seeks_app_prototype/core/media/pages/media_image_selector.page.dart';
+import 'package:seeks_app_prototype/core/media/widgets/images_viewer.widget.dart';
 import 'package:seeks_app_prototype/core/more/pages/more.page.dart';
 import 'package:seeks_app_prototype/core/notification/pages/notfication.page.dart';
 import 'package:seeks_app_prototype/core/notification/pages/notification_open.page.dart';
@@ -63,6 +66,7 @@ import 'package:seeks_app_prototype/core/users/pages/user_create.page.dart';
 import 'package:seeks_app_prototype/infrastructures/develop/pages/develop.page.dart';
 import 'package:seeks_app_prototype/infrastructures/util/getx_routes.dart';
 part 'dev_listVew.dart';
+part 'widget_listVew.dart';
 
 List<Widget> getAppView(BuildContext context) {
   return <Widget>[
@@ -227,61 +231,21 @@ List<Widget> getAppView(BuildContext context) {
     ),
     ListTile(
       leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
-      title: Text(MediaAssetSelector.routeName),
-      onTap: () {
-        toRoutesNamed([
-          MainPage.routeName,
-          MediaAssetSelector.routeName,
-        ]);
-      },
-    ),
-    ListTile(
-      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
-      title: Text(MediaAlbumSelector.routeName),
-      onTap: () {
-        toRoutesNamed([
-          MainPage.routeName,
-          MediaAlbumSelector.routeName,
-        ]);
-      },
-    ),
-    ListTile(
-      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
-      title: Text(MediaGridSelector.routeName),
-      onTap: () {
-        toRoutesNamed([
-          MainPage.routeName,
-          MediaGridSelector.routeName,
-        ]);
-      },
-    ),
-    ListTile(
-      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
-      title: Text(MediaGridSelectorCrop.routeName),
-      onTap: () {
-        toRoutesNamed([
-          MainPage.routeName,
-          MediaGridSelectorCrop.routeName,
-        ]);
-      },
-    ),
-    ListTile(
-      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
-      title: Text(ImageSelectorPage.routeName),
-      onTap: () {
-        toRoutesNamed([
-          MainPage.routeName,
-          ImageSelectorPage.routeName,
-        ]);
-      },
-    ),
-    ListTile(
-      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
       title: Text(ImageUploadNotifyPage.routeName),
       onTap: () {
         toRoutesNamed([
           MainPage.routeName,
           ImageUploadNotifyPage.routeName,
+        ]);
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(DatingInfoPage.routeName),
+      onTap: () {
+        toRoutesNamed([
+          MainPage.routeName,
+          DatingInfoPage.routeName,
         ]);
       },
     ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:seeks_app_prototype/infrastructures/develop/components/app_listVew.dart';
+import 'package:seeks_app_prototype/infrastructures/util/keep_alive_wrapper.dart';
 
 class DevEntryPage extends StatefulWidget {
   static String routeName = '/develop';
@@ -10,12 +11,10 @@ class DevEntryPage extends StatefulWidget {
 
 class _DevEntryState extends State {
   final List<Tab> myTabs = <Tab>[
-    Tab(text: '開發頁面'),
-    Tab(text: '測試頁面'),
-    // Tab(text: '元件頁面'),
+    Tab(text: 'app頁面'),
+    Tab(text: 'widget頁面'),
+    Tab(text: 'dev頁面'),
   ];
-  late List<Widget> myTestListView;
-  late List<Widget> myDevListView;
 
   @override
   Widget build(BuildContext context) {
@@ -45,14 +44,25 @@ class _DevEntryState extends State {
         ),
         body: TabBarView(
           children: [
-            Center(
-              child: ListView(
-                children: getAppView(context),
+            KeepAliveWrapper(
+              child: Center(
+                child: ListView(
+                  children: getAppView(context),
+                ),
               ),
             ),
-            Center(
-              child: ListView(
-                children: getDevView(context),
+            KeepAliveWrapper(
+              child: Center(
+                child: ListView(
+                  children: getWidgetView(context),
+                ),
+              ),
+            ),
+            KeepAliveWrapper(
+              child: Center(
+                child: ListView(
+                  children: getDevView(context),
+                ),
               ),
             ),
           ],

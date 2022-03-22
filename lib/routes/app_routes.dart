@@ -113,33 +113,13 @@ abstract class AppRoutes {
           binding: AppPagesBind(),
         ),
         GetPage(
-          name: MediaAssetSelector.routeName,
-          page: () => MediaAssetSelector(),
-          binding: AppPagesBind(),
-        ),
-        GetPage(
-          name: MediaAlbumSelector.routeName,
-          page: () => MediaAlbumSelector(),
-          binding: AppPagesBind(),
-        ),
-        GetPage(
-          name: MediaGridSelector.routeName,
-          page: () => MediaGridSelector(),
-          binding: AppPagesBind(),
-        ),
-        GetPage(
-          name: MediaGridSelectorCrop.routeName,
-          page: () => MediaGridSelectorCrop(),
-          binding: AppPagesBind(),
-        ),
-        GetPage(
-          name: ImageSelectorPage.routeName,
-          page: () => ImageSelectorPage(),
-          binding: AppPagesBind(),
-        ),
-        GetPage(
           name: ImageUploadNotifyPage.routeName,
           page: () => ImageUploadNotifyPage(),
+          binding: AppPagesBind(),
+        ),
+        GetPage(
+          name: DatingInfoPage.routeName,
+          page: () => DatingInfoPage(),
           binding: AppPagesBind(),
         ),
       ],

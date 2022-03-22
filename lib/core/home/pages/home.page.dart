@@ -1,8 +1,35 @@
+import 'dart:typed_data';
+
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:seeks_app_prototype/configs/size_config.dart';
 import 'package:seeks_app_prototype/constants.dart';
 import 'package:seeks_app_prototype/core/common/components/default_app_bar.dart';
+
+class DatingItemEntity {
+  String username;
+  Uint8List userImage;
+  Uint8List coverImage;
+  String title;
+  DateTime startTime;
+  DateTime endTime;
+  int signupCount;
+  int payment;
+  String paymentType;
+
+  DatingItemEntity({
+    required this.username,
+    required this.userImage,
+    required this.coverImage,
+    required this.title,
+    required this.startTime,
+    required this.endTime,
+    required this.signupCount,
+    required this.paymentType,
+    required this.payment,
+  });
+}
 
 class HomePage extends StatefulWidget {
   static String routeName = "/home";
@@ -39,7 +66,14 @@ class _HomePageState extends State<HomePage> {
                         motion: StretchMotion(),
                         children: [],
                       ),
-                      child: datingItem(),
+                      child: datingItem(
+                          decorationImage: DecorationImage(
+                        // image: AssetImage("assets/images/splash_2.jpg"),
+                        // image: Image,
+                        image: ExtendedImage.asset("assets/images/splash_2.jpg")
+                            .image,
+                        fit: BoxFit.cover,
+                      )),
                     ),
                     Slidable(
                       startActionPane: ActionPane(
@@ -96,6 +130,8 @@ class _HomePageState extends State<HomePage> {
     String username = "user1",
     DecorationImage userDecorationImage = const DecorationImage(
       image: AssetImage("assets/images/splash_2.jpg"),
+      // image: Image,
+      // image: ExtendedImage.asset("assets/images/splash_2.jpg").image,
       fit: BoxFit.cover,
     ),
     DecorationImage decorationImage = const DecorationImage(
