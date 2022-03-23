@@ -43,19 +43,21 @@ class _ImagesViewerWidgetState extends State<ImagesViewerWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        height: MediaQuery.of(context).size.width,
-        color: Colors.grey,
-        child: imageWidgets.length == 0
-            ? Center(
-                child: Icon(
-                  Icons.image,
-                  color: Colors.black87,
-                  size: getProportionateScreenWidth(context, 40),
-                ),
-              )
-            : imagesViewerSide(),
+    return Scaffold(
+      body: Center(
+        child: Container(
+          height: MediaQuery.of(context).size.width,
+          color: Colors.grey,
+          child: imageWidgets.length == 0
+              ? Center(
+                  child: Icon(
+                    Icons.image,
+                    color: Colors.black,
+                    size: getProportionateScreenWidth(context, 40),
+                  ),
+                )
+              : imagesViewerSide(),
+        ),
       ),
     );
   }

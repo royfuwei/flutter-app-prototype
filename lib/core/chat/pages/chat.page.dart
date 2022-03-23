@@ -102,6 +102,9 @@ class _ChatPageState extends State<ChatPage> {
   bodyChatListView() {
     return Expanded(
       child: Container(
+        padding: EdgeInsets.only(
+          top: 8,
+        ),
         child: ListView.builder(
           physics: AlwaysScrollableScrollPhysics(),
           controller: scrollController,

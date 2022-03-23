@@ -38,11 +38,13 @@ class DefaultFlowPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.max,
             children: [
-              Column(
-                mainAxisAlignment: contentMainAxisAlignment,
-                crossAxisAlignment: contentCrossAxisAlignment,
-                mainAxisSize: MainAxisSize.max,
-                children: content,
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: contentMainAxisAlignment,
+                  crossAxisAlignment: contentCrossAxisAlignment,
+                  mainAxisSize: MainAxisSize.max,
+                  children: content,
+                ),
               ),
               Column(
                 mainAxisAlignment: buttomMainAxisAlignment,

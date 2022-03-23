@@ -32,7 +32,15 @@ class _UserCreateInfoPageState extends State<UserCreateInfoPage> {
             title: "填寫個人訊息",
             subTitle: "輸入個人訊息",
           ),
-          UserCreateInfoForm(),
+          Expanded(
+            child: Container(
+              height: MediaQuery.of(context).size.height * .7,
+              width: MediaQuery.of(context).size.width,
+              child: SingleChildScrollView(
+                child: UserCreateInfoForm(),
+              ),
+            ),
+          ),
         ],
         buttom: [
           Padding(

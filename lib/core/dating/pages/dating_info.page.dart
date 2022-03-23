@@ -124,6 +124,7 @@ class _DatingInfoPageState extends State<DatingInfoPage> {
               child: Container(
                 // color: Colors.amber,
                 child: SingleChildScrollView(
+                  physics: AlwaysScrollableScrollPhysics(),
                   child: bodyDatingWidget(),
                 ),
               ),

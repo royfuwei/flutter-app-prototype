@@ -6,65 +6,65 @@ List<Widget> getWidgetView(BuildContext context) {
       leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
       title: Text(MediaAssetSelector.routeName),
       onTap: () {
-        Get.to(MediaAssetSelector());
+        Get.to(() => MediaAssetSelector());
       },
     ),
     ListTile(
       leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
       title: Text(MediaAlbumSelector.routeName),
       onTap: () {
-        Get.to(MediaAlbumSelector());
+        Get.to(() => MediaAlbumSelector());
       },
     ),
     ListTile(
       leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
       title: Text(MediaGridSelector.routeName),
       onTap: () {
-        Get.to(MediaGridSelector());
+        Get.to(() => MediaGridSelector());
       },
     ),
     ListTile(
       leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
       title: Text(MediaGridSelectorCrop.routeName),
       onTap: () {
-        Get.to(MediaGridSelectorCrop());
+        Get.to(() => MediaGridSelectorCrop());
       },
     ),
     ListTile(
       leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
       title: Text(ImageSelectorPage.routeName),
       onTap: () {
-        Get.to(ImageSelectorPage());
+        Get.to(() => ImageSelectorPage());
       },
     ),
     ListTile(
       leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
       title: Text(ImagesViewerWidget.routeName),
       onTap: () {
-        Get.to(ImagesViewerWidget());
+        Get.to(() => ImagesViewerWidget());
       },
     ),
     ListTile(
       leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
       title: Text(ChatBubbleWidget.widgetName + " receiverBubble"),
       onTap: () {
-        Get.to(ChatBubbleWidget(
-          isCurrentUser: false,
-          text: "聊天內容測試........",
-        ));
+        Get.to(() => ChatBubbleWidget(
+              isCurrentUser: false,
+              text: "聊天內容測試........",
+            ));
       },
     ),
     ListTile(
       leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
       title: Text(ChatBubbleWidget.widgetName + " sendBubble"),
       onTap: () {
-        Get.to(ChatBubbleWidget(
-          isCurrentUser: true,
-          text: """
+        Get.to(() => ChatBubbleWidget(
+              isCurrentUser: true,
+              text: """
 聊天內容測試........
 123
 abc""",
-        ));
+            ));
       },
     ),
   ];
