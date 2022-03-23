@@ -44,5 +44,28 @@ List<Widget> getWidgetView(BuildContext context) {
         Get.to(ImagesViewerWidget());
       },
     ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(ChatBubbleWidget.widgetName + " receiverBubble"),
+      onTap: () {
+        Get.to(ChatBubbleWidget(
+          isCurrentUser: false,
+          text: "聊天內容測試........",
+        ));
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(ChatBubbleWidget.widgetName + " sendBubble"),
+      onTap: () {
+        Get.to(ChatBubbleWidget(
+          isCurrentUser: true,
+          text: """
+聊天內容測試........
+123
+abc""",
+        ));
+      },
+    ),
   ];
 }

@@ -43,22 +43,20 @@ class _ImagesViewerWidgetState extends State<ImagesViewerWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          height: MediaQuery.of(context).size.width,
-          color: Colors.grey,
-          child: imageWidgets.length == 0
-              ? Center(
-                  child: Icon(
-                    Icons.image,
-                    color: Colors.black87,
-                    size: getProportionateScreenWidth(context, 40),
-                  ),
-                )
-              : imagesViewerSide(),
-        ),
-      ],
+    return Center(
+      child: Container(
+        height: MediaQuery.of(context).size.width,
+        color: Colors.grey,
+        child: imageWidgets.length == 0
+            ? Center(
+                child: Icon(
+                  Icons.image,
+                  color: Colors.black87,
+                  size: getProportionateScreenWidth(context, 40),
+                ),
+              )
+            : imagesViewerSide(),
+      ),
     );
   }
 
@@ -144,6 +142,7 @@ class _ImagesViewerWidgetState extends State<ImagesViewerWidget> {
           children: [
             Expanded(
               child: PageView.builder(
+                physics: ClampingScrollPhysics(),
                 onPageChanged: (value) {
                   setState(() {
                     currentPage = value;

@@ -6,15 +6,15 @@ import 'package:seeks_app_prototype/core/common/components/default_app_bar.dart'
 import 'package:seeks_app_prototype/core/media/components/media_asset_selector.dart';
 import 'package:seeks_app_prototype/core/media/components/media_grid_selector.dart';
 
-class DatingAddPage extends StatefulWidget {
-  static String routeName = "/dating_add";
-  const DatingAddPage({Key? key}) : super(key: key);
+class DatingAddImagesPage extends StatefulWidget {
+  static String routeName = "/dating_add_image";
+  const DatingAddImagesPage({Key? key}) : super(key: key);
 
   @override
-  _DatingAddPageState createState() => _DatingAddPageState();
+  _DatingAddImagesPageState createState() => _DatingAddImagesPageState();
 }
 
-class _DatingAddPageState extends State<DatingAddPage> {
+class _DatingAddImagesPageState extends State<DatingAddImagesPage> {
   int currentPage = 0;
   int pageLength = 1;
   List<AssetEntity> selectAssets = [];
@@ -25,7 +25,7 @@ class _DatingAddPageState extends State<DatingAddPage> {
     return Navigator(
       pages: [
         MaterialPage(
-          name: DatingAddPage.routeName,
+          name: DatingAddImagesPage.routeName,
           child: Scaffold(
             appBar: appBar(),
             body: MediaGridSelector(),

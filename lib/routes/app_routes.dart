@@ -103,8 +103,18 @@ abstract class AppRoutes {
           binding: AppPagesBind(),
         ),
         GetPage(
-          name: DatingAddPage.routeName,
-          page: () => DatingAddPage(),
+          name: ChatPage.routeName,
+          page: () => ChatPage(),
+          binding: AppPagesBind(),
+        ),
+        GetPage(
+          name: DatingAddImagesPage.routeName,
+          page: () => DatingAddImagesPage(),
+          binding: AppPagesBind(),
+        ),
+        GetPage(
+          name: DatingAddInfoPage.routeName,
+          page: () => DatingAddInfoPage(),
           binding: AppPagesBind(),
         ),
         GetPage(

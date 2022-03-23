@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:seeks_app_prototype/core/captcha/pages/captcha.page.dart';
-import 'package:seeks_app_prototype/core/dating/pages/dating_add.page.dart';
+import 'package:seeks_app_prototype/core/dating/pages/dating_add_images.page.dart';
 import 'package:seeks_app_prototype/core/entry/pages/entry.page.dart';
 import 'package:seeks_app_prototype/core/forgot_password/pages/forgot_password.page.dart';
 import 'package:seeks_app_prototype/core/home/pages/home.page.dart';
@@ -90,7 +90,7 @@ final Map<String, WidgetBuilder> routes = {
   HomePage.routeName: (context) => HomePage(),
   NotificationPage.routeName: (context) => NotificationPage(),
   ChatListPage.routeName: (context) => ChatListPage(),
-  DatingAddPage.routeName: (context) => DatingAddPage(),
+  DatingAddImagesPage.routeName: (context) => DatingAddImagesPage(),
   MorePage.routeName: (context) => MorePage(),
   DevImagePicker.routeName: (context) => DevImagePicker(),
   DevImagePickers.routeName: (context) => DevImagePickers(),

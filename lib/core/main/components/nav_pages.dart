@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:seeks_app_prototype/core/dating/pages/dating_add.page.dart';
+import 'package:seeks_app_prototype/core/dating/pages/dating_add_images.page.dart';
 import 'package:seeks_app_prototype/core/home/pages/home.page.dart';
 import 'package:seeks_app_prototype/core/chat/pages/chat_list.page.dart';
 import 'package:seeks_app_prototype/core/more/pages/more.page.dart';
@@ -8,7 +8,7 @@ import 'package:seeks_app_prototype/core/notification/pages/notfication.page.dar
 List<Widget> navPages = [
   HomePage(),
   NotificationPage(),
-  DatingAddPage(),
+  DatingAddImagesPage(),
   ChatListPage(),
   MorePage(),
 ];

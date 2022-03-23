@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:seeks_app_prototype/core/dating/pages/dating_add.page.dart';
+import 'package:seeks_app_prototype/core/dating/pages/dating_add_images.page.dart';
 import 'package:seeks_app_prototype/core/main/components/nav_pages.dart';
 import 'package:seeks_app_prototype/infrastructures/util/getx_routes.dart';
 
@@ -25,7 +25,7 @@ class _MainPageState extends State<MainPage> {
             if (index == 2) {
               toRoutesNamed([
                 MainPage.routeName,
-                DatingAddPage.routeName,
+                DatingAddImagesPage.routeName,
               ]);
             } else {
               currentIndex = index;

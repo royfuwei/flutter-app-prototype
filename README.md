@@ -54,6 +54,7 @@ A new Flutter project.
 - [timeline_tile](https://pub.dev/packages/timeline_tile)
 - [animated_text_kit](https://pub.dev/packages/animated_text_kit)
 - [flutter_bloc](https://pub.dev/packages/flutter_bloc)
+- [flutter_chat_bubble](https://pub.dev/packages/flutter_chat_bubble)
 
 ## ISSUE
 

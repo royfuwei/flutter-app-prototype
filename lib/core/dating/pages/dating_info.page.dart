@@ -42,7 +42,7 @@ class _DatingInfoPageState extends State<DatingInfoPage> {
 
   appBar() {
     return AppBar(
-      backgroundColor: Colors.black,
+      // backgroundColor: Colors.black,
       leading: Container(),
       leadingWidth: 0,
       title: defaultExpandedAppBarTitle(

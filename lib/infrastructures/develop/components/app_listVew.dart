@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:seeks_app_prototype/core/captcha/pages/captcha.page.dart';
+import 'package:seeks_app_prototype/core/chat/pages/chat.page.dart';
+import 'package:seeks_app_prototype/core/chat/widgets/chat_bubble.widget.dart';
+import 'package:seeks_app_prototype/core/dating/pages/dating_add_info.page.dart';
 import 'package:seeks_app_prototype/core/dating/pages/dating_info.page.dart';
-import 'package:seeks_app_prototype/core/dating/pages/dating_add.page.dart';
+import 'package:seeks_app_prototype/core/dating/pages/dating_add_images.page.dart';
 import 'package:seeks_app_prototype/core/dev/pages/default_page.dart';
 import 'package:seeks_app_prototype/core/entry/pages/entry.page.dart';
 import 'package:seeks_app_prototype/core/home/pages/home.page.dart';
@@ -201,11 +204,11 @@ List<Widget> getAppView(BuildContext context) {
     ),
     ListTile(
       leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
-      title: Text(DatingAddPage.routeName),
+      title: Text(DatingAddImagesPage.routeName),
       onTap: () {
         toRoutesNamed([
           MainPage.routeName,
-          DatingAddPage.routeName,
+          DatingAddImagesPage.routeName,
         ]);
       },
     ),
@@ -246,6 +249,26 @@ List<Widget> getAppView(BuildContext context) {
         toRoutesNamed([
           MainPage.routeName,
           DatingInfoPage.routeName,
+        ]);
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(DatingAddInfoPage.routeName),
+      onTap: () {
+        toRoutesNamed([
+          MainPage.routeName,
+          DatingAddInfoPage.routeName,
+        ]);
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(ChatPage.routeName),
+      onTap: () {
+        toRoutesNamed([
+          MainPage.routeName,
+          ChatPage.routeName,
         ]);
       },
     ),
