@@ -74,7 +74,7 @@ class _ImageUploadPageState extends State<ImageUploadPage> {
 
         return Container(
           child: DefaultFlowPage(
-            // contentMainAxisAlignment: MainAxisAlignment.start,
+            contentMainAxisAlignment: MainAxisAlignment.start,
             content: [
               DefaultTitle(
                 title: "上傳照片",

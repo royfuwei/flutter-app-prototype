@@ -67,5 +67,26 @@ abc""",
             ));
       },
     ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(SearchLocationWidget.routeName),
+      onTap: () {
+        Get.to(() => SearchLocationWidget());
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(GoogleMapWidget.routeName),
+      onTap: () {
+        Get.to(() => GoogleMapWidget());
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(SearchWidget.routeName),
+      onTap: () {
+        Get.to(() => SearchWidget());
+      },
+    ),
   ];
 }

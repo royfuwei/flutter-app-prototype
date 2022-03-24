@@ -42,7 +42,7 @@ class _UserCreatePageState extends State<UserCreatePage> {
         FocusScope.of(context).unfocus();
       },
       child: DefaultFlowPage(
-        // contentMainAxisAlignment: MainAxisAlignment.start,
+        contentMainAxisAlignment: MainAxisAlignment.start,
         content: [
           DefaultTitle(
             title: "建立帳號",

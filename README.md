@@ -71,6 +71,7 @@ A new Flutter project.
 
 ### 地圖
 - [[1-1] 該選哪種地圖API？小孩子才做選擇。](https://ithelp.ithome.com.tw/articles/10238282)
+- [Creating a route calculator using Google Maps in Flutter](https://blog.codemagic.io/creating-a-route-calculator-using-google-maps/)
 
 #### google map style
 - [Switch to Dark Mode in Real-Time With Flutter and Google Maps](https://medium.com/swlh/switch-to-dark-mode-in-real-time-with-flutter-and-google-maps-f0f080cd72e9)

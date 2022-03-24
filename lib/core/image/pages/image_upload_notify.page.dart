@@ -48,7 +48,7 @@ class _ImageUploadNotifyPageState extends State<ImageUploadNotifyPage> {
   Widget build(BuildContext context) {
     return Container(
       child: DefaultFlowPage(
-        // contentMainAxisAlignment: MainAxisAlignment.start,
+        contentMainAxisAlignment: MainAxisAlignment.start,
         content: [
           DefaultTitle(
             title: "上傳照片",

@@ -26,7 +26,7 @@ class _UserCreateInfoPageState extends State<UserCreateInfoPage> {
         FocusScope.of(context).unfocus();
       },
       child: DefaultFlowPage(
-        // contentMainAxisAlignment: MainAxisAlignment.start,
+        contentMainAxisAlignment: MainAxisAlignment.start,
         content: [
           DefaultTitle(
             title: "填寫個人訊息",

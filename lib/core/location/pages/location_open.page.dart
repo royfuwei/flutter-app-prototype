@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:seeks_app_prototype/configs/size_config.dart';
 import 'package:seeks_app_prototype/core/common/components/default_flow_content.dart';
 import 'package:seeks_app_prototype/core/common/components/default_title.dart';
@@ -21,7 +22,7 @@ class _LocationOpenPageState extends State<LocationOpenPage> {
   Widget build(BuildContext context) {
     return Container(
       child: DefaultFlowPage(
-        // contentMainAxisAlignment: MainAxisAlignment.start,
+        contentMainAxisAlignment: MainAxisAlignment.start,
         content: [
           Padding(
             padding: EdgeInsets.only(
@@ -45,7 +46,9 @@ class _LocationOpenPageState extends State<LocationOpenPage> {
             child: StatusButton(
               text: "開啟定位",
               isDisabled: goNext,
-              press: () {
+              press: () async {
+                var requestPermission = await Geolocator.requestPermission();
+                print("開啟定位 requestPermission: ${requestPermission.name}");
                 toRoutesNamed([
                   EntryPage.routeName,
                   NotificationOpenPage.routeName,

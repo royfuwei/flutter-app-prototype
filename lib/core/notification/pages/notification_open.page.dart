@@ -34,7 +34,7 @@ class _NotificationOpenPageState extends State<NotificationOpenPage> {
   Widget build(BuildContext context) {
     return Container(
       child: DefaultFlowPage(
-        // contentMainAxisAlignment: MainAxisAlignment.start,
+        contentMainAxisAlignment: MainAxisAlignment.start,
         content: [
           Padding(
             padding: EdgeInsets.only(
