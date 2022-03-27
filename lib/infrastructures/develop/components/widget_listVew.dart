@@ -88,5 +88,47 @@ abc""",
         Get.to(() => SearchWidget());
       },
     ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(UserInfoWidget.routeName),
+      onTap: () {
+        Get.to(() => UserInfoWidget());
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(UserInfoLabelWidget.routeName),
+      onTap: () {
+        Get.to(() => UserInfoLabelWidget());
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(DatingListItem.routeName),
+      onTap: () {
+        Get.to(() => DatingListItem());
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(UserInfoTitleWidget.routeName),
+      onTap: () {
+        Get.to(() => UserInfoTitleWidget());
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(UserInfoListItemWidget.routeName),
+      onTap: () {
+        Get.to(() => UserInfoListItemWidget());
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(UserInfoListTitleWidget.routeName),
+      onTap: () {
+        Get.to(() => UserInfoListTitleWidget());
+      },
+    ),
   ];
 }

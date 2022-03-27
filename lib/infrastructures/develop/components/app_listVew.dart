@@ -6,6 +6,7 @@ import 'package:seeks_app_prototype/core/chat/widgets/chat_bubble.widget.dart';
 import 'package:seeks_app_prototype/core/dating/pages/dating_add_info.page.dart';
 import 'package:seeks_app_prototype/core/dating/pages/dating_info.page.dart';
 import 'package:seeks_app_prototype/core/dating/pages/dating_add_images.page.dart';
+import 'package:seeks_app_prototype/core/dating/widgets/dating_list_item.widget.dart';
 import 'package:seeks_app_prototype/core/dev/pages/default_page.dart';
 import 'package:seeks_app_prototype/core/entry/pages/entry.page.dart';
 import 'package:seeks_app_prototype/core/home/pages/home.page.dart';
@@ -69,6 +70,13 @@ import 'package:seeks_app_prototype/core/dev/pages/dev_widget_key_change_less.da
 import 'package:seeks_app_prototype/core/search/widgets/search.widget.dart';
 import 'package:seeks_app_prototype/core/users/pages/user_create_info.page.dart';
 import 'package:seeks_app_prototype/core/users/pages/user_create.page.dart';
+import 'package:seeks_app_prototype/core/users/pages/user_dating_list.page.dart';
+import 'package:seeks_app_prototype/core/users/pages/user_info.page.dart';
+import 'package:seeks_app_prototype/core/users/widgets/user_info.widget.dart';
+import 'package:seeks_app_prototype/core/users/widgets/user_info_list_item.widget.dart';
+import 'package:seeks_app_prototype/core/users/widgets/user_info_label.widget.dart';
+import 'package:seeks_app_prototype/core/users/widgets/user_info_list_title.widget.dart';
+import 'package:seeks_app_prototype/core/users/widgets/user_info_title.widget.dart';
 import 'package:seeks_app_prototype/infrastructures/develop/pages/develop.page.dart';
 import 'package:seeks_app_prototype/infrastructures/util/getx_routes.dart';
 part 'dev_listVew.dart';
@@ -273,6 +281,20 @@ List<Widget> getAppView(BuildContext context) {
           MainPage.routeName,
           ChatPage.routeName,
         ]);
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(UserDatingListPage.routeName),
+      onTap: () {
+        Get.to(() => UserDatingListPage());
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(UserInfoPage.routeName),
+      onTap: () {
+        Get.to(() => UserInfoPage());
       },
     ),
   ];

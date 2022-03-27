@@ -6,6 +6,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:seeks_app_prototype/configs/size_config.dart';
 import 'package:seeks_app_prototype/constants.dart';
 import 'package:seeks_app_prototype/core/common/components/default_app_bar.dart';
+import 'package:seeks_app_prototype/core/dating/widgets/dating_list_item.widget.dart';
 
 class DatingItemEntity {
   String username;
@@ -91,6 +92,23 @@ class _HomePageState extends State<HomePage> {
                         children: [],
                       ),
                       child: datingItem(),
+                    ),
+                    Slidable(
+                      startActionPane: ActionPane(
+                        // A motion is a widget used to control how the pane animates.
+                        motion: StretchMotion(),
+                        // A pane can dismiss the Slidable.
+                        /* dismissible: DismissiblePane(onDismissed: () {
+          deleteListItem(index);
+        }), */
+                        // All actions are defined in the children parameter.
+                        children: getStartActionMenu(1),
+                      ),
+                      endActionPane: ActionPane(
+                        motion: StretchMotion(),
+                        children: [],
+                      ),
+                      child: DatingListItem(),
                     ),
                     datingItem(),
                   ],

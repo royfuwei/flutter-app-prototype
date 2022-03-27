@@ -58,6 +58,9 @@ A new Flutter project.
 
 ## ISSUE
 
+### 手勢Widget
+- [沒想到Flutter也能實現如此絲般順滑的上拉抽屜動畫效果](https://www.gushiciku.cn/dc_hk/200123186)
+
 ### Wrap 使用方式
 - Wrap 使用中子Widget 有Row 會無法水平擴展
 
