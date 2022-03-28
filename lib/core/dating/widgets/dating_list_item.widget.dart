@@ -21,14 +21,8 @@ class DatingListItem extends StatelessWidget {
     this.endDismissible,
     this.endActionPaneChildren,
     this.itemColor,
-    this.userDecorationImage = const DecorationImage(
-      image: AssetImage("assets/images/splash_2.jpg"),
-      fit: BoxFit.cover,
-    ),
-    this.decorationImage = const DecorationImage(
-      image: AssetImage("assets/images/splash_3.jpg"),
-      fit: BoxFit.cover,
-    ),
+    this.userImage = const AssetImage("assets/images/female-user.png"),
+    this.infoImage = const AssetImage("assets/images/splash_2.jpg"),
   }) : super(key: key);
   final String username;
   final String title;
@@ -38,8 +32,8 @@ class DatingListItem extends StatelessWidget {
   final String datingDuration;
   final String signupCount;
   final String payment;
-  final DecorationImage userDecorationImage;
-  final DecorationImage decorationImage;
+  final ImageProvider<Object> userImage;
+  final ImageProvider<Object> infoImage;
   final List<Widget>? startActionPaneChildren;
   final Widget? startDismissible;
   final List<Widget>? endActionPaneChildren;
@@ -113,7 +107,11 @@ class DatingListItem extends StatelessWidget {
         ),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          image: decorationImage,
+          border: Border.all(width: 0.1, color: Colors.grey),
+          image: DecorationImage(
+            image: infoImage,
+            fit: BoxFit.cover,
+          ),
         ),
         alignment: Alignment.bottomLeft,
         child: datingItemImageUser(context),
@@ -161,7 +159,10 @@ class DatingListItem extends StatelessWidget {
                 border: Border.all(
                   color: Colors.white,
                 ),
-                image: userDecorationImage,
+                image: DecorationImage(
+                  image: userImage,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
             Expanded(

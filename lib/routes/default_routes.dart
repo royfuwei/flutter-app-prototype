@@ -4,7 +4,6 @@ import 'package:seeks_app_prototype/core/dating/pages/dating_add_images.page.dar
 import 'package:seeks_app_prototype/core/entry/pages/entry.page.dart';
 import 'package:seeks_app_prototype/core/forgot_password/pages/forgot_password.page.dart';
 import 'package:seeks_app_prototype/core/home/pages/home.page.dart';
-import 'package:seeks_app_prototype/core/image/pages/image_picker.page.dart';
 import 'package:seeks_app_prototype/core/image/pages/image_upload.page.dart';
 import 'package:seeks_app_prototype/core/image/pages/image_upload_notify.page.dart';
 import 'package:seeks_app_prototype/core/location/pages/location_open.page.dart';
@@ -83,7 +82,6 @@ final Map<String, WidgetBuilder> routes = {
   LocationOpenPage.routeName: (context) => LocationOpenPage(),
   NotificationOpenPage.routeName: (context) => NotificationOpenPage(),
   ImageUploadPage.routeName: (context) => ImageUploadPage(),
-  ImagePickerPage.routeName: (context) => ImagePickerPage(),
   UserCreateInfoPage.routeName: (context) => UserCreateInfoPage(),
   CaptchaPage.routeName: (context) => CaptchaPage(),
   MainPage.routeName: (context) => MainPage(),

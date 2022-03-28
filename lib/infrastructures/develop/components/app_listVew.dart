@@ -11,7 +11,6 @@ import 'package:seeks_app_prototype/core/dating/widgets/dating_list_item.widget.
 import 'package:seeks_app_prototype/core/dev/pages/default_page.dart';
 import 'package:seeks_app_prototype/core/entry/pages/entry.page.dart';
 import 'package:seeks_app_prototype/core/home/pages/home.page.dart';
-import 'package:seeks_app_prototype/core/image/pages/image_picker.page.dart';
 import 'package:seeks_app_prototype/core/image/pages/image_upload.page.dart';
 import 'package:seeks_app_prototype/core/image/pages/image_upload_notify.page.dart';
 import 'package:seeks_app_prototype/core/location/pages/location_open.page.dart';
@@ -162,16 +161,6 @@ List<Widget> getAppView(BuildContext context) {
         toRoutesNamed([
           EntryPage.routeName,
           ImageUploadPage.routeName,
-        ]);
-      },
-    ),
-    ListTile(
-      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
-      title: Text(ImagePickerPage.routeName),
-      onTap: () {
-        toRoutesNamed([
-          EntryPage.routeName,
-          ImagePickerPage.routeName,
         ]);
       },
     ),

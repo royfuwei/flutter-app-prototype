@@ -81,9 +81,11 @@ class _ImageUploadPageState extends State<ImageUploadPage> {
                 subTitle: "請至少上傳一張照片",
               ),
               VerticalSpacing(of: 25),
-              Container(
-                height: MediaQuery.of(context).size.height * 0.6,
-                child: getGirdView(),
+              Expanded(
+                child: Container(
+                  // height: MediaQuery.of(context).size.height * 0.6,
+                  child: getGirdView(),
+                ),
               ),
             ],
             buttom: [

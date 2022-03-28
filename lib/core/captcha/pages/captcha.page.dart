@@ -56,27 +56,33 @@ class _CaptchaPageState extends State<CaptchaPage> {
       child: DefaultFlowPage(
         content: [
           DefaultTitle(title: "輸入驗證碼", subTitle: "驗證碼已發至$telephone"),
-          Padding(
-            padding: EdgeInsets.symmetric(
-              vertical: getProportionateScreenHeight(context, 24),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                textFieldSide(),
-              ],
-            ),
-          ),
-          SizedBox(
-            width: double.infinity,
+          Expanded(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                captchaTitle(),
-                reCaptchaButtom(),
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    vertical: getProportionateScreenHeight(context, 24),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      textFieldSide(),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  width: double.infinity,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      captchaTitle(),
+                      reCaptchaButtom(),
+                    ],
+                  ),
+                ),
               ],
             ),
-          ),
+          )
         ],
         buttom: [
           Padding(

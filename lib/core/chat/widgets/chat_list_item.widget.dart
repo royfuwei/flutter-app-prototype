@@ -1,10 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:seeks_app_prototype/configs/size_config.dart';
 import 'package:seeks_app_prototype/constants.dart';
 
 class ChatListItemWidget extends StatelessWidget {
   static String routeName = "/chat_list_item_widget";
-  const ChatListItemWidget({Key? key}) : super(key: key);
+  const ChatListItemWidget({
+    Key? key,
+    this.itemOnPressed,
+    this.itemImageOnTap,
+    this.itemImage = const AssetImage("assets/images/male-user.png"),
+    this.username = "XXX",
+    this.message = "安安你好... ",
+    this.latestTime = "3分鐘前",
+    this.unReadCount = "999+",
+    this.itemStatus,
+    this.startDismissible,
+    this.startActionPaneChildren,
+    this.endDismissible,
+    this.endActionPaneChildren,
+  }) : super(key: key);
+
+  final void Function()? itemOnPressed;
+  final void Function()? itemImageOnTap;
+  final ImageProvider<Object> itemImage;
+  final String username;
+  final String message;
+  final String latestTime;
+  final String unReadCount;
+  final List<Widget>? itemStatus;
+  final List<Widget>? startActionPaneChildren;
+  final Widget? startDismissible;
+  final List<Widget>? endActionPaneChildren;
+  final Widget? endDismissible;
 
   @override
   Widget build(BuildContext context) {
@@ -14,14 +42,41 @@ class ChatListItemWidget extends StatelessWidget {
   }
 
   body(BuildContext context) {
-    return chatListItem(context);
+    // return chatListItem(context);
+    return itemSlidable(context);
+  }
+
+  itemSlidable(BuildContext context) {
+    return Slidable(
+      key: key,
+      startActionPane: startActionPaneChildren != null
+          ? ActionPane(
+              // A motion is a widget used to control how the pane animates.
+              motion: StretchMotion(),
+              // A pane can dismiss the Slidable.
+              dismissible: startDismissible,
+              // All actions are defined in the children parameter.
+              // children: startActionPaneChildren!,
+              children: startActionPaneChildren!,
+            )
+          : null,
+      endActionPane: endActionPaneChildren != null
+          ? ActionPane(
+              // A motion is a widget used to control how the pane animates.
+              motion: StretchMotion(),
+              // A pane can dismiss the Slidable.
+              dismissible: endDismissible,
+              // All actions are defined in the children parameter.
+              children: endActionPaneChildren!,
+            )
+          : null,
+      child: chatListItem(context),
+    );
   }
 
   chatListItem(BuildContext context) {
     return TextButton(
-      onPressed: () {
-        print("body");
-      },
+      onPressed: itemOnPressed,
       child: Container(
         padding: EdgeInsets.only(left: 8, top: 8, bottom: 8, right: 8),
         color: Colors.grey.shade100,
@@ -43,11 +98,10 @@ class ChatListItemWidget extends StatelessWidget {
 
   chatItemUserImage(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        print("chatItemUserImage");
-      },
+      onTap: itemImageOnTap,
       child: CircleAvatar(
-        backgroundImage: AssetImage("assets/images/splash_1.jpg"),
+        backgroundColor: Colors.white12,
+        backgroundImage: itemImage,
         maxRadius: getProportionateScreenWidth(context, 50),
       ),
     );
@@ -72,7 +126,7 @@ class ChatListItemWidget extends StatelessWidget {
       padding: EdgeInsets.only(bottom: 8, top: 8, left: 4, right: 8),
       // color: Colors.amber.shade100,
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           chatItemInfoTitle(context),
@@ -97,7 +151,7 @@ class ChatListItemWidget extends StatelessWidget {
   chatItemInfoTitleName(BuildContext context) {
     return Container(
       child: Text(
-        "XXX",
+        username,
         style: TextStyle(
           color: colorFont03,
           fontWeight: FontWeight.bold,
@@ -108,7 +162,7 @@ class ChatListItemWidget extends StatelessWidget {
   }
 
   chatItemInfoTitleStatus(BuildContext context) {
-    return Container(
+    /* return Container(
       child: Row(
         children: [
           Padding(
@@ -123,14 +177,20 @@ class ChatListItemWidget extends StatelessWidget {
           ),
         ],
       ),
+    ); */
+    return Container(
+      child: Row(
+        children: itemStatus != null ? itemStatus! : [],
+      ),
     );
   }
 
   chatItemInfoContent(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
+      padding: EdgeInsets.only(top: 8),
       child: Text(
-        "安安你好 安安你好安安你好安安你好安安你好安安你好 安安你好... ",
+        message,
         textAlign: TextAlign.start,
         style: TextStyle(
           color: colorFont02,
@@ -144,12 +204,12 @@ class ChatListItemWidget extends StatelessWidget {
     return Container(
       padding: EdgeInsets.only(top: 8, right: 4),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           chatItemInfoEndTime(context),
           chatItemInfoEndUnReadCount(context),
-          Container(),
+          // Container(),
         ],
       ),
     );
@@ -157,8 +217,9 @@ class ChatListItemWidget extends StatelessWidget {
 
   chatItemInfoEndTime(BuildContext context) {
     return Container(
+      padding: EdgeInsets.only(bottom: 10),
       child: Text(
-        "3分鐘前",
+        latestTime,
         textAlign: TextAlign.end,
         style: TextStyle(
           color: colorFont03,
@@ -180,7 +241,7 @@ class ChatListItemWidget extends StatelessWidget {
         color: Colors.green,
       ),
       child: Text(
-        "999+",
+        unReadCount,
         style: TextStyle(
           fontSize: 12,
           color: Colors.white,

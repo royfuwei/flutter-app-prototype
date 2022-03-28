@@ -39,11 +39,6 @@ abstract class AppRoutes {
           binding: AppPagesBind(),
         ),
         GetPage(
-          name: ImagePickerPage.routeName,
-          page: () => ImagePickerPage(),
-          binding: AppPagesBind(),
-        ),
-        GetPage(
           name: UserCreateInfoPage.routeName,
           page: () => UserCreateInfoPage(),
           binding: AppPagesBind(),
@@ -56,11 +51,6 @@ abstract class AppRoutes {
         GetPage(
           name: CaptchaPage.routeName,
           page: () => CaptchaPage(),
-          binding: AppPagesBind(),
-        ),
-        GetPage(
-          name: ImagePickerPage.routeName,
-          page: () => ImagePickerPage(),
           binding: AppPagesBind(),
         ),
         GetPage(

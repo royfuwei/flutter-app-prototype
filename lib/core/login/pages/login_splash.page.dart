@@ -53,6 +53,7 @@ class _LoginSplashPageState extends State<LoginSplashPage> {
         focusNode.unfocus();
       },
       child: DefaultFlowPage(
+        contentMainAxisAlignment: MainAxisAlignment.start,
         content: [
           DefaultTitle(
             title: "準備來個不一樣的約會嗎？",
@@ -176,11 +177,14 @@ class _LoginSplashPageState extends State<LoginSplashPage> {
           ),
           backgroundColor: MaterialStateProperty.all(kPrimaryColor),
         ),
-        child: Text(
-          "+886",
-          style: TextStyle(
-            fontSize: getProportionateScreenWidth(context, 18),
-            color: Colors.white,
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 8),
+          child: Text(
+            "+886",
+            style: TextStyle(
+              fontSize: getProportionateScreenWidth(context, 18),
+              color: Colors.white,
+            ),
           ),
         ),
       ),
