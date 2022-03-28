@@ -55,6 +55,9 @@ A new Flutter project.
 - [animated_text_kit](https://pub.dev/packages/animated_text_kit)
 - [flutter_bloc](https://pub.dev/packages/flutter_bloc)
 - [flutter_chat_bubble](https://pub.dev/packages/flutter_chat_bubble)
+- [flutter_rating_bar](https://pub.dev/packages/flutter_rating_bar)
+- [percent_indicator](https://pub.dev/packages/percent_indicator)
+- [charts_flutter](https://pub.dev/packages/charts_flutter)
 
 ## ISSUE
 

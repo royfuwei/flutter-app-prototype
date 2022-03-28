@@ -16,6 +16,7 @@ class _ChatPageState extends State<ChatPage> {
   FocusNode focusNode = FocusNode();
   TextEditingController textEditingController = TextEditingController();
   ScrollController scrollController = new ScrollController();
+
   var messages = [
     ChatBubbleWidget(
       text: 'How was the concert?',
@@ -38,6 +39,12 @@ class _ChatPageState extends State<ChatPage> {
       isCurrentUser: false,
     ),
   ];
+  CrossAxisAlignment bottomSideAlignment = CrossAxisAlignment.center;
+
+  double unfocusTextFieldMaxHeight = 36;
+  double focusTextFieldMaxHeight = (16 + 8) * 6 * .9;
+
+  late double textFieldMaxHeight = unfocusTextFieldMaxHeight;
 
   @override
   void initState() {
@@ -45,13 +52,16 @@ class _ChatPageState extends State<ChatPage> {
     /* scrollController.addListener(() {
       print(scrollController.offset);
     }); */
-    /* textEditingController.addListener(() {
-      textEditingController.
-      var size = focusNode.size;
-      print("size: ${size.height}");
-    }); */
+    textEditingController.addListener(() {
+      textEditingController.selection = TextSelection.fromPosition(
+        TextPosition(
+          offset: textEditingController.text.length,
+        ),
+      );
+    });
     focusNode.addListener(() async {
       if (focusNode.hasFocus) {
+        bottomSideAlignmentEnd();
         Future.delayed(
           Duration(
             milliseconds: 400,
@@ -64,9 +74,9 @@ class _ChatPageState extends State<ChatPage> {
             );
           },
         );
+      } else {
+        bottomSideAlignmentCenter();
       }
-      // var size = focusNode.size;
-      // print("focusNode.size: ${size}");
     });
   }
 
@@ -83,6 +93,7 @@ class _ChatPageState extends State<ChatPage> {
       child: GestureDetector(
         onTap: () {
           focusNode.unfocus();
+          bottomSideAlignmentCenter();
         },
         child: Container(
           color: Colors.amber[100],
@@ -117,6 +128,20 @@ class _ChatPageState extends State<ChatPage> {
     );
   }
 
+  bottomSideAlignmentCenter() {
+    setState(() {
+      bottomSideAlignment = CrossAxisAlignment.center;
+      textFieldMaxHeight = unfocusTextFieldMaxHeight;
+    });
+  }
+
+  bottomSideAlignmentEnd() {
+    setState(() {
+      bottomSideAlignment = CrossAxisAlignment.end;
+      textFieldMaxHeight = focusTextFieldMaxHeight;
+    });
+  }
+
   bodyChatBottomSide() {
     return Align(
       alignment: Alignment.center,
@@ -125,16 +150,17 @@ class _ChatPageState extends State<ChatPage> {
         width: double.infinity,
         color: Colors.white,
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.end,
+          crossAxisAlignment: bottomSideAlignment,
           children: <Widget>[
             bodyChatBottomIconButton(
               icon: Icon(
                 Icons.add,
                 color: Colors.blue,
-                size: getProportionateScreenHeight(context, 32),
+                size: getProportionateScreenHeight(context, 34),
               ),
               onPressed: () {
                 focusNode.unfocus();
+                bottomSideAlignmentCenter();
               },
             ),
             bodyChatBottomTextField(),
@@ -142,10 +168,11 @@ class _ChatPageState extends State<ChatPage> {
               icon: Icon(
                 Icons.send,
                 color: Colors.blue,
-                size: getProportionateScreenHeight(context, 30),
+                size: getProportionateScreenHeight(context, 34),
               ),
               onPressed: () {
                 sendChat();
+                bottomSideAlignmentCenter();
               },
             ),
           ],
@@ -173,10 +200,7 @@ class _ChatPageState extends State<ChatPage> {
 
   bodyChatBottomIconButton({Icon? icon, void Function()? onPressed}) {
     return Container(
-      height: getProportionateScreenHeight(context, 40),
-      // padding: EdgeInsets.symmetric(horizontal: 5),
-      // color: Colors.amber,
-      alignment: Alignment.center,
+      height: 40,
       child: TextButton(
         onPressed: onPressed,
         child: icon != null
@@ -184,7 +208,7 @@ class _ChatPageState extends State<ChatPage> {
             : Icon(
                 Icons.send,
                 color: Colors.blue,
-                size: getProportionateScreenHeight(context, 30),
+                size: getProportionateScreenHeight(context, 40),
               ),
       ),
     );
@@ -193,10 +217,9 @@ class _ChatPageState extends State<ChatPage> {
   bodyChatBottomTextField() {
     return Expanded(
       child: Container(
-        // color: Colors.grey.shade300,
         constraints: BoxConstraints(
-          minHeight: getProportionateScreenHeight(context, 40),
-          maxHeight: getProportionateScreenHeight(context, 120),
+          minHeight: 36,
+          maxHeight: textFieldMaxHeight,
         ),
         padding: EdgeInsets.symmetric(
           horizontal: 5,
@@ -223,22 +246,18 @@ class _ChatPageState extends State<ChatPage> {
             ),
             hintText: "輸入訊息",
             hintStyle: TextStyle(
-              fontSize: getProportionateScreenWidth(
-                context,
-                getProportionateScreenHeight(context, 16),
-              ),
+              fontSize: 16,
               color: Colors.grey,
             ),
-            contentPadding: EdgeInsets.symmetric(
-              vertical: 10,
-              horizontal: 16,
+            contentPadding: EdgeInsets.only(
+              left: 16,
+              top: 8,
+              bottom: 8,
+              right: 16,
             ),
           ),
           style: TextStyle(
-            fontSize: getProportionateScreenWidth(
-              context,
-              getProportionateScreenHeight(context, 16),
-            ),
+            fontSize: 16,
             color: Colors.black,
           ),
         ),

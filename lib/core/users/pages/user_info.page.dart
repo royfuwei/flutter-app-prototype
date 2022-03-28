@@ -50,6 +50,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
       ],
     ); */
     return SafeArea(
+      bottom: false,
       child: Container(
         /* child: SingleChildScrollView(
           child: Column(
@@ -115,6 +116,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
   bodyUserInfoLabelWrap() {
     return Container(
       padding: EdgeInsets.only(top: 8, left: 16, right: 16, bottom: 8),
+      constraints: BoxConstraints(minHeight: 100),
       // color: Colors.blue.shade100,
       // constraints: BoxConstraints(maxHeight: 100),
       width: MediaQuery.of(context).size.width,

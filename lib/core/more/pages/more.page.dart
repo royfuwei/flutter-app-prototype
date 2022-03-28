@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:seeks_app_prototype/configs/size_config.dart';
 import 'package:seeks_app_prototype/constants.dart';
+import 'package:seeks_app_prototype/core/users/pages/user_dating_list.page.dart';
+import 'package:seeks_app_prototype/core/users/pages/user_info.page.dart';
 import 'package:seeks_app_prototype/infrastructures/util/keep_alive_wrapper.dart';
 
 class MorePage extends StatefulWidget {
@@ -11,7 +13,8 @@ class MorePage extends StatefulWidget {
   _MorePageState createState() => _MorePageState();
 }
 
-class _MorePageState extends State<MorePage> {
+class _MorePageState extends State<MorePage>
+    with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Navigator(
@@ -26,52 +29,76 @@ class _MorePageState extends State<MorePage> {
     );
   }
 
+  @override
+  void initState() {
+    super.initState();
+    tabController = TabController(
+      vsync: this,
+      length: pages.length,
+      initialIndex: tabIndex,
+    );
+    tabController.addListener(() {
+      var idx = tabController.index;
+      if (idx != tabIndex) {
+        setState(() {
+          tabIndex = idx;
+          // tabTitle = titles[idx];
+        });
+      }
+    });
+  }
+
   int tabIndex = 1;
 
+  String tabTitle = "title";
+
+  final titles = ["個人訊息", "約會", "更多"];
+
   final pages = [
+    UserInfoPage(),
+    UserDatingListPage(),
     KeepAliveWrapper(
-      child: Center(child: Text("2.1頁")),
-    ),
-    KeepAliveWrapper(
-      child: Center(child: Text("2.2頁")),
-    ),
-    KeepAliveWrapper(
-      child: Center(child: Text("2.3頁")),
+      child: Center(child: Text("開發中...")),
     ),
   ];
   final tabs = [
-    Tab(icon: Icon(Icons.account_circle)),
+    Container(
+      child: Tab(icon: Icon(Icons.account_circle)),
+      height: 20,
+    ),
     Tab(icon: Icon(Icons.date_range)),
-    Tab(icon: Icon(Icons.stars)),
+    Tab(icon: Icon(Icons.credit_card)),
   ];
+
+  late TabController tabController;
 
   body() {
     return Container(
-      // color: Colors.amber,
-      child: DefaultTabController(
-        initialIndex: tabIndex,
-        length: tabs.length,
-        child: Column(
-          children: <Widget>[
-            Container(
-              child: TabBar(tabs: tabs, indicatorWeight: 5),
-              // color: Colors.lightGreen,
+      child: Column(
+        children: <Widget>[
+          Container(
+            child: TabBar(
+              tabs: tabs,
+              indicatorWeight: 3,
+              controller: tabController,
             ),
-            Expanded(
-              child: Container(
-                color: Colors.amber,
-                child: TabBarView(
-                  children: pages,
-                ),
+            // color: Colors.lightGreen,
+          ),
+          Expanded(
+            child: Container(
+              // color: Colors.amber,
+              child: TabBarView(
+                controller: tabController,
+                children: pages,
               ),
             ),
-            Expanded(
+          ),
+          /* Expanded(
               child: Container(
                 color: Colors.green,
               ),
-            ),
-          ],
-        ),
+            ), */
+        ],
       ),
       // child: MoreOageTarBarWidget(),
     );
@@ -80,10 +107,9 @@ class _MorePageState extends State<MorePage> {
   appBar() {
     return AppBar(
       elevation: 0.2,
-      // backgroundColor: colorBarWhite,
-      backgroundColor: Colors.white,
+      backgroundColor: colorBarWhite,
       title: Text(
-        "個人訊息",
+        titles[tabIndex],
         style: TextStyle(
           color: colorFont02,
           fontSize: getProportionateScreenWidth(context, 20),

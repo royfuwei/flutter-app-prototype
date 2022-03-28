@@ -32,7 +32,7 @@ class _UserDatingListPageState extends State<UserDatingListPage> {
     return SafeArea(
       bottom: false,
       child: Container(
-        color: Colors.amber.shade100,
+        // color: Colors.amber.shade100,
         child: ListView(
           children: [
             // userDatingListTitle(),
@@ -83,7 +83,7 @@ class _UserDatingListPageState extends State<UserDatingListPage> {
               style: TextStyle(
                 fontWeight: FontWeight.normal,
                 color: Colors.black,
-                fontSize: 18,
+                fontSize: 16,
               ),
             ),
           ),
