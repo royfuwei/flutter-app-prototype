@@ -64,28 +64,6 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  getStartActionMenu(int index) {
-    return [
-      SlidableAction(
-        onPressed: (_) {
-          // deleteListItem(index);
-        },
-        backgroundColor: Color(0xFFFE4A49),
-        foregroundColor: Colors.white,
-        icon: Icons.delete,
-        label: '刪除',
-      ),
-      SlidableAction(
-        // onPressed: doNothing,
-        onPressed: (_) {},
-        backgroundColor: Color(0xFF21B7CA),
-        foregroundColor: Colors.white,
-        icon: Icons.share,
-        label: '分享',
-      ),
-    ];
-  }
-
   appBar() {
     return AppBar(
       elevation: 0,

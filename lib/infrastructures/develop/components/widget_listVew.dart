@@ -130,5 +130,12 @@ abc""",
         Get.to(() => UserInfoListTitleWidget());
       },
     ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(ChatListItemWidget.routeName),
+      onTap: () {
+        Get.to(() => ChatListItemWidget());
+      },
+    ),
   ];
 }
