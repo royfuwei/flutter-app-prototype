@@ -3,9 +3,11 @@ import 'dart:typed_data';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:get/get.dart';
 import 'package:seeks_app_prototype/configs/size_config.dart';
 import 'package:seeks_app_prototype/constants.dart';
 import 'package:seeks_app_prototype/core/common/components/default_app_bar.dart';
+import 'package:seeks_app_prototype/core/dating/pages/dating_info.page.dart';
 import 'package:seeks_app_prototype/core/dating/widgets/dating_list_item.widget.dart';
 
 class DatingItemEntity {
@@ -52,7 +54,11 @@ class _HomePageState extends State<HomePage> {
               child: GestureDetector(
                 child: ListView(
                   children: [
-                    DatingListItem(),
+                    DatingListItem(
+                      onPressed: () {
+                        Get.to(() => DatingInfoPage());
+                      },
+                    ),
                   ],
                 ),
                 // child: SingleChildScrollView(),

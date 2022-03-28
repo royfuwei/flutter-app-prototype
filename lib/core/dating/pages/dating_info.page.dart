@@ -5,6 +5,7 @@ import 'package:seeks_app_prototype/core/common/components/default_app_bar.dart'
 import 'package:seeks_app_prototype/core/common/components/status_button.dart';
 import 'package:seeks_app_prototype/core/dating/widgets/dating_datetime.widget.dart';
 import 'package:seeks_app_prototype/core/dating/widgets/dating_label.widget.dart';
+import 'package:seeks_app_prototype/core/main/pages/main.page.dart';
 import 'package:seeks_app_prototype/core/media/widgets/images_viewer.widget.dart';
 import 'package:seeks_app_prototype/infrastructures/util/getx_routes.dart';
 
@@ -140,10 +141,9 @@ class _DatingInfoPageState extends State<DatingInfoPage> {
                   text: "加入約會",
                   isDisabled: false,
                   press: () {
-                    /* toRoutesNamed([
-                        EntryPage.routeName,
-                        UserCreateInfoPage.routeName,
-                      ]); */
+                    toRoutesNamed([
+                      MainPage.routeName,
+                    ]);
                   },
                 ),
               ),

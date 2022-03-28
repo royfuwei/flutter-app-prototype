@@ -23,6 +23,7 @@ class DatingListItem extends StatelessWidget {
     this.itemColor,
     this.userImage = const AssetImage("assets/images/female-user.png"),
     this.infoImage = const AssetImage("assets/images/splash_2.jpg"),
+    this.onPressed,
   }) : super(key: key);
   final String username;
   final String title;
@@ -39,6 +40,7 @@ class DatingListItem extends StatelessWidget {
   final List<Widget>? endActionPaneChildren;
   final Widget? endDismissible;
   final Color? itemColor;
+  final void Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -47,9 +49,7 @@ class DatingListItem extends StatelessWidget {
 
   body(BuildContext context) {
     return Center(
-      child: Container(
-        child: itemSlidable(context),
-      ),
+      child: itemSlidable(context),
     );
   }
 
@@ -81,7 +81,8 @@ class DatingListItem extends StatelessWidget {
   }
 
   datingListItem(BuildContext context) {
-    return Center(
+    return TextButton(
+      onPressed: onPressed,
       child: Container(
         color: itemColor != null ? itemColor : Colors.grey.shade100,
         padding: EdgeInsets.symmetric(vertical: 8, horizontal: 10),

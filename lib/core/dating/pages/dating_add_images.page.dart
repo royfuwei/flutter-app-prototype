@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:photo_manager/photo_manager.dart';
 import 'package:seeks_app_prototype/configs/size_config.dart';
 import 'package:seeks_app_prototype/constants.dart';
 import 'package:seeks_app_prototype/core/common/components/default_app_bar.dart';
+import 'package:seeks_app_prototype/core/dating/pages/dating_add_info.page.dart';
 import 'package:seeks_app_prototype/core/media/components/media_asset_selector.dart';
 import 'package:seeks_app_prototype/core/media/components/media_grid_selector.dart';
 
@@ -67,7 +69,8 @@ class _DatingAddImagesPageState extends State<DatingAddImagesPage> {
         endItems: [
           TextButton(
             onPressed: () {
-              print('hihi');
+              // print('hihi');
+              Get.to(() => DatingAddInfoPage());
             },
             child: Row(
               children: [

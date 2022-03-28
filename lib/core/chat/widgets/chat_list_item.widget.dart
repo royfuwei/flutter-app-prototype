@@ -7,7 +7,7 @@ class ChatListItemWidget extends StatelessWidget {
   static String routeName = "/chat_list_item_widget";
   const ChatListItemWidget({
     Key? key,
-    this.itemOnPressed,
+    this.onPressed,
     this.itemImageOnTap,
     this.itemImage = const AssetImage("assets/images/male-user.png"),
     this.username = "XXX",
@@ -21,7 +21,7 @@ class ChatListItemWidget extends StatelessWidget {
     this.endActionPaneChildren,
   }) : super(key: key);
 
-  final void Function()? itemOnPressed;
+  final void Function()? onPressed;
   final void Function()? itemImageOnTap;
   final ImageProvider<Object> itemImage;
   final String username;
@@ -76,10 +76,19 @@ class ChatListItemWidget extends StatelessWidget {
 
   chatListItem(BuildContext context) {
     return TextButton(
-      onPressed: itemOnPressed,
+      onPressed: onPressed,
+      style: ButtonStyle(
+        elevation: MaterialStateProperty.all(0),
+        overlayColor: MaterialStateProperty.all(
+          Colors.amber,
+        ),
+        backgroundColor: MaterialStateProperty.all(
+          Colors.grey.shade100,
+        ),
+      ),
       child: Container(
         padding: EdgeInsets.only(left: 8, top: 8, bottom: 8, right: 8),
-        color: Colors.grey.shade100,
+        // color: Colors.grey.shade100,
         alignment: Alignment.center,
         constraints: BoxConstraints(
           maxHeight: MediaQuery.of(context).size.width / 4,

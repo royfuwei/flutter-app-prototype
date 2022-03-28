@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:seeks_app_prototype/configs/size_config.dart';
 import 'package:seeks_app_prototype/constants.dart';
 import 'package:seeks_app_prototype/core/common/components/default_app_bar.dart';
+import 'package:seeks_app_prototype/core/dating/pages/dating_info.page.dart';
 
 class DatingAddInfoPage extends StatefulWidget {
   static String routeName = "/dating_add_info";
@@ -711,7 +713,8 @@ class _DatingAddInfoPageState extends State<DatingAddInfoPage> {
         endItems: [
           TextButton(
             onPressed: () {
-              print('hihi');
+              // print('hihi');
+              Get.to(() => DatingInfoPage());
             },
             child: Row(
               children: [

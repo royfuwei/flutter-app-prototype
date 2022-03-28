@@ -58,7 +58,7 @@ class _ChatListPageState extends State<ChatListPage> {
                       // label: '刪除',
                     ),
                   ],
-                  itemOnPressed: () {
+                  onPressed: () {
                     Get.to(ChatPage());
                   },
                   itemImageOnTap: () {
