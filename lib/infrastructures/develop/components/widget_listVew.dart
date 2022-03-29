@@ -137,5 +137,12 @@ abc""",
         Get.to(() => ChatListItemWidget());
       },
     ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(NotifiListItem.routeName),
+      onTap: () {
+        Get.to(() => NotifiListItem());
+      },
+    ),
   ];
 }

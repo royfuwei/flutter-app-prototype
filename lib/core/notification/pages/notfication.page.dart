@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:seeks_app_prototype/configs/size_config.dart';
 import 'package:seeks_app_prototype/constants.dart';
 import 'package:seeks_app_prototype/core/notification/components/splash_data.dart';
+import 'package:seeks_app_prototype/core/notification/widgets/notifi_list_item.widget.dart';
 
 class NotificationPage extends StatefulWidget {
   static String routeName = "/notification";
@@ -34,18 +36,8 @@ class _NotificationPageState extends State<NotificationPage> {
                     // alignment: Alignment.centerLeft,
                     child: messageBoard(),
                   ),
-                  Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height * 0.55,
-                    // color: Colors.blue,
-                    child: ListView(
-                      children: [
-                        VerticalSpacing(
-                          of: 10,
-                        ),
-                        notificationItem(),
-                      ],
-                    ),
+                  Expanded(
+                    child: bodyNotifiListView(),
                   ),
                 ],
               ),
@@ -53,6 +45,37 @@ class _NotificationPageState extends State<NotificationPage> {
           ),
         ),
       ],
+    );
+  }
+
+  bodyNotifiListView() {
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 8),
+      child: ListView(
+        children: [
+          NotifiListItem(
+            key: Key("2"),
+            startActionPaneChildren: [
+              SlidableAction(
+                onPressed: (_) {},
+                backgroundColor: Colors.grey,
+                foregroundColor: Colors.white,
+                icon: Icons.archive,
+                label: '封存',
+              ),
+            ],
+            endActionPaneChildren: [
+              SlidableAction(
+                onPressed: (_) {},
+                backgroundColor: Colors.green,
+                foregroundColor: Colors.white,
+                // icon: Icons.delete,
+                label: '已讀',
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 
@@ -129,72 +152,6 @@ class _NotificationPageState extends State<NotificationPage> {
         // color: currentPage == index ? kPrimaryColor : Color(0xFFD8D8D8),
         color: Color(0xFFD8D8D8),
         borderRadius: BorderRadius.circular(3),
-      ),
-    );
-  }
-
-  notificationItem() {
-    return GestureDetector(
-      onTap: () {},
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        height: getProportionateScreenWidth(context, 100),
-        color: colorBarWhite,
-        padding: EdgeInsets.symmetric(
-          vertical: getProportionateScreenHeight(context, 8),
-          horizontal: getProportionateScreenWidth(context, 16),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            notificationItemImage(),
-            notificationItemInfo(),
-          ],
-        ),
-      ),
-    );
-  }
-
-  notificationItemImage() {
-    return CircleAvatar(
-      backgroundImage: AssetImage("assets/images/splash_1.jpg"),
-      maxRadius: getProportionateScreenWidth(context, 50),
-    );
-  }
-
-  notificationItemInfo() {
-    return Expanded(
-      /* child: Container(
-        color: Colors.amber,
-      ), */
-      child: Padding(
-        padding: EdgeInsets.only(
-          top: 5,
-          left: 8,
-          right: 8,
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "XXX 報名'一起讀書'的約會",
-              style: TextStyle(
-                color: colorFont03,
-                fontWeight: FontWeight.bold,
-                fontSize: getProportionateScreenWidth(context, 16),
-              ),
-            ),
-            Text(
-              "3分鐘前",
-              textAlign: TextAlign.end,
-              style: TextStyle(
-                color: colorFont03,
-                fontSize: getProportionateScreenWidth(context, 14),
-              ),
-            ),
-          ],
-        ),
       ),
     );
   }

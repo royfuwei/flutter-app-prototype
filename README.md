@@ -58,6 +58,7 @@ A new Flutter project.
 - [flutter_rating_bar](https://pub.dev/packages/flutter_rating_bar)
 - [percent_indicator](https://pub.dev/packages/percent_indicator)
 - [charts_flutter](https://pub.dev/packages/charts_flutter)
+- [card_swiper](https://pub.dev/packages/card_swiper)
 
 ## ISSUE
 
