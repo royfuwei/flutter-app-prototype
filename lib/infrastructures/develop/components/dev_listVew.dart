@@ -396,5 +396,12 @@ List<Widget> getDevView(BuildContext context) {
         ]);
       },
     ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(DevSwiperWidget.routeName),
+      onTap: () {
+        Get.to(() => DevSwiperWidget());
+      },
+    ),
   ];
 }

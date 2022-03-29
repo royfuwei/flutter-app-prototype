@@ -15,6 +15,36 @@ class MorePage extends StatefulWidget {
 
 class _MorePageState extends State<MorePage>
     with SingleTickerProviderStateMixin {
+  int tabIndex = 0;
+
+  String tabTitle = "title";
+
+  final titles = ["個人訊息", "約會", "更多"];
+
+  final pages = [
+    UserInfoPage(),
+    UserDatingListPage(),
+    KeepAliveWrapper(
+      child: Center(child: Text("開發中...")),
+    ),
+  ];
+  final tabs = [
+    Container(
+      padding: EdgeInsets.only(top: 8, bottom: 5),
+      child: Icon(Icons.account_circle),
+    ),
+    Container(
+      padding: EdgeInsets.only(top: 8, bottom: 5),
+      child: Icon(Icons.date_range),
+    ),
+    Container(
+      padding: EdgeInsets.only(top: 8, bottom: 5),
+      child: Icon(Icons.credit_card),
+    ),
+  ];
+
+  late TabController tabController;
+
   @override
   Widget build(BuildContext context) {
     return Navigator(
@@ -48,39 +78,22 @@ class _MorePageState extends State<MorePage>
     });
   }
 
-  int tabIndex = 1;
-
-  String tabTitle = "title";
-
-  final titles = ["個人訊息", "約會", "更多"];
-
-  final pages = [
-    UserInfoPage(),
-    UserDatingListPage(),
-    KeepAliveWrapper(
-      child: Center(child: Text("開發中...")),
-    ),
-  ];
-  final tabs = [
-    Container(
-      child: Tab(icon: Icon(Icons.account_circle)),
-      height: 20,
-    ),
-    Tab(icon: Icon(Icons.date_range)),
-    Tab(icon: Icon(Icons.credit_card)),
-  ];
-
-  late TabController tabController;
-
   body() {
     return Container(
       child: Column(
         children: <Widget>[
           Container(
+            width: double.infinity,
             child: TabBar(
               tabs: tabs,
               indicatorWeight: 3,
               controller: tabController,
+              // isScrollable: true,
+              indicatorSize: TabBarIndicatorSize.tab,
+              indicator: UnderlineTabIndicator(
+                borderSide: BorderSide(width: 2.0),
+                insets: EdgeInsets.symmetric(horizontal: 1.0),
+              ),
             ),
             // color: Colors.lightGreen,
           ),

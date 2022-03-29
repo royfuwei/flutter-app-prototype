@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:seeks_app_prototype/constants.dart';
+import 'package:seeks_app_prototype/core/common/components/default_app_bar.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class DevWebView extends StatefulWidget {
@@ -28,6 +30,7 @@ class _DevWebViewState extends State<DevWebView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: appBar(),
       body: SafeArea(
         bottom: false,
         child: Container(
@@ -35,6 +38,35 @@ class _DevWebViewState extends State<DevWebView> {
           width: MediaQuery.of(context).size.width,
           child: _webviewUrl(),
         ),
+      ),
+    );
+  }
+
+  appBar() {
+    return AppBar(
+      // backgroundColor: Colors.black,
+      elevation: 0,
+      leading: Container(),
+      leadingWidth: 0,
+      title: defaultExpandedAppBarTitle(
+        startItems: [
+          TextButton(
+            onPressed: () {
+              Navigator.pop(
+                context,
+              );
+            },
+            child: Icon(
+              Icons.close,
+              // size: getProportionateScreenWidth(context, 30),
+              color: colorFont02,
+            ),
+          ),
+        ],
+        titleItems: [
+          Text("WebView"),
+        ],
+        endItems: [],
       ),
     );
   }

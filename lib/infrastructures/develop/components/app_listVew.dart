@@ -69,6 +69,7 @@ import 'package:seeks_app_prototype/core/dev/pages/dev_widget_key_change.dart';
 import 'package:seeks_app_prototype/core/dev/pages/dev_widget_key_change_less.dart';
 import 'package:seeks_app_prototype/core/notification/widgets/notifi_list_item.widget.dart';
 import 'package:seeks_app_prototype/core/search/widgets/search.widget.dart';
+import 'package:seeks_app_prototype/core/dev/pages/dev_swiper.widget.dart';
 import 'package:seeks_app_prototype/core/users/pages/user_create_info.page.dart';
 import 'package:seeks_app_prototype/core/users/pages/user_create.page.dart';
 import 'package:seeks_app_prototype/core/users/pages/user_dating_list.page.dart';

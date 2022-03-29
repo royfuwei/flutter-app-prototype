@@ -70,6 +70,12 @@ class _MediaGridSelectorCropState extends State<MediaGridSelectorCrop> {
       GlobalKey<ExtendedImageEditorState>();
 
   @override
+  void dispose() {
+    super.dispose();
+    _pageController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Navigator(
       pages: [

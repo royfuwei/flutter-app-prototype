@@ -59,8 +59,17 @@ A new Flutter project.
 - [percent_indicator](https://pub.dev/packages/percent_indicator)
 - [charts_flutter](https://pub.dev/packages/charts_flutter)
 - [card_swiper](https://pub.dev/packages/card_swiper)
+- [cached_network_image](https://pub.dev/packages/cached_network_image)
 
 ## ISSUE
+
+### Webview網頁與App通訊
+- [Flutter Webview網頁與App通訊](https://iter01.com/611021.html)
+
+### flutter swiper
+- [flutter banner轮播图](https://blog.csdn.net/xudailong_blog/article/details/102748652?spm=1001.2101.3001.6650.3&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-3.pc_relevant_default&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-3.pc_relevant_default&utm_relevant_index=6)
+- [Flutter 轮播图flutter_swiper的使用](https://blog.csdn.net/WangQingLei0307/article/details/118027247)
+- 
 
 ### 手勢Widget
 - [沒想到Flutter也能實現如此絲般順滑的上拉抽屜動畫效果](https://www.gushiciku.cn/dc_hk/200123186)
