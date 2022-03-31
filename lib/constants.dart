@@ -8,6 +8,10 @@ import 'package:flutter/rendering.dart';
 // const bgMainColor = Color.fromRGBO(240, 250, 245, 1);
 const bgMainColor = Color.fromRGBO(250, 250, 245, 1);
 
+// login page
+const Color colorLoginButton = Colors.teal;
+const Color colorLoginButtonFont = Colors.white;
+
 Image seeksLogo = Image.asset("assets/logo/seeks_logo.png");
 const Color seeksLoginColor01 = Color.fromRGBO(64, 64, 64, 1);
 const Color mediaSelectColor = Color.fromRGBO(139, 139, 139, 0.7);

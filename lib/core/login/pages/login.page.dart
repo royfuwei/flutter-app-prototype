@@ -28,11 +28,28 @@ class _LoginPageState extends State<LoginPage> {
   late UserStatusModel userStatusModel;
 
   final UserStatusController controller = Get.put(UserStatusController());
+  final UserStatusController findController = Get.find();
 
   @override
   void initState() {
     super.initState();
+    asyncInitState();
+  }
 
+  @override
+  void dispose() {
+    super.dispose();
+    periodicTimer.cancel();
+  }
+
+  /// initState async 相關function
+  asyncInitState() async {
+    await delayAnimation();
+    await getStatusModel();
+  }
+
+  /// login 過度動畫
+  delayAnimation() async {
     Future.delayed(Duration(milliseconds: 500), () {
       setState(() {
         startAnimation = true;
@@ -46,10 +63,9 @@ class _LoginPageState extends State<LoginPage> {
         });
       });
     });
-    getStatusModel();
-    // print("initState islogin: ${isLogin}");
   }
 
+  /// 取得人員狀態
   getStatusModel() async {
     // await controller.clearLocalStorage();
     var result = await controller.getLocalStorage();
@@ -60,121 +76,64 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   @override
-  void dispose() {
-    super.dispose();
-    periodicTimer.cancel();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: bgMainColor,
-      body: SafeArea(
-        child: GestureDetector(
-          child: AnimatedOpacity(
-            opacity: startAnimation ? 1.0 : 0.0,
-            duration: const Duration(
-              milliseconds: 3000,
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    VerticalSpacing(of: 140),
-                    SizedBox(
-                      height: getProportionateScreenHeight(context, 95),
-                      child: AnimatedContainer(
-                        duration: Duration(
-                          milliseconds: startAnimationTitleDurationMill,
-                        ),
-                        width: startAnimationTitle
-                            ? MediaQuery.of(context).size.width - 30
-                            : MediaQuery.of(context).size.width,
-                        child: seeksLogo,
-                      ),
-                    ),
-                    titleContent(),
-                  ],
-                ),
-                Column(
-                  children: [
-                    loginRegistButton(),
-                    buttomContent(),
-                  ],
-                )
-              ],
-            ),
+      body: body(),
+    );
+  }
+
+  body() {
+    return SafeArea(
+      child: GestureDetector(
+        child: AnimatedOpacity(
+          opacity: startAnimation ? 1.0 : 0.0,
+          duration: const Duration(
+            milliseconds: 3000,
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              VerticalSpacing(of: MediaQuery.of(context).size.height * 0.18),
+              Expanded(
+                child: bodyLogo(),
+              ),
+              bodyBottom(),
+            ],
           ),
         ),
       ),
     );
   }
 
-  Widget loginRegistButton() {
-    return Padding(
-      padding: EdgeInsets.symmetric(
-        vertical: getProportionateScreenHeight(context, 40),
-        horizontal: getProportionateScreenWidth(context, 48),
-      ),
-      child: DefaultButton(
-        text: "登入/註冊",
-        press: () {
-          print("userStatusModel.isLogin: ${userStatusModel.isLogin}");
-          if (userStatusModel.isLogin == true) {
-            offRoutesNamed([
-              MainPage.routeName,
-            ]);
-          } else {
-            toRoutesNamed([
-              EntryPage.routeName,
-              LoginSplashPage.routeName,
-            ]);
-          }
-        },
-        color: seeksLoginColor01,
-        bgButtonColor: colorIconWhite,
+  bodyLogo() {
+    return Container(
+      child: Column(
+        children: [
+          logoImage(),
+          logoContent(),
+        ],
       ),
     );
   }
 
-  Widget buttomContent() {
-    return Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: getProportionateScreenWidth(context, 5),
+  logoImage() {
+    return SizedBox(
+      height: getProportionateScreenHeight(context, 95),
+      child: AnimatedContainer(
+        duration: Duration(
+          milliseconds: startAnimationTitleDurationMill,
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "登入即表明您同意我們的",
-              style: loginTextStyle(fontSize: 12),
-            ),
-            TextButton(
-              onPressed: () {},
-              child: Text(
-                "使用條約",
-                style: linkTextStyle(fontSize: 13),
-              ),
-            ),
-            Text(
-              "和",
-              style: loginTextStyle(fontSize: 12),
-            ),
-            TextButton(
-              onPressed: () {},
-              child: Text(
-                "隱私政策",
-                style: linkTextStyle(fontSize: 13),
-              ),
-            ),
-          ],
-        ));
+        width: startAnimationTitle
+            ? MediaQuery.of(context).size.width - 30
+            : MediaQuery.of(context).size.width,
+        child: seeksLogo,
+      ),
+    );
   }
 
-  Widget titleContent() {
+  Widget logoContent() {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -195,6 +154,77 @@ class _LoginPageState extends State<LoginPage> {
             ],
           )
         ],
+      ),
+    );
+  }
+
+  bodyBottom() {
+    return Column(
+      children: [
+        bottomLoginRegistButton(),
+        buttomContent(),
+      ],
+    );
+  }
+
+  Widget buttomContent() {
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        horizontal: getProportionateScreenWidth(context, 5),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            "登入即表明您同意我們的",
+            style: loginTextStyle(fontSize: 12),
+          ),
+          TextButton(
+            onPressed: () {},
+            child: Text(
+              "使用條約",
+              style: linkTextStyle(fontSize: 14),
+            ),
+          ),
+          Text(
+            "和",
+            style: loginTextStyle(fontSize: 12),
+          ),
+          TextButton(
+            onPressed: () {},
+            child: Text(
+              "隱私政策",
+              style: linkTextStyle(fontSize: 14),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget bottomLoginRegistButton() {
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        vertical: getProportionateScreenHeight(context, 40),
+        horizontal: getProportionateScreenWidth(context, 48),
+      ),
+      child: DefaultButton(
+        text: "登入/註冊",
+        press: () {
+          print("userStatusModel.isLogin: ${userStatusModel.isLogin}");
+          if (userStatusModel.isLogin == true) {
+            offRoutesNamed([
+              MainPage.routeName,
+            ]);
+          } else {
+            toRoutesNamed([
+              EntryPage.routeName,
+              LoginSplashPage.routeName,
+            ]);
+          }
+        },
+        color: colorLoginButtonFont,
+        bgButtonColor: colorLoginButton,
       ),
     );
   }

@@ -65,6 +65,7 @@ class _DevGetXState extends State<DevGetX> {
               );
             },
           ),
+          Obx(() => Center(child: Text(controller.enumSelectState.toString()))),
           // Padding(
           //   padding: const EdgeInsets.all(8.0),
           //   child: CupertinoButton(

@@ -424,5 +424,19 @@ List<Widget> getDevView(BuildContext context) {
         Get.to(() => DevDraggableGrid());
       },
     ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(DevGetx2Page1.routeName),
+      onTap: () {
+        Get.to(() => DevGetx2Page1());
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(DevGetx2Page2.routeName),
+      onTap: () {
+        Get.to(() => DevGetx2Page2());
+      },
+    ),
   ];
 }

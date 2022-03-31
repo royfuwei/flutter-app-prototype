@@ -66,6 +66,9 @@ A new Flutter project.
 
 ## ISSUE
 
+### getx 狀態管理
+- [Flutter状态管理终极方案GetX第二篇——状态管理](https://juejin.cn/post/6907622450151096334)
+
 ### Grid view dragglable
 - [Flutter Scrolling while dragging an item](https://www.technicalfeeder.com/2021/09/flutter-scrolling-while-dragging-an-item/)
 - [Flutter Key的原理和使用(五) 需要key的实例:可拖动改变顺序的Listview](https://blog.csdn.net/u011272795/article/details/120156732?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-0.pc_relevant_default&spm=1001.2101.3001.4242.1&utm_relevant_index=3)

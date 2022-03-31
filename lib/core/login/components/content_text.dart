@@ -14,7 +14,7 @@ TextStyle loginTextStyle({double? fontSize = 15}) {
 
 TextStyle linkTextStyle({double? fontSize = 13}) {
   return TextStyle(
-    color: seeksLoginColor01,
+    color: Colors.blue.shade800,
     decoration: TextDecoration.underline,
     fontFamily: 'Jaldi',
     fontSize: fontSize,

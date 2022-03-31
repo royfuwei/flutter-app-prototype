@@ -10,6 +10,7 @@ import 'package:seeks_app_prototype/core/dating/pages/dating_add_images.page.dar
 import 'package:seeks_app_prototype/core/dating/widgets/dating_list_item.widget.dart';
 import 'package:seeks_app_prototype/core/dev/pages/default_page.dart';
 import 'package:seeks_app_prototype/core/dev/pages/dev_draggable_grid.dart';
+import 'package:seeks_app_prototype/core/dev/pages/dev_getx2.dart';
 import 'package:seeks_app_prototype/core/dev/pages/dev_nine_grid_view.dart';
 import 'package:seeks_app_prototype/core/dev/pages/dev_reorderable_list.dart';
 import 'package:seeks_app_prototype/core/entry/pages/entry.page.dart';
