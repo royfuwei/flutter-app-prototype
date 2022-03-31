@@ -6,7 +6,7 @@ import 'package:seeks_app_prototype/constants.dart';
 import 'package:seeks_app_prototype/core/common/components/default_button.dart';
 import 'package:seeks_app_prototype/core/entry/pages/entry.page.dart';
 import 'package:seeks_app_prototype/core/login/components/content_text.dart';
-import 'package:seeks_app_prototype/core/login/pages/login_splash.page.dart';
+import 'package:seeks_app_prototype/core/login/pages/login_tel.page.dart';
 import 'package:seeks_app_prototype/core/main/pages/main.page.dart';
 import 'package:seeks_app_prototype/core/users/controllers/user_status_controller.dart';
 import 'package:seeks_app_prototype/core/users/models/user_status_model.dart';
@@ -219,7 +219,7 @@ class _LoginPageState extends State<LoginPage> {
           } else {
             toRoutesNamed([
               EntryPage.routeName,
-              LoginSplashPage.routeName,
+              LoginTelPage.routeName,
             ]);
           }
         },

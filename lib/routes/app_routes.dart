@@ -19,8 +19,8 @@ abstract class AppRoutes {
           transition: Transition.noTransition,
         ),
         GetPage(
-          name: LoginSplashPage.routeName,
-          page: () => LoginSplashPage(),
+          name: LoginTelPage.routeName,
+          page: () => LoginTelPage(),
           binding: AppPagesBind(),
         ),
         GetPage(

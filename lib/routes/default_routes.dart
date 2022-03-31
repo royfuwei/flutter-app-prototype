@@ -62,7 +62,7 @@ import 'package:seeks_app_prototype/core/dev/pages/dev_widget_key_change_less.da
 import 'package:seeks_app_prototype/core/users/pages/user_create_info.page.dart';
 import 'package:seeks_app_prototype/core/users/pages/user_create.page.dart';
 
-import '../core/login/pages/login_splash.page.dart';
+import '../core/login/pages/login_tel.page.dart';
 import '../infrastructures/develop/pages/develop.page.dart';
 
 class DevRoutes {
@@ -77,7 +77,7 @@ final Map<String, WidgetBuilder> routes = {
   SplashPage.routeName: (context) => SplashPage(),
   EntryPage.routeName: (context) => EntryPage(),
   LoginPage.routeName: (context) => LoginPage(),
-  LoginSplashPage.routeName: (context) => LoginSplashPage(),
+  LoginTelPage.routeName: (context) => LoginTelPage(),
   UserCreatePage.routeName: (context) => UserCreatePage(),
   LocationOpenPage.routeName: (context) => LocationOpenPage(),
   NotificationOpenPage.routeName: (context) => NotificationOpenPage(),

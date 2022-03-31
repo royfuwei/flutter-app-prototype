@@ -11,15 +11,15 @@ import 'package:seeks_app_prototype/core/login/controllers/login_status_controll
 import 'package:seeks_app_prototype/core/login/models/login_status_model.dart';
 import 'package:seeks_app_prototype/core/users/controllers/user_status_controller.dart';
 
-class LoginSplashPage extends StatefulWidget {
+class LoginTelPage extends StatefulWidget {
   static String routeName = '/login/splash';
-  const LoginSplashPage({Key? key}) : super(key: key);
+  const LoginTelPage({Key? key}) : super(key: key);
 
   @override
-  _LoginSplashPageState createState() => _LoginSplashPageState();
+  _LoginTelPageState createState() => _LoginTelPageState();
 }
 
-class _LoginSplashPageState extends State<LoginSplashPage> {
+class _LoginTelPageState extends State<LoginTelPage> {
   late FocusNode focusNode;
   String telephone = '';
   bool goNext = false;

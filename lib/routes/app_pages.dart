@@ -18,7 +18,7 @@ import 'package:seeks_app_prototype/core/notification/pages/notfication.page.dar
 import 'package:seeks_app_prototype/core/notification/pages/notification_open.page.dart';
 import 'package:seeks_app_prototype/core/splash/pages/splash.page.dart';
 import 'package:seeks_app_prototype/core/users/pages/user_create_info.page.dart';
-import 'package:seeks_app_prototype/core/login/pages/login_splash.page.dart';
+import 'package:seeks_app_prototype/core/login/pages/login_tel.page.dart';
 import 'package:seeks_app_prototype/core/users/pages/user_create.page.dart';
 import 'package:seeks_app_prototype/routes/appPagesBind.dart';
 // import 'infrastructures/develop/pages/develop_screens.dart';

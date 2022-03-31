@@ -21,7 +21,7 @@ import 'package:seeks_app_prototype/core/location/pages/location_open.page.dart'
 import 'package:seeks_app_prototype/core/location/widgets/google_map.widget.dart';
 import 'package:seeks_app_prototype/core/location/widgets/search_location.widget.dart';
 import 'package:seeks_app_prototype/core/login/pages/login.page.dart';
-import 'package:seeks_app_prototype/core/login/pages/login_splash.page.dart';
+import 'package:seeks_app_prototype/core/login/pages/login_tel.page.dart';
 import 'package:seeks_app_prototype/core/main/pages/main.page.dart';
 import 'package:seeks_app_prototype/core/chat/pages/chat_list.page.dart';
 import 'package:seeks_app_prototype/core/media/components/media_asset_selector.dart';
@@ -113,11 +113,11 @@ List<Widget> getAppView(BuildContext context) {
     ),
     ListTile(
       leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
-      title: Text(LoginSplashPage.routeName),
+      title: Text(LoginTelPage.routeName),
       onTap: () {
         toRoutesNamed([
           EntryPage.routeName,
-          LoginSplashPage.routeName,
+          LoginTelPage.routeName,
         ]);
       },
     ),
