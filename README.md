@@ -60,8 +60,17 @@ A new Flutter project.
 - [charts_flutter](https://pub.dev/packages/charts_flutter)
 - [card_swiper](https://pub.dev/packages/card_swiper)
 - [cached_network_image](https://pub.dev/packages/cached_network_image)
+- [nine_grid_view](https://pub.dev/packages/nine_grid_view)
+- [flukit](https://pub.dev/packages/flukit)
+- [flutter_staggered_grid_view](https://pub.dev/packages/flutter_staggered_grid_view)
 
 ## ISSUE
+
+### Grid view dragglable
+- [Flutter Scrolling while dragging an item](https://www.technicalfeeder.com/2021/09/flutter-scrolling-while-dragging-an-item/)
+- [Flutter Key的原理和使用(五) 需要key的实例:可拖动改变顺序的Listview](https://blog.csdn.net/u011272795/article/details/120156732?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-0.pc_relevant_default&spm=1001.2101.3001.4242.1&utm_relevant_index=3)
+- [Flutter - 7 : 一个附带删除动画与拖动删除的GridView](https://blog.csdn.net/weixin_42572156/article/details/86595623?spm=1001.2101.3001.6650.15&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-15.pc_relevant_default&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-15.pc_relevant_default&utm_relevant_index=19)
+- [Flutter使用GridView长按拖动排序、分类](https://blog.csdn.net/chengjiamei/article/details/113994824?spm=1001.2101.3001.6650.14&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-14.pc_relevant_default&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-14.pc_relevant_default&utm_relevant_index=18)
 
 ### Webview網頁與App通訊
 - [Flutter Webview網頁與App通訊](https://iter01.com/611021.html)

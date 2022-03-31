@@ -218,6 +218,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.2.9"
+  flukit:
+    dependency: "direct main"
+    description:
+      name: flukit
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -286,6 +293,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.0"
+  flutter_staggered_grid_view:
+    dependency: "direct main"
+    description:
+      name: flutter_staggered_grid_view
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.6.1"
   flutter_svg:
     dependency: "direct main"
     description:
@@ -569,6 +583,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
+  nine_grid_view:
+    dependency: "direct main"
+    description:
+      name: nine_grid_view
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0"
   octo_image:
     dependency: transitive
     description:

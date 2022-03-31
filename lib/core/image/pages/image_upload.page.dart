@@ -188,7 +188,10 @@ class _ImageUploadPageState extends State<ImageUploadPage> {
         color: Colors.grey,
         borderRadius: BorderRadius.circular(10),
         border: Border.all(width: 0.1, color: Colors.grey),
-        image: DecorationImage(image: Image.memory(cropImageInfo.data).image),
+        image: DecorationImage(
+          image: Image.memory(cropImageInfo.data).image,
+          fit: BoxFit.cover,
+        ),
       ),
       child: Stack(
         alignment: Alignment.topRight,

@@ -403,5 +403,26 @@ List<Widget> getDevView(BuildContext context) {
         Get.to(() => DevSwiperWidget());
       },
     ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(DevReordableList.routeName),
+      onTap: () {
+        Get.to(() => DevReordableList());
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(DevNineGridView.routeName),
+      onTap: () {
+        Get.to(() => DevNineGridView());
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(DevDraggableGrid.routeName),
+      onTap: () {
+        Get.to(() => DevDraggableGrid());
+      },
+    ),
   ];
 }

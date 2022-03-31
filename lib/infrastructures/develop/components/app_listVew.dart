@@ -9,6 +9,9 @@ import 'package:seeks_app_prototype/core/dating/pages/dating_info.page.dart';
 import 'package:seeks_app_prototype/core/dating/pages/dating_add_images.page.dart';
 import 'package:seeks_app_prototype/core/dating/widgets/dating_list_item.widget.dart';
 import 'package:seeks_app_prototype/core/dev/pages/default_page.dart';
+import 'package:seeks_app_prototype/core/dev/pages/dev_draggable_grid.dart';
+import 'package:seeks_app_prototype/core/dev/pages/dev_nine_grid_view.dart';
+import 'package:seeks_app_prototype/core/dev/pages/dev_reorderable_list.dart';
 import 'package:seeks_app_prototype/core/entry/pages/entry.page.dart';
 import 'package:seeks_app_prototype/core/home/pages/home.page.dart';
 import 'package:seeks_app_prototype/core/image/pages/image_upload.page.dart';
@@ -74,6 +77,7 @@ import 'package:seeks_app_prototype/core/users/pages/user_create_info.page.dart'
 import 'package:seeks_app_prototype/core/users/pages/user_create.page.dart';
 import 'package:seeks_app_prototype/core/users/pages/user_dating_list.page.dart';
 import 'package:seeks_app_prototype/core/users/pages/user_info.page.dart';
+import 'package:seeks_app_prototype/core/users/pages/user_info_editor.dart';
 import 'package:seeks_app_prototype/core/users/widgets/user_info.widget.dart';
 import 'package:seeks_app_prototype/core/users/widgets/user_info_list_item.widget.dart';
 import 'package:seeks_app_prototype/core/users/widgets/user_info_label.widget.dart';
@@ -287,6 +291,13 @@ List<Widget> getAppView(BuildContext context) {
       title: Text(UserInfoPage.routeName),
       onTap: () {
         Get.to(() => UserInfoPage());
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(UserInfoEditorPage.routeName),
+      onTap: () {
+        Get.to(() => UserInfoEditorPage());
       },
     ),
   ];
