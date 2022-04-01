@@ -63,6 +63,8 @@ A new Flutter project.
 - [nine_grid_view](https://pub.dev/packages/nine_grid_view)
 - [flukit](https://pub.dev/packages/flukit)
 - [flutter_staggered_grid_view](https://pub.dev/packages/flutter_staggered_grid_view)
+- [json_serializable](https://pub.dev/packages/json_serializable)
+- [equatable](https://pub.dev/packages/equatable)
 
 ## ISSUE
 
@@ -144,4 +146,8 @@ flutter: FCMToken: dUiJHrhrGEG9msxQSQ9xuw:APA91bH8MSHpe8EZDA98IR9h6fUal1MSRhsr_S
 flutter: User granted permission: AuthorizationStatus.denied
 flutter: APNSToken: 35D4D2167DB5C476F5956AC576790F6FBAF0A68271DAAF5BF1A138909A0C09F6
 flutter: FCMToken: f2DTfW6CZ0EFlAdnaTPhO0:APA91bGLzrd5ZTQvoId4FyCPAWrQGWgMOp4lLh9tGYNccWxD-iq3YYlpFo8-T9MUCnI5K36pwUjUdW2hBOkDXQaww_wgIlq5EjAfkEsQxaWeeUqr5v2t7otb7FJ9PTRNtI5VNUeJ8vYb
+
+Restarted application in 1,334ms.
+flutter: APNSToken: CF2DB98A242240FB525AFADEB60695886CAE54D549A806B043C5294126BF30C7
+flutter: FCMToken: ddfAintob05JimSS1FBk-c:APA91bHEMraZ_W6G4InxSe5pUH7hApCXAdGkzDH8s03b83iGe4b4wRxbhyWL0Ee7fEJdUownubaMBjHtSW2gxUJ80nFHA8wbQICyH2DoRTLNmQzDCdikL1TF0p4FAmdG26DF19AV7QGH
 ```
