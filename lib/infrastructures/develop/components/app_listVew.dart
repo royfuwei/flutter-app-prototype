@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:seeks_app_prototype/core/captcha/pages/captcha.page.dart';
+import 'package:seeks_app_prototype/core/login/pages/login_tel_captcha.page.dart';
 import 'package:seeks_app_prototype/core/chat/pages/chat.page.dart';
 import 'package:seeks_app_prototype/core/chat/widgets/chat_bubble.widget.dart';
 import 'package:seeks_app_prototype/core/chat/widgets/chat_list_item.widget.dart';
@@ -123,11 +123,11 @@ List<Widget> getAppView(BuildContext context) {
     ),
     ListTile(
       leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
-      title: Text(CaptchaPage.routeName),
+      title: Text(LoginTelCaptchaPage.routeName),
       onTap: () {
         toRoutesNamed([
           EntryPage.routeName,
-          CaptchaPage.routeName,
+          LoginTelCaptchaPage.routeName,
         ]);
       },
     ),

@@ -1,26 +1,24 @@
 import 'dart:convert';
 
-import 'package:get/get.dart';
-import 'package:seeks_app_prototype/core/login/models/login_status_model.dart';
+import 'package:seeks_app_prototype/core/login/models/login_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class LoginStatusController extends GetxController {
-  final loginStatusModel = LoginStatusModel().obs;
-  static String storedKey = 'LoginStatusModel';
+class LoginRepository {
+  static String storedKey = 'LoginRepository';
 
-  Future<LoginStatusModel> getLocalStorage() async {
+  Future<LoginModel> getLocalStorage() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     var value = pref.getString(storedKey) ?? null;
-    LoginStatusModel model = new LoginStatusModel();
+    LoginModel model = new LoginModel();
     if (value != null) {
       var modelJson = jsonDecode(value);
-      model = LoginStatusModel.fromJson(modelJson);
+      model = LoginModel.fromJson(modelJson);
     }
     return model;
   }
 
   Future<void> setLocalStorage(Map<String, dynamic> json) async {
-    var model = LoginStatusModel.fromJson(json);
+    var model = LoginModel.fromJson(json);
     SharedPreferences pref = await SharedPreferences.getInstance();
     var jsonStr = jsonEncode(model.toJson());
     await pref.setString(storedKey, jsonStr);
@@ -31,7 +29,7 @@ class LoginStatusController extends GetxController {
     await pref.remove(storedKey);
   }
 
-  Future<LoginStatusModel> setValue(String key, value) async {
+  Future<LoginModel> setValue(String key, value) async {
     var model = await getLocalStorage();
     var json = model.toJson();
     json[key] = value;

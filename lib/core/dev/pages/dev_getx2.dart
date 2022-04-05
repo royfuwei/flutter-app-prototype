@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:seeks_app_prototype/core/main/pages/main.page.dart';
 
 class DevGetx2Page1 extends GetView {
   static String routeName = "/dev/getx2_page1";
-  // DevGetX2Controller controller = new DevGetX2Controller();
-  // DevGetX2Controller controller2 = new DevGetX2Controller();
   DevGetX2Controller controller = Get.put(DevGetX2Controller());
-  // DevGetX2Controller controller2 = Get.put(DevGetX2Controller());
   // DevGetX2Controller2 controller2 = Get.put(DevGetX2Controller2());
 
   @override
   Widget build(BuildContext context) {
     // throw UnimplementedError();
+    controller.addListener(() {
+      print("addListener DevGetx2Page1 controller.addListener");
+      controller.goToMainPage();
+    });
     return Scaffold(
       appBar: appBar(),
       body: Center(
@@ -26,8 +28,8 @@ class DevGetx2Page1 extends GetView {
             ),
             /* GetX2CounterWidget2(
               controller: controller2,
-            ), */
-            // ctl2IncreaseButton(),
+            ),
+            ctl2IncreaseButton(), */
           ],
         ),
       ),
@@ -58,12 +60,9 @@ class DevGetx2Page1 extends GetView {
           padding: EdgeInsets.symmetric(horizontal: 5),
           child: TextButton(
             onPressed: () {
-              print("Get.to(() => DevGetx2Page2())");
               // Get.to(() => DevGetx2Page2());
               Get.to(
-                () => GetX2CounterPage(
-                    // controller: controller2,
-                    ),
+                () => GetX2CounterPage(),
               );
             },
             child: Text(
@@ -82,7 +81,7 @@ class DevGetx2Page1 extends GetView {
 
 /* ------------------ */
 
-/* ------------------ */
+/* ---------DevGetx2Page2--------- */
 class DevGetx2Page2 extends StatefulWidget {
   static String routeName = "/dev/getx2_page2";
   const DevGetx2Page2({Key? key}) : super(key: key);
@@ -92,10 +91,7 @@ class DevGetx2Page2 extends StatefulWidget {
 }
 
 class _DevGetx2Page2State extends State<DevGetx2Page2> {
-  // DevGetX2Controller controller = new DevGetX2Controller();
   DevGetX2Controller2 controller = Get.put(DevGetX2Controller2());
-
-  // final DevGetX2Controller c = Get.find();
 
   @override
   void initState() {
@@ -106,6 +102,10 @@ class _DevGetx2Page2State extends State<DevGetx2Page2> {
   @override
   Widget build(BuildContext context) {
     // throw UnimplementedError();
+    /* controller.addListener(() {
+      print("addListener DevGetx2Page2 controller.addListener");
+      controller.goToMainPage();
+    }); */
     return Scaffold(
       appBar: appBar(),
       body: Center(
@@ -155,7 +155,7 @@ class _DevGetx2Page2State extends State<DevGetx2Page2> {
   }
 }
 
-/* ------------------ */
+/* ----------GetX2CounterWidget-------- */
 
 class GetX2CounterWidget extends StatelessWidget {
   const GetX2CounterWidget({
@@ -174,7 +174,7 @@ class GetX2CounterWidget extends StatelessWidget {
     );
   }
 }
-/* ------------------ */
+/* ---------GetX2CounterWidget2--------- */
 
 class GetX2CounterWidget2 extends StatelessWidget {
   const GetX2CounterWidget2({
@@ -194,7 +194,7 @@ class GetX2CounterWidget2 extends StatelessWidget {
   }
 }
 
-/* ------------------ */
+/* ---------GetX2CounterPage--------- */
 
 class GetX2CounterPage extends StatelessWidget {
   const GetX2CounterPage({
@@ -205,14 +205,29 @@ class GetX2CounterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // final DevGetX2Controller c =
+    //     controller == null ? Get.find<DevGetX2Controller>() : controller!;
+    // final DevGetX2Controller c = Get.find<DevGetX2Controller>();
     final DevGetX2Controller c =
-        // controller == null ? Get.put(DevGetX2Controller()) : controller!;
-        controller == null ? Get.find<DevGetX2Controller>() : controller!;
+        Get.put<DevGetX2Controller>(DevGetX2Controller());
 
-    final DevGetX2Controller2 controller2 = Get.find<DevGetX2Controller2>();
+    final DevGetX2Controller2 c2 =
+        Get.put<DevGetX2Controller2>(DevGetX2Controller2());
+    // final DevGetX2Controller2 c2 = Get.find<DevGetX2Controller2>();
+
     _incrementCounter() {
       c.increase();
     }
+
+    /* c2.addListener(() {
+      print("addListener GetX2CounterPage c2.addListener");
+      c2.goToMainPage();
+    });
+
+    c.addListener(() {
+      print("addListener GetX2CounterPage c.addListener");
+      c.goToMainPage();
+    }); */
 
     return Scaffold(
       appBar: appBar(c),
@@ -227,7 +242,7 @@ class GetX2CounterPage extends StatelessWidget {
             ),
             Obx(
               () => Text(
-                '${controller2._count}',
+                '${c2._count}',
                 style: Theme.of(context).textTheme.headline4,
               ),
             ),
@@ -268,6 +283,13 @@ class DevGetX2Controller extends GetxController {
   set count(value) => this._count.value = value;
   get count => this._count.value;
 
+  goToMainPage() {
+    if (_count > 10) {
+      print("DevGetX2Controller goToMainPage _count > 10: ${_count > 10}");
+      Get.to(() => MainPage());
+    }
+  }
+
   increase() {
     count++;
     this.update();
@@ -285,6 +307,13 @@ class DevGetX2Controller2 extends GetxController {
   final _count = 0.obs;
   set count(value) => this._count.value = value;
   get count => this._count.value;
+
+  goToMainPage() {
+    if (_count > 10) {
+      print("DevGetX2Controller2 goToMainPage _count > 10: ${_count > 10}");
+      Get.to(() => MainPage());
+    }
+  }
 
   increase() {
     count++;

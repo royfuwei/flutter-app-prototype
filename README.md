@@ -65,6 +65,8 @@ A new Flutter project.
 - [flutter_staggered_grid_view](https://pub.dev/packages/flutter_staggered_grid_view)
 - [json_serializable](https://pub.dev/packages/json_serializable)
 - [equatable](https://pub.dev/packages/equatable)
+- [json_annotation](https://pub.dev/packages/json_annotation)
+- [build_runner](https://pub.dev/packages/build_runner)
 
 ## ISSUE
 

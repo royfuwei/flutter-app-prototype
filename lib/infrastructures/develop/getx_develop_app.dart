@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:seeks_app_prototype/configs/theme.dart';
-import 'package:seeks_app_prototype/core/dev/pages/dev_getx2.dart';
+import 'package:seeks_app_prototype/core/init/controllers/init.controller.dart';
 import 'package:seeks_app_prototype/routes/dev_pages.dart';
 
 class GetxDevelopApp extends StatelessWidget {
-  // DevGetX2Controller controller = Get.put(DevGetX2Controller());
-  // DevGetX2Controller2 controller2 = Get.put(DevGetX2Controller2());
+  InitController initController = Get.put(InitController());
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -17,22 +16,5 @@ class GetxDevelopApp extends StatelessWidget {
       getPages: DevPages.routes,
       enableLog: true,
     );
-    /* return MaterialApp(
-      title: 'Flutter Demo',
-      //拿掉畫面右上角的debug
-      debugShowCheckedModeBanner: false,
-      // dev themeData
-      // theme: ThemeData(
-      //   primarySwatch: Colors.teal,
-      //   visualDensity: VisualDensity.adaptivePlatformDensity,
-      //   highlightColor: Color.fromRGBO(0, 0, 0, 0),
-      //   splashColor: Color.fromRGBO(0, 0, 0, 0),
-      // ),
-      theme: theme(),
-      // darkTheme: ThemeData.dark(),
-      // home: AppRoutesPage(),
-      initialRoute: DevEntryPage.routeName,
-      routes: routes,
-    ); */
   }
 }

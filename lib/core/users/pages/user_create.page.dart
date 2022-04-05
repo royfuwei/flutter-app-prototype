@@ -32,8 +32,6 @@ class _UserCreatePageState extends State<UserCreatePage> {
     focusNode = FocusNode();
   }
 
-  final UserCreateController userCreateController =
-      Get.put(UserCreateController());
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -61,8 +59,8 @@ class _UserCreatePageState extends State<UserCreatePage> {
               text: "建立帳號",
               isDisabled: !goNext,
               press: () async {
-                var model = await userCreateController.setValue('email', email);
-                print("button model.email: ${model.email}");
+                // var model = await userCreateController.setValue('email', email);
+                // print("button model.email: ${model.email}");
                 toRoutesNamed([
                   EntryPage.routeName,
                   LocationOpenPage.routeName,

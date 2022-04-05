@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:seeks_app_prototype/core/captcha/pages/captcha.page.dart';
+import 'package:seeks_app_prototype/core/login/pages/login_tel_captcha.page.dart';
 import 'package:seeks_app_prototype/core/chat/pages/chat.page.dart';
 import 'package:seeks_app_prototype/core/dating/pages/dating_add_info.page.dart';
 import 'package:seeks_app_prototype/core/dating/pages/dating_info.page.dart';

@@ -12,6 +12,8 @@ const bgMainColor = Color.fromRGBO(250, 250, 245, 1);
 const Color colorLoginButton = Colors.teal;
 const Color colorLoginButtonFont = Colors.white;
 
+const Color colorTextField = Colors.teal;
+
 Image seeksLogo = Image.asset("assets/logo/seeks_logo.png");
 const Color seeksLoginColor01 = Color.fromRGBO(64, 64, 64, 1);
 const Color mediaSelectColor = Color.fromRGBO(139, 139, 139, 0.7);

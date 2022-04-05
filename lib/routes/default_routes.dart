@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:seeks_app_prototype/core/captcha/pages/captcha.page.dart';
+import 'package:seeks_app_prototype/core/login/pages/login_tel_captcha.page.dart';
 import 'package:seeks_app_prototype/core/dating/pages/dating_add_images.page.dart';
 import 'package:seeks_app_prototype/core/entry/pages/entry.page.dart';
 import 'package:seeks_app_prototype/core/forgot_password/pages/forgot_password.page.dart';
@@ -83,7 +83,7 @@ final Map<String, WidgetBuilder> routes = {
   NotificationOpenPage.routeName: (context) => NotificationOpenPage(),
   ImageUploadPage.routeName: (context) => ImageUploadPage(),
   UserCreateInfoPage.routeName: (context) => UserCreateInfoPage(),
-  CaptchaPage.routeName: (context) => CaptchaPage(),
+  LoginTelCaptchaPage.routeName: (context) => LoginTelCaptchaPage(),
   MainPage.routeName: (context) => MainPage(),
   HomePage.routeName: (context) => HomePage(),
   NotificationPage.routeName: (context) => NotificationPage(),

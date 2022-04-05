@@ -49,8 +49,8 @@ abstract class AppRoutes {
           binding: AppPagesBind(),
         ),
         GetPage(
-          name: CaptchaPage.routeName,
-          page: () => CaptchaPage(),
+          name: LoginTelCaptchaPage.routeName,
+          page: () => LoginTelCaptchaPage(),
           binding: AppPagesBind(),
         ),
         GetPage(
