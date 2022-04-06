@@ -5,7 +5,6 @@ import 'package:seeks_app_prototype/core/login/pages/login_tel.page.dart';
 import 'package:seeks_app_prototype/core/login/repositories/login.repo.dart';
 import 'package:seeks_app_prototype/core/signup/controllers/signup.controller.dart';
 import 'package:seeks_app_prototype/core/signup/pages/signup_account.page.dart';
-import 'package:seeks_app_prototype/core/users/pages/user_create.page.dart';
 import 'package:seeks_app_prototype/infrastructures/util/getx_routes.dart';
 
 class LoginController extends GetxController {

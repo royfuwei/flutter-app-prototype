@@ -17,7 +17,6 @@ import 'package:seeks_app_prototype/core/entry/pages/entry.page.dart';
 import 'package:seeks_app_prototype/core/home/pages/home.page.dart';
 import 'package:seeks_app_prototype/core/image/pages/image_upload.page.dart';
 import 'package:seeks_app_prototype/core/image/pages/image_upload_notify.page.dart';
-import 'package:seeks_app_prototype/core/location/pages/location_open.page.dart';
 import 'package:seeks_app_prototype/core/location/widgets/google_map.widget.dart';
 import 'package:seeks_app_prototype/core/location/widgets/search_location.widget.dart';
 import 'package:seeks_app_prototype/core/login/pages/login.page.dart';
@@ -32,7 +31,6 @@ import 'package:seeks_app_prototype/core/media/pages/media_image_selector.page.d
 import 'package:seeks_app_prototype/core/media/widgets/images_viewer.widget.dart';
 import 'package:seeks_app_prototype/core/more/pages/more.page.dart';
 import 'package:seeks_app_prototype/core/notification/pages/notfication.page.dart';
-import 'package:seeks_app_prototype/core/notification/pages/notification_open.page.dart';
 import 'package:seeks_app_prototype/core/dev/pages/dev_alert.dart';
 import 'package:seeks_app_prototype/core/dev/pages/dev_api_get.dart';
 import 'package:seeks_app_prototype/core/dev/pages/dev_api_post.dart';
@@ -79,7 +77,6 @@ import 'package:seeks_app_prototype/core/signup/pages/signup_location.page.dart'
 import 'package:seeks_app_prototype/core/signup/pages/signup_push_notification.page.dart';
 import 'package:seeks_app_prototype/core/signup/pages/signup_user.page.dart';
 import 'package:seeks_app_prototype/core/users/pages/user_create_info.page.dart';
-import 'package:seeks_app_prototype/core/users/pages/user_create.page.dart';
 import 'package:seeks_app_prototype/core/users/pages/user_dating_list.page.dart';
 import 'package:seeks_app_prototype/core/users/pages/user_info.page.dart';
 import 'package:seeks_app_prototype/core/users/pages/user_info_editor.dart';
@@ -172,36 +169,6 @@ List<Widget> getAppView(BuildContext context) {
         toRoutesNamed([
           EntryPage.routeName,
           SignUpUserPage.routeName,
-        ]);
-      },
-    ),
-    ListTile(
-      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
-      title: Text(UserCreatePage.routeName),
-      onTap: () {
-        toRoutesNamed([
-          EntryPage.routeName,
-          UserCreatePage.routeName,
-        ]);
-      },
-    ),
-    ListTile(
-      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
-      title: Text(LocationOpenPage.routeName),
-      onTap: () {
-        toRoutesNamed([
-          EntryPage.routeName,
-          LocationOpenPage.routeName,
-        ]);
-      },
-    ),
-    ListTile(
-      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
-      title: Text(NotificationOpenPage.routeName),
-      onTap: () {
-        toRoutesNamed([
-          EntryPage.routeName,
-          NotificationOpenPage.routeName,
         ]);
       },
     ),
