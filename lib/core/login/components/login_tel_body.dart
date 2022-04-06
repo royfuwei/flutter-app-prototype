@@ -109,6 +109,8 @@ class _LoginTelBodyComponentState extends State<LoginTelBodyComponent> {
             ),
           ), //设置圆角
           child: TextField(
+            cursorColor: Colors.white12,
+            cursorWidth: 1,
             keyboardType: TextInputType.phone,
             focusNode: focusNode,
             textInputAction: TextInputAction.done,
@@ -121,7 +123,7 @@ class _LoginTelBodyComponentState extends State<LoginTelBodyComponent> {
                   context,
                   18,
                 ),
-                color: Colors.white,
+                color: Colors.white60,
               ),
               contentPadding: EdgeInsets.symmetric(
                 vertical: 0,

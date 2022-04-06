@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:seeks_app_prototype/configs/size_config.dart';
 import 'package:seeks_app_prototype/core/common/components/default_flow_content.dart';
 import 'package:seeks_app_prototype/core/common/components/default_title.dart';
@@ -7,7 +6,6 @@ import 'package:seeks_app_prototype/core/common/components/input_text_field.dart
 import 'package:seeks_app_prototype/core/common/components/status_button.dart';
 import 'package:seeks_app_prototype/core/entry/pages/entry.page.dart';
 import 'package:seeks_app_prototype/core/location/pages/location_open.page.dart';
-import 'package:seeks_app_prototype/core/users/controllers/user_create_controller.dart';
 import 'package:seeks_app_prototype/infrastructures/util/getx_routes.dart';
 
 class UserCreatePage extends StatefulWidget {

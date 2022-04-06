@@ -44,6 +44,16 @@ abstract class AppRoutes {
           binding: AppPagesBind(),
         ),
         GetPage(
+          name: SignUpAccountPage.routeName,
+          page: () => SignUpAccountPage(),
+          binding: AppPagesBind(),
+        ),
+        GetPage(
+          name: SignUpUserPage.routeName,
+          page: () => SignUpUserPage(),
+          binding: AppPagesBind(),
+        ),
+        GetPage(
           name: UserCreatePage.routeName,
           page: () => UserCreatePage(),
           binding: AppPagesBind(),

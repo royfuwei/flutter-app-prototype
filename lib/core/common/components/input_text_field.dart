@@ -71,13 +71,15 @@ class InputTextField extends StatelessWidget {
       height: getProportionateScreenHeight(context, 48),
       child: Card(
         elevation: 0.0,
-        color: kPrimaryColor,
+        color: colorTextField,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(
             Radius.circular(5.0),
           ),
         ), //设置圆角
         child: TextFormField(
+          cursorColor: Colors.white12,
+          cursorWidth: 1,
           keyboardType: keyboardType,
           textInputAction: textInputAction,
           textAlign: textAlign,
@@ -91,7 +93,7 @@ class InputTextField extends StatelessWidget {
                 context,
                 18,
               ),
-              color: Colors.grey,
+              color: Colors.white60,
             ),
             contentPadding: EdgeInsets.symmetric(
               vertical: 0,

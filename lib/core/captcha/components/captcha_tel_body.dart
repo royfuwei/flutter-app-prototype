@@ -182,6 +182,8 @@ class _CaptchaTelBodyComponentState extends State<CaptchaTelBodyComponent> {
             ),
           ), //设置圆角
           child: TextField(
+            cursorColor: Colors.white12,
+            cursorWidth: 1,
             keyboardType: TextInputType.number,
             focusNode: focusNode,
             textInputAction: TextInputAction.done,
