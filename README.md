@@ -67,6 +67,8 @@ A new Flutter project.
 - [equatable](https://pub.dev/packages/equatable)
 - [json_annotation](https://pub.dev/packages/json_annotation)
 - [build_runner](https://pub.dev/packages/build_runner)
+- [notification_permissions](https://pub.dev/packages/notification_permissions)
+- [permission_handler](https://pub.dev/packages/permission_handler)
 
 ## ISSUE
 

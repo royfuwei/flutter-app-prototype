@@ -24,6 +24,21 @@ abstract class AppRoutes {
           binding: AppPagesBind(),
         ),
         GetPage(
+          name: SignUpAccountPage.routeName,
+          page: () => SignUpAccountPage(),
+          binding: AppPagesBind(),
+        ),
+        GetPage(
+          name: SignUpLocationPage.routeName,
+          page: () => SignUpLocationPage(),
+          binding: AppPagesBind(),
+        ),
+        GetPage(
+          name: SignUpPushNotificationPage.routeName,
+          page: () => SignUpPushNotificationPage(),
+          binding: AppPagesBind(),
+        ),
+        GetPage(
           name: LocationOpenPage.routeName,
           page: () => LocationOpenPage(),
           binding: AppPagesBind(),
@@ -41,11 +56,6 @@ abstract class AppRoutes {
         GetPage(
           name: UserCreateInfoPage.routeName,
           page: () => UserCreateInfoPage(),
-          binding: AppPagesBind(),
-        ),
-        GetPage(
-          name: SignUpAccountPage.routeName,
-          page: () => SignUpAccountPage(),
           binding: AppPagesBind(),
         ),
         GetPage(

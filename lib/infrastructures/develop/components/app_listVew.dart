@@ -75,6 +75,8 @@ import 'package:seeks_app_prototype/core/notification/widgets/notifi_list_item.w
 import 'package:seeks_app_prototype/core/search/widgets/search.widget.dart';
 import 'package:seeks_app_prototype/core/dev/pages/dev_swiper.widget.dart';
 import 'package:seeks_app_prototype/core/signup/pages/signup_account.page.dart';
+import 'package:seeks_app_prototype/core/signup/pages/signup_location.page.dart';
+import 'package:seeks_app_prototype/core/signup/pages/signup_push_notification.page.dart';
 import 'package:seeks_app_prototype/core/signup/pages/signup_user.page.dart';
 import 'package:seeks_app_prototype/core/users/pages/user_create_info.page.dart';
 import 'package:seeks_app_prototype/core/users/pages/user_create.page.dart';
@@ -140,6 +142,26 @@ List<Widget> getAppView(BuildContext context) {
         toRoutesNamed([
           EntryPage.routeName,
           SignUpAccountPage.routeName,
+        ]);
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(SignUpLocationPage.routeName),
+      onTap: () {
+        toRoutesNamed([
+          EntryPage.routeName,
+          SignUpLocationPage.routeName,
+        ]);
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(SignUpPushNotificationPage.routeName),
+      onTap: () {
+        toRoutesNamed([
+          EntryPage.routeName,
+          SignUpPushNotificationPage.routeName,
         ]);
       },
     ),
