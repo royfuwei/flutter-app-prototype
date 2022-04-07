@@ -55,11 +55,10 @@ class _ImageUploadNotifyPageState extends State<ImageUploadNotifyPage> {
             subTitle: "請至少上傳一張照片",
           ),
           VerticalSpacing(of: 25),
-          Container(
-            height: MediaQuery.of(context).size.height * 0.5,
-            // height: MediaQuery.of(context).size.height * 0.3,
-            // child: getGirdView(),
-            child: getGirdView(),
+          Expanded(
+            child: Container(
+              child: getGirdView(),
+            ),
           ),
         ],
         buttom: [

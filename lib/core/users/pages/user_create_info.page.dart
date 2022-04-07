@@ -34,8 +34,8 @@ class _UserCreateInfoPageState extends State<UserCreateInfoPage> {
           ),
           Expanded(
             child: Container(
-              height: MediaQuery.of(context).size.height * .7,
-              width: MediaQuery.of(context).size.width,
+              // height: MediaQuery.of(context).size.height * .7,
+              // width: MediaQuery.of(context).size.width,
               child: SingleChildScrollView(
                 child: UserCreateInfoForm(),
               ),

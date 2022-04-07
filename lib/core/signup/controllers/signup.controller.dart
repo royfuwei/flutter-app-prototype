@@ -28,8 +28,8 @@ class SignUpController extends GetxController {
 
   @override
   void onInit() {
-    // onInitSignUpLocationSetting();
-    // onInitSignUpNotificationSetting();
+    onInitSignUpLocationSetting();
+    onInitSignUpNotificationSetting();
     super.onInit();
   }
 
@@ -52,8 +52,8 @@ class SignUpController extends GetxController {
     if (text.isNotEmpty) {
       email = text;
       bool emailValid = RegExp(
-              r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-          .hasMatch(email);
+        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
+      ).hasMatch(email);
       signUpAccountGoNext = emailValid;
     }
   }
