@@ -356,10 +356,10 @@ class _DatingAddInfoPageState extends State<DatingAddInfoPage> {
   datingDateTimePicker() {
     late DateTime startTime;
     late DateTime endTime;
-    var now = DateTime.now()..add(Duration(hours: 2));
+    /* var now = DateTime.now()..add(Duration(hours: 2));
     DateTime minimumDate = DateTime.parse(
         "${now.year}-${now.month.bitLength == 2 ? "0" : ""}${now.month}-${now.day} ${now.hour + 2}:00:00");
-    var maximumDate = minimumDate.add(Duration(days: 2));
+    var maximumDate = minimumDate.add(Duration(days: 2)); */
     showCupertinoModalPopup(
       context: context,
       builder: (_) {
@@ -376,11 +376,11 @@ class _DatingAddInfoPageState extends State<DatingAddInfoPage> {
                   padding: EdgeInsets.only(bottom: 0),
                   height: 250,
                   child: CupertinoDatePicker(
-                    minuteInterval: 30,
+                    // minuteInterval: 30,
                     mode: CupertinoDatePickerMode.dateAndTime,
-                    initialDateTime: minimumDate,
-                    minimumDate: minimumDate,
-                    maximumDate: maximumDate,
+                    // initialDateTime: minimumDate,
+                    // minimumDate: minimumDate,
+                    // maximumDate: maximumDate,
                     onDateTimeChanged: (date) {
                       startTime = date;
                     },

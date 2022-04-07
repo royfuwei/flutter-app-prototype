@@ -240,7 +240,9 @@ class _DevPickerState extends State<DevPicker> {
   getSelectorPicker(List<Text> items) {
     return CupertinoPicker(
       itemExtent: 30,
-      onSelectedItemChanged: (position) {},
+      onSelectedItemChanged: (idx) {
+        print("idx: ${idx}");
+      },
       children: items,
     );
   }
