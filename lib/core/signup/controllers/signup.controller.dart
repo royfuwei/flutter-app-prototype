@@ -5,8 +5,10 @@ import 'package:seeks_app_prototype/core/entry/pages/entry.page.dart';
 import 'package:seeks_app_prototype/core/image/pages/image_upload.page.dart';
 import 'package:seeks_app_prototype/core/location/controllers/location.controller.dart';
 import 'package:seeks_app_prototype/core/notification/controllers/notification.controller.dart';
+import 'package:seeks_app_prototype/core/signup/pages/signup_images_upload.page.dart';
 import 'package:seeks_app_prototype/core/signup/pages/signup_location.page.dart';
 import 'package:seeks_app_prototype/core/signup/pages/signup_push_notification.page.dart';
+import 'package:seeks_app_prototype/core/signup/pages/signup_user_info.page.dart';
 import 'package:seeks_app_prototype/infrastructures/util/getx_routes.dart';
 
 class SignUpController extends GetxController {
@@ -158,7 +160,7 @@ class SignUpController extends GetxController {
   Future<void> signUpNotificationGoNextOnPressed() async {
     toRoutesNamed([
       EntryPage.routeName,
-      ImageUploadPage.routeName,
+      SignUpImagesUpload.routeName,
     ]);
   }
 
@@ -169,5 +171,13 @@ class SignUpController extends GetxController {
 
   Future<void> onInitSignUpNotificationSetting() async {
     await _signUpNotificationSettingPermissionByPermission();
+  }
+
+  // signup images upload
+  signUpImagesUploadGoNextOnPressed() async {
+    toRoutesNamed([
+      EntryPage.routeName,
+      SignUpUserInfoPage.routeName,
+    ]);
   }
 }

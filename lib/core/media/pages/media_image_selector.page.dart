@@ -20,12 +20,12 @@ class MediaImageSelectorPageNotification extends Notification {
   });
 }
 
-class ImageSelectorPage extends StatefulWidget {
+class MediaImageSelectorPage extends StatefulWidget {
   static String routeName = "/media/image_selector";
   final String? title;
   final BoxShape? shape;
   final double? cropAspectRatios;
-  const ImageSelectorPage({
+  const MediaImageSelectorPage({
     Key? key,
     this.title: "",
     this.shape: BoxShape.rectangle,
@@ -33,17 +33,15 @@ class ImageSelectorPage extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<ImageSelectorPage> createState() => _ImageSelectorPageState();
+  State<MediaImageSelectorPage> createState() => _MediaImageSelectorPageState();
 }
 
-class _ImageSelectorPageState extends State<ImageSelectorPage> {
+class _MediaImageSelectorPageState extends State<MediaImageSelectorPage> {
   List<CropAssetEntity> cropAssets = [];
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    // context.read<MediaImageSelectorPageProvider>().clear();
   }
 
   @override
@@ -51,7 +49,7 @@ class _ImageSelectorPageState extends State<ImageSelectorPage> {
     return Navigator(
       pages: [
         MaterialPage(
-          name: ImageSelectorPage.routeName,
+          name: MediaImageSelectorPage.routeName,
           child: Scaffold(
             appBar: appBar(),
             body: body(),

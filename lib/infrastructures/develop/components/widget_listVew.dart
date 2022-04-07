@@ -32,9 +32,9 @@ List<Widget> getWidgetView(BuildContext context) {
     ),
     ListTile(
       leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
-      title: Text(ImageSelectorPage.routeName),
+      title: Text(MediaImageSelectorPage.routeName),
       onTap: () {
-        Get.to(() => ImageSelectorPage());
+        Get.to(() => MediaImageSelectorPage());
       },
     ),
     ListTile(

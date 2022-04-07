@@ -160,7 +160,7 @@ class _ImageUploadNotifyPageState extends State<ImageUploadNotifyPage> {
           },
           child: SafeArea(
             bottom: false,
-            child: ImageSelectorPage(),
+            child: MediaImageSelectorPage(),
           ),
         );
       },

@@ -176,7 +176,7 @@ class _ImageUploadPageState extends State<ImageUploadPage> {
           },
           child: SafeArea(
             bottom: false,
-            child: ImageSelectorPage(),
+            child: MediaImageSelectorPage(),
           ),
         );
       },

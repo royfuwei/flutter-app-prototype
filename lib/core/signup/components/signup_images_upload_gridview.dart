@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:seeks_app_prototype/configs/size_config.dart';
@@ -16,6 +18,7 @@ class SignUpImagesUploadGridViewCompnent extends StatefulWidget {
 
 class _SignUpImagesUploadGridViewCompnentState
     extends State<SignUpImagesUploadGridViewCompnent> {
+  List<CropImageInfoModel> selectImageInfoList = [];
   SignUpImagesController signUpImagesController = Get.put(
     SignUpImagesController(),
   );
@@ -25,33 +28,74 @@ class _SignUpImagesUploadGridViewCompnentState
     return body();
   }
 
+  @override
+  void initState() {
+    super.initState();
+    signUpImagesController.clear();
+    genSelectImageInfoList();
+    // print("selectImageInfoList: ${selectImageInfoList}");
+  }
+
   body() {
     return Container(
       child: getGridView(),
     );
   }
 
+  genSelectImageInfoList() {
+    if (selectImageInfoList.length == 0) {
+      selectImageInfoList.add(
+        CropImageInfoModel(
+          id: "btn",
+          data: Uint8List.fromList([]),
+          shape: BoxShape.rectangle,
+        ),
+      );
+    }
+  }
+
+  genProviderSelectImageInfoList(
+    List<CropImageInfoModel> selectImageInfoList,
+  ) {
+    List<CropImageInfoModel> temp = [
+      CropImageInfoModel(
+        id: "btn",
+        data: Uint8List.fromList([]),
+        shape: BoxShape.rectangle,
+      ),
+    ];
+    temp.addAll(selectImageInfoList);
+    return temp;
+  }
+
   getGridView() {
     return Obx(
-      () => GridView.builder(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          // 每行
-          crossAxisCount: 3,
-          // 子 Widget 寬高比
-          childAspectRatio: 1.0,
-          // 非滾動方向間距
-          crossAxisSpacing: 24.0,
-          // 滾動方向間距
-          mainAxisSpacing: 24.0,
-        ),
-        itemCount: signUpImagesController.selectImagesList.length,
-        itemBuilder: (bc, idx) {
-          return genGridViewItem(
-            signUpImagesController.selectImagesList[idx],
-            idx,
-          );
-        },
-      ),
+      () {
+        selectImageInfoList = genProviderSelectImageInfoList(
+          signUpImagesController.selectImageList,
+        );
+        return GridView.builder(
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            // 每行
+            crossAxisCount: 3,
+            // 子 Widget 寬高比
+            childAspectRatio: 1.0,
+            // 非滾動方向間距
+            crossAxisSpacing: 24.0,
+            // 滾動方向間距
+            mainAxisSpacing: 24.0,
+          ),
+          // itemCount: signUpImagesController.selectImageList.length,
+          itemCount: selectImageInfoList.length,
+          itemBuilder: (bc, idx) {
+            return genGridViewItem(
+              selectImageInfoList[idx],
+              // signUpImagesController.selectImageList[idx],
+              idx,
+            );
+          },
+        );
+      },
     );
   }
 
@@ -94,12 +138,20 @@ class _SignUpImagesUploadGridViewCompnentState
       builder: (BuildContext bc) {
         return NotificationListener<MediaImageSelectorPageNotification>(
           onNotification: (notification) {
+            print(
+                "notification.selectImageInfoList: ${notification.selectImageInfoList}");
+            signUpImagesController.addAllByList(
+              notification.selectImageInfoList,
+            );
+            print(
+                "signUpImagesController.selectImageList: ${signUpImagesController.selectImageList}");
             Navigator.pop(context);
+            setState(() {});
             return true;
           },
           child: SafeArea(
             bottom: false,
-            child: ImageSelectorPage(),
+            child: MediaImageSelectorPage(),
           ),
         );
       },
@@ -123,7 +175,11 @@ class _SignUpImagesUploadGridViewCompnentState
           Transform.translate(
             offset: Offset(1, -1),
             child: TextButton(
-              onPressed: () {},
+              onPressed: () {
+                signUpImagesController.removeItemByIndex(idx - 1);
+                setState(() {});
+                // signUpImagesController.removeItemByIndex(idx);
+              },
               style: TextButton.styleFrom(
                 backgroundColor: Colors.black54,
                 shape: CircleBorder(),
