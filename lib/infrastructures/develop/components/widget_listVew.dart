@@ -4,16 +4,16 @@ List<Widget> getWidgetView(BuildContext context) {
   return <Widget>[
     ListTile(
       leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
-      title: Text(MediaAssetSelector.routeName),
+      title: Text(MediaAssetSelectorComponent.routeName),
       onTap: () {
-        Get.to(() => MediaAssetSelector());
+        Get.to(() => MediaAssetSelectorComponent());
       },
     ),
     ListTile(
       leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
-      title: Text(MediaAlbumSelector.routeName),
+      title: Text(MediaAlbumSelectorComponent.routeName),
       onTap: () {
-        Get.to(() => MediaAlbumSelector());
+        Get.to(() => MediaAlbumSelectorComponent());
       },
     ),
     ListTile(
@@ -39,9 +39,9 @@ List<Widget> getWidgetView(BuildContext context) {
     ),
     ListTile(
       leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
-      title: Text(ImagesViewerWidget.routeName),
+      title: Text(MediaImagesViewerWidget.routeName),
       onTap: () {
-        Get.to(() => ImagesViewerWidget());
+        Get.to(() => MediaImagesViewerWidget());
       },
     ),
     ListTile(

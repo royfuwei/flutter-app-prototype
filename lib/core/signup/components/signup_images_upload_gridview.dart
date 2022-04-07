@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:seeks_app_prototype/configs/size_config.dart';
 import 'package:seeks_app_prototype/constants.dart';
+import 'package:seeks_app_prototype/core/media/models/media_asset_image.dart';
 import 'package:seeks_app_prototype/core/media/pages/media_image_selector.page.dart';
 import 'package:seeks_app_prototype/core/signup/controllers/signup_images.controller.dart';
 
@@ -54,7 +55,7 @@ class _SignUpImagesUploadGridViewCompnentState
     );
   }
 
-  genGridViewItem(CropImageInfoEntity cropImageInfo, int idx) {
+  genGridViewItem(CropImageInfoModel cropImageInfo, int idx) {
     Widget _widget;
     if (cropImageInfo.id == "btn") {
       _widget = _selectImagePageBtn();
@@ -91,7 +92,7 @@ class _SignUpImagesUploadGridViewCompnentState
       context: context,
       useSafeArea: false,
       builder: (BuildContext bc) {
-        return NotificationListener<ImageSelectorPageNotification>(
+        return NotificationListener<MediaImageSelectorPageNotification>(
           onNotification: (notification) {
             Navigator.pop(context);
             return true;
@@ -105,7 +106,7 @@ class _SignUpImagesUploadGridViewCompnentState
     );
   }
 
-  Container _imageGridViewItem(CropImageInfoEntity cropImageInfo, int idx) {
+  Container _imageGridViewItem(CropImageInfoModel cropImageInfo, int idx) {
     return Container(
       decoration: BoxDecoration(
         color: Colors.grey,

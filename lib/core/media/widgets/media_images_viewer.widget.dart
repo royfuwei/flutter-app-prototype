@@ -2,26 +2,24 @@ import 'dart:typed_data';
 
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:photo_manager/photo_manager.dart';
 import 'package:seeks_app_prototype/configs/size_config.dart';
 import 'package:seeks_app_prototype/constants.dart';
 import 'package:seeks_app_prototype/infrastructures/util/keep_alive_wrapper.dart';
 
-class ImagesViewerWidget extends StatefulWidget {
+class MediaImagesViewerWidget extends StatefulWidget {
   static String routeName = "/widget/images_viewer";
-  const ImagesViewerWidget({
+  const MediaImagesViewerWidget({
     Key? key,
     this.images,
   }) : super(key: key);
   final List<ImageProvider<Object>>? images;
 
   @override
-  State<ImagesViewerWidget> createState() => _ImagesViewerWidgetState();
+  State<MediaImagesViewerWidget> createState() =>
+      _MediaImagesViewerWidgetState();
 }
 
-class _ImagesViewerWidgetState extends State<ImagesViewerWidget> {
+class _MediaImagesViewerWidgetState extends State<MediaImagesViewerWidget> {
   int currentPage = 0;
   List<Widget> imageWidgets = [];
   List<ImageProvider<Object>> images = [];

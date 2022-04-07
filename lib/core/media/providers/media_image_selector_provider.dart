@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
-import 'package:seeks_app_prototype/core/media/pages/media_image_selector.page.dart';
+import 'package:seeks_app_prototype/core/media/models/media_asset_image.dart';
 
 enum MediaImageSelectorState { init, selector }
 
 class MediaImageSelectorProvider extends ChangeNotifier {
-  List<CropImageInfoEntity> _selectImageInfoList = [];
-  List<CropImageInfoEntity> get selectImageInfoList => _selectImageInfoList;
+  List<CropImageInfoModel> _selectImageInfoList = [];
+  List<CropImageInfoModel> get selectImageInfoList => _selectImageInfoList;
 
-  setSelectImageInfoList(List<CropImageInfoEntity> data) {
+  setSelectImageInfoList(List<CropImageInfoModel> data) {
     _selectImageInfoList = data;
     notifyListeners();
   }
@@ -22,12 +22,12 @@ class MediaImageSelectorProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  addItem(CropImageInfoEntity item) {
+  addItem(CropImageInfoModel item) {
     _selectImageInfoList.add(item);
     notifyListeners();
   }
 
-  addItemByList(List<CropImageInfoEntity> items) {
+  addItemByList(List<CropImageInfoModel> items) {
     _selectImageInfoList.addAll(items);
     notifyListeners();
   }

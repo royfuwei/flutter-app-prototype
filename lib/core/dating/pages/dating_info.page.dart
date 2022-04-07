@@ -6,7 +6,7 @@ import 'package:seeks_app_prototype/core/common/components/status_button.dart';
 import 'package:seeks_app_prototype/core/dating/widgets/dating_datetime.widget.dart';
 import 'package:seeks_app_prototype/core/dating/widgets/dating_label.widget.dart';
 import 'package:seeks_app_prototype/core/main/pages/main.page.dart';
-import 'package:seeks_app_prototype/core/media/widgets/images_viewer.widget.dart';
+import 'package:seeks_app_prototype/core/media/widgets/media_images_viewer.widget.dart';
 import 'package:seeks_app_prototype/infrastructures/util/getx_routes.dart';
 
 class DatingInfoPage extends StatefulWidget {
@@ -201,7 +201,7 @@ class _DatingInfoPageState extends State<DatingInfoPage> {
       height: MediaQuery.of(context).size.width,
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(color: Colors.blueGrey),
-      child: ImagesViewerWidget(
+      child: MediaImagesViewerWidget(
         images: images,
       ),
     );

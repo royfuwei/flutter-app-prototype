@@ -11,6 +11,7 @@ import 'package:seeks_app_prototype/core/common/components/default_app_bar.dart'
 import 'package:seeks_app_prototype/core/dating/pages/dating_info.page.dart';
 import 'package:seeks_app_prototype/core/dating/widgets/dating_list_item.widget.dart';
 import 'package:seeks_app_prototype/core/dev/pages/dev_webview.dart';
+import 'package:seeks_app_prototype/core/media/pages/media_image_selector.page.dart';
 import 'package:seeks_app_prototype/core/notification/components/splash_data.dart';
 import 'package:seeks_app_prototype/infrastructures/util/keep_alive_wrapper.dart';
 
@@ -52,6 +53,8 @@ class _HomePageState extends State<HomePage> {
     return Navigator(
       pages: [
         MaterialPage(
+          key: ValueKey(HomePage.routeName),
+          name: HomePage.routeName,
           child: Scaffold(
             appBar: appBar(),
             // body: bodyOfListItem(),
@@ -60,6 +63,11 @@ class _HomePageState extends State<HomePage> {
         ),
       ],
     );
+    /* return Scaffold(
+      appBar: appBar(),
+      // body: bodyOfListItem(),
+      body: body(),
+    ); */
   }
 
   body() {
@@ -79,13 +87,16 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         SliverList(
-          delegate: SliverChildBuilderDelegate((ctx, idx) {
-            return DatingListItem(
-              onPressed: () {
-                Get.to(() => DatingInfoPage());
-              },
-            );
-          }, childCount: 10),
+          delegate: SliverChildBuilderDelegate(
+            (ctx, idx) {
+              return DatingListItem(
+                onPressed: () {
+                  Get.to(() => DatingInfoPage());
+                },
+              );
+            },
+            childCount: 10,
+          ),
         )
       ],
     );

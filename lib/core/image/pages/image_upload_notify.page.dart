@@ -8,6 +8,7 @@ import 'package:seeks_app_prototype/core/common/components/default_flow_content.
 import 'package:seeks_app_prototype/core/common/components/default_title.dart';
 import 'package:seeks_app_prototype/core/common/components/status_button.dart';
 import 'package:seeks_app_prototype/core/entry/pages/entry.page.dart';
+import 'package:seeks_app_prototype/core/media/models/media_asset_image.dart';
 import 'package:seeks_app_prototype/core/media/pages/media_image_selector.page.dart';
 import 'package:seeks_app_prototype/core/users/pages/user_create_info.page.dart';
 import 'package:seeks_app_prototype/infrastructures/util/getx_routes.dart';
@@ -22,7 +23,7 @@ class ImageUploadNotifyPage extends StatefulWidget {
 
 class _ImageUploadNotifyPageState extends State<ImageUploadNotifyPage> {
   bool goNext = false;
-  List<CropImageInfoEntity> selectImageInfoList = [];
+  List<CropImageInfoModel> selectImageInfoList = [];
 
   @override
   void initState() {
@@ -33,11 +34,11 @@ class _ImageUploadNotifyPageState extends State<ImageUploadNotifyPage> {
   genSelectImageInfoList() {
     if (selectImageInfoList.length == 0) {
       selectImageInfoList.add(
-        CropImageInfoEntity(
+        CropImageInfoModel(
             id: "btn", data: Uint8List.fromList([]), shape: BoxShape.rectangle),
       );
     }
-    /* List<CropImageInfoEntity> temp = [];
+    /* List<CropImageInfoModel> temp = [];
     for (var selectImageInfo in selectImageInfoList) {
       temp.add(selectImageInfo);
     }
@@ -111,7 +112,7 @@ class _ImageUploadNotifyPageState extends State<ImageUploadNotifyPage> {
     );
   }
 
-  genGirdViewItem(CropImageInfoEntity cropImageInfo, int idx) {
+  genGirdViewItem(CropImageInfoModel cropImageInfo, int idx) {
     Widget _widget;
     if (cropImageInfo.id == "btn") {
       _widget = _selectImagePageBtn();
@@ -149,7 +150,7 @@ class _ImageUploadNotifyPageState extends State<ImageUploadNotifyPage> {
       context: context,
       useSafeArea: false,
       builder: (BuildContext bc) {
-        return NotificationListener<ImageSelectorPageNotification>(
+        return NotificationListener<MediaImageSelectorPageNotification>(
           onNotification: (notification) {
             setState(() {
               selectImageInfoList.addAll(notification.selectImageInfoList);
@@ -166,7 +167,7 @@ class _ImageUploadNotifyPageState extends State<ImageUploadNotifyPage> {
     );
   }
 
-  Container _imageGridViewItem(CropImageInfoEntity cropImageInfo, int idx) {
+  Container _imageGridViewItem(CropImageInfoModel cropImageInfo, int idx) {
     return Container(
       decoration: BoxDecoration(
         color: Colors.grey,

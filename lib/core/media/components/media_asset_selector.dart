@@ -13,26 +13,28 @@ import 'package:seeks_app_prototype/constants.dart';
 import 'package:seeks_app_prototype/core/media/components/media_album_selector.dart';
 import 'package:seeks_app_prototype/core/media/models/media_asset.dart';
 
-class MediaAssetSelectorNotification extends Notification {
+class MediaAssetSelectorComponentNotification extends Notification {
   final List<AssetEntity> selectAssets;
   final AssetEntity selectAsset;
   bool isSelectMulti;
-  MediaAssetSelectorNotification({
+  MediaAssetSelectorComponentNotification({
     required this.selectAssets,
     required this.selectAsset,
     this.isSelectMulti = false,
   });
 }
 
-class MediaAssetSelector extends StatefulWidget {
+class MediaAssetSelectorComponent extends StatefulWidget {
   static String routeName = '/media/cpt/asset_selector';
-  const MediaAssetSelector({Key? key}) : super(key: key);
+  const MediaAssetSelectorComponent({Key? key}) : super(key: key);
 
   @override
-  State<MediaAssetSelector> createState() => _MediaAssetSelectorState();
+  State<MediaAssetSelectorComponent> createState() =>
+      _MediaAssetSelectorComponentState();
 }
 
-class _MediaAssetSelectorState extends State<MediaAssetSelector> {
+class _MediaAssetSelectorComponentState
+    extends State<MediaAssetSelectorComponent> {
   late ScrollController _scrollController;
   List<MediaAssetModel> _mediaAssetModelList = [];
   List<AssetPathEntity> albums = [];
@@ -340,7 +342,7 @@ class _MediaAssetSelectorState extends State<MediaAssetSelector> {
           });
           return true;
         },
-        child: MediaAlbumSelector(),
+        child: MediaAlbumSelectorComponent(),
       ),
     );
   }
@@ -387,7 +389,7 @@ class _MediaAssetSelectorState extends State<MediaAssetSelector> {
       if (selectAssets.isEmpty) {
         selectAssets.add(asset);
         selectAsset = asset;
-        MediaAssetSelectorNotification(
+        MediaAssetSelectorComponentNotification(
           selectAssets: selectAssets,
           selectAsset: selectAsset,
           isSelectMulti: isSelectMulti,
@@ -463,7 +465,7 @@ class _MediaAssetSelectorState extends State<MediaAssetSelector> {
       }
     });
     updateSelectAsset(asset);
-    MediaAssetSelectorNotification(
+    MediaAssetSelectorComponentNotification(
       selectAssets: selectAssets,
       selectAsset: selectAsset,
       isSelectMulti: isSelectMulti,
@@ -486,7 +488,7 @@ class _MediaAssetSelectorState extends State<MediaAssetSelector> {
         _jumpToGridView(selectAsset);
       }
     });
-    MediaAssetSelectorNotification(
+    MediaAssetSelectorComponentNotification(
       selectAssets: selectAssets,
       selectAsset: selectAsset,
       isSelectMulti: isSelectMulti,

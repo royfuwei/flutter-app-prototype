@@ -8,6 +8,7 @@ import 'package:seeks_app_prototype/core/common/components/default_flow_content.
 import 'package:seeks_app_prototype/core/common/components/default_title.dart';
 import 'package:seeks_app_prototype/core/common/components/status_button.dart';
 import 'package:seeks_app_prototype/core/entry/pages/entry.page.dart';
+import 'package:seeks_app_prototype/core/media/models/media_asset_image.dart';
 import 'package:seeks_app_prototype/core/media/providers/media_image_selector_provider.dart';
 import 'package:seeks_app_prototype/core/media/pages/media_image_selector.page.dart';
 import 'package:seeks_app_prototype/core/users/pages/user_create_info.page.dart';
@@ -23,7 +24,7 @@ class ImageUploadPage extends StatefulWidget {
 
 class _ImageUploadPageState extends State<ImageUploadPage> {
   bool goNext = false;
-  List<CropImageInfoEntity> selectImageInfoList = [];
+  List<CropImageInfoModel> selectImageInfoList = [];
 
   @override
   void initState() {
@@ -35,7 +36,7 @@ class _ImageUploadPageState extends State<ImageUploadPage> {
   genSelectImageInfoList() {
     if (selectImageInfoList.length == 0) {
       selectImageInfoList.add(
-        CropImageInfoEntity(
+        CropImageInfoModel(
           id: "btn",
           data: Uint8List.fromList([]),
           shape: BoxShape.rectangle,
@@ -45,10 +46,10 @@ class _ImageUploadPageState extends State<ImageUploadPage> {
   }
 
   genProviderSelectImageInfoList(
-    List<CropImageInfoEntity> selectImageInfoList,
+    List<CropImageInfoModel> selectImageInfoList,
   ) {
-    List<CropImageInfoEntity> temp = [
-      CropImageInfoEntity(
+    List<CropImageInfoModel> temp = [
+      CropImageInfoModel(
         id: "btn",
         data: Uint8List.fromList([]),
         shape: BoxShape.rectangle,
@@ -112,7 +113,7 @@ class _ImageUploadPageState extends State<ImageUploadPage> {
     );
   }
 
-  genGirdViewItem(CropImageInfoEntity cropImageInfo, int idx) {
+  genGirdViewItem(CropImageInfoModel cropImageInfo, int idx) {
     Widget _widget;
     if (cropImageInfo.id == "btn") {
       _widget = _selectImagePageBtn();
@@ -168,7 +169,7 @@ class _ImageUploadPageState extends State<ImageUploadPage> {
       context: context,
       useSafeArea: false,
       builder: (BuildContext bc) {
-        return NotificationListener<ImageSelectorPageNotification>(
+        return NotificationListener<MediaImageSelectorPageNotification>(
           onNotification: (notification) {
             Navigator.pop(context);
             return true;
@@ -182,7 +183,7 @@ class _ImageUploadPageState extends State<ImageUploadPage> {
     );
   }
 
-  Container _imageGridViewItem(CropImageInfoEntity cropImageInfo, int idx) {
+  Container _imageGridViewItem(CropImageInfoModel cropImageInfo, int idx) {
     return Container(
       decoration: BoxDecoration(
         color: Colors.grey,

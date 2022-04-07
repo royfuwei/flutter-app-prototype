@@ -4,7 +4,9 @@ import 'package:seeks_app_prototype/configs/size_config.dart';
 import 'package:seeks_app_prototype/constants.dart';
 import 'package:seeks_app_prototype/core/media/components/media_asset_selector.dart';
 import 'package:extended_image/extended_image.dart';
-import 'package:seeks_app_prototype/core/media/widgets/media_image_crop_widget.dart';
+import 'package:seeks_app_prototype/core/media/models/media_asset_image.dart';
+import 'package:seeks_app_prototype/core/media/components/media_image_crop.dart';
+import 'package:seeks_app_prototype/domain/media.dart';
 import 'package:seeks_app_prototype/infrastructures/util/keep_alive_wrapper.dart';
 
 class MediaGridSelectorCropNotification extends Notification {
@@ -21,49 +23,19 @@ class MediaGridSelectorCrop extends StatefulWidget {
   const MediaGridSelectorCrop({
     Key? key,
     this.shape: BoxShape.rectangle,
-    this.cropAspectRatios: ImageCropAspectRatios.ratio1_1,
+    this.cropAspectRatios: MediaAspectRatios.ratio1_1,
   }) : super(key: key);
 
   @override
   _MediaGridSelectorCropState createState() => _MediaGridSelectorCropState();
 }
 
-class CropAssetEntity {
-  AssetEntity asset;
-  EditActionDetails? editAction;
-  Rect? cropRect;
-
-  CropAssetEntity({
-    required this.asset,
-    this.editAction,
-    this.cropRect,
-  });
-}
-
-class CropAssetWidgetEntity extends CropAssetEntity {
-  bool isRemove;
-  AssetEntity asset;
-  Widget widget;
-  CropAssetWidgetEntity({
-    required this.isRemove,
-    required this.asset,
-    required this.widget,
-  }) : super(
-          asset: asset,
-        );
-
-  getData() {
-    return CropAssetEntity(
-      asset: this.asset,
-    );
-  }
-}
-
 class _MediaGridSelectorCropState extends State<MediaGridSelectorCrop> {
   List<AssetEntity> notifySelectAssets = [];
   List<CropAssetWidgetEntity> tempCropAssetWidgets = [];
   List<CropAssetEntity> cropAssets = [];
-  MediaAssetSelector mediaAssetSelector = new MediaAssetSelector();
+  MediaAssetSelectorComponent mediaAssetSelectorComponent =
+      new MediaAssetSelectorComponent();
   PageController _pageController = new PageController();
 
   GlobalKey<ExtendedImageEditorState> editorKey =
@@ -116,7 +88,7 @@ class _MediaGridSelectorCropState extends State<MediaGridSelectorCrop> {
   }
 
   bodyGridViewNotification() {
-    return NotificationListener<MediaAssetSelectorNotification>(
+    return NotificationListener<MediaAssetSelectorComponentNotification>(
       onNotification: ((notification) {
         bool isDispatchNotify = false;
         if (notification.selectAssets.length < cropAssets.length) {
@@ -137,13 +109,13 @@ class _MediaGridSelectorCropState extends State<MediaGridSelectorCrop> {
         return true;
       }),
       child: Expanded(
-        child: mediaAssetSelector,
+        child: mediaAssetSelectorComponent,
       ),
     );
   }
 
   cropAssetWidgetNotification(AssetEntity asset) {
-    return NotificationListener<MediaImageCropWidgetNotification>(
+    return NotificationListener<MediaImageCropComponentNotification>(
       onNotification: (notification) {
         var getCropRect = notification.editorKey.currentState!.getCropRect();
         var editAction = notification.editorKey.currentState!.editAction;
@@ -158,7 +130,7 @@ class _MediaGridSelectorCropState extends State<MediaGridSelectorCrop> {
         return true;
       },
       child: KeepAliveWrapper(
-        child: MediaImageCropWidget(
+        child: MediaImageCropComponent(
           asset: asset,
           key: Key(asset.id),
           shape: widget.shape,
@@ -168,7 +140,8 @@ class _MediaGridSelectorCropState extends State<MediaGridSelectorCrop> {
     );
   }
 
-  _notifySelectAssetWidget(MediaAssetSelectorNotification notification) {
+  _notifySelectAssetWidget(
+      MediaAssetSelectorComponentNotification notification) {
     if (!notification.isSelectMulti) {
       tempCropAssetWidgets = [];
     }
@@ -223,7 +196,8 @@ class _MediaGridSelectorCropState extends State<MediaGridSelectorCrop> {
     });
   }
 
-  _updateNotifySelectAssets(MediaAssetSelectorNotification notification) {
+  _updateNotifySelectAssets(
+      MediaAssetSelectorComponentNotification notification) {
     notifySelectAssets = [];
     if (notification.selectAssets.length == 0) {
       notifySelectAssets.add(notification.selectAsset);
@@ -243,7 +217,7 @@ class _MediaGridSelectorCropState extends State<MediaGridSelectorCrop> {
   }
 
   _getCropAssetsByNotifySelectAssets(
-      MediaAssetSelectorNotification notification) {
+      MediaAssetSelectorComponentNotification notification) {
     if (!notification.isSelectMulti) {
       cropAssets = [];
     }

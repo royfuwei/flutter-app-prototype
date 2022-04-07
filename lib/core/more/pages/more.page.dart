@@ -57,6 +57,10 @@ class _MorePageState extends State<MorePage>
         ),
       ],
     );
+    /* return Scaffold(
+      appBar: appBar(),
+      body: body(),
+    ); */
   }
 
   @override
@@ -106,11 +110,6 @@ class _MorePageState extends State<MorePage>
               ),
             ),
           ),
-          /* Expanded(
-              child: Container(
-                color: Colors.green,
-              ),
-            ), */
         ],
       ),
       // child: MoreOageTarBarWidget(),

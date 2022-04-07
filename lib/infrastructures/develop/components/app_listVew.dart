@@ -28,7 +28,7 @@ import 'package:seeks_app_prototype/core/media/components/media_album_selector.d
 import 'package:seeks_app_prototype/core/media/components/media_grid_selector.dart';
 import 'package:seeks_app_prototype/core/media/components/media_grid_selector_crop.dart';
 import 'package:seeks_app_prototype/core/media/pages/media_image_selector.page.dart';
-import 'package:seeks_app_prototype/core/media/widgets/images_viewer.widget.dart';
+import 'package:seeks_app_prototype/core/media/widgets/media_images_viewer.widget.dart';
 import 'package:seeks_app_prototype/core/more/pages/more.page.dart';
 import 'package:seeks_app_prototype/core/notification/pages/notfication.page.dart';
 import 'package:seeks_app_prototype/core/dev/pages/dev_alert.dart';

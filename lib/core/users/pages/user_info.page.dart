@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:seeks_app_prototype/core/media/widgets/images_viewer.widget.dart';
+import 'package:seeks_app_prototype/core/media/widgets/media_images_viewer.widget.dart';
 import 'package:seeks_app_prototype/core/users/widgets/user_info.widget.dart';
 import 'package:seeks_app_prototype/core/users/widgets/user_info_label.widget.dart';
 import 'package:seeks_app_prototype/core/users/widgets/user_info_list_item.widget.dart';
@@ -78,7 +78,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
     return Container(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.width,
-      child: ImagesViewerWidget(),
+      child: MediaImagesViewerWidget(),
     );
   }
 

@@ -5,7 +5,6 @@ import 'package:seeks_app_prototype/configs/size_config.dart';
 import 'package:seeks_app_prototype/constants.dart';
 import 'package:seeks_app_prototype/core/common/components/default_app_bar.dart';
 import 'package:seeks_app_prototype/core/dating/pages/dating_add_info.page.dart';
-import 'package:seeks_app_prototype/core/media/components/media_asset_selector.dart';
 import 'package:seeks_app_prototype/core/media/components/media_grid_selector.dart';
 
 class DatingAddImagesPage extends StatefulWidget {
@@ -20,7 +19,6 @@ class _DatingAddImagesPageState extends State<DatingAddImagesPage> {
   int currentPage = 0;
   int pageLength = 1;
   List<AssetEntity> selectAssets = [];
-  MediaAssetSelector mediaAssetSelector = new MediaAssetSelector();
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +33,10 @@ class _DatingAddImagesPageState extends State<DatingAddImagesPage> {
         ),
       ],
     );
+    /* return Scaffold(
+      appBar: appBar(),
+      body: MediaGridSelector(),
+    ); */
   }
 
   appBar() {

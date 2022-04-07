@@ -11,17 +11,19 @@ class SelectMediaAlbumNotification extends Notification {
   SelectMediaAlbumNotification(this.album);
 }
 
-class MediaAlbumSelector extends StatefulWidget {
+class MediaAlbumSelectorComponent extends StatefulWidget {
   static String routeName = '/media/cpt/album_selector';
-  const MediaAlbumSelector({
+  const MediaAlbumSelectorComponent({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<MediaAlbumSelector> createState() => _MediaAlbumSelectorState();
+  State<MediaAlbumSelectorComponent> createState() =>
+      _MediaAlbumSelectorComponentState();
 }
 
-class _MediaAlbumSelectorState extends State<MediaAlbumSelector> {
+class _MediaAlbumSelectorComponentState
+    extends State<MediaAlbumSelectorComponent> {
   List<Widget> _albumList = [];
   List<AssetPathEntity> albums = [];
 

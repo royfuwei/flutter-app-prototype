@@ -28,22 +28,30 @@ class _NotificationPageState extends State<NotificationPage> {
         MaterialPage(
           child: Scaffold(
             appBar: appBar(),
-            body: Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
-              // color: Colors.amber,
-              child: Column(
-                children: [
-                  messageBoard(),
-                  Expanded(
-                    child: bodyNotifiListView(),
-                  ),
-                ],
-              ),
-            ),
+            body: body(),
           ),
         ),
       ],
+    );
+    /* return Scaffold(
+      appBar: appBar(),
+      body: body(),
+    ); */
+  }
+
+  body() {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height,
+      // color: Colors.amber,
+      child: Column(
+        children: [
+          messageBoard(),
+          Expanded(
+            child: bodyNotifiListView(),
+          ),
+        ],
+      ),
     );
   }
 

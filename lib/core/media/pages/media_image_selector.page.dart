@@ -9,26 +9,14 @@ import 'package:seeks_app_prototype/configs/size_config.dart';
 import 'package:seeks_app_prototype/constants.dart';
 import 'package:seeks_app_prototype/core/common/components/default_app_bar.dart';
 import 'package:seeks_app_prototype/core/media/components/media_grid_selector_crop.dart';
+import 'package:seeks_app_prototype/core/media/models/media_asset_image.dart';
 import 'package:seeks_app_prototype/core/media/providers/media_image_selector_provider.dart';
-import 'package:seeks_app_prototype/core/media/widgets/media_image_crop_widget.dart';
+import 'package:seeks_app_prototype/domain/media.dart';
 
-class ImageSelectorPageNotification extends Notification {
-  List<CropImageInfoEntity> selectImageInfoList;
-  ImageSelectorPageNotification({
+class MediaImageSelectorPageNotification extends Notification {
+  List<CropImageInfoModel> selectImageInfoList;
+  MediaImageSelectorPageNotification({
     required this.selectImageInfoList,
-  });
-}
-
-class CropImageInfoEntity {
-  final String id;
-  final BoxShape shape;
-  Uint8List data;
-  // final File file;
-  CropImageInfoEntity({
-    required this.id,
-    required this.shape,
-    required this.data,
-    // required this.file,
   });
 }
 
@@ -41,7 +29,7 @@ class ImageSelectorPage extends StatefulWidget {
     Key? key,
     this.title: "",
     this.shape: BoxShape.rectangle,
-    this.cropAspectRatios: ImageCropAspectRatios.ratio1_1,
+    this.cropAspectRatios: MediaAspectRatios.ratio1_1,
   }) : super(key: key);
 
   @override
@@ -119,7 +107,7 @@ class _ImageSelectorPageState extends State<ImageSelectorPage> {
 
   _cropCropAssets() async {
     print("_cropCropAssets cropAssets.length: ${cropAssets.length}");
-    List<CropImageInfoEntity> temp = [];
+    List<CropImageInfoModel> temp = [];
     for (var cropAsset in cropAssets) {
       debugPrint("id: ${cropAsset.asset.id}");
       debugPrint(
@@ -132,15 +120,16 @@ class _ImageSelectorPageState extends State<ImageSelectorPage> {
       Uint8List? newData =
           await cropImageDataWithDartLibrary(asset, cropRect, editAction);
       debugPrint("newData: ${newData!.length}");
-      CropImageInfoEntity cropImageInfoEntity = new CropImageInfoEntity(
+      CropImageInfoModel cropImageInfoModel = new CropImageInfoModel(
         data: newData,
         id: asset.id,
         shape: widget.shape!,
       );
-      temp.add(cropImageInfoEntity);
+      temp.add(cropImageInfoModel);
     }
     print("temp.length: ${temp.length}");
-    ImageSelectorPageNotification(selectImageInfoList: temp).dispatch(context);
+    MediaImageSelectorPageNotification(selectImageInfoList: temp)
+        .dispatch(context);
 
     var selectImageInfoList =
         context.read<MediaImageSelectorProvider>().selectImageInfoList;

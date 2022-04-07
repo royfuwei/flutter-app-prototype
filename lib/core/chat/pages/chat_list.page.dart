@@ -23,51 +23,59 @@ class _ChatListPageState extends State<ChatListPage> {
         MaterialPage(
           child: Scaffold(
             appBar: appBar(),
-            body: ListView(
-              children: [
-                ChatListItemWidget(
-                  endActionPaneChildren: [
-                    SlidableAction(
-                      onPressed: (_) {},
-                      backgroundColor: Colors.grey,
-                      foregroundColor: Colors.white,
-                      // icon: Icons.delete,
-                      label: '檢舉',
-                    ),
-                    SlidableAction(
-                      onPressed: (_) {},
-                      backgroundColor: Color(0xFFFE4A49),
-                      foregroundColor: Colors.white,
-                      // icon: Icons.delete,
-                      label: '刪除',
-                    ),
-                  ],
-                  startActionPaneChildren: [
-                    SlidableAction(
-                        onPressed: (_) {},
-                        backgroundColor: Colors.green.shade100,
-                        foregroundColor: Colors.white,
-                        icon: Icons.push_pin
-                        // label: '',
-                        ),
-                    SlidableAction(
-                      onPressed: (_) {},
-                      backgroundColor: Colors.green.shade200,
-                      foregroundColor: Colors.white,
-                      icon: Icons.volume_off,
-                      // label: '刪除',
-                    ),
-                  ],
-                  onPressed: () {
-                    Get.to(ChatPage());
-                  },
-                  itemImageOnTap: () {
-                    Get.to(UserInfoPage());
-                  },
-                ),
-              ],
-            ),
+            body: body(),
           ),
+        ),
+      ],
+    );
+    /* return Scaffold(
+      appBar: appBar(),
+      body: body(),
+    ); */
+  }
+
+  body() {
+    return ListView(
+      children: [
+        ChatListItemWidget(
+          endActionPaneChildren: [
+            SlidableAction(
+              onPressed: (_) {},
+              backgroundColor: Colors.grey,
+              foregroundColor: Colors.white,
+              // icon: Icons.delete,
+              label: '檢舉',
+            ),
+            SlidableAction(
+              onPressed: (_) {},
+              backgroundColor: Color(0xFFFE4A49),
+              foregroundColor: Colors.white,
+              // icon: Icons.delete,
+              label: '刪除',
+            ),
+          ],
+          startActionPaneChildren: [
+            SlidableAction(
+                onPressed: (_) {},
+                backgroundColor: Colors.green.shade100,
+                foregroundColor: Colors.white,
+                icon: Icons.push_pin
+                // label: '',
+                ),
+            SlidableAction(
+              onPressed: (_) {},
+              backgroundColor: Colors.green.shade200,
+              foregroundColor: Colors.white,
+              icon: Icons.volume_off,
+              // label: '刪除',
+            ),
+          ],
+          onPressed: () {
+            Get.to(ChatPage());
+          },
+          itemImageOnTap: () {
+            Get.to(UserInfoPage());
+          },
         ),
       ],
     );

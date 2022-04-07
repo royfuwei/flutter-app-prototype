@@ -6,7 +6,6 @@ import 'package:seeks_app_prototype/constants.dart';
 import 'package:seeks_app_prototype/core/common/components/default_app_bar.dart';
 import 'package:seeks_app_prototype/core/media/components/media_asset_selector.dart';
 import 'package:extended_image/extended_image.dart';
-import 'package:seeks_app_prototype/core/media/widgets/images_viewer.widget.dart';
 import 'package:seeks_app_prototype/core/media/widgets/media_view_widget.dart';
 import 'package:seeks_app_prototype/infrastructures/util/keep_alive_wrapper.dart';
 
@@ -23,7 +22,8 @@ class _MediaGridSelectorState extends State<MediaGridSelector> {
   late AssetEntity selectAsset;
   List<AssetEntity> selectAssets = [];
   List<Widget> selectAssetWidgets = [];
-  MediaAssetSelector mediaAssetSelector = new MediaAssetSelector();
+  MediaAssetSelectorComponent mediaAssetSelectorComponent =
+      new MediaAssetSelectorComponent();
   PageController _pageController = new PageController();
 
   @override
@@ -91,7 +91,7 @@ class _MediaGridSelectorState extends State<MediaGridSelector> {
   }
 
   bodyGridViewNotification() {
-    return NotificationListener<MediaAssetSelectorNotification>(
+    return NotificationListener<MediaAssetSelectorComponentNotification>(
       onNotification: ((notification) {
         selectAsset = notification.selectAsset;
         if (notification.isSelectMulti &&
@@ -105,7 +105,7 @@ class _MediaGridSelectorState extends State<MediaGridSelector> {
         return true;
       }),
       child: Expanded(
-        child: mediaAssetSelector,
+        child: mediaAssetSelectorComponent,
       ),
     );
   }

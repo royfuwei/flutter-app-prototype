@@ -18,6 +18,10 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: navPages[currentIndex],
+      /* body: IndexedStack(
+        index: currentIndex,
+        children: navPages,
+      ), */
       bottomNavigationBar: CupertinoTabBar(
         currentIndex: currentIndex,
         onTap: (index) {
