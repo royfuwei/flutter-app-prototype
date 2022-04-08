@@ -49,11 +49,6 @@ abstract class AppRoutes {
           binding: AppPagesBind(),
         ),
         GetPage(
-          name: UserCreateInfoPage.routeName,
-          page: () => UserCreateInfoPage(),
-          binding: AppPagesBind(),
-        ),
-        GetPage(
           name: SignUpUserInfoPage.routeName,
           page: () => SignUpUserInfoPage(),
           binding: AppPagesBind(),
@@ -61,11 +56,6 @@ abstract class AppRoutes {
         GetPage(
           name: LoginTelCaptchaPage.routeName,
           page: () => LoginTelCaptchaPage(),
-          binding: AppPagesBind(),
-        ),
-        GetPage(
-          name: UserCreateInfoPage.routeName,
-          page: () => UserCreateInfoPage(),
           binding: AppPagesBind(),
         ),
         GetPage(

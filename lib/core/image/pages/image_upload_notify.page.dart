@@ -10,7 +10,7 @@ import 'package:seeks_app_prototype/core/common/components/status_button.dart';
 import 'package:seeks_app_prototype/core/entry/pages/entry.page.dart';
 import 'package:seeks_app_prototype/core/media/models/media_asset_image.dart';
 import 'package:seeks_app_prototype/core/media/pages/media_image_selector.page.dart';
-import 'package:seeks_app_prototype/core/users/pages/user_create_info.page.dart';
+import 'package:seeks_app_prototype/core/signup/pages/signup_user_info.page.dart';
 import 'package:seeks_app_prototype/infrastructures/util/getx_routes.dart';
 
 class ImageUploadNotifyPage extends StatefulWidget {
@@ -74,7 +74,7 @@ class _ImageUploadNotifyPageState extends State<ImageUploadNotifyPage> {
               press: () {
                 toRoutesNamed([
                   EntryPage.routeName,
-                  UserCreateInfoPage.routeName,
+                  SignUpUserInfoPage.routeName,
                 ]);
               },
             ),

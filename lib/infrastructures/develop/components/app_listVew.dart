@@ -79,7 +79,6 @@ import 'package:seeks_app_prototype/core/signup/pages/signup_images_upload.page.
 import 'package:seeks_app_prototype/core/signup/pages/signup_location.page.dart';
 import 'package:seeks_app_prototype/core/signup/pages/signup_push_notification.page.dart';
 import 'package:seeks_app_prototype/core/signup/pages/signup_user_info.page.dart';
-import 'package:seeks_app_prototype/core/users/pages/user_create_info.page.dart';
 import 'package:seeks_app_prototype/core/users/pages/user_dating_list.page.dart';
 import 'package:seeks_app_prototype/core/users/pages/user_info.page.dart';
 import 'package:seeks_app_prototype/core/users/pages/user_info_editor.dart';
@@ -192,16 +191,6 @@ List<Widget> getAppView(BuildContext context) {
         toRoutesNamed([
           EntryPage.routeName,
           ImageUploadPage.routeName,
-        ]);
-      },
-    ),
-    ListTile(
-      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
-      title: Text(UserCreateInfoPage.routeName),
-      onTap: () {
-        toRoutesNamed([
-          EntryPage.routeName,
-          UserCreateInfoPage.routeName,
         ]);
       },
     ),
