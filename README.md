@@ -69,6 +69,25 @@ A new Flutter project.
 - [build_runner](https://pub.dev/packages/build_runner)
 - [notification_permissions](https://pub.dev/packages/notification_permissions)
 - [~~permission_handler~~](https://pub.dev/packages/permission_handler)
+- [auto_size_text](https://pub.dev/packages/auto_size_text)
+- [expandable](https://pub.dev/packages/expandable)
+- [sliding_up_panel](https://pub.dev/packages/sliding_up_panel)
+- [table_calendar](https://pub.dev/packages/table_calendar)
+- [country_code_picker](https://pub.dev/packages/country_code_picker)
+- [rect_getter](https://pub.dev/packages/rect_getter)
+- [scroll_to_index](https://pub.dev/packages/scroll_to_index)
+- [latlong2](https://pub.dev/packages/latlong2)
+- [floor](https://pub.dev/packages/floor)
+
+
+## other package
+- [flutter_login](https://pub.dev/packages/flutter_login)
+- [helpers](https://pub.dev/packages/helpers)
+- [video_viewer](https://pub.dev/packages/video_viewer)
+- [video_editor](https://pub.dev/packages/video_editor)
+- [pull_to_refresh](https://pub.dev/packages/pull_to_refresh)
+- [panorama](https://pub.dev/packages/panorama)
+
 
 ## ISSUE
 

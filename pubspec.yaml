@@ -75,6 +75,15 @@ dependencies:
   json_annotation: ^4.4.0
   equatable: ^2.0.3
   notification_permissions: ^0.6.1
+  auto_size_text: ^3.0.0
+  expandable: ^5.0.1
+  sliding_up_panel: ^2.0.0+1
+  table_calendar: ^3.0.5
+  country_code_picker: ^2.0.2
+  rect_getter: ^1.1.0
+  scroll_to_index: ^2.1.1
+  latlong2: ^0.8.1
+  floor: ^1.2.0
 
 dev_dependencies:
   flutter_test:

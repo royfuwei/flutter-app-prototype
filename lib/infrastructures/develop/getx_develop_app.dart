@@ -10,6 +10,14 @@ class GetxDevelopApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      // locale: ,
+      localizationsDelegates: [],
+      localeListResolutionCallback: (locales, supportedLocales) {
+        print("localeListResolutionCallback locales: ${locales}");
+        print(
+          "localeListResolutionCallback supportedLocales: ${supportedLocales}",
+        );
+      },
       debugShowCheckedModeBanner: false,
       theme: theme(),
       initialRoute: DevPages.initPage,

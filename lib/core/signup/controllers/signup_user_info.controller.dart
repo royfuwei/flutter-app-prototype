@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:seeks_app_prototype/core/main/pages/main.page.dart';
+import 'package:seeks_app_prototype/domain/picker.dart';
 import 'package:seeks_app_prototype/infrastructures/util/getx_routes.dart';
 
 class SignUpUserInfoController extends GetxController {
@@ -12,9 +13,9 @@ class SignUpUserInfoController extends GetxController {
   set nickNameError(value) => this._nickNameError.value = value;
   String get nickNameError => this._nickNameError.value;
 
-  Rx<String> _birth = Rx<String>('');
+  Rx<DateTime?> _birth = Rx<DateTime?>(null);
   set birth(value) => this._birth.value = value;
-  String get birth => this._birth.value;
+  DateTime? get birth => this._birth.value;
 
   Rx<String> _sex = Rx<String>('');
   set sex(value) => this._sex.value = value;
@@ -59,9 +60,34 @@ class SignUpUserInfoController extends GetxController {
     listerGoNext();
   }
 
+  List<PickerValueEntity> getPlaceSelectItems() {
+    return [
+      PickerValueEntity(text: "請選擇"),
+      PickerValueEntity(text: "台北市", value: "台北市"),
+      PickerValueEntity(text: "新北市", value: "新北市"),
+      PickerValueEntity(text: "桃園市", value: "桃園市"),
+    ];
+  }
+
+  List<PickerValueEntity> getGenderSelectItems() {
+    return [
+      PickerValueEntity(text: "請選擇"),
+      PickerValueEntity(text: "喜歡女生", value: "woman"),
+      PickerValueEntity(text: "喜歡男生", value: "man"),
+      PickerValueEntity(text: "都喜歡", value: "both"),
+    ];
+  }
+
+  List<PickerValueEntity> getSexSelectItems() {
+    return [
+      PickerValueEntity(text: "男性", value: "man"),
+      PickerValueEntity(text: "女性", value: "woman"),
+    ];
+  }
+
   listerGoNext() {
     if (nickName.isNotEmpty &&
-        birth.isNotEmpty &&
+        birth != null &&
         sex.isNotEmpty &&
         gender.isNotEmpty &&
         place.isNotEmpty) {

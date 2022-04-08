@@ -438,5 +438,19 @@ List<Widget> getDevView(BuildContext context) {
         Get.to(() => DevGetx2Page2());
       },
     ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(DevSlidingUpPanel.routeName),
+      onTap: () {
+        Get.to(() => DevSlidingUpPanel());
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(DevSlidingUpPanel2.routeName),
+      onTap: () {
+        Get.to(() => DevSlidingUpPanel2());
+      },
+    ),
   ];
 }

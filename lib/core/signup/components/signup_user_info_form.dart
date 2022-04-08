@@ -1,9 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:seeks_app_prototype/configs/size_config.dart';
 import 'package:seeks_app_prototype/core/common/components/input_text_field.dart';
+import 'package:seeks_app_prototype/core/picker/components/picker_date_selector.dart';
+import 'package:seeks_app_prototype/core/picker/components/picker_selector.dart';
 import 'package:seeks_app_prototype/core/signup/controllers/signup_user_info.controller.dart';
+import 'package:seeks_app_prototype/domain/picker.dart';
 
 class SignUpUserInfoFormComponent extends StatefulWidget {
   const SignUpUserInfoFormComponent({Key? key}) : super(key: key);
@@ -37,26 +38,6 @@ class _SignUpUserInfoFormComponentState
 
   @override
   void initState() {
-    _birthController.addListener(() {
-      signUpUserInfoController.birth = _birthController.text;
-      print("_birthController.text: ${_birthController.text}");
-      signUpUserInfoController.listerGoNext();
-    });
-    _sexController.addListener(() {
-      signUpUserInfoController.sex = _sexController.text;
-      print("_sexController.text: ${_sexController.text}");
-      signUpUserInfoController.listerGoNext();
-    });
-    _genderController.addListener(() {
-      signUpUserInfoController.gender = _genderController.text;
-      print("_genderController.text: ${_genderController.text}");
-      signUpUserInfoController.listerGoNext();
-    });
-    _placeController.addListener(() {
-      signUpUserInfoController.place = _placeController.text;
-      print("_placeController.text: ${_placeController.text}");
-      signUpUserInfoController.listerGoNext();
-    });
     super.initState();
   }
 
@@ -87,6 +68,8 @@ class _SignUpUserInfoFormComponentState
                 _nickNameController,
                 context,
               );
+              signUpUserInfoController.nickName = _nickNameController.text;
+              signUpUserInfoController.listerGoNext();
             },
             textEditingController: _nickNameController,
           ),
@@ -96,12 +79,7 @@ class _SignUpUserInfoFormComponentState
             subTitle: "之後不能更改",
             keyboardType: TextInputType.none,
             // initialValue: signUpUserInfoController.nickName,
-            onTap: () {
-              print("onTap: 填寫生日");
-              datingDateTimePicker(
-                _birthController,
-              );
-            },
+            onTap: birthDatePickerSelector,
             textEditingController: _birthController,
           ),
           InputTextField(
@@ -109,10 +87,7 @@ class _SignUpUserInfoFormComponentState
             hintText: "選擇性別",
             subTitle: "之後不能更改",
             keyboardType: TextInputType.none,
-            onTap: () {
-              print("onTap: 性別");
-              showModalSelectBottomSheet(getSexSelectItems());
-            },
+            onTap: sexSelectBottomSheet,
             textEditingController: _sexController,
           ),
           InputTextField(
@@ -120,13 +95,7 @@ class _SignUpUserInfoFormComponentState
             hintText: "擇你所愛",
             subTitle: "之後可以更改",
             keyboardType: TextInputType.none,
-            onTap: () {
-              print("onTap: 你喜歡？");
-              showSelectorPicker(
-                getGenderSelectItems(),
-                _genderController,
-              );
-            },
+            onTap: genderPickerSelector,
             textEditingController: _genderController,
           ),
           InputTextField(
@@ -134,13 +103,7 @@ class _SignUpUserInfoFormComponentState
             hintText: "填寫居住地",
             subTitle: "",
             keyboardType: TextInputType.none,
-            onTap: () {
-              print("onTap: 居住地");
-              showSelectorPicker(
-                getPlaceSelectItems(),
-                _placeController,
-              );
-            },
+            onTap: genderPlaceSelector,
             textEditingController: _placeController,
           ),
         ],
@@ -148,163 +111,84 @@ class _SignUpUserInfoFormComponentState
     );
   }
 
-  datingDateTimePicker(
-    TextEditingController textEditingController,
-  ) {
-    // late DateTime startTime;
-    // late DateTime endTime;
-    var now = DateTime.now();
-    var minimumDate = now.subtract(Duration(days: 365 * 120));
-    var maximumDate = now.subtract(Duration(days: 365 * 18));
-    showCupertinoModalPopup(
+  birthDatePickerSelector() {
+    birthDateTimePicker(
       context: context,
-      builder: (_) {
-        return SafeArea(
-          bottom: false,
-          child: Container(
-            color: Colors.white,
-            height: 380,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                // appBar(),
-                Container(
-                  padding: EdgeInsets.only(bottom: 0),
-                  height: 250,
-                  child: CupertinoDatePicker(
-                    // minuteInterval: 30,
-                    // mode: CupertinoDatePickerMode.dateAndTime,
-                    mode: CupertinoDatePickerMode.date,
-                    initialDateTime: maximumDate,
-                    minimumDate: minimumDate,
-                    maximumDate: maximumDate,
-                    onDateTimeChanged: (date) {
-                      var dateString = "${date.year}-${date.month}-${date.day}";
-                      signUpUserInfoController.setTextEditingControllerValue(
-                        textEditingController,
-                        dateString,
-                      );
-                    },
-                  ),
-                ),
-                // popOkButton(),
-              ],
-            ),
-          ),
-        );
+      onDateTimeChanged: (date) {
+        var dateString = "${date.year}-${date.month}-${date.day}";
+        _birthController.text = dateString;
+        signUpUserInfoController.birth = date;
+        signUpUserInfoController.listerGoNext();
       },
     );
   }
 
-  List<Widget> getSexSelectItems() {
-    return [
-      ListTile(
-        leading: Icon(Icons.man),
-        title: Text('男性'),
-        onTap: () {
-          signUpUserInfoController.sex = '男性';
-          signUpUserInfoController.setTextEditingControllerValue(
-            _sexController,
-            '男性',
-          );
-          Navigator.pop(context);
-        },
-      ),
-      ListTile(
-        leading: Icon(Icons.woman),
-        title: Text('女性'),
-        onTap: () {
-          signUpUserInfoController.sex = '女性';
-          signUpUserInfoController.setTextEditingControllerValue(
-            _sexController,
-            '女性',
-          );
-          Navigator.pop(context);
-        },
-      ),
-    ];
-  }
-
-  List<String> getPlaceSelectItems() {
-    return ["台北市", "新北市", "桃園市"];
-  }
-
-  List<String> getGenderSelectItems() {
-    return ["喜歡女生", "喜歡男生", "都喜歡"];
-  }
-
-  void showSelectorPicker(
-    List<String> items,
-    TextEditingController textEditingController,
-  ) {
-    showCupertinoModalPopup(
+  genderPickerSelector() {
+    var items = signUpUserInfoController.getGenderSelectItems();
+    var initIndex = 0;
+    if (_genderController.text.isNotEmpty) {
+      var initItem = items
+          .where((element) => element.text == _genderController.text)
+          .first;
+      initIndex = items.indexOf(initItem) < 0 ? 0 : items.indexOf(initItem);
+    }
+    showPickerSelector(
+      initialItem: initIndex,
       context: context,
-      builder: (_) {
-        return Container(
-          color: Colors.white,
-          height: 300,
-          child: Column(
-            children: [
-              VerticalSpacing(
-                of: 25,
-              ),
-              Container(
-                height: 100,
-                child: getSelectorPicker(
-                  items,
-                  textEditingController,
-                ),
-              ),
-              /* CupertinoButton(
-                child: Text('OK'),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ), */
-            ],
-          ),
+      items: items,
+      onSelectedItemChanged: (item) {
+        _genderController.text = (item.value == null ? '' : item.text)!;
+        signUpUserInfoController.gender =
+            (item.value == null ? '' : item.text)!;
+        signUpUserInfoController.listerGoNext();
+      },
+      generator: (item) => Text(
+        item.text.toString(),
+      ),
+    );
+  }
+
+  genderPlaceSelector() {
+    var items = signUpUserInfoController.getPlaceSelectItems();
+    var initIndex = 0;
+    if (_placeController.text.isNotEmpty) {
+      var initItem =
+          items.where((element) => element.text == _placeController.text).first;
+      initIndex = items.indexOf(initItem) < 0 ? 0 : items.indexOf(initItem);
+    }
+    showPickerSelector(
+      initialItem: initIndex,
+      context: context,
+      items: items,
+      onSelectedItemChanged: (item) {
+        _placeController.text = (item.value == null ? '' : item.text)!;
+        signUpUserInfoController.place =
+            (item.value == null ? '' : item.value)!;
+        signUpUserInfoController.listerGoNext();
+      },
+      generator: (item) => Text(
+        item.text.toString(),
+      ),
+    );
+  }
+
+  sexSelectBottomSheet() {
+    var items = signUpUserInfoController.getSexSelectItems();
+    showSelectorBottomSheet(
+      context: context,
+      items: items,
+      generator: (item) {
+        return ListTile(
+          leading: Icon(Icons.woman),
+          title: Text(item.text.toString()),
+          onTap: () {
+            _sexController.text = item.text.toString();
+            signUpUserInfoController.sex = item.value;
+            signUpUserInfoController.listerGoNext();
+            Navigator.pop(context);
+          },
         );
       },
-    );
-  }
-
-  getSelectorPicker(
-    List<String> items,
-    TextEditingController textEditingController,
-  ) {
-    return CupertinoPicker(
-      itemExtent: 30,
-      onSelectedItemChanged: (index) {
-        signUpUserInfoController.setTextEditingControllerValue(
-          textEditingController,
-          items[index],
-        );
-      },
-      children: List.generate(
-        items.length,
-        (index) => Text(
-          items[index],
-        ),
-      ),
-    );
-  }
-
-  void showModalSelectBottomSheet(List<Widget> items) {
-    showModalBottomSheet(
-      context: context,
-      builder: (BuildContext bc) => getSelectWrap(items),
-    );
-  }
-
-  getSelectWrap(List<Widget> items) {
-    return Container(
-      padding: EdgeInsets.only(),
-      // color: Colors.greenAccent,
-      child: SafeArea(
-        child: Wrap(
-          children: items,
-        ),
-      ),
     );
   }
 }

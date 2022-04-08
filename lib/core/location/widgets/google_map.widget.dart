@@ -50,6 +50,7 @@ class _GoogleMapWidgetState extends State<GoogleMapWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: body(),
       // floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
     );
@@ -67,6 +68,7 @@ class _GoogleMapWidgetState extends State<GoogleMapWidget> {
         GoogleMapWidgetNotification(controller: controller).dispatch(context);
       },
       onTap: (LatLng latLng) {
+        FocusScope.of(context).unfocus();
         print("onTap latLng.latitude: ${latLng.latitude}");
         print("onTap longitude.: ${latLng.longitude}");
       },
