@@ -11,6 +11,8 @@ import 'package:seeks_app_prototype/core/common/components/default_app_bar.dart'
 import 'package:seeks_app_prototype/core/dating/pages/dating_info.page.dart';
 import 'package:seeks_app_prototype/core/dating/widgets/dating_list_item.widget.dart';
 import 'package:seeks_app_prototype/core/dev/pages/dev_webview.dart';
+import 'package:seeks_app_prototype/core/home/components/home_body.dart';
+import 'package:seeks_app_prototype/core/home/controllers/home.controller.dart';
 import 'package:seeks_app_prototype/core/media/pages/media_image_selector.page.dart';
 import 'package:seeks_app_prototype/core/notification/components/splash_data.dart';
 import 'package:seeks_app_prototype/infrastructures/util/keep_alive_wrapper.dart';
@@ -48,6 +50,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  HomeController homeController = Get.put(HomeController());
+
   @override
   Widget build(BuildContext context) {
     return Navigator(
@@ -63,109 +67,15 @@ class _HomePageState extends State<HomePage> {
         ),
       ],
     );
-    /* return Scaffold(
-      appBar: appBar(),
-      // body: bodyOfListItem(),
-      body: body(),
-    ); */
   }
 
   body() {
-    return CustomScrollView(
-      slivers: [
-        SliverAppBar(
-          pinned: false,
-          // pinned: true,
-          expandedHeight: MediaQuery.of(context).size.width / 2.2,
-          flexibleSpace: FlexibleSpaceBar(
-            // title: Text("CustomScrollView"),
-            /* background: Image.asset(
-              "assets/logo/seeks_logo.png",
-              fit: BoxFit.cover,
-            ), */
-            background: messageBoard(),
-          ),
-        ),
-        SliverList(
-          delegate: SliverChildBuilderDelegate(
-            (ctx, idx) {
-              return DatingListItem(
-                onPressed: () {
-                  Get.to(() => DatingInfoPage());
-                },
-              );
-            },
-            childCount: 10,
-          ),
-        )
-      ],
-    );
-  }
-
-  bodyOfListItem() {
-    return SafeArea(
-      child: Container(
-        child: ListView(
-          children: [
-            DatingListItem(
-              onPressed: () {
-                Get.to(() => DatingInfoPage());
-              },
-            ),
-          ],
-        ),
-        // child: SingleChildScrollView(),
-      ),
-    );
-  }
-
-  messageBoard() {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.width / 2.2,
-      color: colorBarWhite,
-      child: messageBoardSwiper(),
-    );
-  }
-
-  messageBoardSwiper() {
-    return Swiper(
-      itemBuilder: (BuildContext context, int index) {
-        return KeepAliveWrapper(
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              image: DecorationImage(
-                image: AssetImage("${splashData[index]["image"]}"),
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-        );
-      },
-      layout: SwiperLayout.DEFAULT,
-      scale: 0.8,
-      autoplay: true,
-      itemCount: splashData.length,
-      duration: 2000,
-      autoplayDelay: 10000,
-      // itemWidth: MediaQuery.of(context).size.width * .9,
-      pagination: SwiperPagination(
-        builder: DotSwiperPaginationBuilder(
-          color: Colors.grey,
-          activeColor: Colors.white,
-          activeSize: 8,
-          size: 5,
-        ),
-      ),
-      control: SwiperControl(color: Colors.transparent),
-      onTap: (index) {
-        var text = splashData[index]["text"];
-        print("onTap ${text}");
-        // _webviewUrl();
-        Get.to(() => DevWebView());
-      },
+    return HomeBodyComponent(
+      scrollListener: homeController.scrollListener,
+      onRefresh: homeController.sliverOnRefresh,
+      datingItemList: homeController.datingItemList,
+      enableCupertinoActivityIndicator:
+          homeController.enableCupertinoActivityIndicator,
     );
   }
 
@@ -173,7 +83,6 @@ class _HomePageState extends State<HomePage> {
     return AppBar(
       elevation: 0,
       backgroundColor: Colors.white,
-      // actions: [Text("hihi")],
       title: defaultAppBarTitle(startItems: [
         TextButton(
           onPressed: () {},
@@ -195,8 +104,8 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ], endItems: [
-        appBarIconButton(Icons.location_on),
-        appBarIconButton(Icons.search),
+        appBarIconButton(Icons.map),
+        // appBarIconButton(Icons.search),
         appBarIconButton(Icons.filter_list),
       ]),
     );
@@ -205,10 +114,11 @@ class _HomePageState extends State<HomePage> {
   appBarIconButton(
     IconData icon, {
     Color color = colorFont02,
+    void Function()? onPressed,
   }) {
     return IconButton(
       iconSize: getProportionateScreenWidth(context, 32),
-      onPressed: () {},
+      onPressed: onPressed,
       padding: EdgeInsets.all(0),
       icon: Icon(
         icon,

@@ -144,5 +144,19 @@ abc""",
         Get.to(() => NotifiListItem());
       },
     ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(AnnounBoardSwiperWidget.routeName),
+      onTap: () {
+        Get.to(() => AnnounBoardSwiperWidget());
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(AnnounBoardComponent.routeName),
+      onTap: () {
+        Get.to(() => AnnounBoardComponent());
+      },
+    ),
   ];
 }

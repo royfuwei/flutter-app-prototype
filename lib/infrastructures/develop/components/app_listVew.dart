@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:seeks_app_prototype/core/announcement/widgets/announ_board_swiper.widget.dart';
+import 'package:seeks_app_prototype/core/announcement/components/announ_board.dart';
 import 'package:seeks_app_prototype/core/dev/pages/dev_sliding_up_panel.dart';
 import 'package:seeks_app_prototype/core/dev/pages/dev_sliding_up_panel2.dart';
 import 'package:seeks_app_prototype/core/login/pages/login_tel_captcha.page.dart';
