@@ -17,40 +17,9 @@ import 'package:seeks_app_prototype/core/media/pages/media_image_selector.page.d
 import 'package:seeks_app_prototype/core/notification/components/splash_data.dart';
 import 'package:seeks_app_prototype/infrastructures/util/keep_alive_wrapper.dart';
 
-class DatingItemEntity {
-  String username;
-  Uint8List userImage;
-  Uint8List coverImage;
-  String title;
-  DateTime startTime;
-  DateTime endTime;
-  int signupCount;
-  int payment;
-  String paymentType;
-
-  DatingItemEntity({
-    required this.username,
-    required this.userImage,
-    required this.coverImage,
-    required this.title,
-    required this.startTime,
-    required this.endTime,
-    required this.signupCount,
-    required this.paymentType,
-    required this.payment,
-  });
-}
-
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   static String routeName = "/home";
   const HomePage({Key? key}) : super(key: key);
-
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  HomeController homeController = Get.put(HomeController());
 
   @override
   Widget build(BuildContext context) {
@@ -60,26 +29,29 @@ class _HomePageState extends State<HomePage> {
           key: ValueKey(HomePage.routeName),
           name: HomePage.routeName,
           child: Scaffold(
-            appBar: appBar(),
+            appBar: appBar(context),
             // body: bodyOfListItem(),
-            body: body(),
+            body: body(context),
           ),
         ),
       ],
     );
   }
 
-  body() {
-    return HomeBodyComponent(
-      scrollListener: homeController.scrollListener,
-      onRefresh: homeController.sliverOnRefresh,
-      datingItemList: homeController.datingItemList,
-      enableCupertinoActivityIndicator:
-          homeController.enableCupertinoActivityIndicator,
+  body(BuildContext context) {
+    HomeController homeController = Get.put(HomeController());
+    return Obx(
+      () => HomeBodyComponent(
+        scrollListener: homeController.scrollListener,
+        onRefresh: homeController.sliverOnRefresh,
+        items: homeController.datingItemList,
+        enableCupertinoActivityIndicator:
+            homeController.enableCupertinoActivityIndicator,
+      ),
     );
   }
 
-  appBar() {
+  appBar(BuildContext context) {
     return AppBar(
       elevation: 0,
       backgroundColor: Colors.white,
@@ -104,14 +76,15 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ], endItems: [
-        appBarIconButton(Icons.map),
+        appBarIconButton(context, Icons.map),
         // appBarIconButton(Icons.search),
-        appBarIconButton(Icons.filter_list),
+        appBarIconButton(context, Icons.filter_list),
       ]),
     );
   }
 
   appBarIconButton(
+    BuildContext context,
     IconData icon, {
     Color color = colorFont02,
     void Function()? onPressed,

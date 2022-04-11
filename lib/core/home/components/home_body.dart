@@ -1,122 +1,65 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:seeks_app_prototype/constants.dart';
-import 'package:seeks_app_prototype/core/announcement/widgets/announ_board_swiper.widget.dart';
 import 'package:seeks_app_prototype/core/announcement/components/announ_board.dart';
-import 'package:seeks_app_prototype/core/dating/widgets/dating_list_item.widget.dart';
-import 'package:seeks_app_prototype/core/home/components/home.component.dart';
-import 'package:seeks_app_prototype/core/home/widgets/home_dating_list.widget.dart';
+import 'package:seeks_app_prototype/core/common/widgets/sliver_scroll_view.wdiget.dart';
+import 'package:seeks_app_prototype/core/home/components/home_dating_list_view.dart';
 import 'package:seeks_app_prototype/domain/dating.dart';
 
-class HomeBodyComponent extends StatefulWidget {
+class HomeBodyComponent extends StatelessWidget {
   const HomeBodyComponent({
     Key? key,
+    this.items = const [],
+    this.onRefresh,
     this.scrollListener,
     this.enableCupertinoActivityIndicator = false,
-    this.datingItemList = const [],
-    this.onRefresh,
   }) : super(key: key);
 
-  final Future<void> Function(ScrollController scrollController)?
-      scrollListener;
   final bool enableCupertinoActivityIndicator;
-  final List<DatingItemEntity> datingItemList;
+  final List<DatingItemEntity> items;
   final Future<void> Function()? onRefresh;
-
-  @override
-  State<HomeBodyComponent> createState() => _HomeBodyComponentState();
-}
-
-class _HomeBodyComponentState extends State<HomeBodyComponent> {
-  ScrollController _scrollController = ScrollController();
+  final Future<void> Function(ScrollController _scrollController)?
+      scrollListener;
 
   @override
   Widget build(BuildContext context) {
-    return body();
+    return body(context);
   }
 
-  @override
-  void initState() {
-    super.initState();
-    _scrollController.addListener(
-      () => widget.scrollListener != null
-          ? widget.scrollListener!(_scrollController)
-          : () {},
-    );
+  body(BuildContext context) {
+    return bodyRefreshScrollView(context);
   }
 
-  body() {
-    return CustomScrollView(
-      controller: _scrollController,
-      physics: AlwaysScrollableScrollPhysics(),
-      slivers: [
-        bodySliverRefresh(),
-        bodySliverAppBar(),
-        bodySliverList(),
-        bodySliverCupertinoActivityIndicator(),
+  bodyRefreshScrollView(BuildContext context) {
+    return CommonSliverScrollViewWidget(
+      scrollListener: scrollListener,
+      enableCupertinoActivityIndicator: enableCupertinoActivityIndicator,
+      sliverWidgetList: [
+        bodySliverAppBar(context),
+        bodySliverListView(),
       ],
+      onRefresh: onRefresh,
     );
   }
 
-  // 下拉刷新
-  bodySliverRefresh() {
-    return CupertinoSliverRefreshControl(
-      builder: buildNoArrowRefreshIndicator,
-      onRefresh: widget.onRefresh,
-    );
-  }
-
-  // 下拉刷新 widget
-  bodySliverCupertinoActivityIndicator() {
-    return SliverList(
-      delegate: SliverChildBuilderDelegate(
-        (bc, idx) {
-          return Padding(
-            padding: EdgeInsets.all(16),
-            child: Center(
-              child: widget.enableCupertinoActivityIndicator
-                  ? CupertinoActivityIndicator()
-                  : Container(),
-            ),
-          );
-        },
-        childCount: 1,
-      ),
-    );
-  }
-
-  // datingList
-  bodySliverList() {
-    return HomeDatingListWidget(
-      items: widget.datingItemList,
-      builder: (bc, idx, item) {
-        return getDatingListItem(idx, item);
-      },
-    );
-  }
-
-  // datingList item widget
-  getDatingListItem(int idx, DatingItemEntity item) {
-    return DatingListItem(
-      onPressed: () {
-        print("idx: ${idx + 1} ");
-      },
+  bodySliverListView() {
+    return HomeDatingListViewComponent(
+      items: items,
     );
   }
 
   // 公告sliver app bar
-  bodySliverAppBar() {
+  bodySliverAppBar(BuildContext context) {
     return SliverAppBar(
       pinned: false,
       expandedHeight: MediaQuery.of(context).size.width / 2.2,
       flexibleSpace: FlexibleSpaceBar(
-        background: announBoard(),
+        background: announBoard(context),
       ),
     );
   }
 
   // 公告widget
-  announBoard() {
+  announBoard(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       width: MediaQuery.of(context).size.width,

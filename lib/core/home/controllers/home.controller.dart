@@ -23,7 +23,7 @@ class HomeController extends GetxController {
 
   Rx<List<DatingItemEntity>> _datingItemList = Rx<List<DatingItemEntity>>(
     [
-      DatingItemEntity(),
+      DatingItemEntity(id: "01"),
     ],
   );
   set datingItemList(value) => _datingItemList.value = value;

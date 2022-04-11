@@ -1,21 +1,21 @@
 import 'package:seeks_app_prototype/domain/media.dart';
 
-class AnnounBoardEntity {
+class NotifiItemEntity {
   String id;
+  String? title;
   String? type;
   String image;
   ImageType imageType;
-  DateTime? startTime;
-  DateTime? endTime;
+  DateTime? notifiTime;
   bool? status = true;
 
-  AnnounBoardEntity({
+  NotifiItemEntity({
     required this.id,
+    this.title,
     this.type,
-    this.image = "assets/images/splash_1.jpg",
+    this.image = "assets/images/male-user.png",
     this.imageType = ImageType.ASSET,
-    this.startTime,
-    this.endTime,
+    this.notifiTime,
     this.status,
   });
 }

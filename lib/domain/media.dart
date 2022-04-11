@@ -21,3 +21,8 @@ class MediaAspectRatios {
   /// ratio of width and height is 16 : 9
   static const double ratio16_9 = 16.0 / 9.0;
 }
+
+enum ImageType {
+  URL,
+  ASSET,
+}

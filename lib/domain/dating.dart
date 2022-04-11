@@ -1,37 +1,46 @@
+import 'package:seeks_app_prototype/domain/media.dart';
+
 class DatingItemEntity {
-  String? id;
-  String? userId;
-  String? username;
-  String? title;
+  String id;
+  String? type;
+  String image;
+  ImageType imageType;
   DateTime? startTime;
   DateTime? endTime;
-  String? status;
-  String? signupCount;
-  int? payment;
+  bool? status = true;
 
   DatingItemEntity({
-    this.id,
-    this.userId,
-    this.username,
-    this.title,
+    required this.id,
+    this.type,
+    this.image = "assets/images/splash_1.jpg",
+    this.imageType = ImageType.ASSET,
     this.startTime,
     this.endTime,
     this.status,
-    this.signupCount,
-    this.payment,
   });
-
-  /* DatingItemEntity.fromJson(Map<String, dynamic> json) {
-    text = json['text'] ?? "";
-    username = json['username'] ?? "";
-    value = json['value'] ?? null;
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['text'] = this.text;
-    data['value'] = this.value;
-    data['username'] = this.username;
-    return data;
-  } */
 }
+
+
+/* class DatingItemEntity {
+  String username;
+  Uint8List userImage;
+  Uint8List coverImage;
+  String title;
+  DateTime startTime;
+  DateTime endTime;
+  int signupCount;
+  int payment;
+  String paymentType;
+
+  DatingItemEntity({
+    required this.username,
+    required this.userImage,
+    required this.coverImage,
+    required this.title,
+    required this.startTime,
+    required this.endTime,
+    required this.signupCount,
+    required this.paymentType,
+    required this.payment,
+  });
+} */

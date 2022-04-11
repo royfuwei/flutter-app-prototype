@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:seeks_app_prototype/domain/announcement.dart';
+import 'package:seeks_app_prototype/domain/media.dart';
 
 ImageProvider<Object> getImageProviderByType(
     ImageType imageType, String image) {

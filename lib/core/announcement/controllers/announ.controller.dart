@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:seeks_app_prototype/domain/announcement.dart';
+import 'package:seeks_app_prototype/domain/media.dart';
 
 class AnnounController extends GetxController {
   Rx<List<AnnounBoardEntity>> _announBoardList = Rx<List<AnnounBoardEntity>>(
