@@ -7,6 +7,7 @@ class CommonSliverScrollViewWidget extends StatefulWidget {
   const CommonSliverScrollViewWidget({
     Key? key,
     this.isPullRefresh = true,
+    this.scrollController,
     this.scrollListener,
     this.enableCupertinoActivityIndicator = false,
     this.sliverWidgetList = const [],
@@ -18,6 +19,7 @@ class CommonSliverScrollViewWidget extends StatefulWidget {
   final bool enableCupertinoActivityIndicator;
   final List<Widget> sliverWidgetList;
   final Future<void> Function()? onRefresh;
+  final ScrollController? scrollController;
 
   @override
   State<CommonSliverScrollViewWidget> createState() =>
@@ -26,11 +28,14 @@ class CommonSliverScrollViewWidget extends StatefulWidget {
 
 class _CommonSliverScrollViewWidgetState
     extends State<CommonSliverScrollViewWidget> {
-  ScrollController _scrollController = ScrollController();
+  late ScrollController _scrollController;
 
   @override
   void initState() {
     super.initState();
+    _scrollController = (widget.scrollController != null
+        ? widget.scrollController
+        : ScrollController())!;
     _scrollController.addListener(
       () => widget.scrollListener != null
           ? widget.scrollListener!(_scrollController)
@@ -81,14 +86,14 @@ class _CommonSliverScrollViewWidgetState
     return SliverList(
       delegate: SliverChildBuilderDelegate(
         (bc, idx) {
-          return Padding(
-            padding: EdgeInsets.all(16),
-            child: Center(
-              child: widget.enableCupertinoActivityIndicator
-                  ? CupertinoActivityIndicator()
-                  : Container(),
-            ),
-          );
+          return widget.enableCupertinoActivityIndicator
+              ? Padding(
+                  padding: EdgeInsets.all(16),
+                  child: Center(
+                    child: CupertinoActivityIndicator(),
+                  ),
+                )
+              : Container();
         },
         childCount: 1,
       ),
