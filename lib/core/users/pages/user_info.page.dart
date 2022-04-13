@@ -10,7 +10,6 @@ class UserInfoPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    UserController userController = Get.put(UserController());
     return Scaffold(
       body: body(),
       floatingActionButton: userInfoFloatingActionButton(),

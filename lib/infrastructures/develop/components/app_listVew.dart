@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:seeks_app_prototype/core/announcement/widgets/announ_board_swiper.widget.dart';
 import 'package:seeks_app_prototype/core/announcement/components/announ_board.dart';
+import 'package:seeks_app_prototype/core/dev/pages/dev_%20emoji_picker_flutter.dart';
 import 'package:seeks_app_prototype/core/dev/pages/dev_sliding_up_panel.dart';
 import 'package:seeks_app_prototype/core/dev/pages/dev_sliding_up_panel2.dart';
 import 'package:seeks_app_prototype/core/login/pages/login_tel_captcha.page.dart';
@@ -83,7 +84,7 @@ import 'package:seeks_app_prototype/core/signup/pages/signup_push_notification.p
 import 'package:seeks_app_prototype/core/signup/pages/signup_user_info.page.dart';
 import 'package:seeks_app_prototype/core/users/pages/user_dating_list.page.dart';
 import 'package:seeks_app_prototype/core/users/pages/user_info.page.dart';
-import 'package:seeks_app_prototype/core/users/pages/user_info_editor.dart';
+import 'package:seeks_app_prototype/core/users/pages/user_info_editor.page.dart';
 import 'package:seeks_app_prototype/core/users/widgets/user_info.widget.dart';
 import 'package:seeks_app_prototype/core/users/widgets/user_info_list_item.widget.dart';
 import 'package:seeks_app_prototype/core/users/widgets/user_info_label.widget.dart';

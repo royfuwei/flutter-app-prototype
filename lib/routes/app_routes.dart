@@ -122,6 +122,17 @@ abstract class AppRoutes {
           page: () => DatingInfoPage(),
           binding: AppPagesBind(),
         ),
+        GetPage(
+            name: UserInfoPage.routeName,
+            page: () => UserInfoPage(),
+            binding: AppPagesBind(),
+            children: [
+              GetPage(
+                name: UserInfoEditorPage.routeName,
+                page: () => UserInfoEditorPage(),
+                binding: AppPagesBind(),
+              ),
+            ]),
       ],
     ),
   ];

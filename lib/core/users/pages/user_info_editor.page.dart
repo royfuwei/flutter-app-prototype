@@ -3,6 +3,7 @@ import 'package:seeks_app_prototype/configs/size_config.dart';
 import 'package:seeks_app_prototype/constants.dart';
 import 'package:seeks_app_prototype/core/common/components/default_app_bar.dart';
 import 'package:seeks_app_prototype/core/common/widgets/appbar.widget.dart';
+import 'package:seeks_app_prototype/core/users/components/user_info_editor_body.dart';
 import 'package:seeks_app_prototype/core/users/widgets/user_info_list_item.widget.dart';
 import 'package:seeks_app_prototype/core/users/widgets/user_info_list_title.widget.dart';
 
@@ -18,84 +19,20 @@ class _UserInfoEditorPageState extends State<UserInfoEditorPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBar2(),
+      appBar: appBarOld(),
       body: body(),
     );
   }
 
   body() {
-    return SafeArea(
-      child: Container(
-        color: Colors.grey.shade100,
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              bodyUserImagesEditor(),
-              bodyUserInfoList(),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  bodyUserInfoList() {
-    return Container(
-      child: Column(
-        children: [
-          UserInfoListTitleWidget(),
-          UserInfoListItemWidget(),
-        ],
-      ),
-    );
-  }
-
-  bodyUserImagesEditor() {
-    return Container(
-      alignment: Alignment.center,
-      padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
-      child: Container(
-        width: MediaQuery.of(context).size.width * 0.7,
-        height: MediaQuery.of(context).size.width * 0.7,
-        decoration: BoxDecoration(
-          color: Colors.grey.shade100,
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(width: 0.1, color: Colors.grey),
-          image: DecorationImage(
-            image: AssetImage("assets/images/female-user.png"),
-            fit: BoxFit.cover,
-          ),
-        ),
-        alignment: Alignment.bottomRight,
-        child: userImagesEditorButton(),
-      ),
-    );
-  }
-
-  userImagesEditorButton() {
-    return TextButton(
-      onPressed: () {},
-      style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(Colors.amber),
-        padding: MaterialStateProperty.all(
-          EdgeInsets.symmetric(horizontal: 5, vertical: 3),
-        ),
-      ),
-      child: Wrap(
-        crossAxisAlignment: WrapCrossAlignment.center,
-        children: [
-          Icon(Icons.edit),
-          Text("編輯"),
-        ],
-      ),
-    );
+    return UserInfoEditorBodyComponent();
   }
 
   appBar() {
     return AppBarWidget();
   }
 
-  appBar2() {
+  appBarOld() {
     return AppBar(
       // backgroundColor: Colors.black,
       leading: Container(),

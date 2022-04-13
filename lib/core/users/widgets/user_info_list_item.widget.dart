@@ -6,10 +6,14 @@ class UserInfoListItemWidget extends StatelessWidget {
     Key? key,
     this.title = "性別",
     this.value = "女",
+    // this.isEditor = true,
+    this.onPressed,
   }) : super(key: key);
 
   final String title;
   final String value;
+  // final bool isEditor;
+  final void Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -44,14 +48,30 @@ class UserInfoListItemWidget extends StatelessWidget {
           ),
           Expanded(
             flex: 2,
-            child: Container(
-              child: Text(
-                value,
-                style: TextStyle(
-                  color: Colors.black87,
-                  fontSize: 18,
-                ),
-              ),
+            child: bodyUserInfoItemValue(),
+          ),
+        ],
+      ),
+    );
+  }
+
+  bodyUserInfoItemValue() {
+    return Container(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            value,
+            style: TextStyle(
+              color: Colors.black87,
+              fontSize: 18,
+            ),
+          ),
+          TextButton(
+            onPressed: onPressed,
+            child: Icon(
+              Icons.edit,
+              color: onPressed != null ? Colors.grey : Colors.transparent,
             ),
           ),
         ],

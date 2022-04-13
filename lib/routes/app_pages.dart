@@ -21,8 +21,9 @@ import 'package:seeks_app_prototype/core/signup/pages/signup_push_notification.p
 import 'package:seeks_app_prototype/core/signup/pages/signup_user_info.page.dart';
 import 'package:seeks_app_prototype/core/splash/pages/splash.page.dart';
 import 'package:seeks_app_prototype/core/login/pages/login_tel.page.dart';
+import 'package:seeks_app_prototype/core/users/pages/user_info.page.dart';
+import 'package:seeks_app_prototype/core/users/pages/user_info_editor.page.dart';
 import 'package:seeks_app_prototype/routes/appPagesBind.dart';
-// import 'infrastructures/develop/pages/develop_screens.dart';
 part 'app_routes.dart';
 
 class AppPages {

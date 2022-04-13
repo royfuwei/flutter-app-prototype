@@ -32,35 +32,39 @@ void showPickerSelector({
   showCupertinoModalPopup(
     context: context,
     builder: (_) {
-      return Container(
-        color: Colors.white,
-        height: 250,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            VerticalSpacing(
-              of: 25,
-            ),
-            Container(
-              height: 100,
-              child: getPickerSelector(
-                initialItem,
-                items,
-                onSelectedItemChanged,
-                generator,
+      return SafeArea(
+        child: Container(
+          color: Colors.white,
+          height: MediaQuery.of(context).size.height / 3,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              VerticalSpacing(
+                of: 25,
               ),
-            ),
-            Container(
-              padding: EdgeInsets.only(top: 10),
-              child: CupertinoButton(
-                color: Colors.green.shade500,
-                child: Text('OK'),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
+              Container(
+                height: 100,
+                padding: EdgeInsets.symmetric(vertical: 24),
+                color: Colors.grey.shade100,
+                child: getPickerSelector(
+                  initialItem,
+                  items,
+                  onSelectedItemChanged,
+                  generator,
+                ),
               ),
-            ),
-          ],
+              Container(
+                padding: EdgeInsets.symmetric(vertical: 16),
+                child: CupertinoButton(
+                  color: Colors.green.shade500,
+                  child: Text('OK'),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ),
+            ],
+          ),
         ),
       );
     },

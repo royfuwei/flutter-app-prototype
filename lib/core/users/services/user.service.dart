@@ -4,6 +4,7 @@ class UserService {
   Future<UserInfoEntity> getUserInfoById(String id) async {
     return UserInfoEntity(
       id: "01",
+      username: "Ray",
       images: [
         UserInfoImageEntity(id: "01"),
         UserInfoImageEntity(id: "02", image: "assets/images/splash_1.jpg"),

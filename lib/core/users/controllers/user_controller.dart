@@ -1,6 +1,12 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:seeks_app_prototype/core/main/pages/main.page.dart';
+import 'package:seeks_app_prototype/core/media/components/media_image.component.dart';
+import 'package:seeks_app_prototype/core/users/pages/user_info.page.dart';
+import 'package:seeks_app_prototype/core/users/pages/user_info_editor.page.dart';
 import 'package:seeks_app_prototype/core/users/services/user.service.dart';
 import 'package:seeks_app_prototype/domain/user.dart';
+import 'package:seeks_app_prototype/infrastructures/util/getx_routes.dart';
 
 class UserController extends GetxController {
   UserService userService = UserService();
@@ -9,6 +15,7 @@ class UserController extends GetxController {
 
   onInitUserInfo() async {
     userInfo = await userService.getUserInfoById(userId);
+    refreshUserImageProviders();
   }
 
   Rx<bool> _isUserInfoOwner = Rx<bool>(true);
@@ -24,6 +31,28 @@ class UserController extends GetxController {
   set userInfo(value) => _userInfo.value = value;
   UserInfoEntity get userInfo => _userInfo.value;
 
+  Rx<List<ImageProvider<Object>>> _userInfoImageProviders =
+      Rx<List<ImageProvider<Object>>>([]);
+  set userInfoImageProviders(List<ImageProvider<Object>> value) =>
+      _userInfoImageProviders.value = value;
+  List<ImageProvider<Object>> get userInfoImageProviders =>
+      _userInfoImageProviders.value;
+
+  refreshUserImageProviders() async {
+    userInfoImageProviders = [];
+    await Future.delayed(Duration(microseconds: 10));
+    List<ImageProvider<Object>> temp = [];
+    for (var image in userInfo.images) {
+      var result = getImageProviderByType(
+        image.imageType,
+        image.image,
+      );
+      temp.add(result);
+    }
+    userInfoImageProviders = temp;
+    print("userInfoImageProviders.length: ${userInfoImageProviders.length}");
+  }
+
   Future<void> editorUserInfo() async {
     UserInfoEntity _tempUserInfo = userInfo;
     List<UserInfoListEntity> _temp = [
@@ -34,19 +63,32 @@ class UserController extends GetxController {
         ],
       ),
     ];
+
+    List<UserInfoImageEntity> _tempImages = [
+      UserInfoImageEntity(id: "02", image: "assets/images/splash_2.jpg"),
+      UserInfoImageEntity(id: "01"),
+    ];
     _tempUserInfo.infoList = _temp;
-    // userInfoList = _temp;
+    _tempUserInfo.images = _tempImages;
     userInfo = _tempUserInfo;
+    await refreshUserImageProviders();
   }
 
   floatingActionButtonOnPressed() async {
     print("onPressed userController.editorUserInfo()");
-    editorUserInfo();
+    await editorUserInfo();
+    toRoutesNamed([
+      MainPage.routeName,
+      UserInfoPage.routeName,
+      UserInfoEditorPage.routeName,
+    ]);
   }
+
+  userImagesEditorOnPressed() {}
 
   @override
   void onInit() async {
-    super.onInit();
     await onInitUserInfo();
+    super.onInit();
   }
 }

@@ -1,38 +1,10 @@
+import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:seeks_app_prototype/core/chat/widgets/chat_bubble.widget.dart';
 import 'package:seeks_app_prototype/domain/chat.dart';
 
 class ChatController extends GetxController {
-  Rx<List<ChatBubbleWidget>> _chatBubbleWidgetList = Rx<List<ChatBubbleWidget>>(
-    [
-      ChatBubbleWidget(
-        text: 'How was the concert?',
-        isCurrentUser: false,
-      ),
-      ChatBubbleWidget(
-        text: 'Awesome! Next time you gotta come as well!',
-        isCurrentUser: true,
-      ),
-      ChatBubbleWidget(
-        text: 'Ok, when is the next date?',
-        isCurrentUser: false,
-      ),
-      ChatBubbleWidget(
-        text: 'They\'re playing on the 20th of November',
-        isCurrentUser: true,
-      ),
-      ChatBubbleWidget(
-        text: 'Let\'s do it!',
-        isCurrentUser: false,
-      ),
-    ],
-  );
-
-  set chatBubbleWidgetList(value) => _chatBubbleWidgetList.value = value;
-  List<ChatBubbleWidget> get chatBubbleWidgetList =>
-      _chatBubbleWidgetList.value;
-
   Rx<List<ChatBubbleEntity>> _chatBubbleList = Rx<List<ChatBubbleEntity>>(
     [
       ChatBubbleEntity(
@@ -76,6 +48,10 @@ class ChatController extends GetxController {
       Rx<CrossAxisAlignment>(CrossAxisAlignment.center);
   set bottomSideAlignment(value) => _bottomSideAlignment.value = value;
   CrossAxisAlignment get bottomSideAlignment => _bottomSideAlignment.value;
+
+  Rx<bool> _emojiShowing = Rx<bool>(false);
+  set emojiShowing(value) => _emojiShowing.value = value;
+  bool get emojiShowing => _emojiShowing.value;
 
   bottomSideAlignmentEnd() {
     bottomSideAlignment = CrossAxisAlignment.end;
@@ -182,6 +158,47 @@ class ChatController extends GetxController {
   }) {
     if (focusNode.hasFocus) focusNode.unfocus();
     bottomSideAlignmentCenter();
+  }
+
+  emojiOnPressed({
+    required FocusNode focusNode,
+    required TextEditingController textEditingController,
+    required ScrollController scrollController,
+  }) {
+    focusNode.unfocus();
+    print("before emojiShowing: ${emojiShowing}");
+    emojiShowing = !emojiShowing;
+    print("after emojiShowing: ${emojiShowing}");
+  }
+
+  onEmojiSelected({
+    required Emoji emoji,
+    required FocusNode focusNode,
+    required TextEditingController textEditingController,
+    required ScrollController scrollController,
+  }) {
+    textEditingController
+      ..text += emoji.emoji
+      ..selection = TextSelection.fromPosition(
+        TextPosition(
+          offset: textEditingController.text.length,
+        ),
+      );
+  }
+
+  onBackspacePressed({
+    required FocusNode focusNode,
+    required TextEditingController textEditingController,
+    required ScrollController scrollController,
+  }) {
+    print("onBackspacePressed");
+    textEditingController
+      ..text = textEditingController.text.characters.skipLast(1).toString()
+      ..selection = TextSelection.fromPosition(
+        TextPosition(
+          offset: textEditingController.text.length,
+        ),
+      );
   }
 
   Future<void> scrollOnRefresh() async {}

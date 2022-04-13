@@ -452,5 +452,12 @@ List<Widget> getDevView(BuildContext context) {
         Get.to(() => DevSlidingUpPanel2());
       },
     ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(DevEmojiPicker.routeName),
+      onTap: () {
+        Get.to(() => DevEmojiPicker());
+      },
+    ),
   ];
 }

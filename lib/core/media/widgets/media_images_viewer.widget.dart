@@ -10,9 +10,9 @@ class MediaImagesViewerWidget extends StatefulWidget {
   static String routeName = "/widget/images_viewer";
   const MediaImagesViewerWidget({
     Key? key,
-    this.images,
+    this.images = const [],
   }) : super(key: key);
-  final List<ImageProvider<Object>>? images;
+  final List<ImageProvider<Object>> images;
 
   @override
   State<MediaImagesViewerWidget> createState() =>
@@ -32,11 +32,14 @@ class _MediaImagesViewerWidgetState extends State<MediaImagesViewerWidget> {
   }
 
   asyncInitState() async {
-    images = (widget.images != null ? widget.images : [])!;
+    images = widget.images;
     for (var image in images) {
       var _widget = genBodyImage(image);
       imageWidgets.add(_widget);
     }
+    print("widget.images.length: ${widget.images.length}");
+    print("images.length: ${images.length}");
+    print("imageWidgets.length: ${imageWidgets.length}");
   }
 
   @override

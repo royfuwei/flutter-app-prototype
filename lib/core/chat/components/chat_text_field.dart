@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:seeks_app_prototype/configs/size_config.dart';
 
@@ -10,6 +13,7 @@ class ChatTextFieldComponent extends StatefulWidget {
     this.textFieldMaxHeight = 36,
     this.sendOnPressed,
     this.addOnPressed,
+    this.emojiOnPressed,
   }) : super(key: key);
   final CrossAxisAlignment bottomSideAlignment;
   final TextEditingController? textEditingController;
@@ -17,6 +21,7 @@ class ChatTextFieldComponent extends StatefulWidget {
   final double textFieldMaxHeight;
   final void Function()? sendOnPressed;
   final void Function()? addOnPressed;
+  final void Function()? emojiOnPressed;
 
   @override
   State<ChatTextFieldComponent> createState() => _ChatTextFieldComponentState();
@@ -49,10 +54,14 @@ class _ChatTextFieldComponentState extends State<ChatTextFieldComponent> {
                 size: getProportionateScreenHeight(context, 34),
               ),
               onPressed: widget.addOnPressed,
-              // onPressed: () {
-              //   focusNode.unfocus();
-              //   bottomSideAlignmentCenter();
-              // },
+            ),
+            bodyChatBottomIconButton(
+              icon: Icon(
+                Icons.emoji_emotions_outlined,
+                color: Colors.blue,
+                size: getProportionateScreenHeight(context, 34),
+              ),
+              onPressed: widget.emojiOnPressed,
             ),
             bodyChatBottomTextField(),
             bodyChatBottomIconButton(
@@ -62,10 +71,6 @@ class _ChatTextFieldComponentState extends State<ChatTextFieldComponent> {
                 size: getProportionateScreenHeight(context, 34),
               ),
               onPressed: widget.sendOnPressed,
-              // onPressed: () {
-              //   sendChat();
-              //   bottomSideAlignmentCenter();
-              // },
             ),
           ],
         ),

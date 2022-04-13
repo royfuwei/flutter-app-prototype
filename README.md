@@ -78,6 +78,9 @@ A new Flutter project.
 - [scroll_to_index](https://pub.dev/packages/scroll_to_index)
 - [latlong2](https://pub.dev/packages/latlong2)
 - [floor](https://pub.dev/packages/floor)
+- [emoji_picker_flutter](https://pub.dev/packages/emoji_picker_flutter)
+- [syncfusion_flutter_datepicker](https://pub.dev/packages/syncfusion_flutter_datepicker)
+- [flutter_picker](https://pub.dev/packages/flutter_picker)
 
 
 ## other package
