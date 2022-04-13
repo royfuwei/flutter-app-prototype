@@ -55,7 +55,7 @@ class UserInfoEditorImageComponent extends StatelessWidget {
 
   userImagesEditorButton(UserController userController) {
     return TextButton(
-      onPressed: userController.userImagesEditorOnPressed,
+      onPressed: userController.userInfoEditorImagesOnPressed,
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(Colors.amber),
         padding: MaterialStateProperty.all(

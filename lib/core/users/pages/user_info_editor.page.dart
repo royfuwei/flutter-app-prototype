@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:seeks_app_prototype/configs/size_config.dart';
 import 'package:seeks_app_prototype/constants.dart';
 import 'package:seeks_app_prototype/core/common/components/default_app_bar.dart';
 import 'package:seeks_app_prototype/core/common/widgets/appbar.widget.dart';
 import 'package:seeks_app_prototype/core/users/components/user_info_editor_body.dart';
+import 'package:seeks_app_prototype/core/users/controllers/user_controller.dart';
 import 'package:seeks_app_prototype/core/users/widgets/user_info_list_item.widget.dart';
 import 'package:seeks_app_prototype/core/users/widgets/user_info_list_title.widget.dart';
 
@@ -16,6 +18,8 @@ class UserInfoEditorPage extends StatefulWidget {
 }
 
 class _UserInfoEditorPageState extends State<UserInfoEditorPage> {
+  UserController userController = Get.put(UserController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,11 +44,7 @@ class _UserInfoEditorPageState extends State<UserInfoEditorPage> {
       title: defaultExpandedAppBarTitle(
         startItems: [
           TextButton(
-            onPressed: () {
-              Navigator.pop(
-                context,
-              );
-            },
+            onPressed: userController.userInfoEditorCancelOnPressed,
             child: Icon(
               Icons.close,
               // size: getProportionateScreenWidth(context, 30),
@@ -62,14 +62,14 @@ class _UserInfoEditorPageState extends State<UserInfoEditorPage> {
           ),
         ],
         endItems: [
-          TextButton(
-            onPressed: () {
-              // print('hihi');
-            },
-            child: Row(
-              children: [
-                isActivedButton(false, "儲存"),
-              ],
+          Obx(
+            () => TextButton(
+              onPressed: userController.userInfoEditorSaveOnPressed,
+              child: Row(
+                children: [
+                  isActivedButton(userController.editorCanSave, "儲存"),
+                ],
+              ),
             ),
           ),
         ],
@@ -79,20 +79,9 @@ class _UserInfoEditorPageState extends State<UserInfoEditorPage> {
 
   isActivedButton(bool isRead, String text) {
     return TextButton(
-      onPressed: isRead
-          ? () {
-              setState(() {
-                // 目前沒有效果
-                isRead = !isRead;
-              });
-            }
-          : null,
+      onPressed: () {},
       child: Row(
         children: [
-          /* Icon(
-            Icons.check,
-            color: isRead ? Colors.green : colorFont03,
-          ), */
           Text(
             text,
             style: TextStyle(

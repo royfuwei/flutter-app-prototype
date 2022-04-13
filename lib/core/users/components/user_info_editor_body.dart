@@ -15,6 +15,7 @@ class UserInfoEditorBodyComponent extends StatelessWidget {
 
   body(BuildContext context, UserController userController) {
     return SafeArea(
+      bottom: false,
       child: Container(
         height: MediaQuery.of(context).size.height,
         color: Colors.grey.shade100,

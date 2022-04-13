@@ -37,9 +37,6 @@ class _MediaImagesViewerWidgetState extends State<MediaImagesViewerWidget> {
       var _widget = genBodyImage(image);
       imageWidgets.add(_widget);
     }
-    print("widget.images.length: ${widget.images.length}");
-    print("images.length: ${images.length}");
-    print("imageWidgets.length: ${imageWidgets.length}");
   }
 
   @override
