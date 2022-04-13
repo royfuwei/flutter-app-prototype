@@ -123,16 +123,22 @@ abstract class AppRoutes {
           binding: AppPagesBind(),
         ),
         GetPage(
-            name: UserInfoPage.routeName,
-            page: () => UserInfoPage(),
-            binding: AppPagesBind(),
-            children: [
-              GetPage(
-                name: UserInfoEditorPage.routeName,
-                page: () => UserInfoEditorPage(),
-                binding: AppPagesBind(),
-              ),
-            ]),
+          name: DatingAddPreivewPage.routeName,
+          page: () => DatingAddPreivewPage(),
+          binding: AppPagesBind(),
+        ),
+        GetPage(
+          name: UserInfoPage.routeName,
+          page: () => UserInfoPage(),
+          binding: AppPagesBind(),
+          children: [
+            GetPage(
+              name: UserInfoEditorPage.routeName,
+              page: () => UserInfoEditorPage(),
+              binding: AppPagesBind(),
+            ),
+          ],
+        ),
       ],
     ),
   ];

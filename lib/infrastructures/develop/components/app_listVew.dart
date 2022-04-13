@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:seeks_app_prototype/core/announcement/widgets/announ_board_swiper.widget.dart';
 import 'package:seeks_app_prototype/core/announcement/components/announ_board.dart';
+import 'package:seeks_app_prototype/core/dating/components/dating_info_body.dart';
+import 'package:seeks_app_prototype/core/dating/pages/dating_add_preview.page.dart';
 import 'package:seeks_app_prototype/core/dev/pages/dev_%20emoji_picker_flutter.dart';
 import 'package:seeks_app_prototype/core/dev/pages/dev_sliding_up_panel.dart';
 import 'package:seeks_app_prototype/core/dev/pages/dev_sliding_up_panel2.dart';
@@ -315,6 +317,13 @@ List<Widget> getAppView(BuildContext context) {
       title: Text(UserInfoEditorPage.routeName),
       onTap: () {
         Get.to(() => UserInfoEditorPage());
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(DatingAddPreivewPage.routeName),
+      onTap: () {
+        Get.to(() => DatingAddPreivewPage());
       },
     ),
   ];

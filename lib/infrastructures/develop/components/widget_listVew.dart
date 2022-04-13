@@ -158,5 +158,12 @@ abc""",
         Get.to(() => AnnounBoardComponent());
       },
     ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(DatingInfoBodyComponent.routeName),
+      onTap: () {
+        Get.to(() => DatingInfoBodyComponent());
+      },
+    ),
   ];
 }
