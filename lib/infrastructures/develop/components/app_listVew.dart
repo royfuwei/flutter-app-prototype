@@ -191,16 +191,6 @@ List<Widget> getAppView(BuildContext context) {
     ),
     ListTile(
       leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
-      title: Text(ImageUploadPage.routeName),
-      onTap: () {
-        toRoutesNamed([
-          EntryPage.routeName,
-          ImageUploadPage.routeName,
-        ]);
-      },
-    ),
-    ListTile(
-      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
       title: Text(MainPage.routeName),
       onTap: () {
         toRoutesNamed([
@@ -215,6 +205,16 @@ List<Widget> getAppView(BuildContext context) {
         toRoutesNamed([
           MainPage.routeName,
           HomePage.routeName,
+        ]);
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(DatingInfoPage.routeName),
+      onTap: () {
+        toRoutesNamed([
+          MainPage.routeName,
+          DatingInfoPage.routeName,
         ]);
       },
     ),
@@ -240,51 +240,28 @@ List<Widget> getAppView(BuildContext context) {
     ),
     ListTile(
       leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
-      title: Text(ChatListPage.routeName),
-      onTap: () {
-        toRoutesNamed([
-          MainPage.routeName,
-          ChatListPage.routeName,
-        ]);
-      },
-    ),
-    ListTile(
-      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
-      title: Text(MorePage.routeName),
-      onTap: () {
-        toRoutesNamed([
-          MainPage.routeName,
-          MorePage.routeName,
-        ]);
-      },
-    ),
-    ListTile(
-      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
-      title: Text(ImageUploadNotifyPage.routeName),
-      onTap: () {
-        toRoutesNamed([
-          MainPage.routeName,
-          ImageUploadNotifyPage.routeName,
-        ]);
-      },
-    ),
-    ListTile(
-      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
-      title: Text(DatingInfoPage.routeName),
-      onTap: () {
-        toRoutesNamed([
-          MainPage.routeName,
-          DatingInfoPage.routeName,
-        ]);
-      },
-    ),
-    ListTile(
-      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
       title: Text(DatingAddInfoPage.routeName),
       onTap: () {
         toRoutesNamed([
           MainPage.routeName,
           DatingAddInfoPage.routeName,
+        ]);
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(DatingAddPreviewPage.routeName),
+      onTap: () {
+        Get.to(() => DatingAddPreviewPage());
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(ChatListPage.routeName),
+      onTap: () {
+        toRoutesNamed([
+          MainPage.routeName,
+          ChatListPage.routeName,
         ]);
       },
     ),
@@ -300,9 +277,12 @@ List<Widget> getAppView(BuildContext context) {
     ),
     ListTile(
       leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
-      title: Text(UserDatingListPage.routeName),
+      title: Text(MorePage.routeName),
       onTap: () {
-        Get.to(() => UserDatingListPage());
+        toRoutesNamed([
+          MainPage.routeName,
+          MorePage.routeName,
+        ]);
       },
     ),
     ListTile(
@@ -321,9 +301,9 @@ List<Widget> getAppView(BuildContext context) {
     ),
     ListTile(
       leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
-      title: Text(DatingAddPreivewPage.routeName),
+      title: Text(UserDatingListPage.routeName),
       onTap: () {
-        Get.to(() => DatingAddPreivewPage());
+        Get.to(() => UserDatingListPage());
       },
     ),
   ];

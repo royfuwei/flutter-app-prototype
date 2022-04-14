@@ -123,8 +123,8 @@ abstract class AppRoutes {
           binding: AppPagesBind(),
         ),
         GetPage(
-          name: DatingAddPreivewPage.routeName,
-          page: () => DatingAddPreivewPage(),
+          name: DatingAddPreviewPage.routeName,
+          page: () => DatingAddPreviewPage(),
           binding: AppPagesBind(),
         ),
         GetPage(

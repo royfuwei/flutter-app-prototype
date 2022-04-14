@@ -165,5 +165,25 @@ abc""",
         Get.to(() => DatingInfoBodyComponent());
       },
     ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(ImageUploadNotifyPage.routeName),
+      onTap: () {
+        toRoutesNamed([
+          MainPage.routeName,
+          ImageUploadNotifyPage.routeName,
+        ]);
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(ImageUploadPage.routeName),
+      onTap: () {
+        toRoutesNamed([
+          EntryPage.routeName,
+          ImageUploadPage.routeName,
+        ]);
+      },
+    ),
   ];
 }

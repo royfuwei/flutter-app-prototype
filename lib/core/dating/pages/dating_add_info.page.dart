@@ -4,7 +4,9 @@ import 'package:get/get.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:seeks_app_prototype/configs/size_config.dart';
 import 'package:seeks_app_prototype/constants.dart';
-import 'package:seeks_app_prototype/core/common/components/default_app_bar.dart';
+import 'package:seeks_app_prototype/core/common/widgets/appbar.widget.dart';
+import 'package:seeks_app_prototype/core/common/widgets/is_actived_button.widget.dart';
+import 'package:seeks_app_prototype/core/dating/controllers/dating_add.controller.dart';
 import 'package:seeks_app_prototype/core/dating/pages/dating_info.page.dart';
 
 class DatingAddInfoPage extends StatefulWidget {
@@ -23,6 +25,8 @@ class _DatingAddInfoPageState extends State<DatingAddInfoPage> {
   ScrollController scrollController = new ScrollController();
   bool resizeToAvoidBottomInset = true;
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+
+  DatingAddController datingAddController = Get.put(DatingAddController());
 
   @override
   Widget build(BuildContext context) {
@@ -682,76 +686,29 @@ class _DatingAddInfoPageState extends State<DatingAddInfoPage> {
   }
 
   appBar() {
-    return AppBar(
-      // backgroundColor: Colors.black,
-      leading: Container(),
-      leadingWidth: 0,
-      title: defaultExpandedAppBarTitle(
-        startItems: [
-          TextButton(
-            onPressed: () {
-              Navigator.pop(
-                context,
-              );
-            },
-            child: Icon(
-              Icons.arrow_back_ios,
-              // size: getProportionateScreenWidth(context, 30),
-              color: colorFont02,
-            ),
+    return AppBarWidget(
+      startItems: [
+        appBarBackButton(
+          context: context,
+          icon: Icons.arrow_back_ios,
+        ),
+      ],
+      titleItems: [
+        appBarTitleText(
+          context: context,
+          text: "新約會",
+        ),
+      ],
+      endItems: [
+        Obx(
+          () => isActivedTextButtonWidget(
+            onPressed: datingAddController.datingAddInfoToNextOnPressed,
+            isActived: datingAddController.datingAddInfoToNext,
+            context: context,
+            text: "預覽",
           ),
-        ],
-        titleItems: [
-          Text(
-            "新約會",
-            style: TextStyle(
-              color: colorFont02,
-              fontSize: getProportionateScreenWidth(context, 20),
-            ),
-          ),
-        ],
-        endItems: [
-          TextButton(
-            onPressed: () {
-              // print('hihi');
-              Get.to(() => DatingInfoPage());
-            },
-            child: Row(
-              children: [
-                isActivedButton(false, "預覽"),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  isActivedButton(bool isRead, String text) {
-    return TextButton(
-      onPressed: isRead
-          ? () {
-              setState(() {
-                // 目前沒有效果
-                isRead = !isRead;
-              });
-            }
-          : null,
-      child: Row(
-        children: [
-          /* Icon(
-            Icons.check,
-            color: isRead ? Colors.green : colorFont03,
-          ), */
-          Text(
-            text,
-            style: TextStyle(
-              color: isRead ? Colors.green : colorFont03,
-              fontSize: getProportionateScreenWidth(context, 18),
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
