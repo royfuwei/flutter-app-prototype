@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:seeks_app_prototype/core/dating/pages/dating_info.page.dart';
 import 'package:seeks_app_prototype/core/dating/services/dating.service.dart';
-import 'package:seeks_app_prototype/core/dating/widgets/dating_label.widget.dart';
 import 'package:seeks_app_prototype/core/main/pages/main.page.dart';
 import 'package:seeks_app_prototype/core/media/components/media_image.component.dart';
 import 'package:seeks_app_prototype/core/users/controllers/user_controller.dart';
@@ -55,18 +54,9 @@ class DatingInfoController extends GetxController {
 
   getDatingInfoLabels() async {
     List<Widget> widgets = [];
-
-    datingInfo.labels.forEach((key, value) {
-      var widget = Container(
-        padding: EdgeInsets.only(right: 0),
-        child: DatingLabelWidget(
-          icon: datingService.getIconByType(value.iconType),
-          title: value.name,
-        ),
-      );
-      widgets.add(widget);
-    });
-
+    widgets = datingService.getDatingInfoWidgetsByLabels(
+      labels: datingInfo.labels,
+    );
     datingLabelWidgets = widgets;
   }
 
