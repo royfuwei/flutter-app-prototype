@@ -52,7 +52,8 @@ class DatingAddImagesPage extends StatelessWidget {
               //   Get.to(() => DatingAddInfoPage());
               // },
               onPressed: datingAddController.datingAddImagesToNextOnPressed,
-              isActived: datingAddController.datingAddImagesToNext,
+              // isActived: datingAddController.datingAddImagesToNext,
+              isActived: datingAddController.selectImageInfoList.length > 0,
               context: context,
               text: "下一步",
             )),

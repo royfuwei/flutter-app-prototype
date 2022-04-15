@@ -6,6 +6,7 @@ import 'package:seeks_app_prototype/configs/size_config.dart';
 import 'package:seeks_app_prototype/constants.dart';
 import 'package:seeks_app_prototype/core/common/widgets/appbar.widget.dart';
 import 'package:seeks_app_prototype/core/common/widgets/is_actived_button.widget.dart';
+import 'package:seeks_app_prototype/core/dating/components/dating_add_info_body.dart';
 import 'package:seeks_app_prototype/core/dating/controllers/dating_add.controller.dart';
 import 'package:seeks_app_prototype/core/dating/pages/dating_info.page.dart';
 
@@ -30,11 +31,13 @@ class _DatingAddInfoPageState extends State<DatingAddInfoPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: scaffoldKey,
-      resizeToAvoidBottomInset: resizeToAvoidBottomInset,
-      appBar: appBar(),
-      body: body(),
+    return Obx(
+      () => Scaffold(
+        key: scaffoldKey,
+        resizeToAvoidBottomInset: datingAddController.resizeToAvoidBottomInset,
+        appBar: appBar(),
+        body: body(),
+      ),
     );
   }
 
@@ -55,6 +58,10 @@ class _DatingAddInfoPageState extends State<DatingAddInfoPage> {
   }
 
   body() {
+    return DatingAddInfoBodyComponent();
+  }
+
+  bodyOld() {
     return GestureDetector(
       onTap: () {
         topicFocusNode.unfocus();
