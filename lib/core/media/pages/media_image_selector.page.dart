@@ -170,10 +170,12 @@ class _MediaImageSelectorPageState extends State<MediaImageSelectorPage> {
       ],
       endItems: [
         isActivedTextButtonWidget(
-          onPressed: () {
-            _cropCropAssets();
-          },
-          isActived: false,
+          onPressed: cropAssets.length > 0
+              ? () {
+                  _cropCropAssets();
+                }
+              : null,
+          isActived: cropAssets.length > 0,
           context: context,
           text: "下一步",
         ),
