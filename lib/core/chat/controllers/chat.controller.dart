@@ -251,7 +251,6 @@ class ChatController extends GetxController {
   }
 
   onInitChatBubbleList() async {
-    await Future.delayed(Duration(seconds: 2));
     print(
       "onInitChatBubbleList before chatBubbleList.length: ${chatBubbleList.length}",
     );
