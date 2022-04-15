@@ -109,9 +109,12 @@ class ChatListItemWidget extends StatelessWidget {
     return GestureDetector(
       onTap: itemImageOnPressed,
       child: CircleAvatar(
-        backgroundColor: Colors.white12,
-        backgroundImage: itemImage,
-        maxRadius: getProportionateScreenWidth(context, 50),
+        backgroundColor: Colors.white,
+        radius: getProportionateScreenWidth(context, 60),
+        child: CircleAvatar(
+          backgroundImage: itemImage,
+          radius: getProportionateScreenWidth(context, 40),
+        ),
       ),
     );
   }
@@ -239,23 +242,25 @@ class ChatListItemWidget extends StatelessWidget {
   }
 
   chatItemInfoEndUnReadCount(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(
-        vertical: 5,
-        horizontal: 10,
-      ),
-      // color: bgMainColor,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        color: Colors.green,
-      ),
-      child: Text(
-        unReadCount,
-        style: TextStyle(
-          fontSize: 12,
-          color: Colors.white,
-        ),
-      ),
-    );
+    return unReadCount.length != 0
+        ? Container(
+            padding: EdgeInsets.symmetric(
+              vertical: 5,
+              horizontal: 10,
+            ),
+            // color: bgMainColor,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              color: Colors.green,
+            ),
+            child: Text(
+              unReadCount,
+              style: TextStyle(
+                fontSize: 12,
+                color: Colors.white,
+              ),
+            ),
+          )
+        : Container();
   }
 }

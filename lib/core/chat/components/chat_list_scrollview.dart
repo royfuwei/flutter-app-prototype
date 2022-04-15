@@ -52,7 +52,7 @@ class ChatListScrollViewComponent extends StatelessWidget {
         username: item.username!,
         itemImage: getImageProviderByType(item.userImageType, item.userImage),
         message: item.message!,
-        unReadCount: "0",
+        unReadCount: "",
         endActionPaneChildren: [
           SlidableAction(
             onPressed: (_) {},

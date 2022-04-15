@@ -69,18 +69,6 @@ Map<String, DatingInfoEntity> datingInfoMap = {
         value: 1000,
         key: "payment",
       ),
-      "payment2": DatingInfoLabelEntity(
-        iconType: "money_outlined",
-        name: "1000元",
-        value: 1000,
-        key: "payment",
-      ),
-      "payment3": DatingInfoLabelEntity(
-        iconType: "money_outlined",
-        name: "1000元",
-        value: 1000,
-        key: "payment",
-      ),
     },
   ),
   "003": DatingInfoEntity(

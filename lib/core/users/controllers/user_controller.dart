@@ -117,8 +117,7 @@ class UserController extends GetxController {
     print("goPageByDatingId id: ${id}");
     refreshUserInfoById(id);
     isUserInfoOwner = false;
-    // toRoutesNamed([MainPage.routeName, UserInfoViewerPage.routeName]);
-    toRoutesNamed([MainPage.routeName, UserInfoPage.routeName]);
+    toRoutesNamed([MainPage.routeName, UserInfoViewerPage.routeName]);
   }
 
   @override

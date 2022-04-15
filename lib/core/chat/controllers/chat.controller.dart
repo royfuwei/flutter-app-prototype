@@ -1,6 +1,7 @@
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:seeks_app_prototype/core/chat/pages/chat.page.dart';
 import 'package:seeks_app_prototype/core/chat/services/chat.service.dart';
 import 'package:seeks_app_prototype/core/main/pages/main.page.dart';
@@ -14,8 +15,27 @@ class ChatController extends GetxController {
   UserService userService = UserService();
   String chatId = "chat001";
   String userId = "001";
+  bool isInit = false;
+  bool isInitScroll = false;
 
-  Rx<List<ChatBubbleEntity>> _chatBubbleList = Rx<List<ChatBubbleEntity>>([]);
+  initScrollToMax(ScrollController scrollController) {
+    if (isInit && !isInitScroll) {
+      Future.delayed(
+        Duration(
+          milliseconds: 10,
+        ),
+        () {
+          scrollController.jumpTo(
+            scrollController.position.maxScrollExtent,
+          );
+        },
+      );
+      // scrollController.jumpTo(
+      //   scrollController.position.maxScrollExtent + 10,
+      // );
+      isInitScroll = true;
+    }
+  }
 
   Rx<String> _username = Rx<String>("username");
   set username(String value) => _username.value = value;
@@ -29,7 +49,9 @@ class ChatController extends GetxController {
   set userIsOnline(bool value) => _userIsOnline.value = value;
   bool get userIsOnline => _userIsOnline.value;
 
-  set chatBubbleList(value) => _chatBubbleList.value = value;
+  Rx<List<ChatBubbleEntity>> _chatBubbleList = Rx<List<ChatBubbleEntity>>([]);
+  set chatBubbleList(List<ChatBubbleEntity> value) =>
+      _chatBubbleList.value = value;
   List<ChatBubbleEntity> get chatBubbleList => _chatBubbleList.value;
 
   double unfocusTextFieldMaxHeight = 36;
@@ -80,11 +102,12 @@ class ChatController extends GetxController {
       bottomSideAlignmentEnd();
       Future.delayed(
         Duration(
-          milliseconds: 400,
+          milliseconds: 500,
         ),
         () {
           scrollController.animateTo(
             scrollController.position.maxScrollExtent + 10,
+            // 0,
             duration: Duration(milliseconds: 100),
             curve: Curves.easeIn,
           );
@@ -117,9 +140,11 @@ class ChatController extends GetxController {
         message: text,
       );
       chatBubbleList.add(chatBubble);
+      // chatBubbleList.insert(0, chatBubble);
 
       textEditingController.clear();
       scrollController.jumpTo(scrollController.position.maxScrollExtent);
+      // scrollController.jumpTo(0);
     }
   }
 
@@ -199,7 +224,17 @@ class ChatController extends GetxController {
     userController.goPageByDatingId(userId);
   }
 
-  Future<void> scrollOnRefresh() async {}
+  Future<void> scrollOnRefresh(RefreshController refreshController) async {
+    print(
+      "Future<void> scrollOnRefresh(RefreshController refreshController) async",
+    );
+  }
+
+  Future<void> scrollOnLoading(RefreshController refreshController) async {
+    print(
+      "Future<void> scrollOnLoading(RefreshController refreshController) async",
+    );
+  }
 
   goPageByChatId(String id) async {
     chatId = id;
@@ -211,16 +246,25 @@ class ChatController extends GetxController {
     print("goPageByDatingId userInfo.username: ${userInfo.username}");
     username = userInfo.username;
     userId = userInfo.id;
+    isInitScroll = false;
     toRoutesNamed([MainPage.routeName, ChatPage.routeName]);
   }
 
   onInitChatBubbleList() async {
+    await Future.delayed(Duration(seconds: 2));
+    print(
+      "onInitChatBubbleList before chatBubbleList.length: ${chatBubbleList.length}",
+    );
     chatBubbleList = await chatService.getChatBubbleListById(chatId);
+    print(
+      "onInitChatBubbleList after chatBubbleList.length: ${chatBubbleList.length}",
+    );
   }
 
   @override
   void onInit() async {
-    onInitChatBubbleList();
+    await onInitChatBubbleList();
+    isInit = true;
     super.onInit();
   }
 }

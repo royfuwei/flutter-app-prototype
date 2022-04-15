@@ -12,7 +12,7 @@ class UserInfoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBar(context),
+      // appBar: appBar(context),
       body: body(),
       floatingActionButton: userInfoFloatingActionButton(),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,

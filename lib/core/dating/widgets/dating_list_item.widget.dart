@@ -13,9 +13,6 @@ class DatingListItem extends StatelessWidget {
     this.datingDate = "週四, 6月10日",
     this.datingRange = "12:00-14:00",
     this.status = "配對中",
-    this.datingDuration = "預計2hr",
-    this.signupCount = "100人報名",
-    this.payment = "-1000元",
     this.startDismissible,
     this.startActionPaneChildren,
     this.endDismissible,
@@ -31,9 +28,6 @@ class DatingListItem extends StatelessWidget {
   final String datingDate;
   final String datingRange;
   final String status;
-  final String datingDuration;
-  final String signupCount;
-  final String payment;
   final ImageProvider<Object> userImage;
   final ImageProvider<Object> infoImage;
   final List<Widget>? startActionPaneChildren;
@@ -249,6 +243,7 @@ class DatingListItem extends StatelessWidget {
               children: [
                 Icon(
                   Icons.more_vert,
+                  color: colorFont02,
                 )
               ],
             ),
@@ -278,6 +273,7 @@ class DatingListItem extends StatelessWidget {
         title: status,
         textStyle: TextStyle(
           fontSize: 14,
+          color: colorFont02,
         ),
       ),
     );

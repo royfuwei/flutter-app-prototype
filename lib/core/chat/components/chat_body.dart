@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:seeks_app_prototype/core/chat/components/chat_bubble_refresh_view.dart';
 import 'package:seeks_app_prototype/core/chat/components/chat_bubble_scrollview.dart';
 import 'package:seeks_app_prototype/core/chat/components/chat_text_field.dart';
 import 'package:seeks_app_prototype/core/chat/controllers/chat.controller.dart';
@@ -18,6 +20,7 @@ class _ChatBodyComponentState extends State<ChatBodyComponent> {
   FocusNode focusNode = FocusNode();
   TextEditingController textEditingController = TextEditingController();
   ScrollController scrollController = new ScrollController();
+  RefreshController refreshController = RefreshController();
 
   ChatController chatController = Get.put(ChatController());
 
@@ -38,6 +41,10 @@ class _ChatBodyComponentState extends State<ChatBodyComponent> {
         scrollController: scrollController,
       ),
     );
+
+    print(
+      "initState chatController.chatBubbleList.length: ${chatController.chatBubbleList.length}",
+    );
   }
 
   @override
@@ -50,7 +57,6 @@ class _ChatBodyComponentState extends State<ChatBodyComponent> {
       child: GestureDetector(
         onTap: () => chatController.areaOnTap(focusNode),
         child: Container(
-          color: Colors.amber[100],
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -69,18 +75,25 @@ class _ChatBodyComponentState extends State<ChatBodyComponent> {
 
   bodyChatListView() {
     return Obx(
-      () => ChatBubbleScrollViewComponent(
-        items: chatController.chatBubbleList,
-        scrollController: scrollController,
-        onRefresh: chatController.scrollOnRefresh,
-        scrollListener: (_) async {
-          await chatController.scrollListener(
-            focusNode: focusNode,
-            scrollController: scrollController,
-            textEditingController: textEditingController,
-          );
-        },
-      ),
+      () {
+        print(
+          "bodyChatListView chatController.chatBubbleList.length: ${chatController.chatBubbleList.length}",
+        );
+        chatController.initScrollToMax(scrollController);
+        return ChatBubbleRefreshViewComponent(
+          items: chatController.chatBubbleList,
+          refreshController: refreshController,
+          scrollController: scrollController,
+          onRefresh: () => chatController.scrollOnRefresh(refreshController),
+          scrollListener: (_) async {
+            await chatController.scrollListener(
+              focusNode: focusNode,
+              scrollController: scrollController,
+              textEditingController: textEditingController,
+            );
+          },
+        );
+      },
     );
   }
 
