@@ -11,6 +11,7 @@ class CommonSmartRefreshWidget extends StatefulWidget {
     this.onLoading,
     this.header,
     this.footer,
+    this.reverse,
   }) : super(key: key);
   final Widget? child;
   final RefreshController? refreshController;
@@ -18,6 +19,7 @@ class CommonSmartRefreshWidget extends StatefulWidget {
   final void Function()? onLoading;
   final Widget? header;
   final Widget? footer;
+  final bool? reverse;
 
   @override
   State<CommonSmartRefreshWidget> createState() =>
@@ -50,6 +52,7 @@ class _CommonSmartRefreshWidgetState extends State<CommonSmartRefreshWidget> {
 
   body() {
     return SmartRefresher(
+      reverse: widget.reverse,
       enablePullDown: true,
       enablePullUp: true,
       header: widget.header != null ? widget.header : WaterDropHeader(),

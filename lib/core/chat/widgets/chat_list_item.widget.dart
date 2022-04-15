@@ -8,7 +8,7 @@ class ChatListItemWidget extends StatelessWidget {
   const ChatListItemWidget({
     Key? key,
     this.onPressed,
-    this.itemImageOnTap,
+    this.itemImageOnPressed,
     this.itemImage = const AssetImage("assets/images/male-user.png"),
     this.username = "XXX",
     this.message = "安安你好... ",
@@ -22,7 +22,7 @@ class ChatListItemWidget extends StatelessWidget {
   }) : super(key: key);
 
   final void Function()? onPressed;
-  final void Function()? itemImageOnTap;
+  final void Function()? itemImageOnPressed;
   final ImageProvider<Object> itemImage;
   final String username;
   final String message;
@@ -107,7 +107,7 @@ class ChatListItemWidget extends StatelessWidget {
 
   chatItemUserImage(BuildContext context) {
     return GestureDetector(
-      onTap: itemImageOnTap,
+      onTap: itemImageOnPressed,
       child: CircleAvatar(
         backgroundColor: Colors.white12,
         backgroundImage: itemImage,

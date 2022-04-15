@@ -49,6 +49,9 @@ class _ChatListBodyComponentState extends State<ChatListBodyComponent> {
     return Obx(
       () => ChatListScrollViewComponent(
         items: chatListController.chatItemList,
+        chatItemImageOnPressed: chatListController.chatItemImageOnPressed,
+        chatItemOnPressed: chatListController.chatItemOnPressed,
+        onRefresh: chatListController.onRefresh,
       ),
     );
   }

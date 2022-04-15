@@ -128,6 +128,11 @@ abstract class AppRoutes {
           binding: AppPagesBind(),
         ),
         GetPage(
+          name: UserInfoViewerPage.routeName,
+          page: () => UserInfoViewerPage(),
+          binding: AppPagesBind(),
+        ),
+        GetPage(
           name: UserInfoPage.routeName,
           page: () => UserInfoPage(),
           binding: AppPagesBind(),

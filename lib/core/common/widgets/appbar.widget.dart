@@ -86,6 +86,23 @@ appBarBackButton({
   );
 }
 
+appBarIconButton({
+  required BuildContext context,
+  void Function()? onPressed,
+  Color color = Colors.blue,
+  IconData? icon = Icons.close,
+  double size = 28,
+}) {
+  return TextButton(
+    onPressed: onPressed != null ? onPressed : () {},
+    child: Icon(
+      icon,
+      size: getProportionateScreenWidth(context, size),
+      color: color,
+    ),
+  );
+}
+
 appBarUserTitle({
   required BuildContext context,
   bool isOnline = true,

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:seeks_app_prototype/core/chat/components/chat_body.dart';
-import 'package:seeks_app_prototype/core/chat/controllers/chat.controller.dart';
 import 'package:seeks_app_prototype/core/common/widgets/appbar.widget.dart';
+import 'package:seeks_app_prototype/core/users/components/user_info_body.dart';
+import 'package:seeks_app_prototype/core/users/controllers/user_controller.dart';
 
-class ChatPage extends StatelessWidget {
-  static String routeName = "/chat";
-  const ChatPage({Key? key}) : super(key: key);
+class UserInfoViewerPage extends StatelessWidget {
+  static String routeName = "/user_info_viewer_page";
+  const UserInfoViewerPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,11 +17,11 @@ class ChatPage extends StatelessWidget {
   }
 
   body() {
-    return ChatBodyComponent();
+    return UserInfoBodyComponent();
   }
 
   appBar(BuildContext context) {
-    ChatController chatController = Get.put(ChatController());
+    UserController userController = Get.put(UserController());
     return AppBarWidget(
       startItems: [
         appBarBackButton(
@@ -33,10 +33,9 @@ class ChatPage extends StatelessWidget {
         Obx(
           () => appBarUserTitle(
             context: context,
-            name: chatController.username,
-            status: chatController.userStatus,
-            isOnline: chatController.userIsOnline,
-            onPressed: chatController.appBarUserTitleOnPressed,
+            name: userController.userInfo.username,
+            status: userController.userStatus,
+            isOnline: userController.userIsOnline,
           ),
         ),
       ],

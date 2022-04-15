@@ -2,19 +2,21 @@ import 'package:seeks_app_prototype/domain/media.dart';
 
 class ChatItemEntity {
   String id;
+  String? userId;
   String? username;
   String? message;
-  String image;
-  ImageType imageType;
+  String userImage;
+  ImageType userImageType;
   DateTime? latestTime;
   bool? status = true;
 
   ChatItemEntity({
     required this.id,
+    this.userId,
     this.username,
     this.message,
-    this.image = "assets/images/male-user.png",
-    this.imageType = ImageType.ASSET,
+    this.userImage = "assets/images/male-user.png",
+    this.userImageType = ImageType.ASSET,
     this.latestTime,
     this.status,
   });
@@ -25,8 +27,8 @@ class ChatBubbleEntity {
   String? username;
   String message;
   ChatMessageType messageType;
-  String image;
-  ImageType imageType;
+  String userImage;
+  ImageType userImageType;
   DateTime? timestamp;
   bool isCurrentUser;
 
@@ -35,8 +37,8 @@ class ChatBubbleEntity {
     this.username,
     required this.message,
     this.messageType: ChatMessageType.TEXT,
-    this.image = "assets/images/male-user.png",
-    this.imageType = ImageType.ASSET,
+    this.userImage = "assets/images/male-user.png",
+    this.userImageType = ImageType.ASSET,
     this.timestamp,
     this.isCurrentUser = true,
   });

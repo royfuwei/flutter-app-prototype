@@ -4,6 +4,7 @@ import 'package:seeks_app_prototype/core/main/pages/main.page.dart';
 import 'package:seeks_app_prototype/core/media/components/media_image.component.dart';
 import 'package:seeks_app_prototype/core/users/pages/user_info.page.dart';
 import 'package:seeks_app_prototype/core/users/pages/user_info_editor.page.dart';
+import 'package:seeks_app_prototype/core/users/pages/user_info_viewer.page.dart';
 import 'package:seeks_app_prototype/core/users/services/user.service.dart';
 import 'package:seeks_app_prototype/domain/user.dart';
 import 'package:seeks_app_prototype/infrastructures/util/getx_routes.dart';
@@ -21,6 +22,14 @@ class UserController extends GetxController {
     userInfo = await userService.getUserInfoById(id);
     refreshUserImageProviders();
   }
+
+  Rx<String> _userStatus = Rx<String>("正在線上");
+  set userStatus(String value) => _userStatus.value = value;
+  String get userStatus => _userStatus.value;
+
+  Rx<bool> _userIsOnline = Rx<bool>(true);
+  set userIsOnline(bool value) => _userIsOnline.value = value;
+  bool get userIsOnline => _userIsOnline.value;
 
   Rx<bool> _isUserInfoOwner = Rx<bool>(true);
   set isUserInfoOwner(value) => _isUserInfoOwner.value = value;
@@ -72,25 +81,6 @@ class UserController extends GetxController {
   Future<void> editorUserInfo() async {
     userInfoEditorClone = userInfo;
     getEditorCanSave();
-
-    UserInfoEntity _tempUserInfo = userInfo;
-    List<UserInfoListEntity> _temp = [
-      UserInfoListEntity(
-        name: "詳細個人資料",
-        contents: [
-          UserInfoListContentEntity(title: "性別", name: "男"),
-        ],
-      ),
-    ];
-
-    List<UserInfoImageEntity> _tempImages = [
-      UserInfoImageEntity(id: "02", image: "assets/images/splash_2.jpg"),
-      UserInfoImageEntity(id: "01"),
-    ];
-    _tempUserInfo.username = "editor";
-    _tempUserInfo.infoList = _temp;
-    _tempUserInfo.images = _tempImages;
-    userInfo = _tempUserInfo;
     await refreshUserImageProviders();
     getEditorCanSave();
   }
@@ -126,6 +116,8 @@ class UserController extends GetxController {
     // datingId = id;
     print("goPageByDatingId id: ${id}");
     refreshUserInfoById(id);
+    isUserInfoOwner = false;
+    // toRoutesNamed([MainPage.routeName, UserInfoViewerPage.routeName]);
     toRoutesNamed([MainPage.routeName, UserInfoPage.routeName]);
   }
 
@@ -133,5 +125,17 @@ class UserController extends GetxController {
   void onInit() async {
     await onInitUserInfo();
     super.onInit();
+  }
+
+  @override
+  void onReady() {
+    print("UserController onReady!!!~~~~~~");
+    super.onReady();
+  }
+
+  @override
+  void onClose() {
+    print("UserController onClose!!!~~~~~~");
+    super.onClose();
   }
 }

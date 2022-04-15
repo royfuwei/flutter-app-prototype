@@ -1,39 +1,33 @@
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:seeks_app_prototype/core/chat/widgets/chat_bubble.widget.dart';
+import 'package:seeks_app_prototype/core/chat/pages/chat.page.dart';
+import 'package:seeks_app_prototype/core/chat/services/chat.service.dart';
+import 'package:seeks_app_prototype/core/main/pages/main.page.dart';
+import 'package:seeks_app_prototype/core/users/controllers/user_controller.dart';
+import 'package:seeks_app_prototype/core/users/services/user.service.dart';
 import 'package:seeks_app_prototype/domain/chat.dart';
+import 'package:seeks_app_prototype/infrastructures/util/getx_routes.dart';
 
 class ChatController extends GetxController {
-  Rx<List<ChatBubbleEntity>> _chatBubbleList = Rx<List<ChatBubbleEntity>>(
-    [
-      ChatBubbleEntity(
-        id: "01",
-        message: 'How was the concert?',
-        isCurrentUser: false,
-      ),
-      ChatBubbleEntity(
-        id: "02",
-        message: 'Awesome! Next time you gotta come as well!',
-        isCurrentUser: true,
-      ),
-      ChatBubbleEntity(
-        id: "03",
-        message: 'Ok, when is the next date?',
-        isCurrentUser: false,
-      ),
-      ChatBubbleEntity(
-        id: "04",
-        message: 'They\'re playing on the 20th of November',
-        isCurrentUser: true,
-      ),
-      ChatBubbleEntity(
-        id: "05",
-        message: 'Let\'s do it!',
-        isCurrentUser: false,
-      ),
-    ],
-  );
+  ChatService chatService = ChatService();
+  UserService userService = UserService();
+  String chatId = "chat001";
+  String userId = "001";
+
+  Rx<List<ChatBubbleEntity>> _chatBubbleList = Rx<List<ChatBubbleEntity>>([]);
+
+  Rx<String> _username = Rx<String>("username");
+  set username(String value) => _username.value = value;
+  String get username => _username.value;
+
+  Rx<String> _userStatus = Rx<String>("正在線上");
+  set userStatus(String value) => _userStatus.value = value;
+  String get userStatus => _userStatus.value;
+
+  Rx<bool> _userIsOnline = Rx<bool>(true);
+  set userIsOnline(bool value) => _userIsOnline.value = value;
+  bool get userIsOnline => _userIsOnline.value;
 
   set chatBubbleList(value) => _chatBubbleList.value = value;
   List<ChatBubbleEntity> get chatBubbleList => _chatBubbleList.value;
@@ -68,11 +62,13 @@ class ChatController extends GetxController {
     required TextEditingController textEditingController,
     required ScrollController scrollController,
   }) async {
-    textEditingController.selection = TextSelection.fromPosition(
-      TextPosition(
-        offset: textEditingController.text.length,
-      ),
-    );
+    if (bottomSideAlignment == CrossAxisAlignment.center) {
+      textEditingController.selection = TextSelection.fromPosition(
+        TextPosition(
+          offset: textEditingController.text.length,
+        ),
+      );
+    }
   }
 
   Future<void> focusNodeListener({
@@ -115,10 +111,6 @@ class ChatController extends GetxController {
     if (textEditingController.text.isNotEmpty) {
       var text = textEditingController.text;
       print("sendChat text: ${text}");
-      var chatBubbleWidget = ChatBubbleWidget(
-        isCurrentUser: true,
-        text: text,
-      );
       var chatBubble = ChatBubbleEntity(
         id: "00",
         isCurrentUser: true,
@@ -201,5 +193,34 @@ class ChatController extends GetxController {
       );
   }
 
+  appBarUserTitleOnPressed() {
+    UserController userController = Get.put(UserController());
+    print("appBarUserTitleOnPressed userId: ${userId}");
+    userController.goPageByDatingId(userId);
+  }
+
   Future<void> scrollOnRefresh() async {}
+
+  goPageByChatId(String id) async {
+    chatId = id;
+    print("goPageByChatId id: ${id}, before chatId: ${chatId}");
+    chatBubbleList = await chatService.getChatBubbleListById(chatId);
+    var chatItem = await chatService.getChatItemById(chatId);
+    print("goPageByChatId chatItem.userId: ${chatItem.userId}");
+    var userInfo = await userService.getUserInfoById(chatItem.userId!);
+    print("goPageByDatingId userInfo.username: ${userInfo.username}");
+    username = userInfo.username;
+    userId = userInfo.id;
+    toRoutesNamed([MainPage.routeName, ChatPage.routeName]);
+  }
+
+  onInitChatBubbleList() async {
+    chatBubbleList = await chatService.getChatBubbleListById(chatId);
+  }
+
+  @override
+  void onInit() async {
+    onInitChatBubbleList();
+    super.onInit();
+  }
 }

@@ -41,54 +41,13 @@ class DatingInfoPage extends StatelessWidget {
         ),
       ],
       endItems: [
-        appBarMoreButton(),
+        appBarIconButton(
+          context: context,
+          icon: Icons.more_horiz,
+        ),
+        // appBarMoreButton(),
       ],
     );
-  }
-
-  appBarMoreButton() {
-    return Container(
-      // color: Colors.blueGrey,
-      child: TextButton(
-        onPressed: () {},
-        child: Row(
-          children: [
-            Icon(
-              Icons.more_horiz,
-              color: Colors.blue,
-            )
-          ],
-        ),
-      ),
-    );
-    // dropdown
-    /* return Container(
-      color: Colors.grey,
-      child: DropdownButtonHideUnderline(
-        child: DropdownButton(
-          icon: Icon(
-            Icons.more_horiz,
-            color: Colors.amber,
-          ),
-          items: appBarMoreButtonDropdownItems(),
-          style: TextStyle(color: Colors.blue),
-          onChanged: (value) {},
-        ),
-      ),
-    ); */
-  }
-
-  List<DropdownMenuItem<String>> appBarMoreButtonDropdownItems() {
-    return [
-      DropdownMenuItem(
-        child: Text("data"),
-        value: "data",
-      ),
-      DropdownMenuItem(
-        child: Text("data2"),
-        value: "data2",
-      ),
-    ];
   }
 
   body(BuildContext context) {
@@ -122,4 +81,35 @@ class DatingInfoPage extends StatelessWidget {
       ),
     );
   }
+
+  /* appBarMoreButton() {
+    // dropdown
+    /* return Container(
+      color: Colors.grey,
+      child: DropdownButtonHideUnderline(
+        child: DropdownButton(
+          icon: Icon(
+            Icons.more_horiz,
+            color: Colors.amber,
+          ),
+          items: appBarMoreButtonDropdownItems(),
+          style: TextStyle(color: Colors.blue),
+          onChanged: (value) {},
+        ),
+      ),
+    ); */
+  }
+
+  List<DropdownMenuItem<String>> appBarMoreButtonDropdownItems() {
+    return [
+      DropdownMenuItem(
+        child: Text("data"),
+        value: "data",
+      ),
+      DropdownMenuItem(
+        child: Text("data2"),
+        value: "data2",
+      ),
+    ];
+  } */
 }

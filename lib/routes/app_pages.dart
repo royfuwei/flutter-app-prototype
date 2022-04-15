@@ -24,6 +24,7 @@ import 'package:seeks_app_prototype/core/splash/pages/splash.page.dart';
 import 'package:seeks_app_prototype/core/login/pages/login_tel.page.dart';
 import 'package:seeks_app_prototype/core/users/pages/user_info.page.dart';
 import 'package:seeks_app_prototype/core/users/pages/user_info_editor.page.dart';
+import 'package:seeks_app_prototype/core/users/pages/user_info_viewer.page.dart';
 import 'package:seeks_app_prototype/routes/appPagesBind.dart';
 part 'app_routes.dart';
 

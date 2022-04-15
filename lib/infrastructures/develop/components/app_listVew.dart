@@ -87,6 +87,7 @@ import 'package:seeks_app_prototype/core/signup/pages/signup_user_info.page.dart
 import 'package:seeks_app_prototype/core/users/pages/user_dating_list.page.dart';
 import 'package:seeks_app_prototype/core/users/pages/user_info.page.dart';
 import 'package:seeks_app_prototype/core/users/pages/user_info_editor.page.dart';
+import 'package:seeks_app_prototype/core/users/pages/user_info_viewer.page.dart';
 import 'package:seeks_app_prototype/core/users/widgets/user_info.widget.dart';
 import 'package:seeks_app_prototype/core/users/widgets/user_info_list_item.widget.dart';
 import 'package:seeks_app_prototype/core/users/widgets/user_info_label.widget.dart';
@@ -290,6 +291,13 @@ List<Widget> getAppView(BuildContext context) {
       title: Text(UserInfoPage.routeName),
       onTap: () {
         Get.to(() => UserInfoPage());
+      },
+    ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(UserInfoViewerPage.routeName),
+      onTap: () {
+        Get.to(() => UserInfoViewerPage());
       },
     ),
     ListTile(
