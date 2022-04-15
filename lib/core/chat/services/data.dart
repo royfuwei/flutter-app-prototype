@@ -40,66 +40,6 @@ Map<String, List<ChatBubbleEntity>> chatBubbleListMap =
       message: "你好!",
       isCurrentUser: true,
     ),
-    ChatBubbleEntity(
-      id: "01",
-      message: 'How was the concert?',
-      isCurrentUser: false,
-    ),
-    ChatBubbleEntity(
-      id: "02",
-      message: 'Awesome! Next time you gotta come as well!',
-      isCurrentUser: true,
-    ),
-    ChatBubbleEntity(
-      id: "03",
-      message: 'Ok, when is the next date?',
-      isCurrentUser: false,
-    ),
-    ChatBubbleEntity(
-      id: "04",
-      message: 'They\'re playing on the 20th of November',
-      isCurrentUser: true,
-    ),
-    ChatBubbleEntity(
-      id: "05",
-      message: 'Let\'s do it!',
-      isCurrentUser: false,
-    ),
-    ChatBubbleEntity(
-      id: "01",
-      message: 'How was the concert?',
-      isCurrentUser: false,
-    ),
-    ChatBubbleEntity(
-      id: "02",
-      message: 'Awesome! Next time you gotta come as well!',
-      isCurrentUser: true,
-    ),
-    ChatBubbleEntity(
-      id: "03",
-      message: 'Ok, when is the next date?',
-      isCurrentUser: false,
-    ),
-    ChatBubbleEntity(
-      id: "04",
-      message: 'They\'re playing on the 20th of November',
-      isCurrentUser: true,
-    ),
-    ChatBubbleEntity(
-      id: "02",
-      message: 'Awesome! Next time you gotta come as well!',
-      isCurrentUser: true,
-    ),
-    ChatBubbleEntity(
-      id: "03",
-      message: 'Ok, when is the next date?',
-      isCurrentUser: false,
-    ),
-    ChatBubbleEntity(
-      id: "04",
-      message: 'They\'re playing on the 20th of November',
-      isCurrentUser: true,
-    ),
   ],
   "chat002": [
     ChatBubbleEntity(
@@ -126,6 +66,46 @@ Map<String, List<ChatBubbleEntity>> chatBubbleListMap =
       id: "05",
       message: 'Let\'s do it!',
       isCurrentUser: false,
+    ),
+    ChatBubbleEntity(
+      id: "01",
+      message: 'How was the concert?',
+      isCurrentUser: false,
+    ),
+    ChatBubbleEntity(
+      id: "02",
+      message: 'Awesome! Next time you gotta come as well!',
+      isCurrentUser: true,
+    ),
+    ChatBubbleEntity(
+      id: "03",
+      message: 'Ok, when is the next date?',
+      isCurrentUser: false,
+    ),
+    ChatBubbleEntity(
+      id: "04",
+      message: 'They\'re playing on the 20th of November',
+      isCurrentUser: true,
+    ),
+    ChatBubbleEntity(
+      id: "01",
+      message: 'How was the concert?',
+      isCurrentUser: false,
+    ),
+    ChatBubbleEntity(
+      id: "02",
+      message: 'Awesome! Next time you gotta come as well!',
+      isCurrentUser: true,
+    ),
+    ChatBubbleEntity(
+      id: "03",
+      message: 'Ok, when is the next date?',
+      isCurrentUser: false,
+    ),
+    ChatBubbleEntity(
+      id: "04",
+      message: 'They\'re playing on the 20th of November',
+      isCurrentUser: true,
     ),
   ],
   "chat003": [
