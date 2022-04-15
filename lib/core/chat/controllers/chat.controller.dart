@@ -228,12 +228,7 @@ class ChatController extends GetxController {
     print(
       "Future<void> scrollOnRefresh(RefreshController refreshController) async",
     );
-  }
-
-  Future<void> scrollOnLoading(RefreshController refreshController) async {
-    print(
-      "Future<void> scrollOnLoading(RefreshController refreshController) async",
-    );
+    refreshController.refreshCompleted();
   }
 
   goPageByChatId(String id) async {
