@@ -50,12 +50,16 @@ appBarTitleText({
   String text = "",
   double size = 20,
   Color fontColor = colorFont02,
+  void Function()? onPressed,
 }) {
-  return Text(
-    text,
-    style: TextStyle(
-      color: fontColor,
-      fontSize: getProportionateScreenWidth(context, size),
+  return TextButton(
+    onPressed: onPressed,
+    child: Text(
+      text,
+      style: TextStyle(
+        color: fontColor,
+        fontSize: getProportionateScreenWidth(context, size),
+      ),
     ),
   );
 }
@@ -78,6 +82,61 @@ appBarBackButton({
       icon,
       size: getProportionateScreenWidth(context, size),
       color: colorFont02,
+    ),
+  );
+}
+
+appBarUserTitle({
+  required BuildContext context,
+  bool isOnline = true,
+  String name = "",
+  String status = "狀態未知",
+  void Function()? onPressed,
+}) {
+  return Expanded(
+    child: GestureDetector(
+      onTap: onPressed,
+      child: Container(
+        // width: double.infinity,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              width: double.infinity,
+              padding: EdgeInsets.only(left: 16),
+              child: Text(
+                name,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: getProportionateScreenWidth(context, 16),
+                ),
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 5),
+                  child: Icon(
+                    Icons.circle,
+                    size: getProportionateScreenWidth(context, 10),
+                    color: isOnline ? Colors.green : Colors.grey,
+                  ),
+                ),
+                Text(
+                  status,
+                  style: TextStyle(
+                    fontSize: getProportionateScreenWidth(context, 10),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
     ),
   );
 }
