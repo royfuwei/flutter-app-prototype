@@ -11,7 +11,7 @@ class DatingListItem extends StatelessWidget {
     this.username = "username",
     this.title = "一起讀書",
     this.datingDate = "週四, 6月10日",
-    this.datingHour = "12:00-14:00",
+    this.datingRange = "12:00-14:00",
     this.status = "配對中",
     this.datingDuration = "預計2hr",
     this.signupCount = "100人報名",
@@ -23,12 +23,13 @@ class DatingListItem extends StatelessWidget {
     this.itemColor,
     this.userImage = const AssetImage("assets/images/female-user.png"),
     this.infoImage = const AssetImage("assets/images/splash_2.jpg"),
+    this.labelWidgets = const [],
     this.onPressed,
   }) : super(key: key);
   final String username;
   final String title;
   final String datingDate;
-  final String datingHour;
+  final String datingRange;
   final String status;
   final String datingDuration;
   final String signupCount;
@@ -41,6 +42,7 @@ class DatingListItem extends StatelessWidget {
   final Widget? endDismissible;
   final Color? itemColor;
   final void Function()? onPressed;
+  final List<Widget> labelWidgets;
 
   @override
   Widget build(BuildContext context) {
@@ -231,7 +233,7 @@ class DatingListItem extends StatelessWidget {
                 Container(
                   padding: EdgeInsets.symmetric(vertical: 2),
                   child: Text(
-                    "${datingDate} ${datingHour}",
+                    "${datingDate} ${datingRange}",
                     style: TextStyle(
                       color: colorFont03,
                       fontWeight: FontWeight.bold,
@@ -289,39 +291,7 @@ class DatingListItem extends StatelessWidget {
         child: Wrap(
           spacing: 8,
           // runSpacing: 2,
-          children: [
-            Container(
-              padding: EdgeInsets.only(right: 0),
-              child: DatingLabelWidget(
-                icon: Icons.access_time,
-                title: datingDuration,
-                textStyle: TextStyle(
-                  fontSize: 12,
-                ),
-              ),
-            ),
-            Container(
-              // color: Colors.green,
-              padding: EdgeInsets.only(right: 0),
-              child: DatingLabelWidget(
-                icon: Icons.group_add,
-                title: signupCount,
-                textStyle: TextStyle(
-                  fontSize: 12,
-                ),
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.only(right: 0),
-              child: DatingLabelWidget(
-                icon: Icons.money_outlined,
-                title: payment,
-                textStyle: TextStyle(
-                  fontSize: 12,
-                ),
-              ),
-            ),
-          ],
+          children: labelWidgets,
         ),
       ),
     );

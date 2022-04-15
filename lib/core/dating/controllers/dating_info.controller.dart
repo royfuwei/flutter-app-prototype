@@ -1,13 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:seeks_app_prototype/core/dating/pages/dating_info.page.dart';
 import 'package:seeks_app_prototype/core/dating/services/dating.service.dart';
 import 'package:seeks_app_prototype/core/dating/widgets/dating_label.widget.dart';
+import 'package:seeks_app_prototype/core/main/pages/main.page.dart';
 import 'package:seeks_app_prototype/core/media/components/media_image.component.dart';
+import 'package:seeks_app_prototype/core/users/controllers/user_controller.dart';
+import 'package:seeks_app_prototype/core/users/services/user.service.dart';
 import 'package:seeks_app_prototype/domain/dating.dart';
+import 'package:seeks_app_prototype/infrastructures/util/getx_routes.dart';
 
 class DatingInfoController extends GetxController {
   DatingService datingService = DatingService();
-  String userId = "01";
+  UserService userService = UserService();
+  String userId = "001";
+
+  Rx<String> _username = Rx<String>("username");
+  set username(String value) => _username.value = value;
+  String get username => _username.value;
+
+  Rx<String> _userStatus = Rx<String>("正在線上");
+  set userStatus(String value) => _userStatus.value = value;
+  String get userStatus => _userStatus.value;
+
+  Rx<bool> _userIsOnline = Rx<bool>(true);
+  set userIsOnline(bool value) => _userIsOnline.value = value;
+  bool get userIsOnline => _userIsOnline.value;
+
+  Rx<String> _datingId = Rx<String>("001");
+  set datingId(String value) => _datingId.value = value;
+  String get datingId => _datingId.value;
 
   Rx<List<ImageProvider<Object>>> _datingInfoImageProviders =
       Rx<List<ImageProvider<Object>>>([]);
@@ -63,9 +85,34 @@ class DatingInfoController extends GetxController {
   }
 
   onInitUserInfo() async {
-    datingInfo = await datingService.getDatingInfoById(userId);
+    print("onInitUserInfo datingId: ${datingId}");
+    refreshDatingInfoById(datingId);
+  }
+
+  refreshDatingInfoById(String id) async {
+    datingId = id;
+    datingInfo = await datingService.getDatingInfoById(datingId);
     await getDatingInfoLabels();
     await refreshUserImageProviders();
+  }
+
+  goPageByDatingId(String id) async {
+    // datingId = id;
+    print("goPageByDatingId id: ${id}, before userId: ${userId}");
+    datingInfo = await datingService.getDatingInfoById(datingId);
+    await refreshDatingInfoById(id);
+    print("goPageByDatingId datingInfo.userId: ${datingInfo.userId}");
+    var userInfo = await userService.getUserInfoById(datingInfo.userId);
+    print("goPageByDatingId userInfo.username: ${userInfo.username}");
+    username = userInfo.username;
+    userId = userInfo.id;
+    toRoutesNamed([MainPage.routeName, DatingInfoPage.routeName]);
+  }
+
+  appBarUserTitleOnPressed() {
+    UserController userController = Get.put(UserController());
+    print("appBarUserTitleOnPressed userId: ${userId}");
+    userController.goPageByDatingId(userId);
   }
 
   @override

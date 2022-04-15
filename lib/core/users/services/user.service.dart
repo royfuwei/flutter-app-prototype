@@ -1,25 +1,13 @@
 import 'package:seeks_app_prototype/domain/user.dart';
+part 'data.dart';
 
 class UserService {
   Future<UserInfoEntity> getUserInfoById(String id) async {
-    return UserInfoEntity(
-      id: "01",
-      username: "Ray",
-      images: [
-        UserInfoImageEntity(id: "01"),
-        UserInfoImageEntity(id: "02", image: "assets/images/splash_1.jpg"),
-      ],
-      infoList: [
-        UserInfoListEntity(
-          name: "詳細個人資料",
-          contents: [
-            UserInfoListContentEntity(title: "性別", name: "女"),
-          ],
-        ),
-      ],
-      habbyLabels: UserInfoLabelsEntity(
-        name: "興趣",
-      ),
-    );
+    UserInfoEntity userInfo = userInfoMap[id]!;
+    return userInfo;
+  }
+
+  getUserDatingListById(String id) {
+    // return
   }
 }

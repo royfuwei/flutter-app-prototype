@@ -1,21 +1,10 @@
-import 'dart:typed_data';
-
-import 'package:card_swiper/card_swiper.dart';
-import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 import 'package:seeks_app_prototype/configs/size_config.dart';
 import 'package:seeks_app_prototype/constants.dart';
 import 'package:seeks_app_prototype/core/common/components/default_app_bar.dart';
-import 'package:seeks_app_prototype/core/dating/pages/dating_info.page.dart';
-import 'package:seeks_app_prototype/core/dating/widgets/dating_list_item.widget.dart';
-import 'package:seeks_app_prototype/core/dev/pages/dev_webview.dart';
 import 'package:seeks_app_prototype/core/home/components/home_body.dart';
 import 'package:seeks_app_prototype/core/home/controllers/home.controller.dart';
-import 'package:seeks_app_prototype/core/media/pages/media_image_selector.page.dart';
-import 'package:seeks_app_prototype/core/notification/components/splash_data.dart';
-import 'package:seeks_app_prototype/infrastructures/util/keep_alive_wrapper.dart';
 
 class HomePage extends StatelessWidget {
   static String routeName = "/home";
@@ -39,7 +28,7 @@ class HomePage extends StatelessWidget {
   }
 
   body(BuildContext context) {
-    HomeController homeController = Get.put(HomeController());
+    /* HomeController homeController = Get.put(HomeController());
     return Obx(
       () => HomeBodyComponent(
         scrollListener: homeController.scrollListener,
@@ -48,7 +37,8 @@ class HomePage extends StatelessWidget {
         enableCupertinoActivityIndicator:
             homeController.enableCupertinoActivityIndicator,
       ),
-    );
+    ); */
+    return HomeBodyComponent();
   }
 
   appBar(BuildContext context) {

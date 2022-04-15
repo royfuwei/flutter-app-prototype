@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:seeks_app_prototype/configs/size_config.dart';
-import 'package:seeks_app_prototype/constants.dart';
-import 'package:seeks_app_prototype/core/common/components/default_app_bar.dart';
 import 'package:seeks_app_prototype/core/common/components/status_button.dart';
+import 'package:seeks_app_prototype/core/common/widgets/appbar.widget.dart';
 import 'package:seeks_app_prototype/core/dating/components/dating_info_body.dart';
+import 'package:seeks_app_prototype/core/dating/controllers/dating_info.controller.dart';
 import 'package:seeks_app_prototype/core/main/pages/main.page.dart';
 import 'package:seeks_app_prototype/infrastructures/util/getx_routes.dart';
 
@@ -20,32 +21,28 @@ class DatingInfoPage extends StatelessWidget {
   }
 
   appBar(BuildContext context) {
-    return AppBar(
-      // backgroundColor: Colors.black,
-      leading: Container(),
-      leadingWidth: 0,
-      title: defaultExpandedAppBarTitle(
-        startItems: [
-          TextButton(
-            onPressed: () {
-              Navigator.pop(
-                context,
-              );
-            },
-            child: Icon(
-              Icons.arrow_back_ios,
-              // size: getProportionateScreenWidth(context, 30),
-              color: colorFont02,
-            ),
+    DatingInfoController datingInfoController = Get.put(DatingInfoController());
+    return AppBarWidget(
+      startItems: [
+        appBarBackButton(
+          context: context,
+          icon: Icons.arrow_back_ios,
+        ),
+      ],
+      titleItems: [
+        Obx(
+          () => appBarUserTitle(
+            context: context,
+            name: datingInfoController.username,
+            status: datingInfoController.userStatus,
+            isOnline: datingInfoController.userIsOnline,
+            onPressed: datingInfoController.appBarUserTitleOnPressed,
           ),
-        ],
-        titleItems: [
-          appBarUserTitle(context, "Username", "正在線上"),
-        ],
-        endItems: [
-          appBarMoreButton(),
-        ],
-      ),
+        ),
+      ],
+      endItems: [
+        appBarMoreButton(),
+      ],
     );
   }
 
@@ -118,46 +115,6 @@ class DatingInfoPage extends StatelessWidget {
                     ]);
                   },
                 ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  appBarUserTitle(BuildContext context, String name, status) {
-    return Expanded(
-      child: Container(
-        // color: Colors.amber,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 5),
-                  child: Icon(
-                    Icons.circle,
-                    size: getProportionateScreenWidth(context, 10),
-                    color: Colors.green,
-                  ),
-                ),
-                Text(
-                  name,
-                  style: TextStyle(
-                      fontSize: getProportionateScreenWidth(context, 16)),
-                ),
-              ],
-            ),
-            Text(
-              status,
-              style: TextStyle(
-                fontSize: getProportionateScreenWidth(context, 12),
               ),
             ),
           ],

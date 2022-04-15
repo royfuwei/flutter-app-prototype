@@ -11,10 +11,14 @@ import 'package:seeks_app_prototype/infrastructures/util/getx_routes.dart';
 class UserController extends GetxController {
   UserService userService = UserService();
 
-  String userId = "";
+  String userId = "001";
 
   onInitUserInfo() async {
-    userInfo = await userService.getUserInfoById(userId);
+    await refreshUserInfoById(userId);
+  }
+
+  refreshUserInfoById(String id) async {
+    userInfo = await userService.getUserInfoById(id);
     refreshUserImageProviders();
   }
 
@@ -36,7 +40,7 @@ class UserController extends GetxController {
   UserInfoEntity get userInfo => _userInfo.value;
 
   Rx<UserInfoEntity> _userInfoEditorClone = Rx<UserInfoEntity>(UserInfoEntity(
-    id: "01",
+    id: "001",
     habbyLabels: UserInfoLabelsEntity(
       name: "興趣",
     ),
@@ -117,6 +121,13 @@ class UserController extends GetxController {
   }
 
   userInfoEditorSaveOnPressed() {}
+
+  goPageByDatingId(String id) async {
+    // datingId = id;
+    print("goPageByDatingId id: ${id}");
+    refreshUserInfoById(id);
+    toRoutesNamed([MainPage.routeName, UserInfoPage.routeName]);
+  }
 
   @override
   void onInit() async {

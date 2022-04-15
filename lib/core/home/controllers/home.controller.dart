@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:seeks_app_prototype/core/dating/controllers/dating_info.controller.dart';
+import 'package:seeks_app_prototype/core/dating/pages/dating_info.page.dart';
+import 'package:seeks_app_prototype/core/dating/services/dating.service.dart';
+import 'package:seeks_app_prototype/core/main/pages/main.page.dart';
 import 'package:seeks_app_prototype/domain/dating.dart';
+import 'package:seeks_app_prototype/infrastructures/util/getx_routes.dart';
 
 class HomeController extends GetxController {
+  DatingService datingService = DatingService();
   Rx<int> _pageSize = Rx<int>(20);
   set pageSize(value) => _pageSize.value = value;
   int get pageSize => _pageSize.value;
@@ -21,12 +27,9 @@ class HomeController extends GetxController {
   bool get enableCupertinoActivityIndicator =>
       _enableCupertinoActivityIndicator.value;
 
-  Rx<List<DatingItemEntity>> _datingItemList = Rx<List<DatingItemEntity>>(
-    [
-      DatingItemEntity(id: "01"),
-    ],
-  );
-  set datingItemList(value) => _datingItemList.value = value;
+  Rx<List<DatingItemEntity>> _datingItemList = Rx<List<DatingItemEntity>>([]);
+  set datingItemList(List<DatingItemEntity> value) =>
+      _datingItemList.value = value;
   List<DatingItemEntity> get datingItemList => _datingItemList.value;
 
   Future<void> sliverOnRefresh() async {
@@ -50,5 +53,23 @@ class HomeController extends GetxController {
         _scrollController.position.maxScrollExtent) {
       await _scrollMaxScrollExtent();
     }
+  }
+
+  Future<void> datingItemOnPressed(int idx, DatingItemEntity item) async {
+    DatingInfoController datingInfoController = Get.put(DatingInfoController());
+    print("datingItemOnPressed item.id: ${item.id}");
+    // datingInfoController.datingId = item.id;
+    // toRoutesNamed([MainPage.routeName, DatingInfoPage.routeName]);
+    datingInfoController.goPageByDatingId(item.id);
+  }
+
+  onInitDatingItemList() async {
+    datingItemList = await datingService.getDatingItemList();
+  }
+
+  @override
+  void onInit() async {
+    await onInitDatingItemList();
+    super.onInit();
   }
 }

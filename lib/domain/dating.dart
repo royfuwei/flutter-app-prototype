@@ -2,50 +2,46 @@ import 'package:seeks_app_prototype/domain/media.dart';
 
 class DatingItemEntity {
   String id;
-  String? type;
+  String userId;
+  String username;
+  String userImage;
+  ImageType userImageType;
+  String title;
+  String status;
+  String signupCount;
+  String payment;
+  Map<String, DatingInfoLabelEntity> labels;
+  DatingInfoTimeEntity datingInfoTime;
   String image;
   ImageType imageType;
   DateTime? startTime;
   DateTime? endTime;
-  bool? status = true;
+  DateTime? deadlineTime;
 
   DatingItemEntity({
     required this.id,
-    this.type,
+    required this.datingInfoTime,
+    this.labels = const <String, DatingInfoLabelEntity>{},
+    this.username = "",
+    this.title = "一起看電影",
+    this.status = "配對中",
+    this.signupCount = "100人報名",
+    this.payment = "-1000元",
+    this.userId = "",
+    this.userImage = "assets/images/female-user.png",
+    this.userImageType = ImageType.ASSET,
     this.image = "assets/images/splash_1.jpg",
     this.imageType = ImageType.ASSET,
     this.startTime,
     this.endTime,
-    this.status,
+    this.deadlineTime,
   });
 }
 
-/* class DatingItemEntity {
-  String username;
-  Uint8List userImage;
-  Uint8List coverImage;
-  String title;
-  DateTime startTime;
-  DateTime endTime;
-  int signupCount;
-  int payment;
-  String paymentType;
-
-  DatingItemEntity({
-    required this.username,
-    required this.userImage,
-    required this.coverImage,
-    required this.title,
-    required this.startTime,
-    required this.endTime,
-    required this.signupCount,
-    required this.paymentType,
-    required this.payment,
-  });
-} */
 class DatingInfoEntity {
   String id;
   String userId;
+  String username;
   String title;
   String city;
   String description;
@@ -56,6 +52,8 @@ class DatingInfoEntity {
   double? latitude;
   double? longitude;
   Map<String, DatingInfoLabelEntity> labels;
+  String userImage;
+  ImageType userImageType;
   List<DatingInfoImageEntity> images;
   DatingInfoTimeEntity datingInfoTime;
   String? paymentType;
@@ -65,12 +63,15 @@ class DatingInfoEntity {
   DatingInfoEntity({
     required this.id,
     required this.userId,
+    this.username = "",
     this.title = "一起看電影",
     this.city = "台北市",
     this.description = "歡迎一起約會，一起讀書",
     this.location = "台灣台北市信義區華納威秀 CASHBANK",
     this.startTime,
     this.endTime,
+    this.userImage = "assets/images/female-user.png",
+    this.userImageType = ImageType.ASSET,
     this.images = const [],
     this.labels = const <String, DatingInfoLabelEntity>{},
     this.latitude,

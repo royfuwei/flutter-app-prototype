@@ -68,7 +68,7 @@ class UserInfoLabelsComponent extends StatelessWidget {
             fontSize: 14,
           ),
         ),
-        onDeleted: () => onDeleted != null ? onDeleted!(item) : {},
+        onDeleted: onDeleted != null ? () => onDeleted!(item) : null,
       ),
     );
   }

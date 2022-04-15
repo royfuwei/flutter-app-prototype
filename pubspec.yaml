@@ -87,6 +87,7 @@ dependencies:
   emoji_picker_flutter: ^1.1.2
   syncfusion_flutter_datepicker: ^20.1.48
   flutter_picker: ^2.0.3
+  pull_to_refresh: ^2.0.0
 
 dev_dependencies:
   flutter_test:

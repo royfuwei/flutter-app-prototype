@@ -81,6 +81,7 @@ A new Flutter project.
 - [emoji_picker_flutter](https://pub.dev/packages/emoji_picker_flutter)
 - [syncfusion_flutter_datepicker](https://pub.dev/packages/syncfusion_flutter_datepicker)
 - [flutter_picker](https://pub.dev/packages/flutter_picker)
+- [pull_to_refresh](https://pub.dev/packages/pull_to_refresh)
 
 
 ## other package
@@ -88,7 +89,6 @@ A new Flutter project.
 - [helpers](https://pub.dev/packages/helpers)
 - [video_viewer](https://pub.dev/packages/video_viewer)
 - [video_editor](https://pub.dev/packages/video_editor)
-- [pull_to_refresh](https://pub.dev/packages/pull_to_refresh)
 - [panorama](https://pub.dev/packages/panorama)
 
 
