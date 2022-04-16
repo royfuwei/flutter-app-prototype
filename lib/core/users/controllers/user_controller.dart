@@ -24,6 +24,12 @@ class UserController extends GetxController {
     refreshUserImageProviders();
   }
 
+  refreshOwnerUserInfo() async {
+    userInfo = await userService.getUserInfoById("002");
+    isUserInfoOwner = true;
+    refreshUserImageProviders();
+  }
+
   Rx<String> _userStatus = Rx<String>("正在線上");
   set userStatus(String value) => _userStatus.value = value;
   String get userStatus => _userStatus.value;

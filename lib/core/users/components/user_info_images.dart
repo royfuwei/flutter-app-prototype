@@ -31,9 +31,10 @@ class _UserInfoImagesComponentState extends State<UserInfoImagesComponent> {
   bodyUserImages() {
     UserController userController = Get.put(UserController());
     return Container(
-      color: Colors.grey,
+      // color: Colors.grey,
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.width,
+      padding: EdgeInsets.all(8),
       child: Obx(
         () {
           return userController.userInfoImageProviders.length > 0

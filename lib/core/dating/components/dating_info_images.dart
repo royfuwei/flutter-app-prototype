@@ -21,7 +21,8 @@ class DatingInfoImagesComponent extends StatelessWidget {
     return Container(
       height: MediaQuery.of(context).size.width,
       width: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(color: Colors.blueGrey),
+      padding: EdgeInsets.all(8),
+      // decoration: BoxDecoration(color: Colors.grey),
       child: Obx(
         () {
           return datingInfoController.datingInfoImageProviders.length > 0

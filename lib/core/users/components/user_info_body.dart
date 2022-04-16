@@ -93,13 +93,15 @@ class UserInfoBodyComponent extends StatelessWidget {
   body(BuildContext context, UserController userController) {
     return SafeArea(
       bottom: false,
-      child: bodyListView(context, userController),
+      child: SingleChildScrollView(
+        child: bodyListView(context, userController),
+      ),
     );
   }
 
   bodyListView(BuildContext context, UserController userController) {
     return Container(
-      child: ListView(
+      child: Column(
         children: [
           bodyUserImages(context, userController),
           bodyUserInfoTitle(userController),

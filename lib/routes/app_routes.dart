@@ -76,6 +76,8 @@ abstract class AppRoutes {
       name: MainPage.routeName,
       page: () => MainPage(),
       binding: AppPagesBind(),
+      transition: Transition.noTransition,
+      transitionDuration: Duration(milliseconds: 500),
       children: [
         GetPage(
           name: HomePage.routeName,
@@ -101,6 +103,9 @@ abstract class AppRoutes {
           name: DatingAddImagesPage.routeName,
           page: () => DatingAddImagesPage(),
           binding: AppPagesBind(),
+          transition: Transition.downToUp,
+          popGesture: false,
+          transitionDuration: Duration(milliseconds: 500),
         ),
         GetPage(
           name: DatingAddInfoPage.routeName,
