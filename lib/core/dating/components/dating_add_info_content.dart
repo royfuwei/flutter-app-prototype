@@ -31,7 +31,7 @@ class DatingAddInfoContentComponent extends StatelessWidget {
       child: bodyTextDatingTextFieldScrollView(
         context: context,
         title: "約會描述",
-        hintText: "填寫關於這場約會的描述...",
+        hintText: "填寫關於這場約會的描述... (>10字)",
         focusNode: contentFocusNode,
         textInputAction: TextInputAction.newline,
       ),
@@ -46,8 +46,8 @@ class DatingAddInfoContentComponent extends StatelessWidget {
     int? maxLines,
     int? minLines,
     FocusNode? focusNode,
-    TextInputAction? textInputAction = TextInputAction.done,
-    TextInputType? keyboardType = TextInputType.name,
+    TextInputAction? textInputAction = TextInputAction.newline,
+    TextInputType? keyboardType = TextInputType.multiline,
   }) {
     return Container(
       // constraints: BoxConstraints(minHeight: 80),

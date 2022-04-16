@@ -2,8 +2,8 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:seeks_app_prototype/core/dating/controllers/dating_info.controller.dart';
 import 'package:seeks_app_prototype/core/dating/pages/dating_add_info.page.dart';
-import 'package:seeks_app_prototype/core/dating/pages/dating_add_preview.page.dart';
 import 'package:seeks_app_prototype/core/main/pages/main.page.dart';
 import 'package:seeks_app_prototype/core/media/models/media_asset_image.dart';
 import 'package:seeks_app_prototype/core/media/services/media.service.dart';
@@ -13,9 +13,8 @@ import 'package:seeks_app_prototype/infrastructures/util/getx_routes.dart';
 
 class DatingAddController extends GetxController {
   MediaService mediaService = MediaService();
-  Rx<bool> _datingAddImagesToNext = Rx<bool>(true);
-  set datingAddImagesToNext(bool value) => _datingAddImagesToNext.value = value;
-  bool get datingAddImagesToNext => _datingAddImagesToNext.value;
+  String userId = "000";
+  DatingInfoEntity? datingInfo;
 
   Rx<bool> _datingAddInfoToNext = Rx<bool>(false);
   set datingAddInfoToNext(bool value) => _datingAddInfoToNext.value = value;
@@ -92,10 +91,6 @@ class DatingAddController extends GetxController {
     List<DatingInfoImageEntity> results = [];
     for (var selectImage in selectImageList) {
       Uint8List data = selectImage.data;
-      /* var imageProvider = mediaService.getImageProviderByType(
-        ImageType.MEMORY,
-        data,
-      ); */
       DatingInfoImageEntity result = DatingInfoImageEntity(
         id: "",
         image: selectImage.data,
@@ -107,15 +102,23 @@ class DatingAddController extends GetxController {
   }
 
   Future<void> datingAddInfoToNextOnPressed() async {
-    toRoutesNamed([
-      MainPage.routeName,
-      DatingAddPreviewPage.routeName,
-    ]);
+    datingInfo = DatingInfoEntity(
+      id: 'none',
+      title: textTopic,
+      description: textContent,
+      userId: userId,
+      images: datingInfoImageList,
+      datingInfoTime: DatingInfoTimeEntity(),
+    );
+    DatingInfoController datingInfoController = Get.put(DatingInfoController());
+    await datingInfoController.goPreviewPageByDatingInfo(datingInfo!);
   }
 
   Future<void> datingAddPreviewToPublicOnPressed() async {
-    toRoutesNamed([
-      MainPage.routeName,
-    ]);
+    if (datingInfo != null) {
+      toRoutesNamed([
+        MainPage.routeName,
+      ]);
+    }
   }
 }

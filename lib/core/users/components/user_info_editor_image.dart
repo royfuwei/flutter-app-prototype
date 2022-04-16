@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:seeks_app_prototype/core/media/components/media_image.component.dart';
 import 'package:seeks_app_prototype/core/users/controllers/user_controller.dart';
-import 'package:seeks_app_prototype/domain/user.dart';
 
 class UserInfoEditorImageComponent extends StatelessWidget {
   const UserInfoEditorImageComponent({Key? key}) : super(key: key);
@@ -47,10 +45,6 @@ class UserInfoEditorImageComponent extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  getImageByImageType(UserInfoImageEntity item) {
-    return getImageProviderByType(item.imageType, item.image);
   }
 
   userImagesEditorButton(UserController userController) {

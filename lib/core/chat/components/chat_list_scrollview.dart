@@ -3,7 +3,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:seeks_app_prototype/core/chat/widgets/chat_list_item.widget.dart';
 import 'package:seeks_app_prototype/core/common/widgets/sliver_list.widget.dart';
 import 'package:seeks_app_prototype/core/common/widgets/sliver_scroll_view.wdiget.dart';
-import 'package:seeks_app_prototype/core/media/components/media_image.component.dart';
+import 'package:seeks_app_prototype/core/media/services/media.service.dart';
 import 'package:seeks_app_prototype/domain/chat.dart';
 
 class ChatListScrollViewComponent extends StatelessWidget {
@@ -39,18 +39,22 @@ class ChatListScrollViewComponent extends StatelessWidget {
   }
 
   bodyChatListView() {
+    MediaService mediaService = MediaService();
     return CommonSliverListWidget<ChatItemEntity>(
       items: items,
-      builder: (bc, idx, item) => getChatListItem(idx, item),
+      builder: (bc, idx, item) => getChatListItem(mediaService, idx, item),
     );
   }
 
-  getChatListItem(int idx, ChatItemEntity item) {
+  getChatListItem(MediaService mediaService, int idx, ChatItemEntity item) {
     return Container(
       padding: EdgeInsets.only(bottom: 2),
       child: ChatListItemWidget(
         username: item.username!,
-        itemImage: getImageProviderByType(item.userImageType, item.userImage),
+        itemImage: mediaService.getImageProviderByType(
+          item.userImageType,
+          item.userImage,
+        ),
         message: item.message!,
         unReadCount: "",
         endActionPaneChildren: [

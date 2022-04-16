@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:seeks_app_prototype/core/dating/pages/dating_add_preview.page.dart';
 import 'package:seeks_app_prototype/core/dating/pages/dating_info.page.dart';
 import 'package:seeks_app_prototype/core/dating/services/dating.service.dart';
 import 'package:seeks_app_prototype/core/main/pages/main.page.dart';
-import 'package:seeks_app_prototype/core/media/components/media_image.component.dart';
+import 'package:seeks_app_prototype/core/media/services/media.service.dart';
 import 'package:seeks_app_prototype/core/users/controllers/user_controller.dart';
 import 'package:seeks_app_prototype/core/users/services/user.service.dart';
 import 'package:seeks_app_prototype/domain/dating.dart';
@@ -12,6 +13,8 @@ import 'package:seeks_app_prototype/infrastructures/util/getx_routes.dart';
 class DatingInfoController extends GetxController {
   DatingService datingService = DatingService();
   UserService userService = UserService();
+  MediaService mediaService = MediaService();
+
   String userId = "001";
 
   Rx<String> _username = Rx<String>("username");
@@ -65,7 +68,7 @@ class DatingInfoController extends GetxController {
     await Future.delayed(Duration(microseconds: 10));
     List<ImageProvider<Object>> temp = [];
     for (var image in datingInfo.images) {
-      var result = getImageProviderByType(
+      var result = mediaService.getImageProviderByType(
         image.imageType,
         image.image,
       );
@@ -97,6 +100,14 @@ class DatingInfoController extends GetxController {
     username = userInfo.username;
     userId = userInfo.id;
     toRoutesNamed([MainPage.routeName, DatingInfoPage.routeName]);
+  }
+
+  goPreviewPageByDatingInfo(DatingInfoEntity preview) async {
+    await Future.delayed(Duration(milliseconds: 100));
+    datingInfo = preview;
+    await getDatingInfoLabels();
+    await refreshUserImageProviders();
+    toRoutesNamed([MainPage.routeName, DatingAddPreviewPage.routeName]);
   }
 
   appBarUserTitleOnPressed() {

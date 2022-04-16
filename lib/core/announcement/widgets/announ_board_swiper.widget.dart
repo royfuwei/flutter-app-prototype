@@ -1,6 +1,6 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
-import 'package:seeks_app_prototype/core/media/components/media_image.component.dart';
+import 'package:seeks_app_prototype/core/media/services/media.service.dart';
 import 'package:seeks_app_prototype/domain/announcement.dart';
 import 'package:seeks_app_prototype/infrastructures/util/keep_alive_wrapper.dart';
 
@@ -21,10 +21,11 @@ class AnnounBoardSwiperWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return body(context);
+    MediaService mediaService = MediaService();
+    return body(context, mediaService);
   }
 
-  body(BuildContext context) {
+  body(BuildContext context, MediaService mediaService) {
     return Swiper(
       itemBuilder: itemBuilder != null
           ? (BuildContext bc, int index) => itemBuilder!(
@@ -33,7 +34,11 @@ class AnnounBoardSwiperWidget extends StatelessWidget {
                 items[index],
               )
           : (BuildContext bc, int index) {
-              return genAccouBoardImage(index, items[index]);
+              return genAccouBoardImage(
+                mediaService,
+                index,
+                items[index],
+              );
             },
       layout: SwiperLayout.DEFAULT,
       scale: 0.8,
@@ -55,8 +60,9 @@ class AnnounBoardSwiperWidget extends StatelessWidget {
     );
   }
 
-  genAccouBoardImage(int index, AnnounBoardEntity item) {
-    var image = getImageProviderByType(
+  genAccouBoardImage(
+      MediaService mediaService, int index, AnnounBoardEntity item) {
+    var image = mediaService.getImageProviderByType(
       item.imageType,
       item.image,
     );

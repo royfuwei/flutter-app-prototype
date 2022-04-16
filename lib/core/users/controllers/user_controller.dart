@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:seeks_app_prototype/core/main/pages/main.page.dart';
-import 'package:seeks_app_prototype/core/media/components/media_image.component.dart';
+import 'package:seeks_app_prototype/core/media/services/media.service.dart';
 import 'package:seeks_app_prototype/core/users/pages/user_info.page.dart';
 import 'package:seeks_app_prototype/core/users/pages/user_info_editor.page.dart';
 import 'package:seeks_app_prototype/core/users/pages/user_info_viewer.page.dart';
@@ -11,6 +11,7 @@ import 'package:seeks_app_prototype/infrastructures/util/getx_routes.dart';
 
 class UserController extends GetxController {
   UserService userService = UserService();
+  MediaService mediaService = MediaService();
 
   String userId = "001";
 
@@ -69,7 +70,7 @@ class UserController extends GetxController {
     await Future.delayed(Duration(microseconds: 10));
     List<ImageProvider<Object>> temp = [];
     for (var image in userInfo.images) {
-      var result = getImageProviderByType(
+      var result = mediaService.getImageProviderByType(
         image.imageType,
         image.image,
       );
