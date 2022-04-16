@@ -81,7 +81,7 @@ class _MediaAlbumSelectorComponentState
       var asset = (await album.getAssetListPaged(0, 1))[0];
       temp.add(
         FutureBuilder(
-          future: asset.thumbDataWithSize(200, 200),
+          future: asset.thumbDataWithSize(300, 300),
           builder: (BuildContext bc, snapshot) {
             if (snapshot.connectionState == ConnectionState.done) {
               // print("snapshot: ${snapshot}");

@@ -151,7 +151,9 @@ class _SignUpImagesUploadGridViewCompnentState
           },
           child: SafeArea(
             bottom: false,
-            child: MediaImageSelectorPage(),
+            child: MediaImageSelectorPage(
+              endTitle: "完成",
+            ),
           ),
         );
       },

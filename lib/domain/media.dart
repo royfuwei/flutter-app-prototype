@@ -22,7 +22,4 @@ class MediaAspectRatios {
   static const double ratio16_9 = 16.0 / 9.0;
 }
 
-enum ImageType {
-  URL,
-  ASSET,
-}
+enum ImageType { URL, ASSET, MEMORY }

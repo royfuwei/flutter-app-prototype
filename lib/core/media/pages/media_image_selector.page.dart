@@ -13,6 +13,7 @@ import 'package:seeks_app_prototype/core/common/widgets/is_actived_button.widget
 import 'package:seeks_app_prototype/core/media/components/media_grid_selector_crop.dart';
 import 'package:seeks_app_prototype/core/media/models/media_asset_image.dart';
 import 'package:seeks_app_prototype/core/media/providers/media_image_selector_provider.dart';
+import 'package:seeks_app_prototype/core/media/services/media.service.dart';
 import 'package:seeks_app_prototype/domain/media.dart';
 
 class MediaImageSelectorPageNotification extends Notification {
@@ -24,12 +25,14 @@ class MediaImageSelectorPageNotification extends Notification {
 
 class MediaImageSelectorPage extends StatefulWidget {
   static String routeName = "/media/image_selector";
-  final String? title;
+  final String title;
+  final String endTitle;
   final BoxShape? shape;
   final double? cropAspectRatios;
   const MediaImageSelectorPage({
     Key? key,
     this.title: "",
+    this.endTitle: "下一步",
     this.shape: BoxShape.rectangle,
     this.cropAspectRatios: MediaAspectRatios.ratio1_1,
   }) : super(key: key);
@@ -40,6 +43,7 @@ class MediaImageSelectorPage extends StatefulWidget {
 
 class _MediaImageSelectorPageState extends State<MediaImageSelectorPage> {
   List<CropAssetEntity> cropAssets = [];
+  MediaService mediaService = MediaService();
 
   @override
   void initState() {
@@ -61,73 +65,13 @@ class _MediaImageSelectorPageState extends State<MediaImageSelectorPage> {
     );
   }
 
-  Future<Uint8List?> cropImageDataWithDartLibrary(
-      AssetEntity asset, Rect cropRect, EditActionDetails editAction) async {
-    print('dart library start cropping');
-
-    print('getCropRect : $cropRect');
-
-    var data = await asset.thumbDataWithSize(1000, 1000);
-    if (data != null) {
-      DartImageEdit.Image? src = DartImageEdit.decodeImage(data);
-      if (src != null) {
-        src = DartImageEdit.bakeOrientation(src);
-        if (editAction.needCrop)
-          src = DartImageEdit.copyCrop(
-              src,
-              cropRect.left.toInt(),
-              cropRect.top.toInt(),
-              cropRect.width.toInt(),
-              cropRect.height.toInt());
-
-        if (editAction.needFlip) {
-          DartImageEdit.Flip mode;
-          if (editAction.flipY && editAction.flipX) {
-            mode = DartImageEdit.Flip.both;
-            src = DartImageEdit.flip(src, mode);
-          } else if (editAction.flipY) {
-            mode = DartImageEdit.Flip.horizontal;
-            src = DartImageEdit.flip(src, mode);
-          } else if (editAction.flipX) {
-            mode = DartImageEdit.Flip.vertical;
-            src = DartImageEdit.flip(src, mode);
-          }
-        }
-        if (editAction.hasRotateAngle)
-          src = DartImageEdit.copyRotate(
-            src,
-            editAction.rotateAngle,
-          );
-        var fileData = DartImageEdit.encodeJpg(src);
-        data = fileData as Uint8List?;
-      }
-    }
-    return data;
-  }
-
   _cropCropAssets() async {
     print("_cropCropAssets cropAssets.length: ${cropAssets.length}");
-    List<CropImageInfoModel> temp = [];
-    for (var cropAsset in cropAssets) {
-      debugPrint("id: ${cropAsset.asset.id}");
-      debugPrint(
-          "lon ${cropAsset.asset.longitude}, lat: ${cropAsset.asset.latitude}");
-      var asset = cropAsset.asset;
-      var data = await asset.originBytes;
-      debugPrint("data: ${data!.length}");
-      var cropRect = cropAsset.cropRect!;
-      var editAction = cropAsset.editAction!;
-      Uint8List? newData =
-          await cropImageDataWithDartLibrary(asset, cropRect, editAction);
-      debugPrint("newData: ${newData!.length}");
-      CropImageInfoModel cropImageInfoModel = new CropImageInfoModel(
-        data: newData,
-        id: asset.id,
-        shape: widget.shape!,
-      );
-      temp.add(cropImageInfoModel);
-    }
-    print("temp.length: ${temp.length}");
+    List<CropImageInfoModel> temp = await mediaService.cropCropAssets(
+      cropAssets,
+      widget.shape!,
+    );
+
     MediaImageSelectorPageNotification(selectImageInfoList: temp)
         .dispatch(context);
 
@@ -165,7 +109,7 @@ class _MediaImageSelectorPageState extends State<MediaImageSelectorPage> {
       titleItems: [
         appBarTitleText(
           context: context,
-          text: widget.title!,
+          text: widget.title,
         ),
       ],
       endItems: [
@@ -177,7 +121,7 @@ class _MediaImageSelectorPageState extends State<MediaImageSelectorPage> {
               : null,
           isActived: cropAssets.length > 0,
           context: context,
-          text: "下一步",
+          text: widget.endTitle,
         ),
       ],
     );

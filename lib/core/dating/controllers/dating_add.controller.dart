@@ -25,6 +25,11 @@ class DatingAddController extends GetxController {
       _selectImageInfoList.value = value;
   List<CropAssetEntity> get selectImageInfoList => _selectImageInfoList.value;
 
+  Rx<List<CropImageInfoModel>> _selectImageList =
+      Rx<List<CropImageInfoModel>>([]);
+  set selectImageList(value) => this._selectImageList.value = value;
+  List<CropImageInfoModel> get selectImageList => this._selectImageList.value;
+
   Rx<bool> _resizeToAvoidBottomInset = Rx<bool>(true);
   set resizeToAvoidBottomInset(bool value) =>
       _resizeToAvoidBottomInset.value = value;

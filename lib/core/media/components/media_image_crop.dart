@@ -48,7 +48,8 @@ class _MediaImageCropComponentState extends State<MediaImageCropComponent>
     _widget = GestureDetector(
       key: widget.key,
       child: FutureBuilder(
-        future: widget.asset.thumbDataWithSize(1200, 1200),
+        // future: widget.asset.thumbDataWithSize(1000, 1000),
+        future: widget.asset.originBytes,
         builder: (BuildContext bc, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
             return Container(
