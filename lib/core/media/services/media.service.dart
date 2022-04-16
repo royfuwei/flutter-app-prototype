@@ -9,7 +9,8 @@ import 'package:image/image.dart' as DartImageEdit;
 import 'package:seeks_app_prototype/domain/media.dart';
 
 class MediaService {
-  cropCropAssets(List<CropAssetEntity> cropAssets, BoxShape shape) async {
+  Future<List<CropImageInfoModel>> cropCropAssets(
+      List<CropAssetEntity> cropAssets, BoxShape shape) async {
     print("_cropCropAssets cropAssets.length: ${cropAssets.length}");
     List<CropImageInfoModel> temp = [];
     for (var cropAsset in cropAssets) {
@@ -22,7 +23,7 @@ class MediaService {
       var cropRect = cropAsset.cropRect!;
       var editAction = cropAsset.editAction!;
       Uint8List? newData =
-          await cropImageDataWithDartLibrary(asset, cropRect, editAction);
+          await _cropImageDataWithDartLibrary(asset, cropRect, editAction);
       debugPrint("newData: ${newData!.length}");
       CropImageInfoModel cropImageInfoModel = new CropImageInfoModel(
         data: newData,
@@ -34,7 +35,7 @@ class MediaService {
     return temp;
   }
 
-  Future<Uint8List?> cropImageDataWithDartLibrary(
+  Future<Uint8List?> _cropImageDataWithDartLibrary(
     AssetEntity asset,
     Rect cropRect,
     EditActionDetails editAction,
@@ -83,14 +84,17 @@ class MediaService {
   }
 
   ImageProvider<Object> getImageProviderByType(
-      ImageType imageType, dynamic image) {
+    ImageType imageType,
+    dynamic image,
+  ) {
     ImageProvider<Object> imageProvider = AssetImage("");
     switch (imageType) {
       case ImageType.ASSET:
         imageProvider = AssetImage(image);
         break;
       case ImageType.URL:
-        imageProvider = CachedNetworkImageProvider(image);
+        imageProvider = ExtendedImage.network(image).image;
+        // imageProvider = CachedNetworkImageProvider(image);
         break;
       case ImageType.MEMORY:
         imageProvider = ExtendedImage.memory(image).image;

@@ -48,9 +48,6 @@ class DatingAddImagesPage extends StatelessWidget {
       ],
       endItems: [
         Obx(() => isActivedTextButtonWidget(
-              // onPressed: () {
-              //   Get.to(() => DatingAddInfoPage());
-              // },
               onPressed: datingAddController.datingAddImagesToNextOnPressed,
               // isActived: datingAddController.datingAddImagesToNext,
               isActived: datingAddController.selectImageInfoList.length > 0,

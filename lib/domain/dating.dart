@@ -117,14 +117,14 @@ class DatingInfoLabelEntity {
 
 class DatingInfoImageEntity {
   String id;
-  String image;
+  dynamic image;
   ImageType imageType;
   DateTime? latestTime;
   bool? isPrivacy = false;
 
   DatingInfoImageEntity({
     required this.id,
-    this.image = "assets/images//splash_2.jpg",
+    this.image = "assets/images/splash_2.jpg",
     this.imageType = ImageType.ASSET,
     this.latestTime,
     this.isPrivacy,

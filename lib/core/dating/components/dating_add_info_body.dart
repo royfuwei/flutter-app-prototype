@@ -4,6 +4,8 @@ import 'package:seeks_app_prototype/configs/size_config.dart';
 import 'package:seeks_app_prototype/core/dating/components/dating_add_info_content.dart';
 import 'package:seeks_app_prototype/core/dating/components/dating_add_info_topic.dart';
 import 'package:seeks_app_prototype/core/dating/controllers/dating_add.controller.dart';
+import 'package:seeks_app_prototype/core/media/services/media.service.dart';
+import 'package:seeks_app_prototype/domain/media.dart';
 
 class DatingAddInfoBodyComponent extends StatefulWidget {
   const DatingAddInfoBodyComponent({Key? key}) : super(key: key);
@@ -24,6 +26,7 @@ class _DatingAddInfoBodyComponentState
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   DatingAddController datingAddController = Get.put(DatingAddController());
+  MediaService mediaService = MediaService();
 
   @override
   void initState() {
@@ -93,6 +96,12 @@ class _DatingAddInfoBodyComponentState
       topicFocusNode: topicFocusNode,
       controller: textTopicController,
       onChanged: datingAddController.textTopicOnChanged,
+      image: datingAddController.datingInfoImageList.length > 0
+          ? mediaService.getImageProviderByType(
+              datingAddController.datingInfoImageList[0].imageType,
+              datingAddController.datingInfoImageList[0].image,
+            )
+          : AssetImage("assets/images/splash_1.jpg"),
     );
   }
 
