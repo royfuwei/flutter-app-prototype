@@ -1,26 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:seeks_app_prototype/core/users/controllers/user_controller.dart';
+import 'package:seeks_app_prototype/core/users/controllers/user_info_controller.dart';
 
 class UserInfoEditorImageComponent extends StatelessWidget {
   const UserInfoEditorImageComponent({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    UserController userController = Get.put(UserController());
-    return body(context, userController);
+    UserInfoController userInfoController = Get.put(UserInfoController());
+    return body(context, userInfoController);
   }
 
-  body(BuildContext context, UserController userController) {
+  body(BuildContext context, UserInfoController userInfoController) {
     return bodyUserImagesEditor(
       context,
-      userController,
+      userInfoController,
     );
   }
 
   bodyUserImagesEditor(
     BuildContext context,
-    UserController userController,
+    UserInfoController userInfoController,
   ) {
     return Obx(
       () => Container(
@@ -34,22 +34,22 @@ class UserInfoEditorImageComponent extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
             border: Border.all(width: 0.1, color: Colors.grey),
             image: DecorationImage(
-              image: userController.userInfoImageProviders.length > 0
-                  ? userController.userInfoImageProviders[0]
+              image: userInfoController.userInfoImageProviders.length > 0
+                  ? userInfoController.userInfoImageProviders[0]
                   : AssetImage("assets/images/female-user.png"),
               fit: BoxFit.cover,
             ),
           ),
           alignment: Alignment.bottomRight,
-          child: userImagesEditorButton(userController),
+          child: userImagesEditorButton(userInfoController),
         ),
       ),
     );
   }
 
-  userImagesEditorButton(UserController userController) {
+  userImagesEditorButton(UserInfoController userInfoController) {
     return TextButton(
-      onPressed: userController.userInfoEditorImagesOnPressed,
+      onPressed: userInfoController.userInfoEditorImagesOnPressed,
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(Colors.amber),
         padding: MaterialStateProperty.all(

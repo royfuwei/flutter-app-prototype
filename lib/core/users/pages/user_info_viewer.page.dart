@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:seeks_app_prototype/core/common/widgets/appbar.widget.dart';
 import 'package:seeks_app_prototype/core/users/components/user_info_body.dart';
-import 'package:seeks_app_prototype/core/users/controllers/user_controller.dart';
+import 'package:seeks_app_prototype/core/users/controllers/user_info_controller.dart';
 
 class UserInfoViewerPage extends StatelessWidget {
   static String routeName = "/user_info_viewer_page";
@@ -21,7 +21,7 @@ class UserInfoViewerPage extends StatelessWidget {
   }
 
   appBar(BuildContext context) {
-    UserController userController = Get.put(UserController());
+    UserInfoController userInfoController = Get.put(UserInfoController());
     return AppBarWidget(
       startItems: [
         appBarBackButton(
@@ -33,9 +33,9 @@ class UserInfoViewerPage extends StatelessWidget {
         Obx(
           () => appBarUserTitle(
             context: context,
-            name: userController.userInfo.username,
-            status: userController.userStatus,
-            isOnline: userController.userIsOnline,
+            name: userInfoController.userInfo.username,
+            status: userInfoController.userStatus,
+            isOnline: userInfoController.userIsOnline,
           ),
         ),
       ],

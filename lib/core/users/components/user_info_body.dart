@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:seeks_app_prototype/core/users/components/user_info_habby.dart';
 import 'package:seeks_app_prototype/core/users/components/user_info_images.dart';
 import 'package:seeks_app_prototype/core/users/components/user_info_list.dart';
-import 'package:seeks_app_prototype/core/users/controllers/user_controller.dart';
+import 'package:seeks_app_prototype/core/users/controllers/user_info_controller.dart';
 import 'package:seeks_app_prototype/core/users/widgets/user_info_title.widget.dart';
 
 /* class UserInfoBodyComponent extends StatefulWidget {
@@ -16,66 +16,66 @@ import 'package:seeks_app_prototype/core/users/widgets/user_info_title.widget.da
 class _UserInfoBodyComponentState extends State<UserInfoBodyComponent> {
   @override
   Widget build(BuildContext context) {
-    UserController userController = Get.put(UserController());
-    return body(context, userController);
+    UserInfoController userInfoController = Get.put(UserInfoController());
+    return body(context, userInfoController);
   }
 
-  body(BuildContext context, UserController userController) {
+  body(BuildContext context, UserInfoController userInfoController) {
     return SafeArea(
       bottom: false,
-      child: bodyListView(context, userController),
+      child: bodyListView(context, userInfoController),
     );
   }
 
-  bodyListView(BuildContext context, UserController userController) {
+  bodyListView(BuildContext context, UserInfoController userInfoController) {
     return Container(
       child: ListView(
         children: [
-          bodyUserImages(context, userController),
-          bodyUserInfoTitle(userController),
-          bodyUserInfoList(userController),
-          bodyUserInfoHabby(context, userController),
+          bodyUserImages(context, userInfoController),
+          bodyUserInfoTitle(userInfoController),
+          bodyUserInfoList(userInfoController),
+          bodyUserInfoHabby(context, userInfoController),
         ],
       ),
     );
   }
 
-  bodyUserImages(BuildContext context, UserController userController) {
+  bodyUserImages(BuildContext context, UserInfoController userInfoController) {
     return Obx(
       () => UserInfoImagesComponent(
-        items: userController.userInfo.images,
-        // items: userController.userInfoImages,
+        items: userInfoController.userInfo.images,
+        // items: userInfoController.userInfoImages,
       ),
     );
   }
 
-  bodyUserInfoTitle(UserController userController) {
+  bodyUserInfoTitle(UserInfoController userInfoController) {
     return Container(
       child: Obx(
         () => UserInfoTitleWidget(
-          username: userController.userInfo.username,
-          age: userController.userInfo.age,
-          description: userController.userInfo.description,
-          city: userController.userInfo.city,
+          username: userInfoController.userInfo.username,
+          age: userInfoController.userInfo.age,
+          description: userInfoController.userInfo.description,
+          city: userInfoController.userInfo.city,
         ),
       ),
       // child: UserInfoWidget(),
     );
   }
 
-  bodyUserInfoList(UserController userController) {
+  bodyUserInfoList(UserInfoController userInfoController) {
     return Obx(
       () => UserInfoListComponent(
-        items: userController.userInfo.infoList,
+        items: userInfoController.userInfo.infoList,
       ),
     );
   }
 
-  bodyUserInfoHabby(BuildContext context, UserController userController) {
+  bodyUserInfoHabby(BuildContext context, UserInfoController userInfoController) {
     return Obx(
       () => UserInfoLabelsComponent(
-        title: userController.userInfo.habbyLabels.name,
-        items: userController.userInfo.habbyLabels.contents,
+        title: userInfoController.userInfo.habbyLabels.name,
+        items: userInfoController.userInfo.habbyLabels.contents,
       ),
     );
   }
@@ -86,63 +86,63 @@ class UserInfoBodyComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    UserController userController = Get.put(UserController());
-    return body(context, userController);
+    UserInfoController userInfoController = Get.put(UserInfoController());
+    return body(context, userInfoController);
   }
 
-  body(BuildContext context, UserController userController) {
+  body(BuildContext context, UserInfoController userInfoController) {
     return SafeArea(
       bottom: false,
       child: SingleChildScrollView(
-        child: bodyListView(context, userController),
+        child: bodyListView(context, userInfoController),
       ),
     );
   }
 
-  bodyListView(BuildContext context, UserController userController) {
+  bodyListView(BuildContext context, UserInfoController userInfoController) {
     return Container(
       child: Column(
         children: [
-          bodyUserImages(context, userController),
-          bodyUserInfoTitle(userController),
-          bodyUserInfoList(userController),
-          bodyUserInfoHabby(context, userController),
+          bodyUserImages(context, userInfoController),
+          bodyUserInfoTitle(userInfoController),
+          bodyUserInfoList(userInfoController),
+          bodyUserInfoHabby(context, userInfoController),
         ],
       ),
     );
   }
 
-  bodyUserImages(BuildContext context, UserController userController) {
+  bodyUserImages(BuildContext context, UserInfoController userInfoController) {
     return UserInfoImagesComponent();
   }
 
-  bodyUserInfoTitle(UserController userController) {
+  bodyUserInfoTitle(UserInfoController userInfoController) {
     return Container(
       child: Obx(
         () => UserInfoTitleWidget(
-          username: userController.userInfo.username,
-          age: userController.userInfo.age,
-          description: userController.userInfo.description,
-          city: userController.userInfo.city,
+          username: userInfoController.userInfo.username,
+          age: userInfoController.userInfo.age,
+          description: userInfoController.userInfo.description,
+          city: userInfoController.userInfo.city,
         ),
       ),
       // child: UserInfoWidget(),
     );
   }
 
-  bodyUserInfoList(UserController userController) {
+  bodyUserInfoList(UserInfoController userInfoController) {
     return Obx(
       () => UserInfoListComponent(
-        items: userController.userInfo.infoList,
+        items: userInfoController.userInfo.infoList,
       ),
     );
   }
 
-  bodyUserInfoHabby(BuildContext context, UserController userController) {
+  bodyUserInfoHabby(BuildContext context, UserInfoController userInfoController) {
     return Obx(
       () => UserInfoLabelsComponent(
-        title: userController.userInfo.habbyLabels.name,
-        items: userController.userInfo.habbyLabels.contents,
+        title: userInfoController.userInfo.habbyLabels.name,
+        items: userInfoController.userInfo.habbyLabels.contents,
       ),
     );
   }

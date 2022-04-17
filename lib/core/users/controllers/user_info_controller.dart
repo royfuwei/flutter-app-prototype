@@ -9,7 +9,7 @@ import 'package:seeks_app_prototype/core/users/services/user.service.dart';
 import 'package:seeks_app_prototype/domain/user.dart';
 import 'package:seeks_app_prototype/infrastructures/util/getx_routes.dart';
 
-class UserController extends GetxController {
+class UserInfoController extends GetxController {
   UserService userService = UserService();
   MediaService mediaService = MediaService();
 
@@ -95,7 +95,7 @@ class UserController extends GetxController {
   }
 
   floatingActionButtonOnPressed() async {
-    print("onPressed userController.editorUserInfo()");
+    print("onPressed userInfoController.editorUserInfo()");
     await editorUserInfo();
     toRoutesNamed([
       MainPage.routeName,
@@ -138,13 +138,13 @@ class UserController extends GetxController {
 
   @override
   void onReady() {
-    print("UserController onReady!!!~~~~~~");
+    print("UserInfoController onReady!!!~~~~~~");
     super.onReady();
   }
 
   @override
   void onClose() {
-    print("UserController onClose!!!~~~~~~");
+    print("UserInfoController onClose!!!~~~~~~");
     super.onClose();
   }
 }

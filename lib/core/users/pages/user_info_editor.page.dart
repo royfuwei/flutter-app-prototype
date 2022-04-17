@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:seeks_app_prototype/core/common/widgets/appbar.widget.dart';
 import 'package:seeks_app_prototype/core/common/widgets/is_actived_button.widget.dart';
 import 'package:seeks_app_prototype/core/users/components/user_info_editor_body.dart';
-import 'package:seeks_app_prototype/core/users/controllers/user_controller.dart';
+import 'package:seeks_app_prototype/core/users/controllers/user_info_controller.dart';
 
 class UserInfoEditorPage extends StatefulWidget {
   static String routeName = "/user_info_editor";
@@ -14,7 +14,7 @@ class UserInfoEditorPage extends StatefulWidget {
 }
 
 class _UserInfoEditorPageState extends State<UserInfoEditorPage> {
-  UserController userController = Get.put(UserController());
+  UserInfoController userInfoController = Get.put(UserInfoController());
 
   @override
   Widget build(BuildContext context) {
@@ -43,8 +43,8 @@ class _UserInfoEditorPageState extends State<UserInfoEditorPage> {
       endItems: [
         Obx(
           () => isActivedTextButtonWidget(
-            onPressed: userController.userInfoEditorSaveOnPressed,
-            isActived: userController.editorCanSave,
+            onPressed: userInfoController.userInfoEditorSaveOnPressed,
+            isActived: userInfoController.editorCanSave,
             context: context,
             text: "儲存",
           ),

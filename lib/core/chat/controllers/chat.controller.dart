@@ -5,7 +5,7 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:seeks_app_prototype/core/chat/pages/chat.page.dart';
 import 'package:seeks_app_prototype/core/chat/services/chat.service.dart';
 import 'package:seeks_app_prototype/core/main/pages/main.page.dart';
-import 'package:seeks_app_prototype/core/users/controllers/user_controller.dart';
+import 'package:seeks_app_prototype/core/users/controllers/user_info_controller.dart';
 import 'package:seeks_app_prototype/core/users/services/user.service.dart';
 import 'package:seeks_app_prototype/domain/chat.dart';
 import 'package:seeks_app_prototype/infrastructures/util/getx_routes.dart';
@@ -219,9 +219,9 @@ class ChatController extends GetxController {
   }
 
   appBarUserTitleOnPressed() {
-    UserController userController = Get.put(UserController());
+    UserInfoController userInfoController = Get.put(UserInfoController());
     print("appBarUserTitleOnPressed userId: ${userId}");
-    userController.goPageByDatingId(userId);
+    userInfoController.goPageByDatingId(userId);
   }
 
   Future<void> scrollOnRefresh(RefreshController refreshController) async {

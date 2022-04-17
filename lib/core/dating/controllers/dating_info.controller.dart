@@ -6,7 +6,7 @@ import 'package:seeks_app_prototype/core/dating/services/dating.service.dart';
 import 'package:seeks_app_prototype/core/home/controllers/home.controller.dart';
 import 'package:seeks_app_prototype/core/main/pages/main.page.dart';
 import 'package:seeks_app_prototype/core/media/services/media.service.dart';
-import 'package:seeks_app_prototype/core/users/controllers/user_controller.dart';
+import 'package:seeks_app_prototype/core/users/controllers/user_info_controller.dart';
 import 'package:seeks_app_prototype/core/users/controllers/user_dating.controller.dart';
 import 'package:seeks_app_prototype/core/users/services/user.service.dart';
 import 'package:seeks_app_prototype/domain/dating.dart';
@@ -179,9 +179,9 @@ class DatingInfoController extends GetxController {
   }
 
   appBarUserTitleOnPressed() {
-    UserController userController = Get.put(UserController());
+    UserInfoController userInfoController = Get.put(UserInfoController());
     print("appBarUserTitleOnPressed userId: ${userId}");
-    userController.goPageByDatingId(userId);
+    userInfoController.goPageByDatingId(userId);
   }
 
   @override

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:seeks_app_prototype/core/users/controllers/user_controller.dart';
+import 'package:seeks_app_prototype/core/users/controllers/user_info_controller.dart';
 
 userInfoFloatingActionButton() {
-  UserController userController = Get.put(UserController());
+  UserInfoController userInfoController = Get.put(UserInfoController());
   return Obx(() {
-    var widget = userController.isUserInfoOwner
+    var widget = userInfoController.isUserInfoOwner
         ? FloatingActionButton(
-            onPressed: userController.floatingActionButtonOnPressed,
+            onPressed: userInfoController.floatingActionButtonOnPressed,
             child: Icon(
               Icons.edit,
               color: Colors.grey,
