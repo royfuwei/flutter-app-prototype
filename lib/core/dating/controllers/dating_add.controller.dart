@@ -1,18 +1,21 @@
-import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:seeks_app_prototype/core/dating/controllers/dating_info.controller.dart';
 import 'package:seeks_app_prototype/core/dating/pages/dating_add_info.page.dart';
+import 'package:seeks_app_prototype/core/dating/services/dating.service.dart';
 import 'package:seeks_app_prototype/core/main/pages/main.page.dart';
 import 'package:seeks_app_prototype/core/media/models/media_asset_image.dart';
 import 'package:seeks_app_prototype/core/media/services/media.service.dart';
+import 'package:seeks_app_prototype/core/users/services/user.service.dart';
 import 'package:seeks_app_prototype/domain/dating.dart';
 import 'package:seeks_app_prototype/domain/media.dart';
 import 'package:seeks_app_prototype/infrastructures/util/getx_routes.dart';
 
 class DatingAddController extends GetxController {
   MediaService mediaService = MediaService();
+  DatingService datingService = DatingService();
+  UserService userService = UserService();
+
   String userId = "000";
   DatingInfoEntity? datingInfo;
 
@@ -90,7 +93,6 @@ class DatingAddController extends GetxController {
   ) {
     List<DatingInfoImageEntity> results = [];
     for (var selectImage in selectImageList) {
-      Uint8List data = selectImage.data;
       DatingInfoImageEntity result = DatingInfoImageEntity(
         id: "",
         image: selectImage.data,
@@ -103,7 +105,7 @@ class DatingAddController extends GetxController {
 
   Future<void> datingAddInfoToNextOnPressed() async {
     datingInfo = DatingInfoEntity(
-      id: 'none',
+      id: '',
       title: textTopic,
       description: textContent,
       userId: userId,
@@ -116,9 +118,16 @@ class DatingAddController extends GetxController {
 
   Future<void> datingAddPreviewToPublicOnPressed() async {
     if (datingInfo != null) {
+      datingService.createDatingInfo(datingInfo!);
       toRoutesNamed([
         MainPage.routeName,
       ]);
     }
+  }
+
+  @override
+  void onInit() async {
+    userId = await userService.getLoginUserId();
+    super.onInit();
   }
 }

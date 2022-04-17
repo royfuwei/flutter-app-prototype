@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:seeks_app_prototype/core/dating/controllers/dating_info.controller.dart';
-import 'package:seeks_app_prototype/core/dating/pages/dating_info.page.dart';
 import 'package:seeks_app_prototype/core/dating/services/dating.service.dart';
-import 'package:seeks_app_prototype/core/main/pages/main.page.dart';
+import 'package:seeks_app_prototype/core/users/services/user.service.dart';
 import 'package:seeks_app_prototype/domain/dating.dart';
-import 'package:seeks_app_prototype/infrastructures/util/getx_routes.dart';
 
 class HomeController extends GetxController {
+  String userId = "000";
+
   DatingService datingService = DatingService();
+  UserService userService = UserService();
+
   Rx<int> _pageSize = Rx<int>(20);
   set pageSize(value) => _pageSize.value = value;
   int get pageSize => _pageSize.value;
@@ -34,6 +36,7 @@ class HomeController extends GetxController {
 
   Future<void> sliverOnRefresh() async {
     await Future.delayed(Duration(seconds: 1), () {});
+    datingItemList = await datingService.getDatingItemList(userId);
     currentPage = 0;
   }
 
@@ -64,11 +67,13 @@ class HomeController extends GetxController {
   }
 
   onInitDatingItemList() async {
-    datingItemList = await datingService.getDatingItemList();
+    await datingService.initDatingItemList();
+    datingItemList = await datingService.getDatingItemList(userId);
   }
 
   @override
   void onInit() async {
+    userId = await userService.getLoginUserId();
     await onInitDatingItemList();
     super.onInit();
   }

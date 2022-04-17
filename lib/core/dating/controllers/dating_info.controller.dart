@@ -3,9 +3,11 @@ import 'package:get/get.dart';
 import 'package:seeks_app_prototype/core/dating/pages/dating_add_preview.page.dart';
 import 'package:seeks_app_prototype/core/dating/pages/dating_info.page.dart';
 import 'package:seeks_app_prototype/core/dating/services/dating.service.dart';
+import 'package:seeks_app_prototype/core/home/controllers/home.controller.dart';
 import 'package:seeks_app_prototype/core/main/pages/main.page.dart';
 import 'package:seeks_app_prototype/core/media/services/media.service.dart';
 import 'package:seeks_app_prototype/core/users/controllers/user_controller.dart';
+import 'package:seeks_app_prototype/core/users/controllers/user_dating.controller.dart';
 import 'package:seeks_app_prototype/core/users/services/user.service.dart';
 import 'package:seeks_app_prototype/domain/dating.dart';
 import 'package:seeks_app_prototype/infrastructures/util/getx_routes.dart';
@@ -15,7 +17,20 @@ class DatingInfoController extends GetxController {
   UserService userService = UserService();
   MediaService mediaService = MediaService();
 
-  String userId = "001";
+  String userId = "000";
+  String loginUserId = "";
+
+  Rx<String> _buttonTitle = Rx<String>("加入約會");
+  set buttonTitle(String value) => _buttonTitle.value = value;
+  String get buttonTitle => _buttonTitle.value;
+
+  Rx<bool> _isActiveButton = Rx<bool>(true);
+  set isActiveButton(bool value) => _isActiveButton.value = value;
+  bool get isActiveButton => _isActiveButton.value;
+
+  Rx<bool> _showButton = Rx<bool>(true);
+  set showButton(bool value) => _showButton.value = value;
+  bool get showButton => _showButton.value;
 
   Rx<String> _username = Rx<String>("username");
   set username(String value) => _username.value = value;
@@ -99,7 +114,59 @@ class DatingInfoController extends GetxController {
     print("goPageByDatingId userInfo.username: ${userInfo.username}");
     username = userInfo.username;
     userId = userInfo.id;
+    showDatingInfoBottom(datingInfo);
     toRoutesNamed([MainPage.routeName, DatingInfoPage.routeName]);
+  }
+
+  showDatingInfoBottom(DatingInfoEntity item) {
+    DatingStatusType status = item.status;
+    buttonTitle = datingService.getStatusByType(status);
+    switch (status) {
+      case DatingStatusType.FINISH:
+        isActiveButton = false;
+        showButton = false;
+        break;
+      case DatingStatusType.PAITING:
+        isActiveButton = true;
+        showButton = true;
+        buttonTitle = "加入約會";
+        break;
+      case DatingStatusType.SIGNUP:
+        buttonTitle = "取消報名";
+        isActiveButton = true;
+        showButton = true;
+        break;
+    }
+    print(
+      "showDatingInfoBottom item.userId: ${item.userId}, userId: ${userId}",
+    );
+
+    if (item.userId == loginUserId) {
+      showButton = false;
+    }
+  }
+
+  statusButtonOnPressed() async {
+    DatingStatusType status = datingInfo.status;
+    buttonTitle = datingService.getStatusByType(status);
+    switch (status) {
+      case DatingStatusType.SIGNUP:
+        datingInfoMap[datingInfo.id]!.status = DatingStatusType.PAITING;
+        isActiveButton = true;
+        showButton = true;
+        buttonTitle = "加入約會";
+        break;
+      case DatingStatusType.PAITING:
+        datingInfoMap[datingInfo.id]!.status = DatingStatusType.SIGNUP;
+        buttonTitle = "取消報名";
+        isActiveButton = true;
+        showButton = true;
+        break;
+    }
+    HomeController homeController = Get.put(HomeController());
+    UserDatingController userDatingController = Get.put(UserDatingController());
+    homeController.onInit();
+    userDatingController.onInit();
   }
 
   goPreviewPageByDatingInfo(DatingInfoEntity preview) async {
@@ -107,6 +174,7 @@ class DatingInfoController extends GetxController {
     datingInfo = preview;
     await getDatingInfoLabels();
     await refreshUserImageProviders();
+    showDatingInfoBottom(datingInfo);
     toRoutesNamed([MainPage.routeName, DatingAddPreviewPage.routeName]);
   }
 
@@ -118,6 +186,7 @@ class DatingInfoController extends GetxController {
 
   @override
   void onInit() async {
+    loginUserId = await userService.getLoginUserId();
     await onInitUserInfo();
     super.onInit();
   }

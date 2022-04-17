@@ -13,7 +13,9 @@ class UserController extends GetxController {
   UserService userService = UserService();
   MediaService mediaService = MediaService();
 
-  String userId = "001";
+  String loginUserId = "";
+
+  String userId = "000";
 
   onInitUserInfo() async {
     await refreshUserInfoById(userId);
@@ -25,7 +27,7 @@ class UserController extends GetxController {
   }
 
   refreshOwnerUserInfo() async {
-    userInfo = await userService.getUserInfoById("002");
+    userInfo = await userService.getUserInfoById(userId);
     isUserInfoOwner = true;
     refreshUserImageProviders();
   }
@@ -129,6 +131,7 @@ class UserController extends GetxController {
 
   @override
   void onInit() async {
+    loginUserId = await userService.getLoginUserId();
     await onInitUserInfo();
     super.onInit();
   }

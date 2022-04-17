@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:seeks_app_prototype/configs/size_config.dart';
+import 'package:seeks_app_prototype/core/common/components/status_button.dart';
+import 'package:seeks_app_prototype/core/dating/components/dating_info_buttom.dart';
 import 'package:seeks_app_prototype/core/dating/components/dating_info_images.dart';
 import 'package:seeks_app_prototype/core/dating/components/dating_info_list.dart';
 import 'package:seeks_app_prototype/core/dating/controllers/dating_info.controller.dart';
@@ -19,6 +22,32 @@ class DatingInfoBodyComponent extends StatelessWidget {
   }
 
   body(BuildContext context) {
+    DatingInfoController datingInfoController = Get.put(
+      DatingInfoController(),
+    );
+    return SafeArea(
+      child: Container(
+        child: Column(
+          children: [
+            Expanded(
+              child: bodyDatingScrollView(context),
+            ),
+            Obx(
+              () => datingInfoController.showButton
+                  ? DatingInfoButtomComponent(
+                      title: datingInfoController.buttonTitle,
+                      isDisabled: !datingInfoController.isActiveButton,
+                      onPressed: datingInfoController.statusButtonOnPressed,
+                    )
+                  : Container(),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  bodyDatingScrollView(BuildContext context) {
     return Container(
       // color: Colors.amber,
       child: SingleChildScrollView(

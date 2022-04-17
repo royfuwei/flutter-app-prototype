@@ -91,3 +91,15 @@ Map<String, UserInfoEntity> userInfoMap = {
     ),
   ),
 };
+
+List<DatingInfoEntity> userSignUpDating = [
+  datingInfoMap["004"]!,
+];
+
+List<DatingInfoEntity> userProcessDating = [
+  datingInfoMap["004"]!,
+];
+
+List<DatingInfoEntity> userHistoryDating = [
+  datingInfoMap["004"]!,
+];

@@ -49,7 +49,7 @@ class HomeDatingListViewComponent extends StatelessWidget {
       title: item.title,
       datingDate: item.datingInfoTime.datingDate,
       datingRange: item.datingInfoTime.datingRange,
-      status: item.status,
+      status: datingService.getStatusByType(item.status),
       infoImage:
           mediaService.getImageProviderByType(item.imageType, item.image),
       userImage: mediaService.getImageProviderByType(

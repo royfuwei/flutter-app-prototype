@@ -1,90 +1,46 @@
 import 'package:flutter/material.dart';
-import 'package:seeks_app_prototype/configs/size_config.dart';
-import 'package:seeks_app_prototype/core/common/widgets/smart_refresh.widget.dart';
-import 'package:seeks_app_prototype/core/dating/widgets/dating_list_item.widget.dart';
-import 'package:sticky_headers/sticky_headers.dart';
+import 'package:get/get.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:seeks_app_prototype/core/users/components/user_dating_listview.dart';
+import 'package:seeks_app_prototype/core/users/controllers/user_dating.controller.dart';
 
-class UserDatingListBodyComponent extends StatelessWidget {
+class UserDatingListBodyComponent extends StatefulWidget {
   const UserDatingListBodyComponent({Key? key}) : super(key: key);
 
   @override
+  State<UserDatingListBodyComponent> createState() =>
+      _UserDatingListBodyComponentState();
+}
+
+class _UserDatingListBodyComponentState
+    extends State<UserDatingListBodyComponent> {
+  UserDatingController userDatingController = Get.put(UserDatingController());
+  RefreshController refreshController = RefreshController();
+
+  @override
   Widget build(BuildContext context) {
-    return body(context);
+    return body();
   }
 
-  body(BuildContext context) {
-    return SafeArea(
-      bottom: false,
-      child: userDatingRefreshListView(),
-    );
+  @override
+  void initState() {
+    super.initState();
+    userDatingController.onInit();
   }
 
-  userDatingRefreshListView() {
-    return CommonSmartRefreshWidget(
-      child: userDatingListView(),
-    );
-  }
-
-  userDatingListView() {
-    return ListView(
-      children: [
-        userDatingProcessList(),
-        VerticalSpacing(of: 10),
-        userDatingHistoryList(),
-      ],
-    );
-  }
-
-  userDatingProcessList() {
-    return StickyHeader(
-      header: userDatingListTitle(),
-      content: Column(
-        children: [
-          DatingListItem(),
-          DatingListItem(),
-          DatingListItem(),
-        ],
-      ),
-    );
-  }
-
-  userDatingHistoryList() {
-    return StickyHeader(
-      header: userDatingListTitle(title: "約會紀錄"),
-      content: Column(
-        children: [
-          DatingListItem(),
-          DatingListItem(),
-          DatingListItem(),
-          DatingListItem(),
-          DatingListItem(),
-          DatingListItem(),
-          DatingListItem(),
-          DatingListItem(),
-        ],
-      ),
-    );
-  }
-
-  userDatingListTitle({
-    String title = "進行中的約會",
-  }) {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-      color: Colors.green.shade100,
-      child: Row(
-        children: [
-          Container(
-            child: Text(
-              title,
-              style: TextStyle(
-                fontWeight: FontWeight.normal,
-                color: Colors.black,
-                fontSize: 16,
-              ),
-            ),
-          ),
-        ],
+  body() {
+    UserDatingController userDatingController = Get.put(UserDatingController());
+    RefreshController refreshController = RefreshController();
+    return Obx(
+      () => UserDatingListviewComponent(
+        userHistoryDating: userDatingController.userHistoryDating,
+        userProcessDating: userDatingController.userProcessDating,
+        userSignUpDating: userDatingController.userSignUpDating,
+        refreshController: refreshController,
+        onRefresh: () => userDatingController.onRefreshUserDatingList(
+          refreshController,
+        ),
+        itemOnPressed: userDatingController.datingInfoOnPressed,
       ),
     );
   }

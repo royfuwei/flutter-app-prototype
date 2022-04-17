@@ -31,7 +31,6 @@ class _UserInfoImagesComponentState extends State<UserInfoImagesComponent> {
   bodyUserImages() {
     UserController userController = Get.put(UserController());
     return Container(
-      // color: Colors.grey,
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.width,
       padding: EdgeInsets.all(8),
@@ -41,11 +40,13 @@ class _UserInfoImagesComponentState extends State<UserInfoImagesComponent> {
               ? MediaImagesViewerWidget(
                   images: userController.userInfoImageProviders,
                 )
-              : Center(
+              : Container(
+                  alignment: Alignment.center,
+                  color: Colors.grey,
                   child: Icon(
-                    Icons.image,
+                    Icons.account_box,
                     color: Colors.black,
-                    size: getProportionateScreenWidth(context, 40),
+                    size: getProportionateScreenWidth(context, 60),
                   ),
                 );
         },

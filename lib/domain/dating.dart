@@ -7,16 +7,17 @@ class DatingItemEntity {
   String userImage;
   ImageType userImageType;
   String title;
-  String status;
+  DatingStatusType status;
   String signupCount;
   String payment;
   Map<String, DatingInfoLabelEntity> labels;
   DatingInfoTimeEntity datingInfoTime;
-  String image;
+  dynamic image;
   ImageType imageType;
   DateTime? startTime;
   DateTime? endTime;
   DateTime? deadlineTime;
+  bool isCurrentUserSignUp;
 
   DatingItemEntity({
     required this.id,
@@ -24,7 +25,7 @@ class DatingItemEntity {
     this.labels = const <String, DatingInfoLabelEntity>{},
     this.username = "",
     this.title = "一起看電影",
-    this.status = "配對中",
+    this.status = DatingStatusType.PAITING,
     this.signupCount = "100人報名",
     this.payment = "-1000元",
     this.userId = "",
@@ -35,6 +36,7 @@ class DatingItemEntity {
     this.startTime,
     this.endTime,
     this.deadlineTime,
+    this.isCurrentUserSignUp = false,
   });
 }
 
@@ -58,7 +60,8 @@ class DatingInfoEntity {
   DatingInfoTimeEntity datingInfoTime;
   String? paymentType;
   int? payment;
-  String? status;
+  DatingStatusType status;
+  List<String> signUpUserIds;
 
   DatingInfoEntity({
     required this.id,
@@ -74,12 +77,13 @@ class DatingInfoEntity {
     this.userImageType = ImageType.ASSET,
     this.images = const [],
     this.labels = const <String, DatingInfoLabelEntity>{},
+    this.signUpUserIds = const [],
     this.latitude,
     this.longitude,
     required this.datingInfoTime,
     this.paymentType,
     this.payment,
-    this.status,
+    this.status = DatingStatusType.PAITING,
   });
 }
 
@@ -129,4 +133,12 @@ class DatingInfoImageEntity {
     this.latestTime,
     this.isPrivacy,
   });
+}
+
+enum DatingStatusType {
+  PAITING,
+  PAITING_SUCCESS,
+  PAITING_FAILD,
+  SIGNUP,
+  FINISH,
 }

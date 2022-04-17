@@ -14,7 +14,7 @@ Map<String, DatingInfoEntity> datingInfoMap = {
       DatingInfoImageEntity(id: "03", image: "assets/images/splash_3.jpg"),
     ],
     datingInfoTime: DatingInfoTimeEntity(),
-    status: "配對中",
+    status: DatingStatusType.PAITING,
     labels: <String, DatingInfoLabelEntity>{
       "datingDuration": DatingInfoLabelEntity(
         iconType: "access_time",
@@ -49,7 +49,7 @@ Map<String, DatingInfoEntity> datingInfoMap = {
       DatingInfoImageEntity(id: "02", image: "assets/images/splash_2.jpg"),
     ],
     datingInfoTime: DatingInfoTimeEntity(),
-    status: "配對中",
+    status: DatingStatusType.PAITING,
     labels: <String, DatingInfoLabelEntity>{
       "datingDuration": DatingInfoLabelEntity(
         iconType: "access_time",
@@ -85,7 +85,7 @@ Map<String, DatingInfoEntity> datingInfoMap = {
       DatingInfoImageEntity(id: "02", image: "assets/images/splash_2.jpg"),
     ],
     datingInfoTime: DatingInfoTimeEntity(),
-    status: "配對中",
+    status: DatingStatusType.PAITING,
     labels: <String, DatingInfoLabelEntity>{
       "datingDuration": DatingInfoLabelEntity(
         iconType: "access_time",
@@ -107,10 +107,95 @@ Map<String, DatingInfoEntity> datingInfoMap = {
       ),
     },
   ),
+  "004": DatingInfoEntity(
+    id: "004",
+    userId: userInfoMap["002"]!.id,
+    username: userInfoMap["002"]!.username,
+    userImage: userInfoMap["002"]!.images[0].image,
+    userImageType: userInfoMap["002"]!.images[0].imageType,
+    title: "陪我逛夜市~~",
+    description: "我是個吃貨，住在中和，喜歡到樂華夜市吃小吃，目標是兩年內把夜市裡所有攤位都吃一遍！歡迎住在中和的貪吃鬼跟我一起挑戰！",
+    images: [
+      DatingInfoImageEntity(
+        id: "01",
+        imageType: ImageType.URL,
+        image:
+            "https://img.ltn.com.tw/Upload/playing/page/2021/05/15/210515-24892-32-eInIc.jpg",
+      ),
+    ],
+    datingInfoTime: DatingInfoTimeEntity(),
+    status: DatingStatusType.FINISH,
+    labels: <String, DatingInfoLabelEntity>{
+      "datingDuration": DatingInfoLabelEntity(
+        iconType: "access_time",
+        name: "預計4hr",
+        value: 60 * 60 * 3,
+        key: "datingDuration",
+      ),
+      "signupCount": DatingInfoLabelEntity(
+        iconType: "group_add",
+        name: "50人報名",
+        value: 50,
+        key: "signupCount",
+      ),
+      "payment": DatingInfoLabelEntity(
+        iconType: "money_outlined",
+        name: "1000元",
+        value: 1000,
+        key: "payment",
+      ),
+    },
+  ),
+  "005": DatingInfoEntity(
+    id: "005",
+    userId: userInfoMap["001"]!.id,
+    username: userInfoMap["001"]!.username,
+    userImage: userInfoMap["001"]!.images[0].image,
+    userImageType: userInfoMap["001"]!.images[0].imageType,
+    title: "一起去旅遊吧 XD",
+    description: """因為我非常喜歡大海，
+    夢想是希望可以去遍所有的海島國家旅遊。""",
+    images: [
+      DatingInfoImageEntity(
+          id: "03",
+          imageType: ImageType.URL,
+          image:
+              "https://obs.line-scdn.net/0hqbGH0G7ELk16MQbWT1JRGl5nLSJJXT1OHgd_Xy1UFhNXBT1MFFVoKV1md3lRA25ORl81LloydHoSADsZT1M2KFo/w1200"),
+      DatingInfoImageEntity(
+          id: "03",
+          imageType: ImageType.URL,
+          image: "https://img.ltn.com.tw/Upload/news/600/2021/07/24/87.jpg"),
+    ],
+    datingInfoTime: DatingInfoTimeEntity(),
+    status: DatingStatusType.SIGNUP,
+    labels: <String, DatingInfoLabelEntity>{
+      "datingDuration": DatingInfoLabelEntity(
+        iconType: "access_time",
+        name: "預計2hr",
+        value: 60 * 60 * 2,
+        key: "datingDuration",
+      ),
+      "signupCount": DatingInfoLabelEntity(
+        iconType: "group_add",
+        name: "100人報名",
+        value: 100,
+        key: "signupCount",
+      ),
+      "payment": DatingInfoLabelEntity(
+        iconType: "money_outlined",
+        name: "-1000元",
+        value: -1000,
+        key: "payment",
+      ),
+    },
+    signUpUserIds: [
+      "000",
+    ],
+  ),
 };
 
 Map<String, DatingItemEntity> datingItemMap = {
-  "001": DatingItemEntity(
+  /* "001": DatingItemEntity(
     id: "001",
     image: datingInfoMap["001"]!.images[0].image,
     imageType: datingInfoMap["001"]!.images[0].imageType,
@@ -145,5 +230,5 @@ Map<String, DatingItemEntity> datingItemMap = {
     title: datingInfoMap["003"]!.title,
     username: datingInfoMap["003"]!.username,
     status: datingInfoMap["003"]!.status!,
-  ),
+  ), */
 };
