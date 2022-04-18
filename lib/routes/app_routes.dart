@@ -44,11 +44,6 @@ abstract class AppRoutes {
           binding: AppPagesBind(),
         ),
         GetPage(
-          name: ImageUploadPage.routeName,
-          page: () => ImageUploadPage(),
-          binding: AppPagesBind(),
-        ),
-        GetPage(
           name: SignUpUserInfoPage.routeName,
           page: () => SignUpUserInfoPage(),
           binding: AppPagesBind(),

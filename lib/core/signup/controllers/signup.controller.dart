@@ -3,7 +3,6 @@ import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:notification_permissions/notification_permissions.dart';
 import 'package:seeks_app_prototype/core/entry/pages/entry.page.dart';
-import 'package:seeks_app_prototype/core/image/pages/image_upload.page.dart';
 import 'package:seeks_app_prototype/core/location/controllers/location.controller.dart';
 import 'package:seeks_app_prototype/core/notification/controllers/notification.controller.dart';
 import 'package:seeks_app_prototype/core/signup/pages/signup_images_upload.page.dart';

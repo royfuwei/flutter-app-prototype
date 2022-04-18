@@ -22,7 +22,6 @@ import 'package:seeks_app_prototype/core/dev/pages/dev_nine_grid_view.dart';
 import 'package:seeks_app_prototype/core/dev/pages/dev_reorderable_list.dart';
 import 'package:seeks_app_prototype/core/entry/pages/entry.page.dart';
 import 'package:seeks_app_prototype/core/home/pages/home.page.dart';
-import 'package:seeks_app_prototype/core/image/pages/image_upload.page.dart';
 import 'package:seeks_app_prototype/core/image/pages/image_upload_notify.page.dart';
 import 'package:seeks_app_prototype/core/location/widgets/google_map.widget.dart';
 import 'package:seeks_app_prototype/core/location/widgets/search_location.widget.dart';
