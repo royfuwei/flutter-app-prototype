@@ -5,7 +5,7 @@ import 'package:seeks_app_prototype/core/common/components/default_flow_content.
 import 'package:seeks_app_prototype/core/common/components/default_title.dart';
 import 'package:seeks_app_prototype/core/common/components/status_button.dart';
 import 'package:seeks_app_prototype/core/signup/components/signup_account_textfield.dart';
-import 'package:seeks_app_prototype/core/signup/controllers/signup.controller.dart';
+import 'package:seeks_app_prototype/core/signup/controllers/signup_account.controller.dart';
 
 class SignUpAccountComponent extends StatefulWidget {
   const SignUpAccountComponent({
@@ -17,7 +17,9 @@ class SignUpAccountComponent extends StatefulWidget {
 }
 
 class _SignUpAccountComponentState extends State<SignUpAccountComponent> {
-  SignUpController signUpController = Get.put(SignUpController());
+  SignUpAccountController signUpAccountController = Get.put(
+    SignUpAccountController(),
+  );
   TextEditingController referralCodeEditingController = TextEditingController();
   TextEditingController emailEditingController = TextEditingController();
 
@@ -29,7 +31,7 @@ class _SignUpAccountComponentState extends State<SignUpAccountComponent> {
   @override
   void initState() {
     super.initState();
-    signUpController.initSignUpAccountPage(
+    signUpAccountController.initSignUpAccountPage(
       emailEditingController: emailEditingController,
       referralCodeEditingController: referralCodeEditingController,
     );
@@ -60,7 +62,7 @@ class _SignUpAccountComponentState extends State<SignUpAccountComponent> {
         buttom: [
           Obx(
             () => _bottomContent(
-              goNext: signUpController.signUpAccountGoNext,
+              goNext: signUpAccountController.goNext,
             ),
           ),
         ],
@@ -70,10 +72,9 @@ class _SignUpAccountComponentState extends State<SignUpAccountComponent> {
 
   _contentBody() {
     return SignUpAccountTextFieldComponent(
-      emailOnChanged: signUpController.signUpAccountFieldEmailOnChanged,
+      emailOnChanged: signUpAccountController.fieldEmailOnChanged,
       emailEditingController: emailEditingController,
-      referralCodeOnChanged:
-          signUpController.signUpAccountFieldReferralCodeOnChanged,
+      referralCodeOnChanged: signUpAccountController.fieldReferralCodeOnChanged,
       referralCodeEditingController: referralCodeEditingController,
     );
   }
@@ -95,7 +96,7 @@ class _SignUpAccountComponentState extends State<SignUpAccountComponent> {
       child: StatusButton(
         text: "建立帳號",
         isDisabled: !goNext,
-        press: signUpController.signUpAccountGoNextOnPressed,
+        press: signUpAccountController.goNextOnPressed,
       ),
     );
   }

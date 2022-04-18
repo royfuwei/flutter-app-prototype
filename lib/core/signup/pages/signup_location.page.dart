@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:seeks_app_prototype/core/signup/components/signup_location_body.dart';
-import 'package:seeks_app_prototype/core/signup/controllers/signup.controller.dart';
+import 'package:seeks_app_prototype/core/signup/controllers/signup_location.controller.dart';
 
 class SignUpLocationPage extends StatelessWidget {
   static String routeName = "/signup_location";
@@ -9,19 +9,21 @@ class SignUpLocationPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SignUpController signUpController = Get.put(SignUpController());
-    return body(signUpController);
+    SignUpLocationController signUpLocationController =
+        Get.put(SignUpLocationController());
+    return body(signUpLocationController);
   }
 
-  body(SignUpController signUpController) {
+  body(SignUpLocationController signUpLocationController) {
     return Obx(
       () => SignUpLocationBodyComponent(
-        goNext: signUpController.signUpLocationGoNext,
-        goNextOnPressed: signUpController.signUpLocationGoNextOnPressed,
-        locationPermissionTitle: signUpController.signUpLocationPermissionTitle,
-        locationPermission: signUpController.signUpLocationSettingPermission,
+        goNext: signUpLocationController.goNext,
+        goNextOnPressed: signUpLocationController.goNextOnPressed,
+        locationPermissionTitle:
+            signUpLocationController.locationPermissionTitle,
+        locationPermission: signUpLocationController.locationSettingPermission,
         locationPermissionOnPressed:
-            signUpController.signUpLocationPermissionOnPressed,
+            signUpLocationController.locationPermissionOnPressed,
       ),
     );
   }
