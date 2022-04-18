@@ -1,34 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:seeks_app_prototype/configs/size_config.dart';
 import 'package:seeks_app_prototype/core/common/components/default_flow_content.dart';
 import 'package:seeks_app_prototype/core/common/components/default_title.dart';
-import 'package:seeks_app_prototype/core/common/components/input_text_field.dart';
 import 'package:seeks_app_prototype/core/common/components/status_button.dart';
+import 'package:seeks_app_prototype/core/signup/components/signup_account_textfield.dart';
+import 'package:seeks_app_prototype/core/signup/controllers/signup.controller.dart';
 
 class SignUpAccountComponent extends StatefulWidget {
   const SignUpAccountComponent({
     Key? key,
-    this.goNextOnPressed,
-    this.fieldEmailOnChanged,
-    this.fieldReferralCodeOnChanged,
-    this.goNext = false,
   }) : super(key: key);
-
-  final void Function()? goNextOnPressed;
-  final void Function(String)? fieldEmailOnChanged;
-  final void Function(String)? fieldReferralCodeOnChanged;
-  final bool goNext;
 
   @override
   State<SignUpAccountComponent> createState() => _SignUpAccountComponentState();
 }
 
 class _SignUpAccountComponentState extends State<SignUpAccountComponent> {
-  // FocusNode focusNode = FocusNode();
-  // bool goNext = false;
-  // String email = '';
-  // String referralCode = '';
-  // final _formKey = GlobalKey<FormState>();
+  SignUpController signUpController = Get.put(SignUpController());
+  TextEditingController referralCodeEditingController = TextEditingController();
+  TextEditingController emailEditingController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -36,9 +27,20 @@ class _SignUpAccountComponentState extends State<SignUpAccountComponent> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    signUpController.initSignUpAccountPage(
+      emailEditingController: emailEditingController,
+      referralCodeEditingController: referralCodeEditingController,
+    );
+  }
+
+  @override
   dispose() {
-    // focusNode.dispose();
     super.dispose();
+    referralCodeEditingController.dispose();
+    emailEditingController.dispose();
+    FocusScope.of(context).dispose();
   }
 
   body() {
@@ -56,48 +58,23 @@ class _SignUpAccountComponentState extends State<SignUpAccountComponent> {
           ),
         ],
         buttom: [
-          _bottomContent(),
+          Obx(
+            () => _bottomContent(
+              goNext: signUpController.signUpAccountGoNext,
+            ),
+          ),
         ],
       ),
     );
   }
 
   _contentBody() {
-    return Container(
-      padding: EdgeInsets.symmetric(
-        vertical: getProportionateScreenHeight(context, 8),
-      ),
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            _contentBodySignUpForm(),
-          ],
-        ),
-      ),
-    );
-  }
-
-  _contentBodySignUpForm() {
-    return Form(
-      // key: _formKey,
-      child: Column(
-        children: [
-          InputTextField(
-            hintText: "輸入Email",
-            title: "Email(不會公開資訊)",
-            subTitle: "填寫正確的Email來註冊您的帳號",
-            keyboardType: TextInputType.emailAddress,
-            onChanged: widget.fieldEmailOnChanged,
-          ),
-          InputTextField(
-            hintText: "填寫推薦碼",
-            title: "推薦碼",
-            subTitle: "(選填)輸入其他用戶推薦代碼",
-            keyboardType: TextInputType.text,
-            onChanged: widget.fieldReferralCodeOnChanged,
-          ),
-        ],
-      ),
+    return SignUpAccountTextFieldComponent(
+      emailOnChanged: signUpController.signUpAccountFieldEmailOnChanged,
+      emailEditingController: emailEditingController,
+      referralCodeOnChanged:
+          signUpController.signUpAccountFieldReferralCodeOnChanged,
+      referralCodeEditingController: referralCodeEditingController,
     );
   }
 
@@ -108,15 +85,17 @@ class _SignUpAccountComponentState extends State<SignUpAccountComponent> {
     );
   }
 
-  _bottomContent() {
+  _bottomContent({
+    bool goNext = false,
+  }) {
     return Container(
       padding: EdgeInsets.symmetric(
         vertical: getProportionateScreenHeight(context, 24),
       ),
       child: StatusButton(
         text: "建立帳號",
-        isDisabled: !widget.goNext,
-        press: widget.goNextOnPressed,
+        isDisabled: !goNext,
+        press: signUpController.signUpAccountGoNextOnPressed,
       ),
     );
   }

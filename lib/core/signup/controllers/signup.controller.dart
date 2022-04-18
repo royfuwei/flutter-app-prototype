@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:notification_permissions/notification_permissions.dart';
@@ -57,6 +58,8 @@ class SignUpController extends GetxController {
         r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
       ).hasMatch(email);
       signUpAccountGoNext = emailValid;
+    } else {
+      signUpAccountGoNext = false;
     }
   }
 
@@ -155,6 +158,13 @@ class SignUpController extends GetxController {
         signUpNotificationSettingPermission = false;
         break;
     }
+  }
+
+  initSignUpAccountPage({
+    required TextEditingController emailEditingController,
+    required TextEditingController referralCodeEditingController,
+  }) {
+    signUpAccountFieldEmailOnChanged(emailEditingController.text);
   }
 
   Future<void> signUpNotificationGoNextOnPressed() async {
