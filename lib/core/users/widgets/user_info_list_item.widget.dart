@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:seeks_app_prototype/configs/size_config.dart';
 
 class UserInfoListItemWidget extends StatelessWidget {
   static String routeName = "/user_info_list_item";
@@ -34,8 +35,9 @@ class UserInfoListItemWidget extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-            flex: 1,
+            flex: 2,
             child: Container(
+              padding: EdgeInsets.only(right: 20),
               child: Text(
                 title,
                 style: TextStyle(
@@ -47,7 +49,7 @@ class UserInfoListItemWidget extends StatelessWidget {
             ),
           ),
           Expanded(
-            flex: 2,
+            flex: 3,
             child: bodyUserInfoItemValue(),
           ),
         ],
@@ -70,6 +72,7 @@ class UserInfoListItemWidget extends StatelessWidget {
           TextButton(
             onPressed: onPressed,
             child: Icon(
+              // Icons.arrow_forward_ios,
               Icons.edit,
               color: onPressed != null ? Colors.grey : Colors.transparent,
             ),

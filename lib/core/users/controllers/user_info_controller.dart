@@ -23,13 +23,13 @@ class UserInfoController extends GetxController {
 
   refreshUserInfoById(String id) async {
     userInfo = await userService.getUserInfoById(id);
-    refreshUserImageProviders();
+    await refreshUserImageProviders();
   }
 
   refreshOwnerUserInfo() async {
     userInfo = await userService.getUserInfoById(userId);
     isUserInfoOwner = true;
-    refreshUserImageProviders();
+    await refreshUserImageProviders();
   }
 
   Rx<String> _userStatus = Rx<String>("正在線上");
@@ -74,8 +74,9 @@ class UserInfoController extends GetxController {
       _userInfoImageProviders.value;
 
   refreshUserImageProviders() async {
-    userInfoImageProviders = [];
-    await Future.delayed(Duration(microseconds: 10));
+    await clearUserImageProviders();
+    await Future.delayed(Duration(milliseconds: 50));
+    print("userInfo.images.length: ${userInfo.images.length}");
     List<ImageProvider<Object>> temp = [];
     for (var image in userInfo.images) {
       var result = mediaService.getImageProviderByType(
@@ -84,7 +85,12 @@ class UserInfoController extends GetxController {
       );
       temp.add(result);
     }
+    print("temp.length: ${temp.length}");
     userInfoImageProviders = temp;
+  }
+
+  clearUserImageProviders() async {
+    userInfoImageProviders = [];
   }
 
   Future<void> editorUserInfo() async {

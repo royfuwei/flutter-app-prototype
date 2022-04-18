@@ -1,9 +1,8 @@
-import 'dart:typed_data';
-
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:seeks_app_prototype/core/entry/pages/entry.page.dart';
 import 'package:seeks_app_prototype/core/media/models/media_asset_image.dart';
-import 'package:seeks_app_prototype/core/media/pages/media_image_selector.page.dart';
+import 'package:seeks_app_prototype/core/signup/pages/signup_user_info.page.dart';
+import 'package:seeks_app_prototype/infrastructures/util/getx_routes.dart';
 
 class SignUpImagesController extends GetxController {
   Rx<List<CropImageInfoModel>> _selectImageList =
@@ -47,5 +46,12 @@ class SignUpImagesController extends GetxController {
   void clear() {
     selectImageList = [];
     selectImageListLength = selectImageList.length;
+  }
+
+  goNextOnPressed() async {
+    toRoutesNamed([
+      EntryPage.routeName,
+      SignUpUserInfoPage.routeName,
+    ]);
   }
 }

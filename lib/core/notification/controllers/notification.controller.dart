@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
-import 'package:notification_permissions/notification_permissions.dart';
+import 'package:seeks_app_prototype/core/notification/services/notification.service.dart';
 import 'package:seeks_app_prototype/domain/notification.dart';
 
 class NotificationController extends GetxController {
+  NotificationService notificationService = NotificationService();
+
   Rx<int> _pageSize = Rx<int>(20);
   set pageSize(value) => _pageSize.value = value;
   int get pageSize => _pageSize.value;
@@ -22,36 +23,6 @@ class NotificationController extends GetxController {
       _enableCupertinoActivityIndicator.value = value;
   bool get enableCupertinoActivityIndicator =>
       _enableCupertinoActivityIndicator.value;
-
-  Future<PermissionStatus> checkPermission() async {
-    var permission =
-        await NotificationPermissions.getNotificationPermissionStatus();
-    print(
-      "[NotificationController] checkPermission permission: ${permission}",
-    );
-    return permission;
-  }
-
-  Future<PermissionStatus> getPermission() async {
-    var permission =
-        await NotificationPermissions.getNotificationPermissionStatus();
-    print(
-        "[NotificationController] getPermission getNotificationPermissionStatus: ${permission}");
-    switch (permission) {
-      case PermissionStatus.unknown:
-        permission =
-            await NotificationPermissions.requestNotificationPermissions();
-        break;
-      case PermissionStatus.denied:
-        await Geolocator.openAppSettings();
-        await getPermission();
-
-        break;
-      default:
-        break;
-    }
-    return permission;
-  }
 
   Rx<List<NotifiItemEntity>> _notifiItemList = Rx<List<NotifiItemEntity>>(
     [

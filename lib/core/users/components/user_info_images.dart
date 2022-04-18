@@ -18,6 +18,7 @@ class UserInfoImagesComponent extends StatefulWidget {
 }
 
 class _UserInfoImagesComponentState extends State<UserInfoImagesComponent> {
+  UserInfoController userInfoController = Get.put(UserInfoController());
   @override
   Widget build(BuildContext context) {
     return body();
@@ -28,7 +29,6 @@ class _UserInfoImagesComponentState extends State<UserInfoImagesComponent> {
   }
 
   bodyUserImages() {
-    UserInfoController userInfoController = Get.put(UserInfoController());
     return Container(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.width,

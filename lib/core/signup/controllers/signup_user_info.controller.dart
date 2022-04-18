@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:seeks_app_prototype/core/main/pages/main.page.dart';
+import 'package:seeks_app_prototype/core/signup/controllers/signup.controller.dart';
+import 'package:seeks_app_prototype/core/signup/controllers/signup_account.controller.dart';
 import 'package:seeks_app_prototype/core/signup/controllers/signup_images.controller.dart';
 import 'package:seeks_app_prototype/core/users/services/user.service.dart';
 import 'package:seeks_app_prototype/domain/media.dart';
@@ -112,16 +114,53 @@ class SignUpUserInfoController extends GetxController {
 
   createUserInfo() async {
     var images = getUserInfoImages();
+    var infoList = getUserInfoList();
     UserInfoEntity userInfo = UserInfoEntity(
       id: "000",
       username: nickName,
       city: place,
       age: (DateTime.now().difference(birth!).inDays / 365).floor(),
-      description: birth.toString(),
       habbyLabels: UserInfoLabelsEntity(name: "興趣"),
       images: images,
+      infoList: infoList,
     );
     await userService.signUpUser(userInfo);
+  }
+
+  List<UserInfoListEntity> getUserInfoList() {
+    SignUpController signUpController = Get.put(
+      SignUpController(),
+    );
+    SignUpAccountController signUpAccountController = Get.put(
+      SignUpAccountController(),
+    );
+    List<UserInfoListEntity> results = [
+      UserInfoListEntity(
+        name: "詳細個人資料",
+        contents: [
+          UserInfoListContentEntity(title: "性別", name: sex),
+          UserInfoListContentEntity(title: "居住地", name: place),
+          UserInfoListContentEntity(title: "身高", name: ""),
+          UserInfoListContentEntity(title: "喜歡的類型", name: gender),
+          UserInfoListContentEntity(
+            title: "手機號碼",
+            name: signUpController.telephone,
+          ),
+          UserInfoListContentEntity(
+            title: "Email",
+            name: signUpAccountController.email,
+          ),
+        ],
+      ),
+      UserInfoListEntity(
+        name: "工作及教育背景",
+        contents: [
+          UserInfoListContentEntity(title: "學歷", name: ""),
+          UserInfoListContentEntity(title: "工作", name: ""),
+        ],
+      ),
+    ];
+    return results;
   }
 
   getUserInfoImages() {

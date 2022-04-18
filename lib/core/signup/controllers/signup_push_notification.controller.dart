@@ -1,25 +1,22 @@
 import 'package:get/get.dart';
 import 'package:notification_permissions/notification_permissions.dart';
 import 'package:seeks_app_prototype/core/entry/pages/entry.page.dart';
-import 'package:seeks_app_prototype/core/notification/controllers/notification.controller.dart';
+import 'package:seeks_app_prototype/core/notification/services/notification.service.dart';
 import 'package:seeks_app_prototype/core/signup/pages/signup_images_upload.page.dart';
-import 'package:seeks_app_prototype/core/signup/pages/signup_user_info.page.dart';
 import 'package:seeks_app_prototype/infrastructures/util/getx_routes.dart';
 
 class SignUpPushNotificationController extends GetxController {
-  NotificationController notificationController =
-      Get.put(NotificationController());
+  NotificationService notificationService = NotificationService();
 
   @override
   void onInit() {
-    // onInitSignUpLocationSetting();
     onInitSignUpNotificationSetting();
     super.onInit();
   }
 
   // sign up notification
   final _goNext = false.obs;
-  set goNext(value) => this._goNext.value = value;
+  set goNext(bool value) => this._goNext.value = value;
   bool get goNext => this._goNext.value;
 
   final _notificationSettingPermission = true.obs;
@@ -35,7 +32,7 @@ class SignUpPushNotificationController extends GetxController {
       this._notificationPermissionTitle.value;
 
   Future<void> _notificationSettingPermissionByPermission() async {
-    var permission = await notificationController.checkPermission();
+    var permission = await notificationService.checkPermission();
     print(
         "[SignUpController] notificationSettingPermissionByPermission permission: ${permission}");
     switch (permission) {
@@ -65,7 +62,7 @@ class SignUpPushNotificationController extends GetxController {
   }
 
   Future<void> notificationPermissionOnPressed() async {
-    await notificationController.getPermission();
+    await notificationService.getPermission();
     await _notificationSettingPermissionByPermission();
   }
 

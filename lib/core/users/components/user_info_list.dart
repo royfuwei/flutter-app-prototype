@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:seeks_app_prototype/core/media/widgets/media_images_viewer.widget.dart';
 import 'package:seeks_app_prototype/core/users/widgets/user_info_list_item.widget.dart';
 import 'package:seeks_app_prototype/core/users/widgets/user_info_list_title.widget.dart';
-import 'package:seeks_app_prototype/core/users/widgets/user_info_title.widget.dart';
 import 'package:seeks_app_prototype/domain/user.dart';
 
 class UserInfoListComponent extends StatelessWidget {
@@ -14,7 +12,7 @@ class UserInfoListComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> widgets = getListLength(items);
+    List<Widget> widgets = getListView(items);
     return body(context, widgets);
   }
 
@@ -33,13 +31,19 @@ class UserInfoListComponent extends StatelessWidget {
     );
   }
 
-  List<Widget> getListLength(List<UserInfoListEntity> _items) {
+  List<Widget> getListView(List<UserInfoListEntity> _items) {
     List<Widget> _temp = [];
     for (var _item in _items) {
-      var _widget = UserInfoListTitleWidget();
+      var _widget = UserInfoListTitleWidget(
+        title: _item.name,
+        // color: Colors.grey,
+      );
       _temp.add(_widget);
       for (var _subItem in _item.contents!) {
-        var _subWidget = UserInfoListItemWidget();
+        var _subWidget = UserInfoListItemWidget(
+          title: _subItem.title,
+          value: _subItem.name,
+        );
         _temp.add(_subWidget);
       }
     }

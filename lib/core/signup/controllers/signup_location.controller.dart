@@ -1,17 +1,16 @@
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:seeks_app_prototype/core/entry/pages/entry.page.dart';
-import 'package:seeks_app_prototype/core/location/controllers/location.controller.dart';
+import 'package:seeks_app_prototype/core/location/services/location.service.dart';
 import 'package:seeks_app_prototype/core/signup/pages/signup_push_notification.page.dart';
 import 'package:seeks_app_prototype/infrastructures/util/getx_routes.dart';
 
 class SignUpLocationController extends GetxController {
-  LocationController locationController = Get.put(LocationController());
+  LocationService locationService = LocationService();
 
   @override
   void onInit() {
     onInitLocationSetting();
-    // onInitSignUpNotificationSetting();
     super.onInit();
   }
 
@@ -35,7 +34,7 @@ class SignUpLocationController extends GetxController {
   }
 
   Future<void> _locationSettingPermissionByPermission() async {
-    var locationPermission = await locationController.checkPermission();
+    var locationPermission = await locationService.checkPermission();
     print(
       "[SignUpController] _LocationSettingPermissionByPermission locationPermission: ${locationPermission}",
     );
@@ -64,7 +63,7 @@ class SignUpLocationController extends GetxController {
   }
 
   Future<void> locationPermissionOnPressed() async {
-    await locationController.getPermission();
+    await locationService.getPermission();
     await _locationSettingPermissionByPermission();
   }
 }
