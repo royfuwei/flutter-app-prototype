@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:seeks_app_prototype/configs/size_config.dart';
 import 'package:seeks_app_prototype/core/dating/components/dating_add_info_content.dart';
 import 'package:seeks_app_prototype/core/dating/components/dating_add_info_topic.dart';
 import 'package:seeks_app_prototype/core/dating/controllers/dating_add.controller.dart';
 import 'package:seeks_app_prototype/core/media/services/media.service.dart';
-import 'package:seeks_app_prototype/domain/media.dart';
 
 class DatingAddInfoBodyComponent extends StatefulWidget {
   const DatingAddInfoBodyComponent({Key? key}) : super(key: key);
@@ -38,6 +36,10 @@ class _DatingAddInfoBodyComponentState
         datingAddController.resizeToAvoidBottomInset = true;
       }
     });
+    datingAddController.initPageDatingAddImages(
+      textTopicController: textTopicController,
+      textContentController: textContentController,
+    );
   }
 
   @override

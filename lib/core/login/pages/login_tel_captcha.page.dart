@@ -14,14 +14,9 @@ class LoginTelCaptchaPage extends StatelessWidget {
   }
 
   body(LoginController loginController) {
-    return Obx(
-      () => CaptchaTelBodyComponent(
-        telephone: loginController.telephone,
-        goNext: loginController.loginTelCaptchaGoNext,
-        fieldCaptchOnChanged:
-            loginController.loginTelCaptchaFieldCaptchaOnChanged,
-        goNextOnPressed: loginController.loginTelCaptchaGoNextOnPressed,
-      ),
+    return CaptchaTelBodyComponent(
+      telephone: loginController.telephone,
+      goNextOnPressed: loginController.loginTelCaptchaGoNextOnPressed,
     );
   }
 }

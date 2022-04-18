@@ -14,13 +14,6 @@ class LoginTelPage extends StatelessWidget {
   }
 
   body(LoginController loginController) {
-    return Obx(
-      () => LoginTelBodyComponent(
-        fieldTelOnChanged: loginController.loginTelFieldTelOnChanged,
-        goNextOnPressed: loginController.loginTelGoNextOnPressed,
-        goNext: loginController.loginTelGoNext,
-        areaCode: loginController.areaCode,
-      ),
-    );
+    return LoginTelBodyComponent();
   }
 }

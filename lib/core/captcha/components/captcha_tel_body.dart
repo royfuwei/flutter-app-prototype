@@ -1,8 +1,11 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:seeks_app_prototype/configs/size_config.dart';
 import 'package:seeks_app_prototype/constants.dart';
+import 'package:seeks_app_prototype/core/captcha/components/captcha_tel_textfield.dart';
+import 'package:seeks_app_prototype/core/captcha/controllers/captcha.controller.dart';
 import 'package:seeks_app_prototype/core/common/components/default_flow_content.dart';
 import 'package:seeks_app_prototype/core/common/components/default_title.dart';
 import 'package:seeks_app_prototype/core/common/components/status_button.dart';
@@ -12,18 +15,14 @@ class CaptchaTelBodyComponent extends StatefulWidget {
     Key? key,
     this.telephone = "",
     this.counter = 60,
-    this.goNext = false,
-    this.reCaptchaOnPressed,
     this.goNextOnPressed,
-    this.fieldCaptchOnChanged,
+    // this.fieldCaptchOnChanged,
   }) : super(key: key);
 
   final String telephone;
   final int counter;
-  final bool goNext;
-  final void Function()? reCaptchaOnPressed;
   final void Function()? goNextOnPressed;
-  final void Function(String)? fieldCaptchOnChanged;
+  // final void Function(String)? fieldCaptchOnChanged;
 
   @override
   State<CaptchaTelBodyComponent> createState() =>
@@ -32,6 +31,8 @@ class CaptchaTelBodyComponent extends StatefulWidget {
 
 class _CaptchaTelBodyComponentState extends State<CaptchaTelBodyComponent> {
   FocusNode focusNode = FocusNode();
+  TextEditingController textEditingController = TextEditingController();
+  CaptchaController captchaController = Get.put(CaptchaController());
 
   late Timer _timer;
   late int _counter = widget.counter;
@@ -45,12 +46,17 @@ class _CaptchaTelBodyComponentState extends State<CaptchaTelBodyComponent> {
   void initState() {
     startTimer();
     super.initState();
+    captchaController.initCaptchaTelPage(
+      widget.telephone,
+      textEditingController,
+    );
   }
 
   @override
   void dispose() {
     _timer.cancel();
     focusNode.dispose();
+    textEditingController.dispose();
     super.dispose();
   }
 
@@ -63,20 +69,30 @@ class _CaptchaTelBodyComponentState extends State<CaptchaTelBodyComponent> {
       child: DefaultFlowPage(
         contentMainAxisAlignment: MainAxisAlignment.start,
         content: [
-          _contentTitle(),
+          Obx(
+            () => _contentTitle(
+              telephone: captchaController.telephone,
+            ),
+          ),
           _contentBody(),
         ],
         buttom: [
-          _bottomContent(),
+          Obx(
+            () => _bottomContent(
+              goNext: captchaController.goNext,
+            ),
+          ),
         ],
       ),
     );
   }
 
-  _contentTitle() {
+  _contentTitle({
+    String telephone = "",
+  }) {
     return DefaultTitle(
       title: "輸入驗證碼",
-      subTitle: "驗證碼已發至${widget.telephone}",
+      subTitle: "驗證碼已發至${telephone}",
     );
   }
 
@@ -84,23 +100,17 @@ class _CaptchaTelBodyComponentState extends State<CaptchaTelBodyComponent> {
     return Expanded(
       child: Column(
         children: [
-          Padding(
-            padding: EdgeInsets.symmetric(
-              vertical: getProportionateScreenHeight(context, 24),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                _textFieldSide(),
-              ],
-            ),
-          ),
+          textFieldSide(),
           SizedBox(
             width: double.infinity,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                _captchaTitle(),
+                Obx(
+                  () => _captchaTitle(
+                    goNext: captchaController.goNext,
+                  ),
+                ),
                 _reCaptchaButtom(),
               ],
             ),
@@ -110,12 +120,14 @@ class _CaptchaTelBodyComponentState extends State<CaptchaTelBodyComponent> {
     );
   }
 
-  _captchaTitle() {
+  _captchaTitle({
+    bool goNext = false,
+  }) {
     return Text(
       "${_counter}s 可重新傳送驗證碼",
       style: TextStyle(
         fontSize: getProportionateScreenWidth(context, 18),
-        color: widget.goNext ? colorFont03 : colorFont02,
+        color: goNext ? colorFont03 : colorFont02,
       ),
     );
   }
@@ -144,136 +156,36 @@ class _CaptchaTelBodyComponentState extends State<CaptchaTelBodyComponent> {
     );
   }
 
-  _reCaptchaOnPressed() {
-    setState(() {
-      if (widget.reCaptchaOnPressed != null) {
-        widget.reCaptchaOnPressed!();
-      }
-      _counter = widget.counter;
-      // _counter = 5;
-      startTimer();
-    });
+  _reCaptchaOnPressed() async {
+    await captchaController.reCaptchaOnPressed();
+    _counter = widget.counter;
+    // _counter = 5;
+    startTimer();
+    setState(() {});
   }
 
-  _bottomContent() {
+  _bottomContent({
+    bool goNext = false,
+  }) {
     return Padding(
       padding: EdgeInsets.symmetric(
         vertical: getProportionateScreenHeight(context, 24),
       ),
       child: StatusButton(
         text: "下一步",
-        isDisabled: !widget.goNext,
+        isDisabled: !goNext,
         press: widget.goNextOnPressed,
       ),
     );
   }
 
-  _textFieldSide() {
-    return Expanded(
-      child: SizedBox(
-        width: double.infinity,
-        height: getProportionateScreenHeight(context, 48),
-        child: Container(
-          // elevation: 0.0,
-          decoration: BoxDecoration(
-            color: colorTextField,
-            borderRadius: BorderRadius.all(
-              Radius.circular(5.0),
-            ),
-          ),
-          child: TextField(
-            cursorColor: Colors.white12,
-            cursorWidth: 1,
-            keyboardType: TextInputType.number,
-            focusNode: focusNode,
-            textInputAction: TextInputAction.done,
-            textAlign: TextAlign.center,
-            onChanged: widget.fieldCaptchOnChanged,
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(
-                  color: Colors.transparent,
-                ),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(
-                  color: Colors.transparent,
-                ),
-              ),
-              hintText: "輸入驗證碼",
-              hintStyle: TextStyle(
-                fontSize: getProportionateScreenWidth(
-                  context,
-                  18,
-                ),
-                color: Colors.white60,
-              ),
-              contentPadding: EdgeInsets.symmetric(
-                vertical: 0,
-                horizontal: 16,
-              ),
-            ),
-            style: TextStyle(
-              fontSize: getProportionateScreenWidth(
-                context,
-                18,
-              ),
-              color: Colors.white,
-            ),
-          ),
-        ),
-      ),
+  textFieldSide() {
+    return CaptchaTelTextFieldComponent(
+      focusNode: focusNode,
+      textEditingController: textEditingController,
+      fieldCaptchOnChanged: captchaController.captchaFieldOnChanged,
     );
   }
-  // _textFieldSide() {
-  //   return Expanded(
-  //     child: SizedBox(
-  //       width: double.infinity,
-  //       height: getProportionateScreenHeight(context, 48),
-  //       child: Card(
-  //         elevation: 0.0,
-  //         color: colorTextField,
-  //         shape: const RoundedRectangleBorder(
-  //           borderRadius: BorderRadius.all(
-  //             Radius.circular(5.0),
-  //           ),
-  //         ), //设置圆角
-  //         child: TextField(
-  //           cursorColor: Colors.white12,
-  //           cursorWidth: 1,
-  //           keyboardType: TextInputType.number,
-  //           focusNode: focusNode,
-  //           textInputAction: TextInputAction.done,
-  //           textAlign: TextAlign.center,
-  //           onChanged: widget.fieldCaptchOnChanged,
-  //           decoration: InputDecoration(
-  //             border: OutlineInputBorder(),
-  //             hintText: "輸入驗證碼",
-  //             hintStyle: TextStyle(
-  //               fontSize: getProportionateScreenWidth(
-  //                 context,
-  //                 18,
-  //               ),
-  //               color: Colors.white60,
-  //             ),
-  //             contentPadding: EdgeInsets.symmetric(
-  //               vertical: 0,
-  //               horizontal: 16,
-  //             ),
-  //           ),
-  //           style: TextStyle(
-  //             fontSize: getProportionateScreenWidth(
-  //               context,
-  //               18,
-  //             ),
-  //             color: Colors.white,
-  //           ),
-  //         ),
-  //       ),
-  //     ),
-  //   );
-  // }
 
   startTimer() {
     const oneSec = const Duration(seconds: 1);

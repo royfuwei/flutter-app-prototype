@@ -1,24 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:seeks_app_prototype/configs/size_config.dart';
 import 'package:seeks_app_prototype/constants.dart';
 import 'package:seeks_app_prototype/core/common/components/default_flow_content.dart';
 import 'package:seeks_app_prototype/core/common/components/default_title.dart';
 import 'package:seeks_app_prototype/core/common/components/status_button.dart';
+import 'package:seeks_app_prototype/core/login/components/login_tel_textfield.dart';
+import 'package:seeks_app_prototype/core/login/controllers/login_controller.dart';
 
 class LoginTelBodyComponent extends StatefulWidget {
   const LoginTelBodyComponent({
     Key? key,
-    this.fieldTelOnChanged,
-    this.areaCodeOnPressed,
-    this.goNextOnPressed,
-    this.areaCode = "+886",
     this.goNext = false,
   }) : super(key: key);
 
-  final void Function(String)? fieldTelOnChanged;
-  final void Function()? areaCodeOnPressed;
-  final void Function()? goNextOnPressed;
-  final String areaCode;
   final bool goNext;
 
   @override
@@ -27,8 +22,10 @@ class LoginTelBodyComponent extends StatefulWidget {
 
 class _LoginTelBodyComponentState extends State<LoginTelBodyComponent> {
   FocusNode focusNode = FocusNode();
-  String telephone = '';
-  bool goNext = false;
+
+  TextEditingController textEditingController = TextEditingController();
+
+  LoginController loginController = Get.put(LoginController());
 
   @override
   Widget build(BuildContext context) {
@@ -36,8 +33,18 @@ class _LoginTelBodyComponentState extends State<LoginTelBodyComponent> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    print("LoginTelBodyComponent initState");
+    loginController.initLoginTelPage(
+      textEditingController: textEditingController,
+    );
+  }
+
+  @override
   dispose() {
     focusNode.dispose();
+    textEditingController.dispose();
     super.dispose();
   }
 
@@ -54,7 +61,12 @@ class _LoginTelBodyComponentState extends State<LoginTelBodyComponent> {
           _contentBody(),
         ],
         buttom: [
-          _bottomContent(),
+          Obx(
+            () => _bottomContent(
+              goNext: loginController.loginTelGoNext,
+              goNextOnPressed: loginController.loginTelGoNextOnPressed,
+            ),
+          ),
         ],
       ),
     );
@@ -77,7 +89,11 @@ class _LoginTelBodyComponentState extends State<LoginTelBodyComponent> {
         children: [
           Container(
             padding: EdgeInsets.only(right: 5),
-            child: _contentAreaCodeButtom(),
+            child: Obx(
+              () => _contentAreaCodeButtom(
+                areaCode: loginController.areaCode,
+              ),
+            ),
           ),
           _contentTextFieldSide(),
         ],
@@ -85,84 +101,38 @@ class _LoginTelBodyComponentState extends State<LoginTelBodyComponent> {
     );
   }
 
-  _bottomContent() {
+  _bottomContent({
+    bool goNext = false,
+    void Function()? goNextOnPressed,
+  }) {
     return Container(
       padding: EdgeInsets.symmetric(
         vertical: getProportionateScreenHeight(context, 24),
       ),
       child: StatusButton(
         text: "取得驗證碼",
-        isDisabled: !widget.goNext,
-        press: widget.goNextOnPressed,
+        isDisabled: !goNext,
+        press: goNextOnPressed,
       ),
     );
   }
 
   _contentTextFieldSide() {
-    return Expanded(
-      child: SizedBox(
-        width: double.infinity,
-        height: getProportionateScreenHeight(context, 48),
-        child: Container(
-          decoration: BoxDecoration(
-            color: colorTextField,
-            borderRadius: BorderRadius.all(
-              Radius.circular(5.0),
-            ),
-          ),
-          child: TextField(
-            textAlign: TextAlign.start,
-            cursorColor: Colors.white12,
-            cursorWidth: 1,
-            keyboardType: TextInputType.phone,
-            focusNode: focusNode,
-            textInputAction: TextInputAction.done,
-            onChanged: widget.fieldTelOnChanged,
-            decoration: InputDecoration(
-              // filled: true,
-              // fillColor: colorTextField,
-              enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(
-                  color: Colors.transparent,
-                ),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(
-                  color: Colors.transparent,
-                ),
-              ),
-              border: InputBorder.none,
-              hintText: "填寫手機號碼",
-              hintStyle: TextStyle(
-                fontSize: getProportionateScreenWidth(
-                  context,
-                  18,
-                ),
-                color: Colors.white60,
-              ),
-              contentPadding: EdgeInsets.only(
-                left: 16,
-                right: 16,
-              ),
-            ),
-            style: TextStyle(
-              fontSize: getProportionateScreenWidth(
-                context,
-                18,
-              ),
-              color: Colors.white,
-            ),
-          ),
-        ),
-      ),
+    return LoginTelTextFieldComponent(
+      focusNode: focusNode,
+      fieldTelOnChanged: loginController.loginTelFieldTelOnChanged,
+      controller: textEditingController,
     );
   }
 
-  _contentAreaCodeButtom() {
+  _contentAreaCodeButtom({
+    required String areaCode,
+    void Function()? areaCodeOnPressed,
+  }) {
     return SizedBox(
       height: getProportionateScreenHeight(context, 48),
       child: TextButton(
-        onPressed: widget.areaCodeOnPressed,
+        onPressed: areaCodeOnPressed,
         style: ButtonStyle(
           shape: MaterialStateProperty.all(
             RoundedRectangleBorder(
@@ -174,7 +144,7 @@ class _LoginTelBodyComponentState extends State<LoginTelBodyComponent> {
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 8),
           child: Text(
-            widget.areaCode,
+            areaCode,
             style: TextStyle(
               fontSize: getProportionateScreenWidth(context, 18),
               color: Colors.white,

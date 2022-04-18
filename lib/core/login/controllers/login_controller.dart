@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:seeks_app_prototype/core/login/pages/login_tel_captcha.page.dart';
 import 'package:seeks_app_prototype/core/entry/pages/entry.page.dart';
@@ -11,24 +12,16 @@ class LoginController extends GetxController {
   final loginRepo = new LoginRepository();
 
   final _loginTelGoNext = false.obs;
-  set loginTelGoNext(value) => this._loginTelGoNext.value = value;
-  get loginTelGoNext => this._loginTelGoNext.value;
+  set loginTelGoNext(bool value) => this._loginTelGoNext.value = value;
+  bool get loginTelGoNext => this._loginTelGoNext.value;
 
   final _telephone = ''.obs;
-  set telephone(value) => this._telephone.value = value;
-  get telephone => this._telephone.value;
+  set telephone(String value) => this._telephone.value = value;
+  String get telephone => this._telephone.value;
 
   final _areaCode = '+886'.obs;
-  set areaCode(value) => this._areaCode.value = value;
-  get areaCode => this._areaCode.value;
-
-  final _loginTelCaptchaGoNext = false.obs;
-  set loginTelCaptchaGoNext(value) => this._loginTelCaptchaGoNext.value = value;
-  get loginTelCaptchaGoNext => this._loginTelCaptchaGoNext.value;
-
-  final _captcha = ''.obs;
-  set captcha(value) => this._captcha.value = value;
-  get captcha => this._captcha.value;
+  set areaCode(String value) => this._areaCode.value = value;
+  String get areaCode => this._areaCode.value;
 
   initIsLoginStatus() async {
     var thisLoginModel = await loginRepo.getLocalStorage();
@@ -45,22 +38,19 @@ class LoginController extends GetxController {
     ]);
   }
 
-  loginTelCaptchaFieldCaptchaOnChanged(String text) async {
-    if (text.isNotEmpty) {
-      captcha = text;
-      if (captcha.length == 6) {
-        loginTelCaptchaGoNext = true;
-      } else {
-        loginTelCaptchaGoNext = false;
-      }
-    } else {
-      captcha = '';
-    }
-  }
-
   loginTelFieldTelOnChanged(String text) async {
     if (text.isNotEmpty) {
       telephone = text;
+    } else {
+      telephone = '';
+    }
+    checkLoginTelGoNext();
+  }
+
+  checkLoginTelGoNext() {
+    if (telephone.isEmpty) {
+      loginTelGoNext = false;
+    } else {
       if (telephone[0] == '0' && telephone.length == 10) {
         loginTelGoNext = true;
       } else if (telephone[0] != '0' && telephone.length == 9) {
@@ -68,8 +58,6 @@ class LoginController extends GetxController {
       } else {
         loginTelGoNext = false;
       }
-    } else {
-      telephone = '';
     }
   }
 
@@ -86,6 +74,12 @@ class LoginController extends GetxController {
       EntryPage.routeName,
       LoginTelPage.routeName,
     ]);
+  }
+
+  initLoginTelPage({
+    required TextEditingController textEditingController,
+  }) async {
+    loginTelFieldTelOnChanged(textEditingController.text);
   }
 
   @override

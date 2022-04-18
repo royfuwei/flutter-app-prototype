@@ -128,6 +128,15 @@ class DatingAddController extends GetxController {
     }
   }
 
+  initPageDatingAddImages({
+    required TextEditingController textTopicController,
+    required TextEditingController textContentController,
+  }) async {
+    textTopic = textTopicController.text;
+    textContent = textContentController.text;
+    checkDatingAddInfoToNext();
+  }
+
   @override
   void onInit() async {
     userId = await userService.getLoginUserId();
