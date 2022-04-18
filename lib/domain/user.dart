@@ -28,7 +28,7 @@ class UserInfoEntity {
 
 class UserInfoImageEntity {
   String id;
-  String image;
+  dynamic image;
   ImageType imageType;
   DateTime? latestTime;
   bool? isPrivacy = false;

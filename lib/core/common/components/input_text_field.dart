@@ -99,7 +99,7 @@ class InputTextField extends StatelessWidget {
     );
   }
 
-  textFieldSide(BuildContext context) {
+  /* textFieldSide(BuildContext context) {
     return Container(
       width: double.infinity,
       height: getProportionateScreenHeight(context, 48),
@@ -111,6 +111,25 @@ class InputTextField extends StatelessWidget {
             Radius.circular(5.0),
           ),
         ), //设置圆角
+        child: textFormField(context),
+      ),
+    );
+  } */
+  textFieldSide(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      height: getProportionateScreenHeight(context, 48),
+      child: Container(
+        decoration: BoxDecoration(
+          color: colorTextField,
+          borderRadius: BorderRadius.all(
+            Radius.circular(5.0),
+          ),
+        ),
+        margin: EdgeInsets.symmetric(
+          horizontal: getProportionateScreenWidth(context, 5),
+          // vertical: getProportionateScreenHeight(context, 2),
+        ),
         child: textFormField(context),
       ),
     );
@@ -132,7 +151,17 @@ class InputTextField extends StatelessWidget {
       // onEditingComplete: onEditingComplete,
       decoration: InputDecoration(
         // errorText: errorText,
-        border: OutlineInputBorder(),
+        // border: OutlineInputBorder(),
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: Colors.transparent,
+          ),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: Colors.transparent,
+          ),
+        ),
         hintText: hintText,
         hintStyle: TextStyle(
           fontSize: getProportionateScreenWidth(

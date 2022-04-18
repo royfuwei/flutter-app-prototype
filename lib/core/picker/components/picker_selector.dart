@@ -35,7 +35,8 @@ void showPickerSelector({
       return SafeArea(
         child: Container(
           color: Colors.white,
-          height: MediaQuery.of(context).size.height / 3,
+          // height: MediaQuery.of(context).size.height / 3,
+          height: getProportionateScreenHeight(context, 300),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
@@ -43,7 +44,8 @@ void showPickerSelector({
                 of: 25,
               ),
               Container(
-                height: 100,
+                // height: 100,
+                height: getProportionateScreenHeight(context, 150),
                 padding: EdgeInsets.symmetric(vertical: 24),
                 color: Colors.grey.shade100,
                 child: getPickerSelector(

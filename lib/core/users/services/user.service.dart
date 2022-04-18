@@ -22,6 +22,10 @@ class UserService {
     return result;
   }
 
+  signUpUser(UserInfoEntity item) async {
+    userInfoMap["000"] = item;
+  }
+
   Future<List<DatingInfoEntity>> getUserSignUpDatingList(String id) async {
     List<DatingInfoEntity> results = [];
     datingInfoMap.forEach((key, value) {

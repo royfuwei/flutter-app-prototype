@@ -118,8 +118,11 @@ class DatingAddController extends GetxController {
 
   Future<void> datingAddPreviewToPublicOnPressed() async {
     if (datingInfo != null) {
+      print("datingAddPreviewToPublicOnPressed userId: ${userId}");
+      print(
+          "datingAddPreviewToPublicOnPressed datingInfo.userId: ${datingInfo!.userId}");
       datingService.createDatingInfo(datingInfo!);
-      toRoutesNamed([
+      offAllRoutesNamed([
         MainPage.routeName,
       ]);
     }

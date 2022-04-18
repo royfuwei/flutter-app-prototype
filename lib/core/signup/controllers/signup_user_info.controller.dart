@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:seeks_app_prototype/core/main/pages/main.page.dart';
+import 'package:seeks_app_prototype/core/signup/controllers/signup_images.controller.dart';
+import 'package:seeks_app_prototype/core/users/services/user.service.dart';
+import 'package:seeks_app_prototype/domain/media.dart';
 import 'package:seeks_app_prototype/domain/picker.dart';
+import 'package:seeks_app_prototype/domain/user.dart';
 import 'package:seeks_app_prototype/infrastructures/util/getx_routes.dart';
 
 class SignUpUserInfoController extends GetxController {
+  UserService userService = UserService();
   Rx<String> _nickName = Rx<String>('');
   set nickName(value) => this._nickName.value = value;
   String get nickName => this._nickName.value;
@@ -100,6 +105,39 @@ class SignUpUserInfoController extends GetxController {
   }
 
   goNextOnPressed() {
-    toRoutesNamed([MainPage.routeName]);
+    createUserInfo();
+    // toRoutesNamed([MainPage.routeName]);
+    offAllRoutesNamed([MainPage.routeName]);
+  }
+
+  createUserInfo() async {
+    var images = getUserInfoImages();
+    UserInfoEntity userInfo = UserInfoEntity(
+      id: "000",
+      username: nickName,
+      city: place,
+      age: (DateTime.now().difference(birth!).inDays / 365).floor(),
+      description: birth.toString(),
+      habbyLabels: UserInfoLabelsEntity(name: "興趣"),
+      images: images,
+    );
+    await userService.signUpUser(userInfo);
+  }
+
+  getUserInfoImages() {
+    SignUpImagesController signUpImagesController = Get.put(
+      SignUpImagesController(),
+    );
+    var selectImageList = signUpImagesController.selectImageList;
+    List<UserInfoImageEntity> results = [];
+    for (var item in selectImageList) {
+      UserInfoImageEntity result = UserInfoImageEntity(
+        id: "",
+        image: item.data,
+        imageType: ImageType.MEMORY,
+      );
+      results.add(result);
+    }
+    return results;
   }
 }

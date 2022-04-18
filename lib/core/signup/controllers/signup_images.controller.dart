@@ -6,16 +6,10 @@ import 'package:seeks_app_prototype/core/media/models/media_asset_image.dart';
 import 'package:seeks_app_prototype/core/media/pages/media_image_selector.page.dart';
 
 class SignUpImagesController extends GetxController {
-  Rx<List<CropImageInfoModel>> _selectImageList = Rx<List<CropImageInfoModel>>(
-    [
-      /* CropImageInfoModel(
-        id: "btn",
-        data: Uint8List.fromList([]),
-        shape: BoxShape.rectangle,
-      ), */
-    ],
-  );
-  set selectImageList(value) => this._selectImageList.value = value;
+  Rx<List<CropImageInfoModel>> _selectImageList =
+      Rx<List<CropImageInfoModel>>([]);
+  set selectImageList(List<CropImageInfoModel> value) =>
+      this._selectImageList.value = value;
   List<CropImageInfoModel> get selectImageList => this._selectImageList.value;
 
   Rx<int> _selectImageListLength = Rx<int>(0);
@@ -23,33 +17,35 @@ class SignUpImagesController extends GetxController {
   int get selectImageListLength => this._selectImageListLength.value;
 
   void addAllByList(List<CropImageInfoModel> items) {
-    selectImageList.addAll(items);
-    selectImageListLength = selectImageList.length;
-    /* var temp = selectImageList;
+    List<CropImageInfoModel> temp = selectImageList;
     temp.addAll(items);
-    selectImageList = temp; */
+    selectImageList = temp;
+    selectImageListLength = selectImageList.length;
   }
 
   void addItem(CropImageInfoModel item) {
-    selectImageList.add(item);
+    List<CropImageInfoModel> temp = selectImageList;
+    temp.add(item);
+    selectImageList = temp;
     selectImageListLength = selectImageList.length;
   }
 
   void removeItemById(String id) {
-    selectImageList.removeWhere((element) => element.id == id);
-    selectImageListLength = selectImageList.length;
+    List<CropImageInfoModel> temp = selectImageList;
+    temp.removeWhere((element) => element.id == id);
+    selectImageList = temp;
   }
 
   void removeItemByIndex(int idx) {
-    selectImageList.removeAt(idx);
-    selectImageListLength = selectImageList.length;
-    /* var temp = selectImageList;
+    List<CropImageInfoModel> temp = selectImageList;
     temp.removeAt(idx);
-    selectImageList = temp; */
+    print("removeItemByIndex temp.length: ${temp.length}");
+    selectImageList = temp;
+    selectImageListLength = selectImageList.length;
   }
 
   void clear() {
-    selectImageList.clear();
+    selectImageList = [];
     selectImageListLength = selectImageList.length;
   }
 }

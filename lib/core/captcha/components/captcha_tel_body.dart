@@ -173,14 +173,14 @@ class _CaptchaTelBodyComponentState extends State<CaptchaTelBodyComponent> {
       child: SizedBox(
         width: double.infinity,
         height: getProportionateScreenHeight(context, 48),
-        child: Card(
-          elevation: 0.0,
-          color: colorTextField,
-          shape: const RoundedRectangleBorder(
+        child: Container(
+          // elevation: 0.0,
+          decoration: BoxDecoration(
+            color: colorTextField,
             borderRadius: BorderRadius.all(
               Radius.circular(5.0),
             ),
-          ), //设置圆角
+          ),
           child: TextField(
             cursorColor: Colors.white12,
             cursorWidth: 1,
@@ -190,7 +190,17 @@ class _CaptchaTelBodyComponentState extends State<CaptchaTelBodyComponent> {
             textAlign: TextAlign.center,
             onChanged: widget.fieldCaptchOnChanged,
             decoration: InputDecoration(
-              border: OutlineInputBorder(),
+              border: InputBorder.none,
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: Colors.transparent,
+                ),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: Colors.transparent,
+                ),
+              ),
               hintText: "輸入驗證碼",
               hintStyle: TextStyle(
                 fontSize: getProportionateScreenWidth(
@@ -216,6 +226,54 @@ class _CaptchaTelBodyComponentState extends State<CaptchaTelBodyComponent> {
       ),
     );
   }
+  // _textFieldSide() {
+  //   return Expanded(
+  //     child: SizedBox(
+  //       width: double.infinity,
+  //       height: getProportionateScreenHeight(context, 48),
+  //       child: Card(
+  //         elevation: 0.0,
+  //         color: colorTextField,
+  //         shape: const RoundedRectangleBorder(
+  //           borderRadius: BorderRadius.all(
+  //             Radius.circular(5.0),
+  //           ),
+  //         ), //设置圆角
+  //         child: TextField(
+  //           cursorColor: Colors.white12,
+  //           cursorWidth: 1,
+  //           keyboardType: TextInputType.number,
+  //           focusNode: focusNode,
+  //           textInputAction: TextInputAction.done,
+  //           textAlign: TextAlign.center,
+  //           onChanged: widget.fieldCaptchOnChanged,
+  //           decoration: InputDecoration(
+  //             border: OutlineInputBorder(),
+  //             hintText: "輸入驗證碼",
+  //             hintStyle: TextStyle(
+  //               fontSize: getProportionateScreenWidth(
+  //                 context,
+  //                 18,
+  //               ),
+  //               color: Colors.white60,
+  //             ),
+  //             contentPadding: EdgeInsets.symmetric(
+  //               vertical: 0,
+  //               horizontal: 16,
+  //             ),
+  //           ),
+  //           style: TextStyle(
+  //             fontSize: getProportionateScreenWidth(
+  //               context,
+  //               18,
+  //             ),
+  //             color: Colors.white,
+  //           ),
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
 
   startTimer() {
     const oneSec = const Duration(seconds: 1);

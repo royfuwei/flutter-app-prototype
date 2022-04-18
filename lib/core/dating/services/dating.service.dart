@@ -117,6 +117,7 @@ class DatingService {
     datingInfoMap.forEach((key, value) {
       DatingItemEntity result = DatingItemEntity(
         id: key,
+        userId: value.userId,
         image: value.images[0].image,
         imageType: value.images[0].imageType,
         userImage: value.userImage,

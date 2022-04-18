@@ -75,7 +75,10 @@ class _LoginTelBodyComponentState extends State<LoginTelBodyComponent> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          _contentAreaCodeButtom(),
+          Container(
+            padding: EdgeInsets.only(right: 5),
+            child: _contentAreaCodeButtom(),
+          ),
           _contentTextFieldSide(),
         ],
       ),
@@ -100,15 +103,15 @@ class _LoginTelBodyComponentState extends State<LoginTelBodyComponent> {
       child: SizedBox(
         width: double.infinity,
         height: getProportionateScreenHeight(context, 48),
-        child: Card(
-          elevation: 0.0,
-          color: colorTextField,
-          shape: const RoundedRectangleBorder(
+        child: Container(
+          decoration: BoxDecoration(
+            color: colorTextField,
             borderRadius: BorderRadius.all(
               Radius.circular(5.0),
             ),
-          ), //设置圆角
+          ),
           child: TextField(
+            textAlign: TextAlign.start,
             cursorColor: Colors.white12,
             cursorWidth: 1,
             keyboardType: TextInputType.phone,
@@ -116,7 +119,19 @@ class _LoginTelBodyComponentState extends State<LoginTelBodyComponent> {
             textInputAction: TextInputAction.done,
             onChanged: widget.fieldTelOnChanged,
             decoration: InputDecoration(
-              border: OutlineInputBorder(),
+              // filled: true,
+              // fillColor: colorTextField,
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: Colors.transparent,
+                ),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: Colors.transparent,
+                ),
+              ),
+              border: InputBorder.none,
               hintText: "填寫手機號碼",
               hintStyle: TextStyle(
                 fontSize: getProportionateScreenWidth(
@@ -125,9 +140,9 @@ class _LoginTelBodyComponentState extends State<LoginTelBodyComponent> {
                 ),
                 color: Colors.white60,
               ),
-              contentPadding: EdgeInsets.symmetric(
-                vertical: 0,
-                horizontal: 16,
+              contentPadding: EdgeInsets.only(
+                left: 16,
+                right: 16,
               ),
             ),
             style: TextStyle(
@@ -145,7 +160,7 @@ class _LoginTelBodyComponentState extends State<LoginTelBodyComponent> {
 
   _contentAreaCodeButtom() {
     return SizedBox(
-      height: getProportionateScreenHeight(context, 40),
+      height: getProportionateScreenHeight(context, 48),
       child: TextButton(
         onPressed: widget.areaCodeOnPressed,
         style: ButtonStyle(

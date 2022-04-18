@@ -14,11 +14,8 @@ void main() async {
         create: (context) => MediaImageSelectorProvider(),
       ),
     ],
-    // child: DevelopApp(),
     child: GetxDevelopApp(),
   ));
-  // runApp(DevelopApp());
-  // runApp(GetxDevelopApp());
   // runApp(GetxProductionApp());
 }
 
