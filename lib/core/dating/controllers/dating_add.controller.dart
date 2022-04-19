@@ -111,6 +111,26 @@ class DatingAddController extends GetxController {
       userId: userId,
       images: datingInfoImageList,
       datingInfoTime: DatingInfoTimeEntity(),
+      labels: <String, DatingInfoLabelEntity>{
+        "datingDuration": DatingInfoLabelEntity(
+          iconType: "access_time",
+          name: "預計2hr",
+          value: 60 * 60 * 2,
+          key: "datingDuration",
+        ),
+        "signupCount": DatingInfoLabelEntity(
+          iconType: "group_add",
+          name: "0人報名",
+          value: 100,
+          key: "signupCount",
+        ),
+        "payment": DatingInfoLabelEntity(
+          iconType: "money_outlined",
+          name: "-1000元",
+          value: -1000,
+          key: "payment",
+        ),
+      },
     );
     DatingInfoController datingInfoController = Get.put(DatingInfoController());
     await datingInfoController.goPreviewPageByDatingInfo(datingInfo!);

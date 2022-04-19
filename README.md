@@ -82,6 +82,10 @@ A new Flutter project.
 - [syncfusion_flutter_datepicker](https://pub.dev/packages/syncfusion_flutter_datepicker)
 - [flutter_picker](https://pub.dev/packages/flutter_picker)
 - [pull_to_refresh](https://pub.dev/packages/pull_to_refresh)
+- [introduction_screen](https://pub.dev/packages/introduction_screen)
+- [flutter_datetime_picker](https://pub.dev/packages/flutter_datetime_picker)
+- [wechat_assets_picker](https://pub.dev/packages/wechat_assets_picker)
+- [flutter_pickers](https://pub.dev/packages/flutter_pickers)
 
 
 ## other package
@@ -90,6 +94,7 @@ A new Flutter project.
 - [video_viewer](https://pub.dev/packages/video_viewer)
 - [video_editor](https://pub.dev/packages/video_editor)
 - [panorama](https://pub.dev/packages/panorama)
+- [~~flutter_onboarding_screen~~](https://pub.dev/packages/flutter_onboarding_screen)
 
 
 ## ISSUE

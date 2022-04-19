@@ -459,5 +459,12 @@ List<Widget> getDevView(BuildContext context) {
         Get.to(() => DevEmojiPicker());
       },
     ),
+    ListTile(
+      leading: new CircleAvatar(child: Icon(Icons.chrome_reader_mode)),
+      title: Text(DatingSettingPaymentWidget.routeName),
+      onTap: () {
+        Get.to(() => DatingSettingPaymentWidget());
+      },
+    ),
   ];
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:seeks_app_prototype/core/dating/components/dating_add_info_content.dart';
+import 'package:seeks_app_prototype/core/dating/components/dating_add_info_setting.dart';
 import 'package:seeks_app_prototype/core/dating/components/dating_add_info_topic.dart';
 import 'package:seeks_app_prototype/core/dating/controllers/dating_add.controller.dart';
 import 'package:seeks_app_prototype/core/media/services/media.service.dart';
@@ -86,11 +87,15 @@ class _DatingAddInfoBodyComponentState
                 color: Colors.black,
               ),
             ),
-            // datingSettingSide(),
+            datingSettingSide(),
           ],
         ),
       ),
     );
+  }
+
+  datingSettingSide() {
+    return DatingAddInfoSettingComponent();
   }
 
   bodyDatingTopic() {

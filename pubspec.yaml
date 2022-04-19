@@ -88,6 +88,9 @@ dependencies:
   syncfusion_flutter_datepicker: ^20.1.48
   flutter_picker: ^2.0.3
   pull_to_refresh: ^2.0.0
+  introduction_screen: ^3.0.2
+  flutter_datetime_picker: ^1.5.1
+  flutter_pickers: ^2.1.9
 
 dev_dependencies:
   flutter_test:

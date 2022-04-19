@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:seeks_app_prototype/constants.dart';
 
 class DatingDateTimeWidget extends StatelessWidget {
   const DatingDateTimeWidget({
@@ -9,6 +10,7 @@ class DatingDateTimeWidget extends StatelessWidget {
     this.deadlineWeek = "週日",
     this.deadlineDate = "6月27日",
     this.deadlineTime = "13:00",
+    this.color = colorFont02,
   }) : super(key: key);
 
   final String datingWeek;
@@ -17,6 +19,7 @@ class DatingDateTimeWidget extends StatelessWidget {
   final String deadlineWeek;
   final String deadlineDate;
   final String deadlineTime;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -25,11 +28,20 @@ class DatingDateTimeWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          child: Text("${datingWeek}, ${datingDate} ${datingRange}"),
+          child: Text(
+            "${datingWeek}, ${datingDate} ${datingRange}",
+            style: TextStyle(
+              color: color,
+            ),
+          ),
         ),
         Container(
           child: Text(
-              "${deadlineTitle} ${deadlineWeek}, ${deadlineDate} ${deadlineTime}"),
+            "${deadlineTitle} ${deadlineWeek}, ${deadlineDate} ${deadlineTime}",
+            style: TextStyle(
+              color: color,
+            ),
+          ),
         )
       ],
     );
