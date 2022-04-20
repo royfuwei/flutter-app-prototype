@@ -221,7 +221,7 @@ class ChatController extends GetxController {
   appBarUserTitleOnPressed() {
     UserInfoController userInfoController = Get.put(UserInfoController());
     print("appBarUserTitleOnPressed userId: ${userId}");
-    userInfoController.goPageByDatingId(userId);
+    userInfoController.goPageByUserId(userId);
   }
 
   Future<void> scrollOnRefresh(RefreshController refreshController) async {

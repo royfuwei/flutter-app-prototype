@@ -79,16 +79,16 @@ class SignUpUserInfoController extends GetxController {
   List<PickerValueEntity> getGenderSelectItems() {
     return [
       PickerValueEntity(text: "請選擇"),
-      PickerValueEntity(text: "喜歡女生", value: "woman"),
-      PickerValueEntity(text: "喜歡男生", value: "man"),
-      PickerValueEntity(text: "都喜歡", value: "both"),
+      PickerValueEntity(text: "喜歡女生", value: "喜歡女生"),
+      PickerValueEntity(text: "喜歡男生", value: "喜歡男生"),
+      PickerValueEntity(text: "都喜歡", value: "都喜歡"),
     ];
   }
 
   List<PickerValueEntity> getSexSelectItems() {
     return [
-      PickerValueEntity(text: "男性", value: "man"),
-      PickerValueEntity(text: "女性", value: "woman"),
+      PickerValueEntity(text: "男性", value: "男性"),
+      PickerValueEntity(text: "女性", value: "女性"),
     ];
   }
 

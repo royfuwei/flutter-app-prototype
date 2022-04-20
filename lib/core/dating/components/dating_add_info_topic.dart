@@ -57,6 +57,7 @@ class DatingAddInfoTopicComponent extends StatelessWidget {
                     title: "約會主題",
                     hintText: "填寫約會主題... (>5字)",
                     focusNode: topicFocusNode,
+                    textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.text,
                   ),
                   Container(

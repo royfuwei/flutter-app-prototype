@@ -181,7 +181,7 @@ class DatingInfoController extends GetxController {
   appBarUserTitleOnPressed() {
     UserInfoController userInfoController = Get.put(UserInfoController());
     print("appBarUserTitleOnPressed userId: ${userId}");
-    userInfoController.goPageByDatingId(userId);
+    userInfoController.goPageByUserId(userId);
   }
 
   @override

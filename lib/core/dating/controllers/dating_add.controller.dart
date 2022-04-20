@@ -40,7 +40,7 @@ class DatingAddController extends GetxController {
   List<DatingInfoImageEntity> get datingInfoImageList =>
       this._datingInfoImageList.value;
 
-  Rx<bool> _resizeToAvoidBottomInset = Rx<bool>(true);
+  Rx<bool> _resizeToAvoidBottomInset = Rx<bool>(false);
   set resizeToAvoidBottomInset(bool value) =>
       _resizeToAvoidBottomInset.value = value;
   bool get resizeToAvoidBottomInset => _resizeToAvoidBottomInset.value;

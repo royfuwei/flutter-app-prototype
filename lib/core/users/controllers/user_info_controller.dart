@@ -27,7 +27,7 @@ class UserInfoController extends GetxController {
   }
 
   refreshOwnerUserInfo() async {
-    userInfo = await userService.getUserInfoById(userId);
+    userInfo = await userService.getUserInfoById(loginUserId);
     isUserInfoOwner = true;
     await refreshUserImageProviders();
   }
@@ -54,7 +54,7 @@ class UserInfoController extends GetxController {
       name: "興趣",
     ),
   ));
-  set userInfo(value) => _userInfo.value = value;
+  set userInfo(UserInfoEntity value) => _userInfo.value = value;
   UserInfoEntity get userInfo => _userInfo.value;
 
   Rx<UserInfoEntity> _userInfoEditorClone = Rx<UserInfoEntity>(UserInfoEntity(
@@ -75,8 +75,9 @@ class UserInfoController extends GetxController {
 
   refreshUserImageProviders() async {
     await clearUserImageProviders();
-    await Future.delayed(Duration(milliseconds: 50));
+    await Future.delayed(Duration(milliseconds: 100));
     print("userInfo.images.length: ${userInfo.images.length}");
+    print("userInfo.id: ${userInfo.id}");
     List<ImageProvider<Object>> temp = [];
     for (var image in userInfo.images) {
       var result = mediaService.getImageProviderByType(
@@ -127,9 +128,10 @@ class UserInfoController extends GetxController {
 
   userInfoEditorSaveOnPressed() {}
 
-  goPageByDatingId(String id) async {
+  goPageByUserId(String id) async {
     // datingId = id;
-    print("goPageByDatingId id: ${id}");
+    print("goPageByUserId id: ${id}");
+    userId = id;
     refreshUserInfoById(id);
     isUserInfoOwner = false;
     toRoutesNamed([MainPage.routeName, UserInfoViewerPage.routeName]);

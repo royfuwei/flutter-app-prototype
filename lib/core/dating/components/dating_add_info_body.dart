@@ -30,13 +30,13 @@ class _DatingAddInfoBodyComponentState
   @override
   void initState() {
     super.initState();
-    contentFocusNode.addListener(() {
+    /* contentFocusNode.addListener(() {
       if (contentFocusNode.hasFocus) {
         datingAddController.resizeToAvoidBottomInset = false;
       } else {
         datingAddController.resizeToAvoidBottomInset = true;
       }
-    });
+    }); */
     datingAddController.initPageDatingAddImages(
       textTopicController: textTopicController,
       textContentController: textContentController,

@@ -69,10 +69,11 @@ class AnnounBoardSwiperWidget extends StatelessWidget {
     return KeepAliveWrapper(
       child: Container(
         decoration: BoxDecoration(
+          color: Colors.black87,
           borderRadius: BorderRadius.circular(10),
           image: DecorationImage(
             image: image,
-            fit: BoxFit.cover,
+            fit: BoxFit.fitHeight,
           ),
         ),
       ),
