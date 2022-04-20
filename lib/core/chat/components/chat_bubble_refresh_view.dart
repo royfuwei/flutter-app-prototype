@@ -1,3 +1,4 @@
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -37,7 +38,10 @@ class ChatBubbleRefreshViewComponent extends StatelessWidget {
       decoration: BoxDecoration(
         // color: Colors.amber.shade100,
         image: DecorationImage(
-          image: AssetImage("assets/images/splash_1.jpg"),
+          // image: AssetImage("assets/images/splash_1.jpg"),
+          image: ExtendedImage.network(
+            "https://seeks.tech/source/images/splash_1.jpg",
+          ).image,
           fit: BoxFit.cover,
           opacity: 0.3,
         ),

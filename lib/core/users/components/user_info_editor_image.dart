@@ -1,3 +1,4 @@
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:seeks_app_prototype/core/users/controllers/user_info_controller.dart';
@@ -36,7 +37,10 @@ class UserInfoEditorImageComponent extends StatelessWidget {
             image: DecorationImage(
               image: userInfoController.userInfoImageProviders.length > 0
                   ? userInfoController.userInfoImageProviders[0]
-                  : AssetImage("assets/images/female-user.png"),
+                  // : AssetImage("assets/images/female-user.png"),
+                  : ExtendedImage.network(
+                          "https://seeks.tech/source/images/female-user.png")
+                      .image,
               fit: BoxFit.cover,
             ),
           ),

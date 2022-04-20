@@ -12,8 +12,15 @@ Map<String, UserInfoEntity> userInfoMap = {
 """,
     images: [
       UserInfoImageEntity(
-          id: "01", image: "assets/images/test/users/Janie Chen.jpeg"),
-      UserInfoImageEntity(id: "02", image: "assets/images/splash_1.jpg"),
+        id: "01",
+        imageType: ImageType.URL,
+        image: "https://seeks.tech/source/images/test/users/Janie Chen.jpeg",
+      ),
+      UserInfoImageEntity(
+        id: "02",
+        imageType: ImageType.URL,
+        image: "https://seeks.tech/source/images/splash_1.jpg",
+      ),
     ],
     infoList: [
       UserInfoListEntity(
@@ -55,8 +62,16 @@ Map<String, UserInfoEntity> userInfoMap = {
 我當拳擊手 你當沙包袋 (♡˙︶˙♡)
 """,
     images: [
-      UserInfoImageEntity(id: "01", image: "assets/images/test/users/Yu萱.jpeg"),
-      UserInfoImageEntity(id: "02", image: "assets/images/splash_1.jpg"),
+      UserInfoImageEntity(
+        id: "01",
+        imageType: ImageType.URL,
+        image: "https://seeks.tech/source/images/test/users/Yu萱.jpeg",
+      ),
+      UserInfoImageEntity(
+        id: "02",
+        imageType: ImageType.URL,
+        image: "https://seeks.tech/source/images/splash_1.jpg",
+      ),
     ],
     infoList: [
       UserInfoListEntity(
@@ -99,8 +114,16 @@ Map<String, UserInfoEntity> userInfoMap = {
 但我最喜歡拍的是正在看我個人資料的「妳」
 """,
     images: [
-      UserInfoImageEntity(id: "02", image: "assets/images/test/users/王大黑.jpeg"),
-      UserInfoImageEntity(id: "01", image: "assets/images/splash_3.png"),
+      UserInfoImageEntity(
+        id: "02",
+        imageType: ImageType.URL,
+        image: "https://seeks.tech/source/images/test/users/王大黑.jpeg",
+      ),
+      UserInfoImageEntity(
+        id: "01",
+        imageType: ImageType.URL,
+        image: "https://seeks.tech/source/images/splash_3.jpg",
+      ),
     ],
     infoList: [
       UserInfoListEntity(
@@ -140,8 +163,16 @@ Map<String, UserInfoEntity> userInfoMap = {
     description:
         "我的外號是「米奇」，只因為換了去迪士尼戴米老鼠帽子的大頭貼，辦公室同事就幫我取了這個外號，希望可以找到願意讓我帶妳去迪士尼玩的米妮。",
     images: [
-      UserInfoImageEntity(id: "02", image: "assets/images/test/users/江小涵.jpeg"),
-      UserInfoImageEntity(id: "01", image: "assets/images/splash_3.png"),
+      UserInfoImageEntity(
+        id: "02",
+        imageType: ImageType.URL,
+        image: "https://seeks.tech/source/images/test/users/江小涵.jpeg",
+      ),
+      UserInfoImageEntity(
+        id: "01",
+        imageType: ImageType.URL,
+        image: "https://seeks.tech/source/images/splash_3.jpg",
+      ),
     ],
     infoList: [
       UserInfoListEntity(
@@ -181,8 +212,16 @@ Map<String, UserInfoEntity> userInfoMap = {
     description:
         "我的外號是「米奇」，只因為換了去迪士尼戴米老鼠帽子的大頭貼，辦公室同事就幫我取了這個外號，希望可以找到願意讓我帶妳去迪士尼玩的米妮。",
     images: [
-      UserInfoImageEntity(id: "02", image: "assets/images/test/users/林大奔.jpeg"),
-      UserInfoImageEntity(id: "01", image: "assets/images/splash_3.png"),
+      UserInfoImageEntity(
+        id: "02",
+        imageType: ImageType.URL,
+        image: "https://seeks.tech/source/images/test/users/林大奔.jpeg",
+      ),
+      UserInfoImageEntity(
+        id: "01",
+        imageType: ImageType.URL,
+        image: "https://seeks.tech/source/images/splash_3.jpg",
+      ),
     ],
     infoList: [
       UserInfoListEntity(
@@ -222,8 +261,16 @@ Map<String, UserInfoEntity> userInfoMap = {
     description:
         "我的外號是「米奇」，只因為換了去迪士尼戴米老鼠帽子的大頭貼，辦公室同事就幫我取了這個外號，希望可以找到願意讓我帶妳去迪士尼玩的米妮。",
     images: [
-      UserInfoImageEntity(id: "02", image: "assets/images/test/users/高偉.jpeg"),
-      UserInfoImageEntity(id: "01", image: "assets/images/splash_3.png"),
+      UserInfoImageEntity(
+        id: "02",
+        imageType: ImageType.URL,
+        image: "https://seeks.tech/source/images/test/users/高偉.jpeg",
+      ),
+      UserInfoImageEntity(
+        id: "01",
+        imageType: ImageType.URL,
+        image: "https://seeks.tech/source/images/splash_3.jpg",
+      ),
     ],
     infoList: [
       UserInfoListEntity(

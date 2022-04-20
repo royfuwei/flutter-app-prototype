@@ -6,17 +6,25 @@ class AnnounController extends GetxController {
   Rx<List<AnnounBoardEntity>> _announBoardList = Rx<List<AnnounBoardEntity>>(
     [
       AnnounBoardEntity(
-          id: "04",
-          image: "https://i.ytimg.com/vi/x-S8vKV59Ik/maxresdefault.jpg",
-          imageType: ImageType.URL),
+        id: "02",
+        imageType: ImageType.URL,
+        image: "https://seeks.tech/source/images/test/announcement/開幕慶04.png",
+      ),
       AnnounBoardEntity(
-          id: "02", image: "assets/images/test/announcement/開幕慶04.png"),
+        id: "02",
+        imageType: ImageType.URL,
+        image: "https://seeks.tech/source/images/test/announcement/MVP02_0.png",
+      ),
       AnnounBoardEntity(
-          id: "02", image: "assets/images/test/announcement/MVP02_0.png"),
+        id: "02",
+        imageType: ImageType.URL,
+        image: "https://seeks.tech/source/images/test/announcement/MVP02.png",
+      ),
       AnnounBoardEntity(
-          id: "02", image: "assets/images/test/announcement/MVP02.png"),
-      AnnounBoardEntity(
-          id: "02", image: "assets/images/test/announcement/MVP04.png"),
+        id: "02",
+        imageType: ImageType.URL,
+        image: "https://seeks.tech/source/images/test/announcement/MVP04.png",
+      ),
     ],
   );
   set announBoardList(value) => _announBoardList.value = value;

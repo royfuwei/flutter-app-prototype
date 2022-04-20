@@ -1,5 +1,6 @@
 import 'package:seeks_app_prototype/core/dating/services/dating.service.dart';
 import 'package:seeks_app_prototype/domain/dating.dart';
+import 'package:seeks_app_prototype/domain/media.dart';
 import 'package:seeks_app_prototype/domain/user.dart';
 part 'data.dart';
 

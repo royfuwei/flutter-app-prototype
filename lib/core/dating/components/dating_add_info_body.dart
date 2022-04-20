@@ -1,3 +1,4 @@
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:seeks_app_prototype/core/dating/components/dating_add_info_content.dart';
@@ -108,7 +109,10 @@ class _DatingAddInfoBodyComponentState
               datingAddController.datingInfoImageList[0].imageType,
               datingAddController.datingInfoImageList[0].image,
             )
-          : AssetImage("assets/images/splash_1.jpg"),
+          // : AssetImage("assets/images/splash_1.jpg"),
+          : ExtendedImage.network(
+                  "https://seeks.tech/source/images/splash_1.jpg")
+              .image,
     );
   }
 

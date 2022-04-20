@@ -13,8 +13,13 @@ Map<String, DatingInfoEntity> datingInfoMap = {
     location: "九份老街",
     images: [
       DatingInfoImageEntity(
-          id: "02", image: "assets/images/test/dating/一日九份吃芋圓.jpg"),
-      DatingInfoImageEntity(id: "03", image: "assets/images/splash_3.jpg"),
+          id: "02",
+          imageType: ImageType.URL,
+          image: "https://seeks.tech/source/images/test/dating/一日九份吃芋圓.jpg"),
+      DatingInfoImageEntity(
+          imageType: ImageType.URL,
+          id: "03",
+          image: "https://seeks.tech/source/images/splash_3.jpg"),
     ],
     datingInfoTime: DatingInfoTimeEntity(),
     status: DatingStatusType.PAITING,
@@ -49,9 +54,13 @@ Map<String, DatingInfoEntity> datingInfoMap = {
     description: "我是個吃貨，住在中和，喜歡到樂華夜市吃小吃，目標是兩年內把夜市裡所有攤位都吃一遍！歡迎住在中和的貪吃鬼跟我一起挑戰！",
     images: [
       DatingInfoImageEntity(
-          id: "03", image: "assets/images/test/dating/西門町逛街看電影.jpg"),
+          id: "03",
+          imageType: ImageType.URL,
+          image: "https://seeks.tech/source/images/test/dating/西門町逛街看電影.jpg"),
       DatingInfoImageEntity(
-          id: "03", image: "assets/images/test/dating/逛街喝下午茶.jpg"),
+          id: "03",
+          imageType: ImageType.URL,
+          image: "https://seeks.tech/source/images/test/dating/逛街喝下午茶.jpg"),
     ],
     datingInfoTime: DatingInfoTimeEntity(),
     status: DatingStatusType.PAITING,
@@ -86,7 +95,9 @@ Map<String, DatingInfoEntity> datingInfoMap = {
     description: "來場鬥牛揮灑汗水吧。",
     images: [
       DatingInfoImageEntity(
-          id: "01", image: "assets/images/test/dating/來場鬥牛揮灑汗水吧.jpg"),
+          id: "01",
+          imageType: ImageType.URL,
+          image: "https://seeks.tech/source/images/test/dating/來場鬥牛揮灑汗水吧.jpg"),
     ],
     datingInfoTime: DatingInfoTimeEntity(),
     status: DatingStatusType.PAITING,
@@ -127,7 +138,9 @@ Map<String, DatingInfoEntity> datingInfoMap = {
             "https://img.ltn.com.tw/Upload/playing/page/2021/05/15/210515-24892-32-eInIc.jpg",
       ),
       DatingInfoImageEntity(
-          id: "01", image: "assets/images/test/dating/逛饒河夜市.jpg"),
+          id: "01",
+          imageType: ImageType.URL,
+          image: "https://seeks.tech/source/images/test/dating/逛饒河夜市.jpg"),
     ],
     datingInfoTime: DatingInfoTimeEntity(),
     status: DatingStatusType.FINISH,
