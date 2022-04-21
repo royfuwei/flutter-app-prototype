@@ -6,8 +6,8 @@ import 'package:seeks_app_prototype/infrastructures/production/getx_production_a
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await PushNotificationManager.getToken();
-  runApp(GetxDevelopApp());
-  // runApp(GetxProductionApp());
+  // runApp(GetxDevelopApp());
+  runApp(GetxProductionApp());
 }
 
 RouteObserver<PageRoute> routeObserver = RouteObserver<PageRoute>();

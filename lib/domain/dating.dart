@@ -4,7 +4,7 @@ class DatingItemEntity {
   String id;
   String userId;
   String username;
-  String userImage;
+  dynamic userImage;
   ImageType userImageType;
   String title;
   DatingStatusType status;
@@ -54,7 +54,7 @@ class DatingInfoEntity {
   double? latitude;
   double? longitude;
   Map<String, DatingInfoLabelEntity> labels;
-  String userImage;
+  dynamic userImage;
   ImageType userImageType;
   List<DatingInfoImageEntity> images;
   DatingInfoTimeEntity datingInfoTime;

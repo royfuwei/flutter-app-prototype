@@ -104,12 +104,15 @@ class DatingAddController extends GetxController {
   }
 
   Future<void> datingAddInfoToNextOnPressed() async {
+    var userInfo = await userService.getUserInfoById(userId);
     datingInfo = DatingInfoEntity(
       id: '',
       title: textTopic,
       description: textContent,
       userId: userId,
       images: datingInfoImageList,
+      userImage: userInfo.images[0].image,
+      userImageType: userInfo.images[0].imageType,
       datingInfoTime: DatingInfoTimeEntity(),
       labels: <String, DatingInfoLabelEntity>{
         "datingDuration": DatingInfoLabelEntity(
@@ -139,6 +142,7 @@ class DatingAddController extends GetxController {
   Future<void> datingAddPreviewToPublicOnPressed() async {
     if (datingInfo != null) {
       print("datingAddPreviewToPublicOnPressed userId: ${userId}");
+      print("datingInfo.userId: ${datingInfo!.userId}");
       print(
           "datingAddPreviewToPublicOnPressed datingInfo.userId: ${datingInfo!.userId}");
       datingService.createDatingInfo(datingInfo!);
