@@ -99,6 +99,13 @@ A new Flutter project.
 
 ## ISSUE
 
+
+### Android build debug issue
+- [Gradle 命令之 --stacktrace ， --info ， --debug 用法](https://www.cnblogs.com/bluestorm/p/6846950.html)
+- [gradle build tool](https://gradle.org/install/)
+  - brew install gradle
+- 
+
 ### debug 有顯示圖片，但relase 沒有顯示出來，出現灰幕
 - [Flutter Incorrect use of ParentDataWidget](https://www.jianshu.com/p/14215a5ae8db)
 
