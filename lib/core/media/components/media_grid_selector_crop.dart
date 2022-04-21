@@ -49,7 +49,7 @@ class _MediaGridSelectorCropState extends State<MediaGridSelectorCrop> {
 
   @override
   Widget build(BuildContext context) {
-    return Navigator(
+    /* return Navigator(
       pages: [
         MaterialPage(
           name: MediaGridSelectorCrop.routeName,
@@ -59,6 +59,10 @@ class _MediaGridSelectorCropState extends State<MediaGridSelectorCrop> {
           ),
         ),
       ],
+    ); */
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: body(),
     );
   }
 
@@ -71,7 +75,9 @@ class _MediaGridSelectorCropState extends State<MediaGridSelectorCrop> {
           mainAxisSize: MainAxisSize.max,
           children: [
             bodyImageCropper(),
-            bodyGridViewNotification(),
+            Expanded(
+              child: bodyGridViewNotification(),
+            ),
           ],
         ),
       ),
@@ -108,9 +114,7 @@ class _MediaGridSelectorCropState extends State<MediaGridSelectorCrop> {
         }
         return true;
       }),
-      child: Expanded(
-        child: mediaAssetSelectorComponent,
-      ),
+      child: mediaAssetSelectorComponent,
     );
   }
 
@@ -246,7 +250,7 @@ class _MediaGridSelectorCropState extends State<MediaGridSelectorCrop> {
     cropAssets = temp;
   }
 
-  imageCropper() {
+  /* imageCropper() {
     return Expanded(
       child: Container(
         child: Stack(
@@ -265,6 +269,18 @@ class _MediaGridSelectorCropState extends State<MediaGridSelectorCrop> {
             // imageCropperStackIcon(),
           ],
         ),
+      ),
+    );
+  } */
+  imageCropper() {
+    return Container(
+      child: PageView.builder(
+        physics: NeverScrollableScrollPhysics(),
+        itemCount: tempCropAssetWidgets.length,
+        controller: _pageController,
+        itemBuilder: (context, index) {
+          return tempCropAssetWidgets[index].widget;
+        },
       ),
     );
   }

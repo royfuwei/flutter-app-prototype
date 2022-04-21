@@ -6,6 +6,7 @@ import 'package:photo_manager/photo_manager.dart';
 import 'package:seeks_app_prototype/core/media/models/media_asset_image.dart';
 import 'package:image/image.dart' as DartImageEdit;
 import 'package:seeks_app_prototype/domain/media.dart';
+import 'package:image_editor/image_editor.dart';
 
 class MediaService {
   Future<List<CropImageInfoModel>> cropCropAssets(
@@ -21,8 +22,16 @@ class MediaService {
       debugPrint("data: ${data!.length}");
       var cropRect = cropAsset.cropRect!;
       var editAction = cropAsset.editAction!;
-      Uint8List? newData =
-          await _cropImageDataWithDartLibrary(asset, cropRect, editAction);
+      /* Uint8List? newData = await _cropImageDataWithDartLibrary(
+        asset,
+        cropRect,
+        editAction,
+      ); */
+      Uint8List? newData = await _cropImageDataWithOrigLibrary(
+        asset,
+        cropRect,
+        editAction,
+      );
       debugPrint("newData: ${newData!.length}");
       CropImageInfoModel cropImageInfoModel = new CropImageInfoModel(
         data: newData,
@@ -78,6 +87,41 @@ class MediaService {
         var fileData = DartImageEdit.encodeJpg(src);
         data = fileData as Uint8List?;
       }
+    }
+    return data;
+  }
+
+  Future<Uint8List?> _cropImageDataWithOrigLibrary(
+    AssetEntity asset,
+    Rect cropRect,
+    EditActionDetails editAction,
+  ) async {
+    print('dart library start cropping');
+
+    print('getCropRect : $cropRect');
+
+    // var data = await asset.thumbDataWithSize(1000, 1000);
+    var data = await asset.originBytes;
+    if (data != null) {
+      final rotateAngle = editAction.rotateAngle.toInt();
+      final flipHorizontal = editAction.flipY;
+      final flipVertical = editAction.flipX;
+
+      ImageEditorOption option = ImageEditorOption();
+
+      if (editAction.needCrop) option.addOption(ClipOption.fromRect(cropRect));
+
+      if (editAction.needFlip)
+        option.addOption(
+            FlipOption(horizontal: flipHorizontal, vertical: flipVertical));
+
+      if (editAction.hasRotateAngle)
+        option.addOption(RotateOption(rotateAngle));
+
+      data = await ImageEditor.editImage(
+        image: data,
+        imageEditorOption: option,
+      );
     }
     return data;
   }

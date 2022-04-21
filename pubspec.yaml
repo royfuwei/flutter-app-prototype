@@ -91,6 +91,7 @@ dependencies:
   introduction_screen: ^3.0.2
   flutter_datetime_picker: ^1.5.1
   flutter_pickers: ^2.1.9
+  image_editor: ^1.0.2
 
 dev_dependencies:
   flutter_test:

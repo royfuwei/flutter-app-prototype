@@ -135,42 +135,40 @@ class _MediaImagesViewerWidgetState extends State<MediaImagesViewerWidget> {
   } */
 
   imagesViewerSide() {
-    return Expanded(
-      child: Container(
-        child: Stack(
-          alignment: Alignment.bottomCenter,
-          children: [
-            Expanded(
-              child: PageView.builder(
-                physics: ClampingScrollPhysics(),
-                onPageChanged: (value) {
-                  setState(() {
-                    currentPage = value;
-                  });
-                },
-                itemCount: imageWidgets.length,
-                key: ObjectKey(imageWidgets),
-                controller: _pageController,
-                itemBuilder: (context, index) {
-                  return imageWidgets[index];
-                },
-              ),
+    return Container(
+      child: Stack(
+        alignment: Alignment.bottomCenter,
+        children: [
+          Container(
+            child: PageView.builder(
+              physics: ClampingScrollPhysics(),
+              onPageChanged: (value) {
+                setState(() {
+                  currentPage = value;
+                });
+              },
+              itemCount: imageWidgets.length,
+              key: ObjectKey(imageWidgets),
+              controller: _pageController,
+              itemBuilder: (context, index) {
+                return imageWidgets[index];
+              },
             ),
-            Padding(
-              padding: EdgeInsets.all(10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: List.generate(images.length, (index) {
-                  if (images.length > 1) {
-                    return buildDot(index);
-                  } else {
-                    return Container();
-                  }
-                }),
-              ),
+          ),
+          Padding(
+            padding: EdgeInsets.all(10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: List.generate(images.length, (index) {
+                if (images.length > 1) {
+                  return buildDot(index);
+                } else {
+                  return Container();
+                }
+              }),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

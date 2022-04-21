@@ -191,7 +191,6 @@ class _CaptchaTelBodyComponentState extends State<CaptchaTelBodyComponent> {
     const oneSec = const Duration(seconds: 1);
 
     _timer = Timer.periodic(oneSec, (timer) {
-      print("_counter: ${_counter}");
       if (_counter == 0) {
         _timer.cancel();
       } else {

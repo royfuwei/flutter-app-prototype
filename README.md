@@ -99,6 +99,9 @@ A new Flutter project.
 
 ## ISSUE
 
+### debug 有顯示圖片，但relase 沒有顯示出來，出現灰幕
+- [Flutter Incorrect use of ParentDataWidget](https://www.jianshu.com/p/14215a5ae8db)
+
 ### getx 狀態管理
 - [Flutter状态管理终极方案GetX第二篇——状态管理](https://juejin.cn/post/6907622450151096334)
 
