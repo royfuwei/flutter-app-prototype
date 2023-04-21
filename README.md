@@ -29,7 +29,8 @@ A new Flutter project.
 - [How to Build a Chat App UI With Flutter and Dart](https://www.freecodecamp.org/news/build-a-chat-app-ui-with-flutter/)
 
 - [nicee](https://www.nicee.tw/)
-- 
+- [Flutter App Architecture: The Repository Pattern](https://codewithandrea.com/articles/flutter-repository-pattern/)
+- [Flutter App Architecture: The Domain Model](https://codewithandrea.com/articles/flutter-app-architecture-domain-model/)
 
 ## lib
 - flutter_launcher_icons: ^0.8.1
